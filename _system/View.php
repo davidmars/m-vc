@@ -1,25 +1,19 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of View
+ * Description the view system
  *
  * @author juliette david
  */
 class View {
-	/**
-	 *
-	 * @var array Variables disponibles dans la vue
-	 */
-	public $context = array();
+
+	
+	
+	public $viewVariables;
 
 	/**
 	 *
-	 * @var View Vue à l'intérieur de laquelle sera affiché ce template
+	 * @var View a view outside this view, commonly called a layout
 	 */
 	public $outerView;
 
@@ -28,6 +22,11 @@ class View {
 	 * @var string Chemin du template
 	 */
 	public $path;
+	/**
+	 *
+	 * @var String it will be filled only if the current view is a kind of layout 
+	 */
+	public $insideContent;
         
     
         /**
@@ -36,9 +35,9 @@ class View {
         * @param string $path Chemin de la vue
         * @param string $theme Theme de la vue
         */
-	public function __construct( $path ){
+	public function __construct( $path,$viewVariables=null ){
 		$this->path = $path;
-                $this->context=array();
+		$this->viewVariables=$viewVariables;
 	}
         /**
         * Execute le script avec les variables $context
@@ -46,35 +45,31 @@ class View {
         * @param array $context Les variables disponibles dans les templates
         * @return string Le template généré
         */
-	public function run( $context ){
-
-		$this->context = array_merge($context,$this->context);
-		
-		$scriptPath = "php/view/".$this->path.".php";
+	public function run(){
+	    
+		$scriptPath = $this->path;
+		if(!file_exists($scriptPath)){
+		    $scriptPath = "_app/mvc/v/".$this->path.".php";
+		}
+		if(!file_exists($scriptPath)){
+		    die("can't find the view :".$scriptPath);
+		}
 		
 		while( true ){
 			
-			if( !file_exists($scriptPath) ){
-				return;
-			}
 			if( file_exists( $scriptPath ) ){
 				
-				while(list($k,$v) = each($this->context)){
-					//trace("$k => $v");
-					${$k} = $v;
-				}
-				reset($this->context);
-				
+				//give the variables to the view
+				$_vars=$this->viewVariables;
+				$_content=$this->insideContent;
 				ob_start();
 				include $scriptPath;
 				$this->content = ob_get_contents();
 				ob_end_clean();
 				
 				if($this->outerView){
-                                        
-					$outerContext = $this->context;
-					$outerContext['_content'] = $this->content;
-					return $this->outerView->run( $outerContext );
+					$this->outerView->insideContent=$this->content;
+					return $this->outerView->run();
 				}else{
 					return $this->content;		
 				}
@@ -97,31 +92,21 @@ class View {
 	 * @param int $numTemplate permet de gerer plusieurs fois le meme template dans la meme page en dispatchant les donnees dans le context
 	 * @return string résultat du template interprété
 	 **/
-	function render( $view , $context = array(), $theme = null, $numTemplate = 0 ){
-            
-	    if($numTemplate != 0 && !empty($this->context["_".$numTemplate])) {
-                $contextBase = $this->context["_".$numTemplate];
-            }else{
-                $contextBase = $this->context ;
-            }
-            $context = array_merge( $contextBase, $context );
-             
-             
-            $view = new View($view);
-	    //$context = array_merge( $contextBase, $context );
-	    return $view->run($context);
+	function render( $path , $viewVariables=null ){
+
+            $view = new View($path,$viewVariables);
+	    return $view->run();
 	}
 
 
 	/**
-	* Insert this template in a layout template.
-        * in the layout template use the variable $_content.
+	* Insert this template into a layout template.
+        * in the layout template use the variable $_content to display the current view.
 	* @param string $path path to the template file
-	* @param array $data the data object givent to the outer view
+	* @param array $viewVariables the data object givent to the outer view, if not given, the object will be the current strictParams
 	*/ 
-	function inside( $path, $data = array() ){
-		$this->outerView = new View($path,$data);
-                //return $this->outerView->run($context);
+	function inside( $path, $viewVariables=null ){
+		$this->outerView = new View($path, $viewVariables ? $viewVariables : $this->viewVariables);
 	}
 
 }
