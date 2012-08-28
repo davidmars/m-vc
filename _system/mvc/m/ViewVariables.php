@@ -10,8 +10,24 @@ class ViewVariables{
 	if($params){
 	    $this->feedMe($params);
 	}
+        $this->modelType=get_class($this);
     }
     
+    public function json(){
+        return json_encode($this);
+    }
+    public function xml(){
+        return StuffToXml::getCompleteXml($this);
+    }
+
+
+    /**
+     *
+     * @var String The class name of the current object. 
+     */
+    public $modelType;
+
+
     /**
      *
      * @var String prevent this stupid $this->$kkkk autocompletion
@@ -25,4 +41,8 @@ class ViewVariables{
 	}
 
     }
+    
+
+
+    
 }

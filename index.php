@@ -1,25 +1,44 @@
 <?php
+require_once '_system/Site.php';
+require_once '_system/Boot.php';
 
-require_once '_system/Controler.php';
-require_once '_system/View.php';
-require_once '_system/ViewVariables.php';
+/*
+ * 
+ * Here you configure site if needed
+ * 
+ */
 
-require_once '_system/libs/ChromePhp.php';
-require_once '_system/utils/Human.php';
+Site::$host="http://david.de.shic.cc";
+Site::$root="/m-vc";
 
-require_once '_app/mvc/view-variables/HelloVariables.php';
-require_once '_app/mvc/view-variables/LayoutVariables.php';
+Boot::theSystem();
+
 
 //search for the correct controller, function and params
 Human::log($_REQUEST["route"],"At the begining it was the route param");
+
+
 $route=$_REQUEST["route"];
 $controller=Controler::getByRoute($route);
 
 Human::log($controller->routeParams);
-$output=call_user_func_array(array($controller,$controller->routeFunction), $controller->routeParams);
+$view=$controller->run();
 
-if($output){
-    echo $output;    
+
+if($view){
+    switch ($controller->outputType){
+        case Controler::OUTPUT_JSON:
+            header('Content-type: application/json');
+            echo $view->viewVariables->json();
+            break;
+        case Controler::OUTPUT_XML:
+            header("Content-type: text/xml; charset=utf-8"); 
+            echo $view->viewVariables->xml();
+            break;
+        default :
+            echo $view->render();
+            break;
+    }  
 }else{
-    echo "error";
+    echo "error in index";
 }

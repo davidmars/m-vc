@@ -11,12 +11,12 @@
  * @author david marsalone
  */
 class Controler {
+    
 
-    /**
-     * view is the view with the same controler "path/file-name of the controler"...except the suffix _c. 
-     * @var View 
-     */
-    public $view;
+    const OUTPUT_JSON="json";
+    const OUTPUT_XML="xml";
+    const OUTPUT_HTML="html";
+    
     
     /**
      * 
@@ -36,13 +36,41 @@ class Controler {
     public $routeParams=array();
     
     /**
-     * Return the correct controler
+     *
+     * @var String the requested output type for this controler.
+     * 
+     * @see OUTPUT_JSON
+     * @see OUTPUT_XML
+     * @see OUTPUT_HTML
+     */
+    public $outputType=self::OUTPUT_HTML;
+    
+    
+
+
+     /**
+     * Return a controller based on a route.
      * @param String $route an url that looks like : /path/to/controler/controlerName/function-in-the-controler/param1/param2/paramN
      * @return Controler 
      */
     public static function getByRoute($route){
-	
+        
+
+        
 	$parts=explode("/",$route);
+        
+        $exts=explode(".", $parts[count($parts)-1]);
+        if(count($exts)>1){
+            Human::log("there is an extension");
+            Human::log($exts);
+            $ext=  array_pop($exts);
+            Human::log($ext);
+           
+            $parts[count($parts)-1]=implode(".", $exts);
+            Human::log($parts[count($parts)-1]);
+            
+        }
+        $route=  implode("/", $parts);
 	$i=count($parts);
 	
         while(count($parts)>0){
@@ -69,12 +97,12 @@ class Controler {
 		
 		//creates the controler
 		$controler=new $className();
-
+                $controler->outputType=$ext;
 		if(method_exists ( $controler, $fn )){
 		    Human::log($controler, "controler function $fn found", Human::TYPE_WARN);
 		    $controler->routeFunction=$fn;
 		}else{
-		    Human::log("The function $fn does'nt exists", "controler error", Human::TYPE_ERROR);
+		    Human::log("The function $fn doesn't exists", "controler error", Human::TYPE_ERROR);
 		}
 		
 		$controler->routeFunction=$fn;
@@ -87,14 +115,17 @@ class Controler {
             }	    
             array_pop($parts);
         }
-	
-	
-	
-	
-        return "false";
+
+        return false;
     }
-    
-    
+    /**
+     * process the controller with the current function and paramters.
+     * @return View the resulting view object
+     */
+    public function run(){
+        $view=call_user_func_array(array($this,$this->routeFunction), $this->routeParams);
+        return $view;
+    }
     
     public function __construct() {
         

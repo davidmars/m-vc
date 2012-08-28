@@ -6,3 +6,5 @@
 <h1 style="color:<?=$vv->color?>;">
     Hello <?=$vv->name1?> & <?=$vv->name2?>
 </h1>
+
+<?=$vv->color?>
