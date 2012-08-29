@@ -2,14 +2,14 @@
 
 /**
  * 
- * A Page is related to a public url, that will display something. In practice this "something" is a Controler.
+ * A Page is related to a public url, that will display something. In practice this "something" is a Controller.
  *
  * @author david marsalone
  */
 class Page {
     
     /**
-     * A Page is related to a public url, that will display something. In practice this "something" is a Controler.
+     * A Page is related to a public url, that will display something. In practice this "something" is a Controller.
      * @param type $route
      * @param type $controler 
      */
@@ -26,7 +26,7 @@ class Page {
     public $route;
     /**
      * The controler used to display the page
-     * @var Controler 
+     * @var Controller 
      */
     public $controler;
     

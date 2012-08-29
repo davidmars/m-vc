@@ -22,25 +22,25 @@ class Boot {
         self::includeFilesInFolder(Site::$systemMVC);
         self::includeFilesInFolder(Site::$systemUtils);
         //app
-        //self::includeFilesInFolder(Site::$appControlersFolder); //it is included when needed in fact.
+        //self::includeFilesInFolder(Site::$appControllersFolder); //it is included when needed in fact.
         self::includeFilesInFolder(Site::$appModelsFolder);
         
         //search for the correct controller, function and params
         Human::log($_REQUEST["route"],"At the begining it was the route param");
 
         $route=$_REQUEST["route"];
-        $controller=Controler::getByRoute($route);
-
+        $controller=Controller::getByRoute($route);
+        
         Human::log($controller->routeParams);
         $view=$controller->run();
 
         if($view){
             switch ($controller->outputType){
-                case Controler::OUTPUT_JSON:
+                case Controller::OUTPUT_JSON:
                     Header::json();
                     echo $view->viewVariables->json();
                     break;
-                case Controler::OUTPUT_XML:
+                case Controller::OUTPUT_XML:
                     Header::xml();
                     echo $view->viewVariables->xml();
                     break;
@@ -56,8 +56,10 @@ class Boot {
     }
     
     /**
-     * performs a test on the configuration. 
-     */
+    * Performs a test on the project config.
+    * Launch it in the index file to test your config just after your Site::something config lines.
+    * @return string test results in a html output.
+    */
     public static function testConfig(){
         
         $l="";
@@ -65,24 +67,28 @@ class Boot {
         if("http://".$_SERVER["HTTP_HOST"]==Site::$host){
             $l.=self::logLine("Site::\$host and current domain match","green");
         }else{
-            $l.=self::logLine("Site::host and current domain don't match","red"); 
+            $l.=self::logLine("Site::host and current domain don't match","orange"); 
+            $l.=self::logLine("It's just a warning, maybe your project is multidomain and it will work"); 
             $l.=self::logLine("http://".$_SERVER["HTTP_HOST"]." != ".Site::$host,"grey"); 
         }
         
         if($_SERVER["SCRIPT_NAME"]==Site::$root."/index.php"){
-            $l.=self::logLine("Site::\$root and current folder match","green");
+            $l.=self::logLine("Site::\$root and current folder match","green",true);
         }else{
-            $l.=self::logLine("Site::\$root and current folder don't match","red"); 
+            $l.=self::logLine("Site::\$root and current folder don't match","red",true); 
             $l.=self::logLine($_SERVER["SCRIPT_NAME"]." != ".Site::$root."/index.php","grey"); 
         }
         var_dump($_SERVER);
         return $l;
         
         
-//die($_SERVER["HTTP_HOST"]." vs ".Site::$host);
+
     }
-    private static function logLine($log,$color="grey"){
-        return "<span style='color:$color;'>$log</span><br>";
+    private static function logLine($log,$color="grey",$newBlock=false){
+        if($newBlock){
+            $margin=" margin-top:20px; ";
+        }
+        return "<div style='color:$color; $margin '>$log</div>";
     }
 
 

@@ -19,7 +19,13 @@ class ViewVariables{
     public function xml(){
         return StuffToXml::getCompleteXml($this);
     }
-
+    
+    /**
+     * A place to put messy variables... very, very bad practice.
+     * If you are writting templates and a php developer use this, tell it to your boss...the developer sould be fired.
+     * @var array A place where to put messy variables
+     */
+    public $anarchy=array();
 
     /**
      *

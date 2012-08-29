@@ -6,11 +6,11 @@
  */
 
 /**
- * Description of Controler
+ * Description of Controller
  *
  * @author david marsalone
  */
-class Controler {
+class Controller {
     
 
     const OUTPUT_JSON="json";
@@ -51,7 +51,7 @@ class Controler {
      /**
      * Return a controller based on a route.
      * @param String $route an url that looks like : /path/to/controler/controlerName/function-in-the-controler/param1/param2/paramN
-     * @return Controler 
+     * @return Controller 
      */
     public static function getByRoute($route){
         
@@ -79,7 +79,7 @@ class Controler {
 	    Human::log("search controler in $url");
             if(file_exists($url)){
 		//class name
-		$className=ucfirst($parts[count($parts)-1])."Controler";
+		$className=ucfirst($parts[count($parts)-1])."Controller";
 		$parts=explode("/",$route);
 		$i++;
 		//function in the class

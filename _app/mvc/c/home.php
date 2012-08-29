@@ -5,7 +5,7 @@
  *
  * @author david marsalone
  */
-class HomeControler extends Controler {
+class HomeController extends Controller {
     
     	public function index()
 	{

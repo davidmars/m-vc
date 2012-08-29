@@ -59,7 +59,7 @@ class Site {
      * 
      * @var String For php use...where your controlers?
      */
-    public static $appControlersFolder="_app/mvc/c";
+    public static $appControllersFolder="_app/mvc/c";
 
     //----------------------system folders--------------------------  
     

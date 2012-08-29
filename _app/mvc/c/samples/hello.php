@@ -1,10 +1,10 @@
 <?php
 /**
- * Description of HelloControler
+ * Description of HelloController
  *
  * @author david marsalone
  */
-class HelloControler extends Controler{
+class HelloController extends Controller{
     
     /**
      * Will display the default view	

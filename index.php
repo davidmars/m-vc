@@ -1,5 +1,5 @@
 <?php
-require_once '_system/Site.php'; //by default it shoud works, if you change the _system folder location, you will have to change this line.
+require_once '_system/Site.php'; //by default it should works, if you change the _system folder location, you will have to change this line.
 require_once '_system/Boot.php'; // the same...
 
 /*
@@ -27,7 +27,7 @@ Site::$root="/m-vc";
 
 
 //remove this comment to debug your config.
-die(Boot::testConfig());
+//die(Boot::testConfig());
 
 
 Boot::theSystem();
