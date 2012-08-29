@@ -8,10 +8,11 @@
 class Site {
     /**
      *
-     * @var String the root path of your website starting with slash.
-     * Usefull to display hrefs or img src, etc... 
+     * @var String the root path of your website starting with slash. This one is always visible on you url just fter your domain name.
+     * @example /my-project-folder
+     * @example /
      */
-    public static $root="/omoe";
+    public static $root="/";
     /**
      *
      * @param String $url the local url you need to display
