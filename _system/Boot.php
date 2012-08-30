@@ -78,12 +78,45 @@ class Boot {
             $l.=self::logLine("Site::\$root and current folder don't match","red",true); 
             $l.=self::logLine($_SERVER["SCRIPT_NAME"]." != ".Site::$root."/index.php","grey"); 
         }
-        var_dump($_SERVER);
+        //
+
+        $l.=self::testWritablesFolders();
+
+        //var_dump($_SERVER);
         return $l;
         
         
 
     }
+    private static function testWritablesFolders(){
+        //we need tools....
+        self::includeFile(Site::$systemUtils."/forGeeks/FileTools.php");
+
+        $l=self::logLine("Tests on cache folders","black",true);
+        //try to create the cache directory
+        $created= FileTools::mkDirOfFile(Site::$cacheFolder."/test.txt");
+        
+        
+        if($created){
+            $l.=self::logLine("Site::\$cacheFolder exists","green");
+        }else{
+            $l.=self::logLine("Oooops...can't create ".Site::$cacheFolder.". Maybe try 777 chmod on this folder...","red");
+        }
+
+        //try to create a file in the cache folder
+
+        $created=@file_put_contents(Site::$cacheFolder."/test.txt", "hello you!");
+        if($created){
+           $l.=self::logLine("Site::\$cacheFolder is writtable","green");
+        }else{
+           $l.=self::logLine("Site::\$cacheFolder is not writtable","red");
+        }
+
+
+        return $l;
+    }
+
+
     private static function logLine($log,$color="grey",$newBlock=false){
         if($newBlock){
             $margin=" margin-top:20px; ";

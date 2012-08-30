@@ -131,11 +131,18 @@ class FileTools {
                     $newFolder=array_shift($splitted);
                     $dir=$dir.$newFolder;
                     if(!is_dir($dir)){
-                            mkdir( $dir , 0777 , true );
-                            chmod($dir, 0777);
+                            $r=@mkdir( $dir , 0777 , true );
+                            
+                            if(!$r){
+                                return false;
+                            }else{
+                                chmod($dir, 0777);
+                            }
                     }
+                    
                     $dir.="/";
             }
+            return true;
     }
 
 }

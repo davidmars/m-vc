@@ -97,6 +97,11 @@ class Site {
      * @var string For php use...where are the media files? 
      */
     public static $mediaFolder="pub/media";
+    /**
+     *
+     * @var string For php use...where are the cached files?
+     */
+    public static $cacheFolder="pub/media/cache";
 
     
 }
