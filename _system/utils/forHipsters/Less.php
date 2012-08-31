@@ -35,11 +35,10 @@ class Less {
     /**
      * where to put the output files
      */
-    public static $outputPath="media/less-css/";
+    public static $outputPath;
 
 
-    public function __construct() {
-        
+    public function __construct() {        
         self::$current=$this;
         self::$less=new lessc();
         self::$less->setPreserveComments(true);
@@ -86,7 +85,9 @@ class Less {
     }
     
     public static function getIncludeTag($lessFile,$variables=array()){
-        $outputFile=  self::$outputPath.$lessFile."-".md5(implode("-", $variables));
+        self::$outputPath=Site::$cacheFolder."/less-css";
+        $outputFile= self::$outputPath."/".$lessFile."-".md5(implode("-", $variables));
+        FileTools::mkDirOfFile($outputFile);
         $path=Site::$root."/".self::me()->compile($lessFile, $outputFile,$variables);
         return "<link type=\"text/css\" rel=\"stylesheet\" href=\"".$path."\"/>";
     }

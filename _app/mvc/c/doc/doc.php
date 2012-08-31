@@ -13,9 +13,8 @@ class DocController extends Controller{
      * @return View
      */
     public function index($page=null){
-        $vv=new VV_doc_page($params);
-        $vv->layout->htmlHeader->title=$page;
-        $view=new View("doc/index",$vv);
+        $vv=  VV_doc_page::getPage($page);        
+        $view=new View($vv->templateUrl,$vv);
         return $view;
     }
     
