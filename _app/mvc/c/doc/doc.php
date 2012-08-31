@@ -7,9 +7,15 @@
  */
 class DocController extends Controller{
     
-    
-    public function index(){
-        $view=new View("doc/index");
+    /**
+     *
+     * @param string $page the page to display
+     * @return View
+     */
+    public function index($page=null){
+        $vv=new VV_doc_page($params);
+        $vv->layout->htmlHeader->title=$page;
+        $view=new View("doc/index",$vv);
         return $view;
     }
     

@@ -5,15 +5,13 @@ require_once '_system/Boot.php'; // the same...
 /*
  * 
  * 
- * here you configure your folder if needed
+ * here you configure your directories if needed
  * 
  * 
  */
 
 //Site::$appFolder="tests/appFolder";
 //Site::$mediaFolder="this/folder/is/777";
-
-Site::$host="http://www.domain.com";
 
 
 /*

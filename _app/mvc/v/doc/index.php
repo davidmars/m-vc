@@ -1,4 +1,5 @@
 <?
-    $vv=new LayoutVariables($_vars);
+    $vv=new VV_doc_page($_vars);
 ?>
-<h1>Test</h1>
+<?$this->inside("doc/layout/html5bp");?>
+<h1>About...<?=$vv->layoutVariables->htmlHeader->title?></h1>
