@@ -54,11 +54,14 @@ class Less {
         try {
             $outputFile=$outputFile.".css";
             $inputFile=$inputFile.".less";
-            FileTools::mkDirOfFile($outputFile);
             
+            $folderTest=FileTools::mkDirOfFile($outputFile);
+            if(!$folderTest){
+                Human::log("Impossible to create the folder for".$outputFile,"Less compile error",  Human::TYPE_ERROR) ; 
+                return false;
+            }
             // load the cache
             $cacheFile = $outputFile.".cache";
-
             if (file_exists($cacheFile)) {
                 $cache = unserialize(file_get_contents($cacheFile));
             } else {
@@ -69,18 +72,25 @@ class Less {
             $less->setVariables($variables);
             $newCache = $less->cachedCompile($cache);
             if (!is_array($cache) || $newCache["updated"] > $cache["updated"]) {
+                //the cache is out of date
                 Human::log(Site::url($outputFile, true),"Less new style sheet");
                 file_put_contents($cacheFile, serialize($newCache));
                 file_put_contents($outputFile, $newCache['compiled']);
             }else{
-                 
+                 //nothing the cache is up to date.
             }
             
-            return $outputFile;
+            if(file_exists($outputFile)){
+                return $outputFile;
+            }else{
+                Human::log("Impossible to create the file ".$outputFile,"Less compile error",  Human::TYPE_ERROR) ; 
+                return false; 
+            }
+            
             
         } catch (exception $e) {
             echo "fatal error: " . $e->getMessage();
-            die();
+            return false;
         }
     }
     

@@ -8,13 +8,6 @@ class VV_doc_page extends ViewVariables{
      */
     public $layout;
     
-    /**
-     *
-     * @var string The url of the view template.
-     * In the route, it will be the first param
-     * In the view folder it will be _app/mvc/v/doc/pages/[$url].php 
-     */
-    public $url="";
     
     /**
      * 
@@ -24,17 +17,20 @@ class VV_doc_page extends ViewVariables{
     
     /**
      *
-     * @var type 
+     * @var string the route controler related to this page
      */
     public $routeUrl;
+    /**
+     *
+     * @var string the path to the view for this page 
+     */
     public $templateUrl;
     
     /**
      *
-     * @var array 
+     * @var bool Will be set to true if this page is the current page. 
      */
-    public static $listOfPages=array();
-    
+    public $isActive=false;
     /**
      * Try to find a page.
      * @param string $pageName
@@ -45,6 +41,9 @@ class VV_doc_page extends ViewVariables{
         $page->layout->htmlHeader->title=$pageName;
         $page->routeUrl="doc/doc/index/".$pageName;
         $page->templateUrl="doc/pages/".$pageName;
+        if(!View::isValid($page->templateUrl)){
+            return false;
+        }
         $page->name=str_replace("-", " ", $pageName);
         return $page;
     }
@@ -53,14 +52,20 @@ class VV_doc_page extends ViewVariables{
 
 
     /**
-     * Usefull to build a menu.
+     * Usefull to build a menu. Return the doc pages list
+     * @param VV_doc_page $currentPage 
      * @return VV_doc_page
      */
-    public function getPages(){
-        $pages[]=self::getPage("overview");
-        $pages[]=self::getPage("learn");
-        $pages[]=self::getPage("for-geeks");
-        $pages[]=self::getPage("for-hipsters");
+    public function getPages($currentPage=null){
+        $pageList=array("overview","learn","for-geeks","for-hipsters");
+        
+        foreach($pageList as $p){
+            $newOne=self::getPage($p);
+            if($currentPage->routeUrl == $newOne->routeUrl){
+                $newOne->isActive=true;
+            }
+            $pages[]=$newOne;
+        }
         return $pages;
     }
 

@@ -43,6 +43,20 @@ class View {
 		$this->viewVariables=$viewVariables;
 	}
         /**
+         * Try to return a valid path for a template file.
+         * @param string $path a relative path to the template file without .php
+         * @return string|false the correct path or false if there is no file that match.
+         */
+        private static function getRealPath($path){
+            $scriptPath = Site::$appViewsFolder."/".$path.".php";
+            if(file_exists($scriptPath)){
+                return $scriptPath;
+            }else{
+                return false;
+            }
+        }
+
+        /**
         * Process the template with the current properties.
         *
         * @param array $context Les variables disponibles dans les templates
@@ -50,19 +64,17 @@ class View {
         */
 	private function run(){
 	    
-		$scriptPath = $this->path;
-		//if(!file_exists($scriptPath)){
-		    $scriptPath = "_app/mvc/v/".$this->path.".php";
-		//}
-		if(!file_exists($scriptPath)){
-		    die("Can't find the view :".$scriptPath);
-		}
+		$scriptPath = self::getRealPath($this->path);
 		
+		if(!$scriptPath){
+                    Human::log("Can't find the view :".$scriptPath, "VIEW ERROR", Human::TYPE_ERROR);
+		    return("<div style='font-size:30px;color:#f00;'>Can't find the view :".$scriptPath."</div>");
+		}
 
-	
                 //declare the variables in the template
                 $_vars=$this->viewVariables;
                 $_content=$this->insideContent;
+                $_view=$this;
                 ob_start();
                 include $scriptPath;
                 $content = ob_get_contents();
@@ -108,5 +120,18 @@ class View {
                 $viewVariables=$viewVariables ? $viewVariables : $this->viewVariables;
 		$this->outerView = new View($path, $viewVariables);
 	}
+        
+        /**
+         * 
+         * @param string $path 
+         * @return bool will be true if $path is a valid template url.
+         */
+        public static function isValid($path){
+            if(self::getRealPath($path)){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
 }

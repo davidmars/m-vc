@@ -8,7 +8,7 @@ class LayoutVariables extends ViewVariables{
     
     /**
      * 
-     * @var HtmlHeaderVariables The header variables
+     * @var VV_html_header The header variables
      */
     public $htmlHeader;
     
@@ -21,7 +21,7 @@ class LayoutVariables extends ViewVariables{
     
     public function __construct($params = null) {
         parent::__construct($params);
-        $this->htmlHeader=new HtmlHeaderVariables();
+        $this->htmlHeader=new VV_html_header();
     }
     
     
