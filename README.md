@@ -10,38 +10,37 @@ This is a little MVC php framework with one goal : encourage better communicatio
 Results of my zoologic case studies
 ====
 
-Hipsters love:
-----
+### Hipsters love:
 
-*CSS.
-*HTML.
-*Ready to play Javascript framweworks.
-*Images.
-*Samples.
-*Autocompletion.
-*Having the ability to do "something" even if they do not understand why and how this "something" works. 
-*Photoshop.
+* CSS.
+* HTML.
+* Ready to play Javascript framweworks.
+* Images.
+* Samples.
+* Autocompletion.
+* Having the ability to do "something" even if they do not understand why and how this "something" works. 
+* Photoshop.
 
-Nerds love:
-----
+### Nerds love:
 
-*Php (maybe cause they have a problem with the aesthetics).
-*MySQL.
-*Understanding how works EVERYTHING.
-*Redevelop EVERYTHING.
-*The way of "something" works even if this "something" doesn't work.
+
+* Php (maybe cause they have a problem with the aesthetics).
+* MySQL.
+* Understanding how works EVERYTHING.
+* Redevelop EVERYTHING.
+* The way of "something" works even if this "something" doesn't work.
     
-Hipsters hate:
-----
+### Hipsters hate:
 
-*Nerds. (except the one at the 3rd floor wich/who speak human language)
-*To read some documentation.
-*To write some documentation.
+
+* Nerds. (except the one at the 3rd floor wich/who speak human language)
+* To read some documentation.
+* To write some documentation.
   
-Nerds hate:
-----
+### Nerds hate:
 
-*Hipsters. (except the polite girl at the first floor)
-*To read some documentation.
-*To write some documentation.
+
+* Hipsters. (except the polite girl at the first floor)
+* To read some documentation.
+* To write some documentation.
 
