@@ -22,6 +22,7 @@ $vv=new LayoutVariables($_vars);
           <link rel="stylesheet" href="assets/project/fonts.css">
          */?>
         <?=  Less::getIncludeTag("pub/libs/bootstrap/less/bootstrap")?>
+        <?=  Less::getIncludeTag("pub/libs/bootstrap/less/responsive")?>
         <script src="<?=Site::url(Site::$publicFolder."/libs/modernizr-2.5.3-respond-1.1.0.min.js")?>"></script>
 </head>
 <body>

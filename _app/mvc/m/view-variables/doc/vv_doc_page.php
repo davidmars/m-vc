@@ -45,6 +45,17 @@ class VV_doc_page extends ViewVariables{
             return false;
         }
         $page->name=str_replace("-", " ", $pageName);
+        
+        switch ($pageName){
+            case "overview":
+                $page->sections[]=new VV_doc_page_section("What is it?",        "doc/pages/overview/what-is-it");
+                
+                $page->sections[]=new VV_doc_page_section("Installation");
+                $page->sections[]=new VV_doc_page_section("Download",           "doc/pages/overview/download");
+                $page->sections[]=new VV_doc_page_section("Upload the files",   "doc/pages/overview/installation");
+                $page->sections[]=new VV_doc_page_section("Configure your folders",          "doc/pages/overview/installation");
+        }
+        
         return $page;
     }
     
@@ -68,7 +79,39 @@ class VV_doc_page extends ViewVariables{
         }
         return $pages;
     }
+    
+    /**
+     *
+     * @var VV_doc_page_section List of sections in the page 
+     */
+    public $sections=array();
 
     
+}
+
+class VV_doc_page_section{
+    
+    public $title="";
+    public $templatePath="";
+    /**
+    * @var bool If set to true, the section is a title section in the page
+    */
+    public $isHeader=false;           
+
+
+    /**
+     *
+     * @param string $title the section title
+     * @param string $template the template path for this section in the page
+     */
+    public function __construct($title,$templatePath=null) {
+        $this->title=$title;
+        if(!$templatePath){
+            $this->isHeader=true;
+        }else{
+            $this->templatePath=$templatePath; 
+        }
+        
+    }
 }
 

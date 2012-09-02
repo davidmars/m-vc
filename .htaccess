@@ -536,8 +536,19 @@ AddCharset utf-8 .css .js .xml .json .rss .atom
 </IfModule>
 
 
-RewriteBase /m-vc/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
+#
+#
+# Hello you...again
+#
+# Paste your setup here
+# Paste your setup here
+# Paste your setup here
+# Paste your setup here
+# Paste your setup here
+# Paste your setup here
+# Paste your setup here
+# Paste your setup here
+#
+#
 
 
