@@ -33,15 +33,27 @@ class Boot {
         
         Human::log($controller->routeParams);
         $view=$controller->run();
-
+        
         if($view){
+            if($view->viewVariables->header){
+                Human::log("404");
+                $view->viewVariables->header->run();
+            }
+            
+            //headers from the controller
+            if($controller->headerCode){
+                $controller->headerCode->run();
+            }
+            if($controller->headerType){
+                $controller->headerType->run();
+            }
+            
+            
             switch ($controller->outputType){
                 case Controller::OUTPUT_JSON:
-                    Header::json();
                     echo $view->viewVariables->json();
                     break;
                 case Controller::OUTPUT_XML:
-                    Header::xml();
                     echo $view->viewVariables->xml();
                     break;
                 default :

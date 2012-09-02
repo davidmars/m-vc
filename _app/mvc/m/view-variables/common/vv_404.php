@@ -15,10 +15,7 @@ class VV_404 extends ViewVariables{
     
     public $message="The page cannot be found...";
     
-    public function __construct($params = null) {
-        parent::__construct($params);
-        $this->header=new Nerd_Header(Nerd_Header::ERR_404);
-    }
+
 
 }
 

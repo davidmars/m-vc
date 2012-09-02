@@ -52,9 +52,9 @@ class VV_doc_page extends ViewVariables{
 
 
     /**
-     * Usefull to build a menu. Return the doc pages list
+     * Usefull to build the doc main menu. 
      * @param VV_doc_page $currentPage 
-     * @return VV_doc_page
+     * @return VV_doc_page The doc pages list
      */
     public function getPages($currentPage=null){
         $pageList=array("overview","learn","for-geeks","for-hipsters");

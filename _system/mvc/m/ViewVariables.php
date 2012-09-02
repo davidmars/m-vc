@@ -6,9 +6,9 @@ class ViewVariables{
      * @param ViewVariables $params 
      * This class itself has no interest, it will be always extended. The concept of this class is to get autocompletion and stict mode in the views.
      */
-    public function __construct($params=null) {
-	if($params){
-	    $this->feedMe($params);
+    public function __construct($_vars=null) {
+	if($_vars){
+	    $this->feedMe($_vars);
 	}
         $this->modelType=get_class($this);
     }
