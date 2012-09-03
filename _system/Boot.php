@@ -14,36 +14,58 @@ class Boot {
      * It boots...the system. 
      */
     public static function theSystem(){
-        
-        
-        
-        //system
-        self::includeFilesInFolder(Site::$systemLibs);
-        self::includeFilesInFolder(Site::$systemMVC);
-        self::includeFilesInFolder(Site::$systemUtils);
-        //app
-        //self::includeFilesInFolder(Site::$appControllersFolder); //it is included when needed in fact.
-        self::includeFilesInFolder(Site::$appModelsFolder);
-        
+
+        self::includeFiles();
+
         //search for the correct controller, function and params
         Human::log($_REQUEST["route"],"At the begining it was the route param");
 
+        
         $route=$_REQUEST["route"];
+        
+        //search for a native system route
         $controller=Controller::getByRoute($route);
+
+        if(!$controller){
+            //search for a special route designed in the UrlControler::$routes array
+            $route=  UrlControler::getRoute($route);
+            $controller=Controller::getByRoute($route);
+        }
+        
+        //search for a better url
+        if(Site::$redirectToBestUrl){
+            //checks if there is not a better url
+            if($controller){
+                $optimizedUrl=UrlControler::getOptimizedUrl($route);
+                if($_REQUEST["route"] != $optimizedUrl){
+                    $header=new Nerd_Header(301, Site::url($route, $absolute));
+                    $header->run();
+                    echo "There is a better url !<br/>";
+                    echo "Your request : ".$_REQUEST["route"]."<br/>";
+                    echo "Best url : ".$optimizedUrl;
+                    die();
+                }
+            }
+        }
+        
+        //okay we loose...
+        if(!$controller){
+            $msg="There is no controller for this route : ".$route;
+            Human::log($msg, "Route error", Human::TYPE_ERROR);
+            die($msg); 
+        }
         
         Human::log($controller->routeParams);
         $view=$controller->run();
         
         if($view){
-            if($view->viewVariables->header){
-                Human::log("404");
-                $view->viewVariables->header->run();
-            }
+
             
-            //headers from the controller
+            //headers from the controller 404,301,302...
             if($controller->headerCode){
                 $controller->headerCode->run();
             }
+             //headers from the controller json, xml...
             if($controller->headerType){
                 $controller->headerType->run();
             }
@@ -61,12 +83,25 @@ class Boot {
                     break;
             }  
         }else{
-            die("error in index");
+            die("error no view");
         }
 
         
     }
-    
+    /**
+     * all what we need to auto include before starting 
+     */
+    private function includeFiles(){
+        //system
+        self::includeFilesInFolder(Site::$systemLibs);
+        self::includeFilesInFolder(Site::$systemMVC);
+        self::includeFilesInFolder(Site::$systemUtils);
+        //app
+        //self::includeFilesInFolder(Site::$appControllersFolder); //it is included when needed in fact.
+        self::includeFilesInFolder(Site::$appModelsFolder); 
+    }
+
+
     /**
     * Performs a test on the project config.
     * Launch it in the index file to test your config just after your Site::something config lines.

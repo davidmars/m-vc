@@ -20,13 +20,22 @@ class Site {
      * @return String return a coorect href to $url 
      */
     public static function url($url,$absolute=false){
+        $url=UrlControler::getOptimizedUrl($url);
         if($absolute){
             return self::$host.self::$root."/".$url;
         }else{
             return self::$root."/".$url;
         }
     }
-     /**
+    
+    /**
+     *
+     * @var bool If set to true the non optimized urls will be redirected to the optimized one.  
+     */
+    public static $redirectToBestUrl=true;
+
+
+    /**
      * @var String the host of your website.
      * Usefull to display hrefs or img src, etc... 
      */

@@ -16,13 +16,14 @@ require_once '_system/Boot.php'; // the same...
 
 /*
  * 
- * Here you configure site if needed
+ * Here you configure site public URLs if needed
  * 
  */
 
+
 Site::$host="http://david.de.shic.cc";
 Site::$root="/m-vc";
-
+Site::$redirectToBestUrl=true;
 
 //remove this comment to debug your config.
 //die(Boot::testConfig());

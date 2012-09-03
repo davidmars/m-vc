@@ -75,6 +75,21 @@ class Controller {
      */
     public $routeToController="";
 
+    
+    /**
+     * convert an url(splitted by folders) in an url that could match a controller. 
+     * @param array $parts
+     * @return string 
+     * @exemple [toto,titi,tata] will return _app/mvc/c/toto/titi/c_tata.php
+     */
+    private static function getControlerPath($parts){
+        $controllerFile=array_pop($parts);
+        $controllerFile="/c_".$controllerFile.".php";
+        $url=  Site::$appControllersFolder."/".implode("/", $parts).$controllerFile;
+        return $url;
+    }
+
+    
     /**
      * Return a controller based on a route.
      * @param String $route an url that looks like : /path/to/controler/controlerName/function-in-the-controler/param1/param2/paramN
@@ -83,7 +98,6 @@ class Controller {
     public static function getByRoute($route){
         
         $savedRoute=$route;
-        
 	$parts=explode("/",$route);
         
         //search for extension first
@@ -93,18 +107,18 @@ class Controller {
             Human::log($exts);
             $ext=  array_pop($exts);
             Human::log($ext);
-           
+            //remove the extension from the last $parts[] segment
             $parts[count($parts)-1]=implode(".", $exts);
             Human::log($parts[count($parts)-1]);
             
         }
-        $route=  implode("/", $parts);
+        $route=implode("/", $parts);
 	$i=count($parts);
 	
         //search for controller itself
         while(count($parts)>0){
 	    $i--;
-            $url="_app/mvc/c/".implode("/",$parts).".php";
+            $url=  self::getControlerPath($parts);
 	    Human::log("search controler in $url");
             if(file_exists($url)){
                 
@@ -153,6 +167,8 @@ class Controller {
             }	    
             array_pop($parts);
         }
+        
+        //if we are here we know that there is no controller for this route...
 
         return false;
     }
