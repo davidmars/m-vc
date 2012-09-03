@@ -18,6 +18,10 @@ class Human {
 
 
     public static function log($obj,$title="Php Trace",$type=self::TYPE_WARN){
+        
+        ChromePhp::getInstance()->addSetting(ChromePhp::BACKTRACE_LEVEL,2);
+        ChromePhp::getInstance()->addSetting(ChromePhp::BACKTRACE_PREXIX,"PHP file: ");
+        
         switch ($type){
             case self::TYPE_LOG:
             ChromePhp::log($title,$obj);

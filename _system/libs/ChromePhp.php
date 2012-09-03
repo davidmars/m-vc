@@ -37,6 +37,10 @@ class ChromePhp
      * @var string
      */
     const BACKTRACE_LEVEL = 'backtrace_level';
+    /**
+     * @var string
+     */
+    const BACKTRACE_PREXIX = 'backtrace_prefix';
 
     /**
      * @var string
@@ -106,7 +110,8 @@ class ChromePhp
      * @var array
      */
     protected $_settings = array(
-        self::BACKTRACE_LEVEL => 1
+        self::BACKTRACE_LEVEL => 1,
+        self::BACKTRACE_PREXIX => "::PHP::",
     );
 
     /**
@@ -262,10 +267,12 @@ class ChromePhp
 
         $backtrace = debug_backtrace(false);
         $level = $logger->getSetting(self::BACKTRACE_LEVEL);
+        $prefix = $logger->getSetting(self::BACKTRACE_PREXIX);
 
-        $backtrace_message = 'unknown';
+        $backtrace_message = $prefix.' unknown';
         if (isset($backtrace[$level]['file']) && isset($backtrace[$level]['line'])) {
-            $backtrace_message = $backtrace[$level]['file'] . ' : ' . $backtrace[$level]['line'];
+            $backtrace_message = $prefix." "; 
+            $backtrace_message.= $backtrace[$level]['file'] . ' @ line : ' . $backtrace[$level]['line'];
         }
 
         $logger->_addRow($label, $value, $backtrace_message, $type);
