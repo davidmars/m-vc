@@ -13,6 +13,7 @@
         </div>
         <div class="span8">
             <?=$_content?>
+            
             <?
             $sections=$vv->sections;
             foreach($sections as $k=>$v):?>
@@ -21,9 +22,12 @@
                     <div class="page-header">
                         <h2><?=$v->title?></h2>
                     </div>
+                <?elseif($v->isSeparator):?>
+                    <hr></hr>
                 <?else:?>
                     <div class="page-header">
                         <h3><?=$v->title?></h3>
+                        <h4><?=$v->templatePath?></h4>
                     </div>
                     <?=$this->render($v->templatePath)?>
                 <?endif?>

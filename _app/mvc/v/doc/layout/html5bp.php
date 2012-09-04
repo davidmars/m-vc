@@ -21,8 +21,10 @@ $vv=new LayoutVariables($_vars);
           fonts loaded before...then used in less
           <link rel="stylesheet" href="assets/project/fonts.css">
          */?>
-        <?=  Less::getIncludeTag("pub/libs/bootstrap/less/bootstrap")?>
-        <?=  Less::getIncludeTag("pub/libs/bootstrap/less/responsive")?>
+        <?=  Less::getIncludeTag("pub/app/Doc", array(
+            "phpAppFolder"=>"'".Site::url("pub")."'"
+            ))
+                 ?>
         <script src="<?=Site::url(Site::$publicFolder."/libs/modernizr-2.5.3-respond-1.1.0.min.js")?>"></script>
 </head>
 <body>
@@ -32,10 +34,17 @@ $vv=new LayoutVariables($_vars);
 
 <?=$_content?>
 
-
+<?/*
+ * 
+ * 
+ * lib scripts here...
+ * 
+ * 
+ */?>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/lib/jquery-1.7.2.min.js"><\/script>')</script>
+<script src="<?=Site::$root."/".Site::$publicFolder."/libs/bootstrap/js/bootstrap.js"?>"></script>
 
 <?/*
  * 
@@ -44,6 +53,9 @@ $vv=new LayoutVariables($_vars);
  * 
  * 
  */?>
+
+<script src="<?=Site::$root."/".Site::$publicFolder."/app/Main.js"?>"></script>
+
 
 <script>
 	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

@@ -16,7 +16,7 @@ $vv=new VV_doc_page($_vars);
             $pages=$vv->getPages($vv); 
             foreach ($pages as $k=>$page):?>
                 <li class="<?=$page->isActive? " active ":""?>">
-                    <a href="<?=Site::url($page->routeUrl)?>"><?=$page->name?></a>
+                    <a href="<?=Site::url($page->routeUrl)?>"><?=$page->title?></a>
                 </li>
             <?endforeach?>
 

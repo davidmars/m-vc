@@ -11,7 +11,10 @@ $vv=new VV_doc_page($_vars);
             <?=$section->title?>
         </li>
     
-
+    <?elseif($section->isSeparator):?>
+        
+        <li class="divider"> </li>
+        
     <?else:?>
         
         <li>
