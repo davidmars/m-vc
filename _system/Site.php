@@ -32,7 +32,10 @@ class Site {
                 $url=Site::$publicFolder."/".$url;
                 break;
             default: //let's start to search for a route
-                $controller=Controller::getByRoute($url); 
+                $controller=Controller::getByRoute($url); //classic controller 
+                if(!$controller){
+                    $controller=UrlControler::getRoute($url); //route optimized
+                }
                 if(!$controller){
                     return "#urlError($url)"; //error
                 }

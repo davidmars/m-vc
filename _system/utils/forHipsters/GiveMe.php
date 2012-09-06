@@ -15,4 +15,13 @@ class GiveMe {
     public static function url($url,$absolute=false){
         return Site::url($url,$absolute);
     }
+    
+    
+    public static function imageSized($url,$width,$height,$backgroundColor="000000",$format="jpg"){
+        return self::url(ImageTools::sized($url, $width, $height, "noBorder", $format, $backgroundColor));
+    }
+    public static function imageSizedWithoutCrop($url,$width,$height,$backgroundColor="000000",$format="jpg"){
+        return self::url(ImageTools::sized($url, $width, $height, "showAll", $format, $backgroundColor));
+    }
+
 }

@@ -159,6 +159,7 @@ class Controller {
                 //give parameters to the controller
 		$controler->routeParams=$parts;
                 $controler->setOutputType($ext);
+                $controler->extension=$ext;
 		//echo $url."===>".$url."  class name===>".$className." function===>".$fn." params===>".implode(",",$parts);
 		$controler->route=$savedRoute;
 		return $controler;

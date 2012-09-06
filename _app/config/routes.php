@@ -5,6 +5,7 @@
  */
 UrlControler::$routes=array(   
         //documentation
+        "pub/media/cache/img/(:any)"=>"imageTools/$1",
         "documentation"=>"doc/doc/index/overview",
         "documentation/"=>"doc/doc/index/overview",
         "documentation/(:any)"=>"doc/doc/index/$1",

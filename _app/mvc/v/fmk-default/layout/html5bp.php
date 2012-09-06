@@ -27,7 +27,7 @@ $vv=new VV_fmk_page($_vars);
                  ?>
         <script src="<?=Site::url(Site::$publicFolder."/libs/modernizr-2.5.3-respond-1.1.0.min.js")?>"></script>
 </head>
-<body>
+<body style="margin-bottom: 40px;margin-top: 40px;">
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
 
