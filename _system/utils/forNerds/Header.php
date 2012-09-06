@@ -35,10 +35,12 @@ class Nerd_Header {
         switch($this->code){
             
             case self::REDIRECT_301;
-                 self::redirect($this->redirectUrl,  301);
+                 //self::redirect($this->redirectUrl,  301);
+                 die("301 redirect There is a better URL : ".$this->redirectUrl);
                  break;
             case self::REDIRECT_302;
-                 self::redirect($this->redirectUrl,  302);
+                 //self::redirect($this->redirectUrl,  302);
+                die("302 redirect There is a better URL : ".$this->redirectUrl);
                  break;
              
             case self::ERR_404;

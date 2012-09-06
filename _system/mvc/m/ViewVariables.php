@@ -47,11 +47,7 @@ class ViewVariables{
 	}
 
     }
-    /**
-     *
-     * @var Nerd_Header the header to launch 
-     */
-    public $header;
+
     
 
 

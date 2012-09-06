@@ -20,7 +20,25 @@ class Site {
      * @return String return a coorect href to $url 
      */
     public static function url($url,$absolute=false){
-        $url=UrlControler::getOptimizedUrl($url);
+        
+        
+        switch (true){
+            case (preg_match('%^(https?://)%i',$url)): //absolute path...let's move
+                return $url;
+                break;
+            case file_exists($url): //file exists
+                break;
+            case file_exists(Site::$publicFolder."/".$url): //file exists in public folder
+                $url=Site::$publicFolder."/".$url;
+                break;
+            default: //let's start to search for a route
+                $controller=Controller::getByRoute($url); 
+                if(!$controller){
+                    return "#urlError($url)"; //error
+                }
+                $url=UrlControler::getOptimizedUrl($url); //give me the best baby!
+                break;
+        }
         if($absolute){
             return self::$host.self::$root."/".$url;
         }else{
@@ -39,7 +57,7 @@ class Site {
      * @var String the host of your website.
      * Usefull to display hrefs or img src, etc... 
      */
-    public static $host="http://david.de.shic.cc";
+    public static $host;
     /**
      * 
      * @var Bool is the website in debug mode or not? 
@@ -54,6 +72,11 @@ class Site {
      * @var String For php use...where is your php project?
      */
     public static $appFolder="_app";
+    /**
+     * 
+     * @var String For php use...where your models?
+     */
+    public static $appConfigFolder="_app/config";
     /**
      * 
      * @var String For php use...where your models?
@@ -111,6 +134,9 @@ class Site {
      * @var string For php use...where are the cached files?
      */
     public static $cacheFolder="pub/media/cache";
+    
+    
+
 
     
 }

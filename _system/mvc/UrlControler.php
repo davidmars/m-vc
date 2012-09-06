@@ -11,17 +11,7 @@ class UrlControler {
      *
      * @var array the key is a regexp, the value is the internal route to the controller.
      */
-    public static $routes=array(
-        //documentation
-        "documentation"=>"doc/doc/index/overview",
-        "documentation/"=>"doc/doc/index/overview",
-        "documentation/(.*)"=>"doc/doc/index/$1",
-        
-        //home
-        "/"=>"home",
-        //okay its not managed...
-        "(.*)"=>"err404/index/$1"
-    );
+    public static $routes=array();
     /**
      *
      * @var array reversed routes to get optimized urls. This array is automatically filed by reverseRoutes() function. 
@@ -31,6 +21,8 @@ class UrlControler {
     public static function getRoute($url){
         foreach(self::$routes as $k=>$v){
             Human::log($k."---->".$v, "Test route");
+            // Convert wild-cards to RegEx
+            $k = str_replace(':any', '.+', str_replace(':num', '[0-9]+', $k));
             if(preg_match('#^'.$k.'$#', $url)){
                 Human::log("route match! ".$v, "Rouuuuuuuuuuuuute found");
                 $route=preg_replace('#^'.$k.'$#', $v, $url);

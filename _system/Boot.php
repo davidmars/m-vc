@@ -10,12 +10,38 @@ class Boot {
     private static $yetIncluded=array();
     
     
+    public static function preBoot(){
+        require_once '_system/Site.php'; //by default it should works, if you change the _system folder location, you will have to change this line.
+        
+        //define the root folder
+        if(isset($_REQUEST["rootFolder"])){
+            //given by .htaccess
+           Site::$root=$_REQUEST["rootFolder"]; 
+        }else{
+            //no...ok we should be in the setup
+           Site::$root=str_replace("/setup.php", "", $_SERVER["REQUEST_URI"]);
+        }
+        
+        $s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
+        $protocol = substr(strtolower($_SERVER["SERVER_PROTOCOL"]), 0, strpos(strtolower($_SERVER["SERVER_PROTOCOL"]), "/")) . $s;
+        $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
+        Site::$host= $protocol . "://" . $_SERVER['SERVER_NAME'] . $port;
+        
+        
+        
+    }
+    
     /**
      * It boots...the system. 
      */
     public static function theSystem(){
-
+        
+        
+        
         self::includeFiles();
+        
+        
+        
 
         //search for the correct controller, function and params
         Human::log($_REQUEST["route"],"At the begining it was the route param");
@@ -38,7 +64,7 @@ class Boot {
             if($controller){
                 $optimizedUrl=UrlControler::getOptimizedUrl($route);
                 if($_REQUEST["route"] != $optimizedUrl){
-                    $header=new Nerd_Header(301, Site::url($route, $absolute));
+                    $header=new Nerd_Header(301, Site::url($route, true));
                     $header->run();
                     echo "There is a better url !<br/>";
                     echo "Your request : ".$_REQUEST["route"]."<br/>";
@@ -99,28 +125,39 @@ class Boot {
         //app
         //self::includeFilesInFolder(Site::$appControllersFolder); //it is included when needed in fact.
         self::includeFilesInFolder(Site::$appModelsFolder); 
+        self::includeFilesInFolder(Site::$appConfigFolder); 
     }
-
-
+    
+    /**
+     *
+     * @var boolean will be set to true if testCongFunction did work.
+     */
+    public static $testSuccess=null;
+    
     /**
     * Performs a test on the project config.
     * Launch it in the index file to test your config just after your Site::something config lines.
     * @return string test results in a html output.
     */
+    
+    
     public static function testConfig(){
-        
+        self::$testSuccess=true;
         $l="";
         
         if("http://".$_SERVER["HTTP_HOST"]==Site::$host){
-            $l.=self::logLine("Site::\$host and current domain match","green");
+            //$l.=self::logLine("Site::\$host and current domain match","grey");
         }else{
             $l.=self::logLine("Site::host and current domain don't match","orange"); 
             $l.=self::logLine("It's just a warning, maybe your project is multidomain and it will work"); 
             $l.=self::logLine("http://".$_SERVER["HTTP_HOST"]." != ".Site::$host,"grey"); 
         }
         
-        if($_SERVER["SCRIPT_NAME"]==Site::$root."/index.php"){
-            $l.=self::logLine("Site::\$root and current folder match","green",true);
+        if($_SERVER["SCRIPT_NAME"]==Site::$root."/index.php"
+                ||
+           $_SERVER["SCRIPT_NAME"]==Site::$root."/setup.php"     
+                ){
+            //$l.=self::logLine("Site::\$root (".Site::$root.") and current folder match","grey");
         }else{
             $l.=self::logLine("Site::\$root and current folder don't match","red",true); 
             $l.=self::logLine($_SERVER["SCRIPT_NAME"]." != ".Site::$root."/index.php","grey"); 
@@ -128,7 +165,11 @@ class Boot {
         //
 
         $l.=self::testWritablesFolders();
-
+        if(self::$testSuccess){
+           $l.=self::logLine("Everithing is ok","green");  
+        }else{
+            
+        }
         //var_dump($_SERVER);
         return $l;
         
@@ -137,26 +178,32 @@ class Boot {
     }
     private static function testWritablesFolders(){
         //we need tools....
-        self::includeFile(Site::$systemUtils."/forGeeks/FileTools.php");
+        self::includeFile(Site::$systemUtils."/forNerds/FileTools.php");
 
-        $l=self::logLine("Tests on cache folders","black",true);
+        //$l=self::logLine("Tests on cache folders","black",true);
         //try to create the cache directory
         $created= FileTools::mkDirOfFile(Site::$cacheFolder."/test.txt");
         
         
         if($created){
-            $l.=self::logLine("Site::\$cacheFolder exists","green");
+            //$l.=self::logLine("Site::\$cacheFolder exists","green");
         }else{
-            $l.=self::logLine("Oooops...can't create ".Site::$cacheFolder.". Maybe try 777 chmod on this folder...","red");
+            $l.=self::logLine("Oooops...can't create ".Site::$cacheFolder.". Maybe try 777 chmod on this folder...","grey");
+            self::$testSuccess=false;
         }
 
         //try to create a file in the cache folder
 
         $created=@file_put_contents(Site::$cacheFolder."/test.txt", "hello you!");
         if($created){
-           $l.=self::logLine("Site::\$cacheFolder is writtable","green");
+           //$l.=self::logLine(Site::$cacheFolder." is writtable","green");
         }else{
-           $l.=self::logLine("Site::\$cacheFolder is not writtable","red");
+          $folder="http://".$_SERVER["HTTP_HOST"]."/".Site::$publicFolder."/media";
+           $l.=self::logLine("The folder $folder is not writtable and it is a problem...don't worry, it's easy to solve it.","red");
+           $l.=self::logLine("You NEED to set the ".$folder." folder in 777 mode","red");
+           $l.=self::logLine("If you don't know how to do it, 
+               this page will help you: <a target='_blank' href='http://www.stadtaus.com/en/tutorials/chmod-ftp-file-permissions.php'>http://www.stadtaus.com/en/tutorials/chmod-ftp-file-permissions.php</a>","red");
+           $l.=self::logLine("You did it? Well, refresh this page, everything should be green...","black",true);
         }
 
 
@@ -199,3 +246,4 @@ class Boot {
     }
 }
 
+Boot::preBoot();
