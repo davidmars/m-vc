@@ -15,7 +15,7 @@ UrlControler::$routes=array(
         "page/(:any)"=>"home/index/$1",
         
         ""=>"home/index",
-        "(.*)"=>"err404/index/$1",
+        "(.*)"=>"err404/index/$1"
         
         
         //okay its not managed...

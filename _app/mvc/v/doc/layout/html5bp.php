@@ -16,7 +16,8 @@ $vv=new LayoutVariables($_vars);
 	<meta name="keywords" content="<?=$vv->htmlHeader->keywords?>">
 
 	<meta name="viewport" content="width=device-width">
-
+        
+        
         <?/*
           fonts loaded before...then used in less
           <link rel="stylesheet" href="assets/project/fonts.css">
@@ -25,6 +26,7 @@ $vv=new LayoutVariables($_vars);
             "phpAppFolder"=>"'".Site::url("pub")."'"
             ))
                  ?>
+        <?=CSS::includeHeaderFiles()?>
         <script src="<?=Site::url(Site::$publicFolder."/libs/modernizr-2.5.3-respond-1.1.0.min.js")?>"></script>
 </head>
 <body>
@@ -44,7 +46,7 @@ $vv=new LayoutVariables($_vars);
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="assets/lib/jquery-1.7.2.min.js"><\/script>')</script>
-<script src="<?=Site::$root."/".Site::$publicFolder."/libs/bootstrap/js/bootstrap.js"?>"></script>
+<script src="<?=GiveMe::url("libs/bootstrap/js/bootstrap.js")?>"></script>
 
 <?/*
  * 
@@ -53,10 +55,9 @@ $vv=new LayoutVariables($_vars);
  * 
  * 
  */?>
+<?=JS::includeAfterBodyFiles()?>
 
 <script src="<?=Site::$root."/".Site::$publicFolder."/app/Main.js"?>"></script>
-
-
 <script>
 	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
 	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

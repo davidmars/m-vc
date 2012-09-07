@@ -45,7 +45,7 @@ var Main={
         var jq=$(jq);
         
         $("[rel='tooltip']").tooltip();
-        
+        Prettify.doTheJob(jq);
     }
 
 

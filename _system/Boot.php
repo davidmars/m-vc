@@ -129,7 +129,9 @@ class Boot {
         //app
         //self::includeFilesInFolder(Site::$appControllersFolder); //it is included when needed in fact.
         self::includeFilesInFolder(Site::$appModelsFolder); 
-        self::includeFilesInFolder(Site::$appConfigFolder); 
+        self::includeFilesInFolder(Site::$appConfigFolder);
+        //javascript and css modules
+        self::includeFilesInFolder(Site::$publicFolder); 
     }
     
     /**

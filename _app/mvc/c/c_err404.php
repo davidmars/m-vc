@@ -16,6 +16,7 @@ class Err404Controller extends Controller {
             $vv->htmlHeader->author="you@you.com";
             $vv->htmlHeader->title="This is a 404";
             $vv->param1=$param1;
+            $this->setHeader404();
             $vv->title="Wooops...this is a 404 error page.";
             $view=new View("err404", $vv);
             return $view;
