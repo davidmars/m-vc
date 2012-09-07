@@ -34,9 +34,16 @@ class Site {
             default: //let's start to search for a route
                 $controller=Controller::getByRoute($url); //classic controller 
                 if(!$controller){
-                   // $controller=UrlControler::getRoute($url); //route optimized
+                    $route=  UrlControler::getRoute($route);
+                    $controller=Controller::getByRoute($route);
                 }
-                if(!$controller || $controller->headerCode->code==Nerd_Header::ERR_404){
+                if($controller){
+                    $controller->run(); //here check if the controller is valid
+                    if($controller->headerCode->code==Nerd_Header::ERR_404){
+                        $controller=false;
+                    }
+                }
+                if(!$controller){
                     return "#urlError($url)"; //error
                 }
                 $url=UrlControler::getOptimizedUrl($url); //give me the best baby!

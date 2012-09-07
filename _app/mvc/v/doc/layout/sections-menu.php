@@ -1,7 +1,8 @@
 <?
 $vv=new VV_doc_page($_vars);
 ?>
-<ul class="nav nav-list">
+<div class="sections-menu">
+<ul class="nav nav-list " data-spy="affix" data-offset-top="0">
   <?
   $list=$vv->sections;
   foreach ($list as $k=>$section):?>
@@ -18,9 +19,11 @@ $vv=new VV_doc_page($_vars);
     <?else:?>
         
         <li>
-            <a href="#<?=$section->title?>"><?=$section->title?></a>
+            <a href="#<?=$section->id?>"><?=$section->title?></a>
         </li>
         
     <?endif?>
   <?endforeach;?>
 </ul>
+&nbsp;
+</div>

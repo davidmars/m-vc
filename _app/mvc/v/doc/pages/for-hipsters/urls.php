@@ -29,7 +29,8 @@ $vv=new VV_doc_page($_vars);
 
 <p>
     The function GiveMe::url has two parameters:<br>
-    The first one is an url, it can be a relative or absolute url, it can be a file, or a route.
+    The first one is an url, it can be a relative or absolute url, it can be a file, or a route.<br/>
+    The Second one define if you want to display an absolute or a relative url.<br/>
 </p>
     
 <div class="alert alert-info">
@@ -45,33 +46,30 @@ $vv=new VV_doc_page($_vars);
 
     <?
     $urls=array(
-        "home/index/toto",
-        "home/index/titi",
-        "home/index/toto/titi",
-        "i-am/not-a/valid-page",
-        "pub/app/fmk/img/logo.png",
-        "app/fmk/img/logo.png",
-        "pub/app/fmk/img/i-not-a-real-file.png",
-        "http://www.google.com",
-        "https://www.google.com",
-        "http://i-am-not-a-real-website-url", //will display it normaly cause it's an absolute url.
+        array("url"=>"home/index/toto","comment"=>"Transform route to optimized url"),
+        array("url"=>"i-am/not-a/valid-page","comment"=>"Prevent error when the route is not valid"),
+        array("url"=>"pub/app/fmk/img/logo.png","comment"=>"File exists, so it works"),
+        array("url"=>"app/fmk/img/logo.png","comment"=>"File exists in the pub folder so it works too"),
+        array("url"=>"pub/app/fmk/img/i-am-not-a-real-file.png","comment"=>"File doesn't exists so we manage the error"),
+        array("url"=>"http://www.google.com","comment"=>"<span class='label'>Note</span> Http links will be always displayed..."),
+        array("url"=>"http://i-am-not-a-real-website-url","comment"=>"...even if the target is not a valid website")
         );
     ?>
 
 
 <?foreach($urls as $url):?>
+<h5><?=$url["comment"]?></h5> 
 <pre class="prettyprint lang-php linenums">
-<?=htmlentities('<a href="<?=GiveMe::url("'.$url.'")?>">My Link</a>
+<?=htmlentities(
+'<a href="<?=GiveMe::url("'.$url["url"].'")?>">My Link</a>
 //will generate...
-<a href="'.GiveMe::url($url).'">My Link</a>')?>
+<a href="'.GiveMe::url($url["url"]).'">My Link</a>
+
+//absolute
+<a href="<?=GiveMe::url("'.$url["url"].'",true)?>">My Link</a>
+//will generate...
+<a href="'.GiveMe::url($url["url"],true).'">My Link</a>'
+)?>
 </pre>
 
 <?endforeach?>
-
-
-
-
-    <?foreach($urls as $url):?>
-        <?$convertedUrl=GiveMe::url($url,true)?>
-        <li>The url <b><?=$url?></b> will be converted to : <a href="<?=$convertedUrl?>"><?=$convertedUrl?></a></li>
-    <?endforeach?>

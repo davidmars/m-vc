@@ -142,8 +142,9 @@ class VV_doc_page extends ViewVariables{
                 $page->sections[]=new VV_doc_page_section("Php side");
                 $page->sections[]=new VV_doc_page_section("Playing with templates",          "doc/pages/for-hipsters/templates");
                 $page->sections[]=new VV_doc_page_section("Displaying variables",          "doc/pages/for-hipsters/variables");
-                $page->sections[]=new VV_doc_page_section("Images manipulation",          "doc/pages/for-hipsters/images");
                 $page->sections[]=new VV_doc_page_section("Urls",          "doc/pages/for-hipsters/urls");
+                $page->sections[]=new VV_doc_page_section("Images manipulation",          "doc/pages/for-hipsters/images");
+
                 
                 $page->sections[]=new VV_doc_page_section("Javascript side");
                 $page->sections[]=new VV_doc_page_section("The Main.js structure",          "doc/pages/for-hipsters/main.js");
@@ -191,7 +192,20 @@ class VV_doc_page extends ViewVariables{
 
 class VV_doc_page_section{
     
+    /**
+     *
+     * @var string a unique id for this section (unique in the html output, not unique in absolute) 
+     */
+    public $id;
+    /**
+     *
+     * @var string the title of the section for sure 
+     */
     public $title="";
+    /**
+     *
+     * @var string it is the "View file path" to display content of this section 
+     */
     public $templatePath="";
     /**
     * @var bool If set to true, the section is a title section in the page
@@ -199,7 +213,7 @@ class VV_doc_page_section{
     public $isHeader=false;           
     public $isSeparator=false;           
 
-
+    private static $currentId=0;
     /**
      *
      * @param string $title the section title
@@ -207,6 +221,8 @@ class VV_doc_page_section{
      */
     public function __construct($title=null,$templatePath=null) {
         
+        self::$currentId++;
+        $this->id="page_section_".self::$currentId;
         $this->title=$title;
         $this->templatePath=$templatePath;
         

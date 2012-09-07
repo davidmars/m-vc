@@ -17,22 +17,24 @@
             <?
             $sections=$vv->sections;
             foreach($sections as $k=>$v):?>
-                
-                <?if($v->isHeader):?>
-                    <div class="page-header">
-                        <h2><?=$v->title?></h2>
-                    </div>
-                <?elseif($v->isSeparator):?>
-                    <hr></hr>
-                <?else:?>
-                    <div class="page-header">
-                        <h3><?=$v->title?></h3>
-                        <h4><?=$v->templatePath?></h4>
-                    </div>
-                    <?=$this->render($v->templatePath)?>
-                <?endif?>
+                <div class="section" id="<?=$v->id?>">
+                    <?if($v->isHeader):?>
+                        <div class="page-header">
+                            <h2><?=$v->title?></h2>
+                        </div>
+                    <?elseif($v->isSeparator):?>
+                        <hr></hr>
+                    <?else:?>
+                        <?/*---a real content----*/?>
+                        <div class="page-header">
+                            <h3 ><?=$v->title?></h3>
+                            <h4><?=$v->templatePath?></h4>
+                        </div>
+                        <?=$this->render($v->templatePath)?>
+                    <?endif?>
+                </div>
             <?endforeach;?>
-            
+             
         </div>
     </div>
 </div>

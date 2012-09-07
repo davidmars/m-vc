@@ -52,7 +52,7 @@ class JS{
      * @return string  something like <script src=... 
      */
     public static function getTag($javascriptFile){
-        return '<script src="'.$javascriptFile.'"></script>\n';
+        return '<script src="'.$javascriptFile.'"></script>'."\n";
     }
     /**
      *
