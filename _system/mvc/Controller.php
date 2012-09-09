@@ -1,10 +1,4 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Controller
  *
@@ -61,19 +55,22 @@ class Controller {
      * @exemple my-controller-path/my-controller/my-function-in-the-controler/parameter-one/parameter-N 
      */
     public $route="";
+ 
     
     /**
      *
-     * @var string  The route without parameters
-     * @exemple my-controller-path/my-controller/my-function-in-the-controler 
-     */
-    public $routeToFunction="";
-    /**
-     *
-     * @var string  The route without the function
+     * @var string  The route without the function. Very usefull to performs redirections.
      * @exemple my-controller-path/my-controller
      */
     public $routeToController="";
+    
+    /**
+     *
+     * @var string  The route without parameters. Very usefull to performs redirections.
+     * @exemple my-controller-path/my-controller/my-function-in-the-controler 
+     */
+    public $routeToFunction="";
+
 
     
     /**
@@ -89,92 +86,126 @@ class Controller {
         return $url;
     }
 
-    
+
     /**
      * Return a controller based on a route.
-     * @param String $route an url that looks like : /path/to/controler/controlerName/function-in-the-controler/param1/param2/paramN
-     * @return Controller 
+     * @param String $route an internal url that looks like : /path/to/controler/controlerName/function-in-the-controler/param1/param2/paramN
+     * @return Controller The related controller
      */
     public static function getByRoute($route){
         
         $savedRoute=$route;
-	$parts=explode("/",$route);
         
-        //search for extension first
-        $exts=explode(".", $parts[count($parts)-1]);
-        if(count($exts)>1){
-            Human::log("there is an extension");
-            Human::log($exts);
-            $ext=  array_pop($exts);
-            Human::log($ext);
-            //remove the extension from the last $parts[] segment
-            $parts[count($parts)-1]=implode(".", $exts);
-            Human::log($parts[count($parts)-1]);
+        //find and remove extension from route
+        preg_match_all("|^(.*)\.([a-zA-Z0-9].{0,5})$|",$route,$out);
+        if($out && $out[0]){
+            $route=$out[1][0];
+            $ext=$out[2][0];
+        }
+
+	$parts=explode("/",$route);
+
+        //search the controller php file
+        for($i=0;$i<count($parts);$i++){
+            $path="/".implode("/",array_slice($parts, 0, $i+1));
+            $fileName= preg_replace("/^(.*)\/(.*)$/", "$1/c_$2.php", $path);
+            $file = Site::$appControllersFolder.$fileName;
+            
+            if(file_exists($file)){
+                $phpFile=$file;
+                break;
+            }else{
+                $file = Site::$systemControllersFolder.$fileName; 
+                if(file_exists($file)){
+                    $phpFile=$file;
+                    break;
+                }  
+            }
+
             
         }
-        $route=implode("/", $parts);
-	$i=count($parts);
-	
-        //search for controller itself
-        while(count($parts)>0){
-	    $i--;
-            $url=  self::getControlerPath($parts);
-	    Human::log("search controler in $url");
-            if(file_exists($url)){
-                
-                $routeToController=implode("/",$parts);
-                
-		//controller class name
-		$className=ucfirst($parts[count($parts)-1])."Controller";
-		$parts=explode("/",$route);
-                
-		$i++;
-		//function in the class
-		$fn=$parts[$i];
-		$i++;
-		//params to feed the function
-		array_splice($parts,0,$i);
-		//include the controler
-		require_once "$url";
-		if(class_exists($className)){
-		    Human::log("class $className exists! we have a controler");
-		}else{
-		    Human::log("class $className doesn't exists!","controler error",  Human::TYPE_ERROR);
-		}
-		
-		//creates the controler
-		$controler=new $className();
-                $controler->routeToController=$routeToController;
-                $controler->routeToFunction=$routeToController."/".$fn;
-                //check for the function inside the controller
-		if(method_exists ( $controler, $fn )){
-		    Human::log($controler, "controler function $fn found", Human::TYPE_WARN);
-		    $controler->routeFunction=$fn;
-		}else{
-                    $controler->setHeader404();
-                    $controler->routeFunction="default404";
-		    Human::log("The function $fn doesn't exists", "controler error", Human::TYPE_ERROR);
-		}
-		
-                //give parameters to the controller
-		$controler->routeParams=$parts;
-                $controler->setOutputType($ext);
-                $controler->extension=$ext;
-		//echo $url."===>".$url."  class name===>".$className." function===>".$fn." params===>".implode(",",$parts);
-		$controler->route=$savedRoute;
-		return $controler;
-		
-                break;
-            }	    
-            array_pop($parts);
-        }
         
-        //if we are here we know that there is no controller for this route...
+        
+
+        // file not found
+        if(!$phpFile){
+            return false;
+        }
+
+        $className=ucfirst($parts[$i])."Controller";
+        $fn=$parts[++$i];
+        $params=  array_slice($parts, ++$i);
+        $routeToController=implode("/",array_slice($parts,0,$i-1));
+        
+        
+
+        /*
+        echo "------------->route : ".$route."<br/>";
+        echo "------------->php File : ".$phpFile."<br/>";
+        echo "------------->className : ".$className."<br/>";
+        echo "-------------> function : ".$fn."<br/>";
+        echo "-------------> params : ".implode(",",$params)."<br/>"; 
+        echo "-------------> extension : ".$ext."<br/>"; 
+        echo "-------------> route to Controller : ".$routeToController."<br/>"; 
+        die();
+        */ 
+         
+        //we have a file that match but maybe class or function are not correct
+        $controller=self::getController($phpFile,$className,$fn);
+        
+        if($controller){
+            //give parameters to the controller
+            $controller->routeParams=$params;
+            
+            $controller->setOutputType($ext);
+            $controller->extension=$ext;
+            $controller->route=$savedRoute;
+            
+            $controller->routeToController=$routeToController;
+            $controller->routeToFunction=$routeToController."/".$fn;
+            
+            return $controller;
+        }
+
+
+	
+        
 
         return false;
     }
     /**
-     * the page will have an header 404
+     * Return a Contoller if this one is valid according to the parameters.
+     * @param string $file the php file where is the controller.
+     * @param string $className the controller class name.
+     * @param string $functionName the function to launch in the controller.
+     * @return boolean|Controller return the controller if this one is valid, else return false.
+     */
+    private static function getController($file,$className,$functionName){
+
+        //include the controler
+        require_once "$file";
+        
+        //check for class name
+        if(!class_exists($className)){
+            return false;
+        }
+
+        //creates the controler
+        $controller=new $className();
+        
+        //check for the function inside the controller
+        if(method_exists ( $controller, $functionName )){
+            $controller->routeFunction=$functionName;
+        }else{
+            return false;
+        }
+        
+        //you win!
+        return $controller;
+    }
+    
+    /**
+     * The page will have an header 404
      */
     public function setHeader404(){
         $this->headerCode=new Nerd_Header(Nerd_Header::ERR_404);

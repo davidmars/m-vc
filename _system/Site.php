@@ -99,7 +99,7 @@ class Site {
     public static $appViewsFolder="_app/mvc/v";
     /**
      * 
-     * @var String For php use...where your controlers?
+     * @var String For php use...where are your controlers?
      */
     public static $appControllersFolder="_app/mvc/c";
 
@@ -126,6 +126,11 @@ class Site {
      * @var String For php use...core libs are here.
      */
     public static $systemMVC="_system/mvc";
+     /**
+     * 
+     * @var String For php use...where are the system controllers?
+     */
+    public static $systemControllersFolder="_system/mvc/c";
     
     //----------------------publics folders-------------------------- 
     
