@@ -3,45 +3,49 @@
 $vv=$_vars;
 /* @var $param ReflectionParameter */
 $param="";
-/* @var $parsed DocParser */
 
-$parsed=new DocParser($vv->getDocComment());
-$parsed->parse();
-$params=$parsed->getParams();
+$comments=$vv->getDocComment();
 ?>
-<h3><?=$vv->getName()?>()</h3>
-<p>
-    <?=$parsed->getDesc()?>
-</p>
-<p>
-    <?=$parsed->getShortDesc()?>
-</p>
-<p>
-    <?for($i=0;$i<count($params);$i++):?>
-        <?=$params[$i]?> ***
-    <?endfor?>
-</p>
-<p>
-    <?var_dump($params)?>
-</p>
+
+
+<h3><?=$vv->name?>(<span class="text-color-grayLight"><?=CodeComments::getParametersOverview($vv)?></span>)</h3>
+<small><b>Declared in </b><?=$vv->getDeclaringClass()->name?></small>
+<p><b>Description : </b><?=CodeComments::getDescription($comments)?></p>
+
+
+<?var_dump($comments)?>
+
 
 <?if($vv->getParameters()):?>
     
-    <b>Parameters</b>
+    <h4>Parameters</h4>
     
-    <ul class="unstyled">
+    
     <? foreach ($vv->getParameters() as $k=>$param):?>
-        <li>
-            <?=$param->name?>
-                <?if($param->isDefaultValueAvailable()):?>
-            = "<?=$param->getDefaultValue()?>"
-                <?endif?>
+            <?
+            $doc=CodeComments::getArgument($param->name,$comments);
+            ?>
+            <h5>
+                $<?=$param->name?> : <?=$doc["type"]?>
                 <?if($param->isOptional()):?>
-                    (optional)
+                <span class="label label-success">Optional</span>
                 <?else:?>
-                    (required)
+                <span class="label label-warning">Required!</span>
                 <?endif?>
-        </li>
+            </h5>
+            
+            <p>
+                <b>Description : </b><?= $doc["description"]?>            
+            </p>
+
+            <?if($param->isDefaultValueAvailable()):?>
+                <p>
+                    <b>Default value : </b><?=$param->getDefaultValue()?>            
+                </p>
+            <?endif?>
+
+                    
     <? endforeach;?>
-    </ul>
+
 <?endif?>
+<hr>

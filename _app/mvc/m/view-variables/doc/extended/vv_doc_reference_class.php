@@ -42,6 +42,19 @@ class VV_doc_reference_class extends VV_doc_reference{
         $this->publicFunctions=$rc->getMethods(ReflectionMethod::IS_PUBLIC ^ ReflectionProperty::IS_STATIC);
         $this->publicStaticFunctions=$rc->getMethods(ReflectionMethod::IS_PUBLIC & ReflectionProperty::IS_STATIC);
         $this->privateStaticFunctions=$rc->getMethods(ReflectionMethod::IS_PRIVATE & ReflectionProperty::IS_STATIC);
+        
+        /* @var $fn ReflectionMethod*/
+        
+        $localMethods=array();
+        foreach($this->publicFunctions as $fn){
+            
+            if($fn->getDeclaringClass()->name==$className){
+                $localMethods[]=$fn;
+            }
+            
+        }
+        $this->publicFunctions=$localMethods;
+        
         /*
         $methods = $this->getMethods(ReflectionMethod::IS_PUBLIC ^ ReflectionMethod::IS_STATIC);
         $properties = $this->getProperties(ReflectionProperty::IS_PUBLIC ^ ReflectionProperty::IS_STATIC);
@@ -81,6 +94,7 @@ class VV_doc_reference_class extends VV_doc_reference{
             $value=$out[1][0];
             return $value;
         }
+        
         return $out;  
     }
     public function getDescription(){

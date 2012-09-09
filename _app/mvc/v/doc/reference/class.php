@@ -23,10 +23,10 @@ $vv=new VV_doc_reference_class($_vars);
                     </small>
                     
                 <?endif?>
-                <?var_dump($vv->author)?>
+               
                 <p>
                     <?=$vv->description?><br/>
-                    <? var_dump($vv->description); ?>
+                    
                 </p>
                 
                 <? var_dump($vv->comments); ?>
