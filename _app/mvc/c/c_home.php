@@ -6,7 +6,12 @@
  * @author david marsalone
  */
 class HomeController extends Controller {
-    
+        /**
+         * This is the home page.
+         * @param string $param1 The first parameter that can be displayed
+         * @param string $param2 The second parameter that can be displayed
+         * @return \View 
+         */
     	public function index($param1=null,$param2=null)
 	{
             

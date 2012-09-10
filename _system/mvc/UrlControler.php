@@ -12,13 +12,27 @@ class UrlControler {
      * @var array the key is a regexp, the value is the internal route to the controller.
      */
     public static $routes=array();
+    
+    
+    private static $systemRoutes=array(
+         "pub/media/cache/img/(:any)"=>"imageTools/$1"
+    );
     /**
      *
      * @var array reversed routes to get optimized urls. This array is automatically filed by reverseRoutes() function. 
      */
     private static $routesReversed;
-    
+    /**
+     *
+     * @param string $url search if a route match with the $url
+     * @return string an url, this url will be an optimized on if it match, elsewhere it will return the same url you give as parameter.
+     */
     public static function getRoute($url){
+        //merge $systemRoutes & $routes
+        while(count(self::$systemRoutes)>0){
+             $r=array_pop(self::$systemRoutes);
+             array_unshift(self::$routes, $r);
+        }
         foreach(self::$routes as $k=>$v){
             Human::log($k."---->".$v, "Test route");
             // Convert wild-cards to RegEx

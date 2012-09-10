@@ -216,8 +216,8 @@ class VV_doc_page_section{
     private static $currentId=0;
     /**
      *
-     * @param string $title the section title
-     * @param string $template the template path for this section in the page
+     * @param string $title The section title
+     * @param string $templatePath the template path for this section in the page.
      */
     public function __construct($title=null,$templatePath=null) {
         

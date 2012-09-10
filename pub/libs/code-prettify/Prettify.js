@@ -31,9 +31,10 @@ var Prettify={
                 }
                 
                 node.text(text);
-                 //from google-code-prettify 
+                  
             }
         }
+        //from google-code-prettify
         prettyPrint();
     }
 }

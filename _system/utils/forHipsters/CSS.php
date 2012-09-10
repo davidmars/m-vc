@@ -22,7 +22,7 @@ class CSS{
     public static function includeHeaderFiles(){
         $outp="";
         foreach(self::$headerFiles as $f){
-            $outp.='<link rel="stylesheet" href="'.$f.'">\n';
+            $outp.='<link rel="stylesheet" href="'.$f.'">'."\n";
         }
         self::$headerFiles=array();
         return $outp;

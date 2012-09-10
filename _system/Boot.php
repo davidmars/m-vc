@@ -238,16 +238,21 @@ class Boot {
         }
     }
     public static function includeFilesInFolder($folder,$recursive=true){
+        $folders=array();
         if ($handle = opendir($folder)) {
             while (false !== ($entry = readdir($handle))) {
                 $abs=$folder."/".$entry;
                 if ($entry != "." && $entry != ".." && is_file($abs) && file_exists($abs)) {
                     self::includeFile($abs);
                 }else if($recursive && $entry != "." && $entry != ".." && is_dir($abs)){
-                    self::includeFilesInFolder($abs, true);
+                    $folders[]=$abs;
                 }
             }
             closedir($handle);
+        }
+        //loads the classes subfolders after (manage extends)
+        foreach($folders as $f){
+            self::includeFilesInFolder($f, $recursive);
         }
     }
 }

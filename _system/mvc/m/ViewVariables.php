@@ -2,9 +2,9 @@
 
 class ViewVariables{
     /**
-     *
-     * @param ViewVariables $params 
-     * This class itself has no interest, it will be always extended. The concept of this class is to get autocompletion and stict mode in the views.
+     * This class itself has no interest, it will be always extended. The concept of this class is to get autocompletion in the views.
+     * @param ViewVariables $_vars If defined if will work like a clone. 
+     * 
      */
     public function __construct($_vars=null) {
 	if($_vars){
