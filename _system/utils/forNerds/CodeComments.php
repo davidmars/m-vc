@@ -12,18 +12,26 @@ class CodeComments {
      * @return string The description or false 
      */
     public static function getDescription($comments){
+        
+        //clean /* */ and * * *
         $str= preg_replace("|\*\/|s","",$comments);
         $str= preg_replace("|\/\*\*|s","",$str);
         $str= preg_replace("/\*/s","",$str);
         $str= preg_replace("/^\//s","",$str);
+        //extract form the beginning to the first @
         preg_match_all("/(.*?)@/s",$str,$out);
         if($out && $out[0]){
             $value=$out[1][0];
         }else{
-            $value=$str;
+            $value=$str; //there is no @ probably so we return the whole comment 
         }
         $value=trim($value);
         $value=trim($value);
+        $value=  nl2br($value);
+        if(!$value){
+           $value="Missing documentation."; 
+        }
+        
         return ucfirst($value);
         return $out;  
     }
@@ -43,9 +51,9 @@ class CodeComments {
         return $out;  
     }
     /**
-     *
-     * @param type $argument
-     * @param type $comments 
+     * Return the @param $argument type and description...it is for functions for sure!
+     * @param string $argument The argument you want to show.
+     * @param string $comments The php comment block to parse.
      */
     public static function getArgument($argument,$comments){
         $argument= str_replace("$","",$argument);
@@ -54,20 +62,53 @@ class CodeComments {
         if($out && $out[0]){
             $type=$out[1][0];
             $description=$out[2][0];
+        }
+        return self::getTypeAndDescription($type, $description); 
+    }
+    /**
+     *
+     * @param type $comments
+     * @return string 
+     */
+    public static function getReturn($comments){
+        
+        $reg="/@return (.*?) (.*)/";
+        preg_match_all($reg,$comments,$out);
+        if($out && $out[0]){
+            $type=$out[1][0];
+            $description=$out[2][0];
+        }
+        if(!$type && !$description){
+            $type="void";
+        }
+        return self::getTypeAndDescription($type, $description);
+    }
+    /**
+     * Return an array with keys $type & $description. The two parameters are managed to support exceptions messages like "missing documentation" when something is not defined.
+     * @param string $type 
+     * @param string $description 
+     */
+    private static function getTypeAndDescription($type,$description){
             $type=  trim($type);
             switch($type){
                 case "type":
                 case "":
-                   $type="unknow";
+                   $type="undocumented";
+                   break;
+            } 
+            
+            $description=  trim($description);
+            switch($description){
+                case "":
+                   $description="Missing documentation";
                    break;
             }
             return array("type"=>$type,"description"=>$description);
-        }
-        return $reg;  
     }
     /**
-     *
-     * @param ReflectionMethod $fn 
+     * Will return a quick overview of parameters.
+     * @example $param1:bool, $param2:SomeTypeClass, $param3:bool=true
+     * @param ReflectionMethod $fn The function that will give use the parameters.
      */
     public static function getParametersOverview($fn){
         /* @var $param ReflectionParameter*/
@@ -93,6 +134,16 @@ class CodeComments {
             $out[]=$str;
         }
         return implode(", ",$out);
+    }
+    /**
+     * Will return a quick overview of parameters.
+     * @example $param1:bool, $param2:SomeTypeClass, $param3:bool=true
+     * @param ReflectionMethod $fn The function that will give use the parameters.
+     */
+    public static function getReturnOverview($comments){
+        $return = self::getReturn($comments);
+        $str=$return["type"];
+        return $str;
     }
     
 }

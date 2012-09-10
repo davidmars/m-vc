@@ -211,13 +211,15 @@ class Controller {
         $this->headerCode=new Nerd_Header(Nerd_Header::ERR_404);
     }
     /**
-     * The page will have an header 301 and will be redirected to $redirectUrl 
+     * The page will have an header 301 and will be redirected to $redirectUrl.
+     * @param string $redirectUrl The url where to go.
      */
     public function redirect301($redirectUrl){ 
         $this->headerCode=new Nerd_Header(Nerd_Header::REDIRECT_301, Site::url($redirectUrl,true));    
     }
     /**
-     * The page will have an header 302 and will be redirected to $redirectUrl 
+     * The page will have an header 302 and will be redirected to $redirectUrl
+     * @param string $redirectUrl The url where to go. 
      */
     public function redirect302($redirectUrl){ 
         $this->headerCode=new Nerd_Header(Nerd_Header::REDIRECT_302, Site::url($redirectUrl,true));

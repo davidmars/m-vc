@@ -12,6 +12,7 @@ $vv=new VV_doc_reference_class($_vars);
         </div>
         <div class="span8">
             <div class="well">
+                <?=$this->render("doc/reference/toggleVarDump",$vv->comments)?>
                 <h1><?=$vv->className?></h1>
                 
                 <small><b>Extends : </b><?=$vv->extends?></small><br/>
@@ -23,31 +24,49 @@ $vv=new VV_doc_reference_class($_vars);
                     </small>
                     
                 <?endif?>
-               
-                <p>
-                    <?=$vv->description?><br/>
-                    
-                </p>
-                
-                <? var_dump($vv->comments); ?>
                 
                 <hr/>
+                
+                <p>
+                    <?=$vv->description?><br/>
+                </p>
+                
+
+                
+                
 
                 
             </div>
             
-            <h2>Public functions</h2>
+            <h2>Functions</h2>
             <?
             $functions=$vv->publicFunctions;
             foreach($functions as $k=>$v):?>
                 <?=$this->render("doc/reference/function",$v)?>
             <?endforeach;?>
             
+            <h2>Static functions</h2>
+            <?
+            $functions=$vv->publicStaticFunctions;
+            foreach($functions as $k=>$v):?>
+                <?=$this->render("doc/reference/function",$v)?>
+            <?endforeach;?>
             
-            <h3>Function name</h3>
-            <h4>Description</h4>
-            <h4>Parameters</h4>
-            <h4>Return</h4>
+            <h2>Inherited functions</h2>
+            <?
+            $functions=$vv->inheritPublicFunctions;
+            foreach($functions as $k=>$v):?>
+                <?=$this->render("doc/reference/function",$v)?>
+            <?endforeach;?>
+            
+            <h2>Inherited static functions</h2>
+            <?
+            $functions=$vv->inheritPublicStaticFunctions;
+            foreach($functions as $k=>$v):?>
+                <?=$this->render("doc/reference/function",$v)?>
+            <?endforeach;?>
+            
+            
         </div>
     </div>
 </div>

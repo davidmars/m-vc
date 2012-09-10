@@ -38,51 +38,73 @@ class VV_doc_reference_class extends VV_doc_reference{
         $this->className=$rc->name;
         $this->file=$rc->getFileName();
         
-        $this->privateFunctions=$rc->getMethods(ReflectionMethod::IS_PRIVATE ^ ReflectionProperty::IS_STATIC);
-        $this->publicFunctions=$rc->getMethods(ReflectionMethod::IS_PUBLIC ^ ReflectionProperty::IS_STATIC);
-        $this->publicStaticFunctions=$rc->getMethods(ReflectionMethod::IS_PUBLIC & ReflectionProperty::IS_STATIC);
-        $this->privateStaticFunctions=$rc->getMethods(ReflectionMethod::IS_PRIVATE & ReflectionProperty::IS_STATIC);
+        $this->allFunctions=$rc->getMethods();
+
+        $this->privateFunctions=array();
+        $this->privateStaticFunctions=array();
+        $this->inheritPrivateFunctions=array();
+        $this->inheritPrivateStaticFunctions=array();
         
+        $this->publicFunctions=array();
+        $this->publicStaticFunctions=array();
+        $this->inheritPublicFunctions=array();
+        $this->inheritPublicStaticFunctions=array();
+
         /* @var $fn ReflectionMethod*/
         
         $localMethods=array();
-        foreach($this->publicFunctions as $fn){
+        //filter functions
+        foreach($this->allFunctions as $fn){
+            switch (true){
+                
+                case $fn->isPublic() && !$fn->isStatic() && $fn->getDeclaringClass()->name==$className;
+                $this->publicFunctions[]=$fn;
+                break;
+                
+                case $fn->isPublic() && $fn->isStatic() && $fn->getDeclaringClass()->name==$className;
+                $this->publicStaticFunctions[]=$fn;
+                break;
             
-            if($fn->getDeclaringClass()->name==$className){
-                $localMethods[]=$fn;
+                case $fn->isPublic() && !$fn->isStatic() && $fn->getDeclaringClass()->name!=$className;
+                $this->inheritPublicFunctions[]=$fn;
+                break;
+            
+                case $fn->isPublic() && $fn->isStatic() && $fn->getDeclaringClass()->name!=$className;
+                $this->inheritPublicStaticFunctions[]=$fn;
+                break;
+                
+                //----------------privates
+                
+                case $fn->isPrivate() && !$fn->isStatic() && $fn->getDeclaringClass()->name==$className;
+                $this->privateFunctions[]=$fn;
+                break;
+                
+                case $fn->isPrivate() && $fn->isStatic() && $fn->getDeclaringClass()->name==$className;
+                $this->isPrivateStaticFunctions[]=$fn;
+                break;
+            
+                case $fn->isPrivate() && !$fn->isStatic() && $fn->getDeclaringClass()->name!=$className;
+                $this->inheritPrivateFunctions[]=$fn;
+                break;
+            
+                case $fn->isPrivate() && $fn->isStatic() && $fn->getDeclaringClass()->name!=$className;
+                $this->inheritPrivateStaticFunctions[]=$fn;
+                break;
+                
+                    
             }
-            
+             
         }
-        $this->publicFunctions=$localMethods;
-        
-        /*
-        $methods = $this->getMethods(ReflectionMethod::IS_PUBLIC ^ ReflectionMethod::IS_STATIC);
-        $properties = $this->getProperties(ReflectionProperty::IS_PUBLIC ^ ReflectionProperty::IS_STATIC);
-        $staticMethods = $this->getMethods(ReflectionMethod::IS_PUBLIC & ReflectionMethod::IS_STATIC);
-        $staticProperties = $this->getProperties(ReflectionProperty::IS_PUBLIC & ReflectionProperty::IS_STATIC);
-         */
-        
-        $this->comments=$rc->getDocComment();
-        $this->author=$this->getMeta("author");
-        $this->description=$this->getDescription();
-        /*
-        if($this->comments){
-           $this->parsed=  $this->parseComments($this->comments); 
-           $this->description=$this->parsed->getShortDesc()."<br/>".$this->parsed->getDesc()."";
-        }*/
-        
 
         
+        $this->comments=$rc->getDocComment();
+        $this->author=  CodeComments::getMeta("author", $this->comments);
+        $this->description=CodeComments::getDescription($this->comments);
+
         return true;
         
     }
-    private function parseComments($comments){
-        $parser=new DocParser($comments);
-        $parser->parse();
-        $params=$parser->getParams();
-        $this->author=$params["author"];
-        return $parser;
-    }
+
     /**
      * return a meta param like author
      * @param type $paramName
