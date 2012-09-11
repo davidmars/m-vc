@@ -2,7 +2,7 @@
 $vv=new VV_doc_page($_vars);
 ?>
 <p>
-    When you write templates, you need to use urls for this kind of stuffs... 
+    When you write templates, you need to use urls for this kind of stuff... 
 </p>
 
 <pre class="prettyprint linenums lang-php">
@@ -14,8 +14,8 @@ $vv=new VV_doc_page($_vars);
 
 
 <p>
-    It's not easy to manage this urls in a url rewrited project 
-    and it's no more easier to move all urls in your templates when you decide to move your project from a place to another one.
+    It's not easy to manage these urls in an url rewrited project 
+    nor is it to move all urls in your templates when you decide to move your project from a place to another.
 </p>
 
 <p>
@@ -29,14 +29,14 @@ $vv=new VV_doc_page($_vars);
 
 <p>
     The function GiveMe::url has two parameters:<br>
-    The first one is an url, it can be a relative or absolute url, it can be a file, or a route.<br/>
-    The Second one define if you want to display an absolute or a relative url.<br/>
+    <b>The first one</b> is an url, it can be a relative or absolute url, it can be a file, or a route.<br/>
+    <b>The second one</b> defines if you want to display an absolute or a relative url.<br/>
 </p>
     
 <div class="alert alert-info">
     <h4>Important</h4> 
     We recommend you to <b>never use optimized urls here</b> but routes only.<br>
-    A good reason (not the only one) for it is that optimized urls can be translated, so they could not match according your current language.
+    A good reason (not the only one) for it is that optimized urls can be translated, so they may not match your current language.
     
 </div>
     
