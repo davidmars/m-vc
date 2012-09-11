@@ -145,5 +145,35 @@ class CodeComments {
         $str=$return["type"];
         return $str;
     }
+    /**
+     * Search for classes in a file
+     * @param string $filepath a valid path to a php file
+     * @return array the name of the classes 
+     */
+    public static function fileGetPhpClasses($filepath) {
+      $php_code = file_get_contents($filepath);
+      $classes = self::getPhpClasses($php_code);
+      return $classes;
+    }
+    /**
+     * Search for classes in a php code
+     * @param string $php_code php code to parse
+     * @return array the name of the classes 
+     */
+    public static function getPhpClasses($php_code) {
+      $classes = array();
+      $tokens = token_get_all($php_code);
+      $count = count($tokens);
+      for ($i = 2; $i < $count; $i++) {
+	if (   $tokens[$i - 2][0] == T_CLASS
+	    && $tokens[$i - 1][0] == T_WHITESPACE
+	    && $tokens[$i][0] == T_STRING) {
+
+	    $class_name = $tokens[$i][1];
+	    $classes[] = $class_name;
+	}
+      }
+      return $classes;
+    }
     
 }

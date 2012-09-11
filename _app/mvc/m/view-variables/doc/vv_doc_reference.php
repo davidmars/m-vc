@@ -37,7 +37,7 @@ class VV_doc_reference extends ViewVariables{
                     file_exists($abs) && 
                     FileTools::extension($abs)=="php") 
                     {
-                        $classes=DocParser::file_get_php_classes($abs);
+                        $classes=  CodeComments::fileGetPhpClasses($abs);
                         foreach($classes as $class){
                             self::$classesFiles[$class]=$abs;
                             $files[]=array(
@@ -65,6 +65,8 @@ class VV_doc_reference extends ViewVariables{
         
         return array_merge($files,$folders);
     }
+    
+    
     
 
     
