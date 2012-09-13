@@ -15,10 +15,14 @@ class GiveMe {
     public static function url($url,$absolute=false){
         return Site::url($url,$absolute);
     }
-    public static function urlInfos($url,$absolute=false){
-        $r=new stdClass();
-        $r->url=Site::url($url,$absolute);
-        return $r;
+
+    /**
+     * Will analyze an url (a route by preference) and will return you an UrlInfos object.
+     * @param string $url The url you want to analyze.
+     * @return UrlInfos An object with informations about the url.
+     */
+    public static function urlInfos($url){
+	return Site::urlInfos($url);
     }
     
     /**

@@ -16,7 +16,7 @@ class Site {
     /**
      * Will analyze an url (a route by preference) and will return you an UrlInfos object.
      * @param string $url The url you want to analyze.
-     * @return \UrlInfos 
+     * @return UrlInfos An object with informations about the url.
      */
     public static function urlInfos($url){
         $infos=new UrlInfos();
@@ -24,7 +24,7 @@ class Site {
         $infos->route=$url;
         
         switch (true){
-            case (preg_match('%^(https?://)%i',$url)): //absolute path...let's move
+            case (preg_match('%^(https?://)%i',$url)): //absolute path...let's move we know all we have to know
                 $infos->isOutsideTheProject=true;
                 $infos->url=$infos->urlOptimized=$url;
                 $infos->isValid=true;
@@ -34,32 +34,22 @@ class Site {
                 $infos->isRealFile=true;
                 $infos->isValid=true;
                 break;
-            case file_exists(Site::$publicFolder."/".$url): //file exists in public folder
+            case file_exists(Site::$publicFolder."/".$url): //file exists...in public folder
                 $infos->isRealFile=true;
                 $infos->isValid=true;
                 $infos->url=$infos->urlOptimized=$url=Site::$publicFolder."/".$url;
                 break;
-            default: //let's start to search for a route
+            default: //let's start to search for a route, here is the serious buisiness.
                 
                 $controller=Controller::getByRoute($url); //classic controller 
                 if(!$controller){
-                    $infos->route=  UrlControler::getRoute($url);
+                    $infos->route=UrlControler::getRoute($url);
                     $controller=Controller::getByRoute($infos->route);
                 }
-                if($controller){
-                    $controller->run(); //here check if the controller is valid
-                    if($controller->headerCode->code==Nerd_Header::ERR_404){
-                        $controller=false;
-                        
-                    }
-                }
-                if(!$controller){
-                    $infos->isValid=false;
-                }else{
-                    $infos->isValid=true;
-                }
-                $infos->urlOptimized=UrlControler::getOptimizedUrl($url);
-                
+		if($controller){
+		    $infos->urlOptimized=UrlControler::getOptimizedUrl($controller->route);
+		    $infos->controller=$controller;
+		}
                 break;
         }
 
@@ -74,9 +64,9 @@ class Site {
     
     /**
      *
-     * @param String $url the local url you need to display
-     * @param Bool $absolute if true the host will be added
-     * @return String return a coorect href to $url 
+     * @param string $url the local url you need to display
+     * @param bool $absolute if true the host will be added
+     * @return string return a coorect href to $url 
      */
     public static function url($url,$absolute=false){
         
@@ -89,39 +79,7 @@ class Site {
         }else{
             return $infos->urlOptimized;
         }
-        
-        switch (true){
-            case (preg_match('%^(https?://)%i',$url)): //absolute path...let's move
-                return $url;
-                break;
-            case file_exists($url): //file exists
-                break;
-            case file_exists(Site::$publicFolder."/".$url): //file exists in public folder
-                $url=Site::$publicFolder."/".$url;
-                break;
-            default: //let's start to search for a route
-                $controller=Controller::getByRoute($url); //classic controller 
-                if(!$controller){
-                    $route=  UrlControler::getRoute($url);
-                    $controller=Controller::getByRoute($route);
-                }
-                if($controller){
-                    $controller->run(); //here check if the controller is valid
-                    if($controller->headerCode->code==Nerd_Header::ERR_404){
-                        $controller=false;
-                    }
-                }
-                if(!$controller){
-                    return "#urlError($url)"; //error
-                }
-                $url=UrlControler::getOptimizedUrl($url); //give me the best baby!
-                break;
-        }
-        if($absolute){
-            return self::$host.self::$root."/".$url;
-        }else{
-            return self::$root."/".$url;
-        }
+
     }
     
     /**
@@ -223,24 +181,77 @@ class Site {
 
     
 }
-
+/**
+ * 
+ */
 class UrlInfos{
     /**
      *
      * @var bool will be true if the url is a real file in the website.
      */
     public $isRealFile=false;
+    /**
+     *
+     * @var bool will be true if the url can't be managed by the framework. 
+     * In practice it will happens when the url belongs to an other website. 
+     * It can happens if the host is not recognized or the root folder.
+     */
     public $isOutsideTheProject=false;
-    public $isCurrentUrl=false;
-    public $isValid=false;
+    /**
+     * Will be true if there is no error (like a 404 one) while processing the url.
+     * @return bool Will be true if there is no error (like a 404 one) while processing the url.  
+     */
+    public function isValid(){
+	//fichier no problemo
+	if($this->isRealFile || $this->isOutsideTheProject){
+	    return true;
+	}
+	if(!$this->controller){
+	    return false;
+	}
+	
+	$this->controller->run();
+	if($this->controller->headerCode->code==Nerd_Header::ERR_404){
+	   return false;
+	}
+	return true;
+	
+    }
+    /**
+     *
+     * @var string The internal route to display 
+     */
     public $route="";
     public $url="";
     public $urlOptimized="";
     public $urlAbsolute="";
     public $urlAbsoluteOptimized="";
+    /**
+     *
+     * @var Controller 
+     */
+    public $controller=null;
     
+    /**
+     *
+     * @return bool Can will be true if  $_REQUEST["route"] (given by htaccess) belongs to this object.
+     */
     public function isCurrent(){
-
+	$reqUrl=Site::urlInfos($_REQUEST["route"]);
+	switch($reqUrl->route){
+	    case $this->route:
+	    case $this->url:
+	    case $this->urlOptimized:
+	    return true;
+		
+	default : 
+	    return false;
+	}
+	
+    }
+    
+    public function __construct() {
+	
     }
 }
 

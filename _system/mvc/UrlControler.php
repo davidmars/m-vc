@@ -15,7 +15,8 @@ class UrlControler {
     
     
     private static $systemRoutes=array(
-         "pub/media/cache/img/(:any)"=>"imageTools/$1"
+         "pub/media/cache/img/(:any)"=>"imageTools/$1",
+	
     );
     
     public static $allRoutes=array();
@@ -32,7 +33,11 @@ class UrlControler {
      */
     public static function getRoute($url){
         //merge $systemRoutes & $routes
-	self::$allRoutes=array_merge(self::$systemRoutes,self::$routes);
+	if(count(self::$systemRoutes)>0){
+	   self::$allRoutes=array_merge(self::$systemRoutes,self::$routes); 
+	   self::$systemRoutes=array();
+	}
+	
 	
 	/*
         while(count(self::$systemRoutes)>0){
@@ -61,9 +66,9 @@ class UrlControler {
      * @return string a route optimized by $routes regexps
      */
     public static function getOptimizedUrl($url){
-        
+        self::$allRoutes=array_merge(self::$systemRoutes,self::$routes);
         // Loop through routes to check for back-references
-        $revRoutes = self::reverseRoutes(self::$routes);
+        $revRoutes = self::reverseRoutes(self::$allRoutes);
         foreach ($revRoutes as $route) {
             if (preg_match($route['uri_pattern'], $url)) {
                 $rewritten = preg_replace($route['uri_pattern'], $route['rewritten'], $url);
