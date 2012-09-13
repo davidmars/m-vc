@@ -59,7 +59,7 @@ class Boot {
         }
         
         //search for a better url
-        if(Site::$redirectToBestUrl){
+        if(false && Site::$redirectToBestUrl){
             //checks if there is not a better url
             if($controller){
                 $optimizedUrl=UrlControler::getOptimizedUrl($route);

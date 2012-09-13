@@ -17,6 +17,9 @@ class UrlControler {
     private static $systemRoutes=array(
          "pub/media/cache/img/(:any)"=>"imageTools/$1"
     );
+    
+    public static $allRoutes=array();
+    
     /**
      *
      * @var array reversed routes to get optimized urls. This array is automatically filed by reverseRoutes() function. 
@@ -29,11 +32,18 @@ class UrlControler {
      */
     public static function getRoute($url){
         //merge $systemRoutes & $routes
+	self::$allRoutes=array_merge(self::$systemRoutes,self::$routes);
+	
+	/*
         while(count(self::$systemRoutes)>0){
              $r=array_pop(self::$systemRoutes);
+	     Human::log("tototo ".$r);
              array_unshift(self::$routes, $r);
         }
-        foreach(self::$routes as $k=>$v){
+	 
+
+	 */
+        foreach(self::$allRoutes as $k=>$v){
             Human::log($k."---->".$v, "Test route");
             // Convert wild-cards to RegEx
             $k = str_replace(':any', '.+', str_replace(':num', '[0-9]+', $k));
