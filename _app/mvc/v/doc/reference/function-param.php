@@ -17,12 +17,12 @@ $doc=CodeComments::getArgument($param->name,$_vars["comments"]);
 
 <div class="span2">Type</div>
 <div class="span6">
-    <?=$doc["type"]?>
+    <?=$doc["type"]?>&nbsp;
 </div>
 
 <div class="span2">Default value</div>
 <div class="span6">
-    <?if($param->isDefaultValueAvailable()):?>
+        <?if($param->isDefaultValueAvailable()):?>
             <?
                 $dv=$param->getDefaultValue();
                 if(!$dv && $doc["type"]=="string"){

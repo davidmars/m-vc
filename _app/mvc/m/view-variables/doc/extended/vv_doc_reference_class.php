@@ -1,27 +1,32 @@
 <?
-
+/**
+ *
+ * This class contains what you need to display informations about a Class. In fact it is used to display documentation. 
+ */
 class VV_doc_reference_class extends VV_doc_reference{
-    
+    /** 
+     * 
+     * @var ReflectionProperty List all the ReflectionProperty(ies) in the class.
+     */
+    public $allVariables;
+    /** 
+     * 
+     * @var ReflectionProperty List all the non herited statics ReflectionProperty(ies) in the class.
+     */
+    public $staticVariables;
     /**
      *
-     * @var ReflectionMethod 
+     * @var ReflectionMethod List all the ReflectionMethod(s) in the class.
      */
     public $publicFunctions;
-    
     /**
      *
-     * @var DocParser 
-     */
-    public $parsed;
-    
-    /**
-     *
-     * @var ReflectionClass 
+     * @var ReflectionClass A direct acces to the ReflectionClass of the class. 
      */
     public $reflectionClass;
     /**
-     *
-     * @param string $className
+     * In fact it could ne a constructor. You need to call this method to fill the current model with properties.
+     * @param string $className The class name you need.
      * @return bool will be false if an error occurs. 
      */
     public function setClassName($className){
@@ -38,6 +43,9 @@ class VV_doc_reference_class extends VV_doc_reference{
         $this->className=$rc->name;
         $this->file=$rc->getFileName();
         
+        
+        $this->allVariables=$rc->getProperties();
+        
         $this->allFunctions=$rc->getMethods();
 
         $this->privateFunctions=array();
@@ -52,8 +60,7 @@ class VV_doc_reference_class extends VV_doc_reference{
 
         /* @var $fn ReflectionMethod*/
         
-        $localMethods=array();
-        //filter functions
+        //filter functions by scopes and visibility
         foreach($this->allFunctions as $fn){
             switch (true){
                 
@@ -89,6 +96,62 @@ class VV_doc_reference_class extends VV_doc_reference{
             
                 case $fn->isPrivate() && $fn->isStatic() && $fn->getDeclaringClass()->name!=$className;
                 $this->inheritPrivateStaticFunctions[]=$fn;
+                break;
+                
+                    
+            }
+             
+        }
+        
+        $this->privateVariables=array();
+        $this->privateStaticVariables=array();
+        $this->inheritPrivateVariables=array();
+        $this->inheritPrivateStaticVariables=array();
+        
+        $this->publicVariables=array();
+        $this->publicStaticVariables=array();
+        $this->inheritPublicVariables=array();
+        $this->inheritPublicStaticVariables=array();
+        
+        
+        /* @var $prop ReflectionProperty*/
+        
+        //filter variables by scopes and visibility
+        foreach($this->allVariables as $prop){
+            switch (true){
+                
+                case $prop->isPublic() && !$prop->isStatic() && $prop->getDeclaringClass()->name==$className;
+                $this->publicVariables[]=$prop;
+                break;
+                
+                case $prop->isPublic() && $prop->isStatic() && $prop->getDeclaringClass()->name==$className;
+                $this->publicStaticVariables[]=$prop;
+                break;
+            
+                case $prop->isPublic() && !$prop->isStatic() && $prop->getDeclaringClass()->name!=$className;
+                $this->inheritPublicVariables[]=$prop;
+                break;
+            
+                case $prop->isPublic() && $prop->isStatic() && $prop->getDeclaringClass()->name!=$className;
+                $this->inheritPublicStaticVariables[]=$prop;
+                break;
+                
+                //----------------privates
+                
+                case $prop->isPrivate() && !$prop->isStatic() && $prop->getDeclaringClass()->name==$className;
+                $this->privateVariables[]=$prop;
+                break;
+                
+                case $prop->isPrivate() && $prop->isStatic() && $prop->getDeclaringClass()->name==$className;
+                $this->isPrivateStaticVariables[]=$prop;
+                break;
+            
+                case $prop->isPrivate() && !$prop->isStatic() && $prop->getDeclaringClass()->name!=$className;
+                $this->inheritPrivateVariables[]=$prop;
+                break;
+            
+                case $prop->isPrivate() && $prop->isStatic() && $prop->getDeclaringClass()->name!=$className;
+                $this->inheritPrivateStaticVariables[]=$prop;
                 break;
                 
                     

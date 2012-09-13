@@ -9,12 +9,12 @@ class ImageToolsController extends Controller {
     
     	public function sized()
 	{
+            die("yop");
             ImageTools::$doTheJob=true;
             $params=func_get_args();
             Human::log($params);
             $img=ImageTools::processUrl("sized", $params,$this->extension);
             ImageTools::output($img);
-            
             
 	}
     	

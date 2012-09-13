@@ -3,7 +3,7 @@ class JS{
     
     /**
      * Will add the specified js file to the file list to include in the header
-     * @param string $file a js file url
+     * @param string $cssFileUrl a js file url
      */
     public static function addToHeader($cssFileUrl){
         $file=  GiveMe::url($cssFileUrl);

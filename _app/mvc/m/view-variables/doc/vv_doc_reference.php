@@ -7,6 +7,7 @@ class VV_doc_reference extends ViewVariables{
     public function run(){
         $this->appControllers=self::browseFolder(Site::$appControllersFolder);
         $this->appModels=self::browseFolder(Site::$appModelsFolder);
+        $this->systemTools=self::browseFolder(Site::$systemUtils);
         //so here $classesFiles is complete!
     }
     /**

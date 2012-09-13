@@ -28,7 +28,15 @@ class CodeComments {
         $value=trim($value);
         $value=trim($value);
         $value=  nl2br($value);
+        
+
+        
         if(!$value){
+            //here we will try to find a @return parameter...
+            $return=self::getReturn($comments);
+            if($return["description"]){
+                $value = "(from @return comment)".$return["description"];
+            }
            $value="Missing documentation."; 
         }
         
@@ -43,6 +51,9 @@ class CodeComments {
     * @return string the value 
     */
     public static function getMeta($paramName,$comments){
+        if(!$comments){
+            return null;
+        }
         preg_match_all("/@".$paramName." (.*)/",$comments,$out);
         if($out && $out[0]){
             $value=$out[1][0];
@@ -56,8 +67,24 @@ class CodeComments {
      * @param string $comments The php comment block to parse.
      */
     public static function getArgument($argument,$comments){
+
         $argument= str_replace("$","",$argument);
         $reg="/@param(.*)\\$".$argument."(.*)/";
+        preg_match_all($reg,$comments,$out);
+        if($out && $out[0]){
+            $type=$out[1][0];
+            $description=$out[2][0];
+        }
+        return self::getTypeAndDescription($type, $description); 
+    }
+    /**
+     * Return the @var $argument type and description...it is for variables (property) for sure!
+     * @param string $comments The php comment block to parse.
+     */
+    public static function getVariable($comments){
+
+       
+        $reg="/@var (.*?) (.*)/";
         preg_match_all($reg,$comments,$out);
         if($out && $out[0]){
             $type=$out[1][0];
@@ -90,10 +117,13 @@ class CodeComments {
      */
     private static function getTypeAndDescription($type,$description){
             $type=  trim($type);
+            $type=  trim($type);
+            $type=  trim($type);
             switch($type){
+                case null;
                 case "type":
                 case "":
-                   $type="undocumented";
+                   $type="Missing documentation";
                    break;
             } 
             
