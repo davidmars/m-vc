@@ -68,7 +68,7 @@ class VV_doc_page extends ViewVariables{
                 $page->sections[]=new VV_doc_page_section("HTML, XML or JSON outputs",          "doc/pages/overview/xml-json-outputs");
                 $page->sections[]=new VV_doc_page_section("A good worflow",          "doc/pages/overview/workflow");
                 
-                $page->sections[]=new VV_doc_page_section("It cames with...");
+                $page->sections[]=new VV_doc_page_section("It comes with...");
                 
                 $page->sections[]=new VV_doc_page_section("jQuery",          "doc/pages/overview/jquery");
                 $page->sections[]=new VV_doc_page_section("Twitter Bootstrap",          "doc/pages/overview/bootstrap");
@@ -105,8 +105,8 @@ class VV_doc_page extends ViewVariables{
                 
                 $page->sections[]=new VV_doc_page_section("Let's practice");
                 
-                $page->sections[]=new VV_doc_page_section("1. Play with templates",          "doc/pages/get-started/");
-                $page->sections[]=new VV_doc_page_section("2. Create your first controler",          "doc/pages/get-started/");
+                $page->sections[]=new VV_doc_page_section("1. Play with templates",          "doc/pages/get-started/templates");
+                $page->sections[]=new VV_doc_page_section("2. Create your first controller",          "doc/pages/get-started/first-controller");
                 $page->sections[]=new VV_doc_page_section("3. Let's beautify this url",          "doc/pages/get-started/");
                 $page->sections[]=new VV_doc_page_section("4. Templates autocompletion",          "doc/pages/get-started/");
                 $page->sections[]=new VV_doc_page_section("5. JSON & XML !",          "doc/pages/get-started/");

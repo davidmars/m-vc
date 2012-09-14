@@ -3,7 +3,6 @@ $vv=new VV_doc_page($_vars);
 ?>
 <p>
     We will describe through step by step examples how to do common stuff with images.<br/><br/>
-
 </p>
 <div class="">
     First, here is our native image without any manipulations.<br/>
@@ -19,6 +18,7 @@ $vv=new VV_doc_page($_vars);
 <p>
     To manipulate images we will use the function <code>GiveMe::imageSized()</code>.<br />
     This function has <b>five parameters:</b><br/>
+</p>
     <ol>
         <li>url of the original image (required)</li>
         <li>final width (required)</li>
@@ -34,7 +34,7 @@ $vv=new VV_doc_page($_vars);
     
 </div>
 
-</p>
+
 <div class="">
     <h4>Basic resize to 200px by 200px </h4>
     <pre class="prettyprint linenums lang-php">

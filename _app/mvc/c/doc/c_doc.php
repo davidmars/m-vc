@@ -51,5 +51,8 @@ class DocController extends Controller{
         return $view;
 
     }
+    public function basicTemplate(){
+       return new View("doc/samples/simple-template", null); 
+       }
     
 }
