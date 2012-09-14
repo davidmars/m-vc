@@ -178,6 +178,11 @@ class VV_doc_page extends ViewVariables{
             }
             $pages[]=$newOne;
         }
+        //api reference
+        $apiReference=new VV_doc_page();
+        $apiReference->title="Live doc";
+        $apiReference->routeUrl="doc/doc/classDefinition/GiveMe";
+        $pages[]=$apiReference;
         return $pages;
     }
     

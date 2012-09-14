@@ -29,7 +29,7 @@ class ImageTools{
         $params[]=$fileName;
         $url=Site::$mediaFolder."/cache/img/".$fnName."/".implode("/",$params);
         
-        Human::log("----->url=".$url);
+        Human::log("url=".$url,"Image tools contoller",Human::TYPE_WARN);
         FileTools::mkDirOfFile($url);
         return $url;
     }

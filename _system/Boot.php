@@ -37,16 +37,13 @@ class Boot {
     public static function theSystem(){
         
         
-        
+        //includes
         self::includeFiles();
-        
-        
-        
 
         //search for the correct controller, function and params
         Human::log($_REQUEST["route"],"At the begining it was the route param");
 
-        $infos=Site::urlInfos($_REQUEST["route"]);
+        $infos=new UrlInfos($_REQUEST["route"]);
         $controller=$infos->controller;
 	
 	if($controller){

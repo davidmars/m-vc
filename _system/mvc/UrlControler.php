@@ -14,10 +14,7 @@ class UrlControler {
     public static $routes=array();
     
     
-    private static $systemRoutes=array(
-         "pub/media/cache/img/(:any)"=>"imageTools/$1",
-	
-    );
+    private static $systemRoutes=array();
     
     public static $allRoutes=array();
     
@@ -36,7 +33,9 @@ class UrlControler {
 	if(count(self::$systemRoutes)>0){
 	   self::$allRoutes=array_merge(self::$systemRoutes,self::$routes); 
 	   self::$systemRoutes=array();
-	}
+	}else{
+            self::$allRoutes=self::$routes;
+        }
 	
 	
 	/*
