@@ -1,6 +1,6 @@
 <?php
 
-class VV_doc_reference extends ViewVariables{
+class VV_doc_reference extends VV_doc_page{
     /**
      * process complex actions like parsing the fmk folders to get the main structure. 
      */

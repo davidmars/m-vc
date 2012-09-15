@@ -42,8 +42,9 @@ class Boot {
 
         //search for the correct controller, function and params
         Human::log($_REQUEST["route"],"At the begining it was the route param");
-
+        
         $infos=new UrlInfos($_REQUEST["route"]);
+        UrlInfos::$current=$infos;
         $controller=$infos->controller;
 	
 	if($controller){

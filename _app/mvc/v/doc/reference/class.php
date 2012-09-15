@@ -2,6 +2,7 @@
 $vv=new VV_doc_reference_class($_vars);
 ?>
 <?$this->inside("doc/layout/html5bp")?>
+<?=$this->render("doc/layout/main-menu",$vv)?>
 
 <div class="container doc-reference" style="padding-top: 80px;">
     <div class="row">

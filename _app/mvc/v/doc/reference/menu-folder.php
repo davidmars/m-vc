@@ -13,7 +13,7 @@
 		<?else:?>
 		    
 		    <a href="<?=$urlInfos->urlOptimized?>">
-			<?=$item["name"]?>
+			<?=$item["name"]?> <?=$urlInfos->urlOptimized?>
 		    </a>
 		<?endif?>
 	    </li>

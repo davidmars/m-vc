@@ -160,6 +160,13 @@ class UrlInfos{
 	$this->url=$url;
         $this->run();
     }
+    
+    /**
+     *
+     * @var UrlInfos This url infos refers to the current request to access the framework. 
+     * In human language it means : the url you see in your browser.
+     */
+    public static $current=null;
     /**
      *
      * @return type 
@@ -169,20 +176,20 @@ class UrlInfos{
         switch (true){
             case (preg_match('%^(https?://)%i',$this->url)): //absolute path...let's move we know all we have to know
                 $this->isOutsideTheProject=true;
-                $this->urlOptimized=$this->urlAbsolute=$this->urlAbsoluteOptimized=$this->url;
+                $this->urlOptimized=$this->urlAbsolute=$this->urlAbsoluteOptimized=$this->route=$this->url;
                 return $this;
                 break;
             case file_exists($this->url): //file exists
                 $this->isRealFile=true;
-                $this->urlOptimized=$this->url;
+                $this->urlOptimized=$this->route=$this->url;
                 break;
             case file_exists(Site::$publicFolder."/".$this->url): //file exists...in public folder
                 $this->isRealFile=true;
-                $this->url=$this->urlOptimized=$this->url=Site::$publicFolder."/".$this->url;
+                $this->url=$this->urlOptimized=$this->url=$this->route=Site::$publicFolder."/".$this->url;
                 break;
             default: //let's start to search for a route, here is the serious buisiness.
-                
-                $controller=Controller::getByRoute($this->url); //classic controller 
+                $this->route=$this->url;
+                $controller=Controller::getByRoute($this->route); //classic controller 
                 if(!$controller){
                     $this->route=UrlControler::getRoute($this->url);
                     $controller=Controller::getByRoute($this->route);
@@ -286,8 +293,9 @@ class UrlInfos{
      * @return bool Will be true if  $_REQUEST["route"] (given by .htaccess) match to this object.
      */
     public function isCurrent(){
-	$reqUrl=Site::urlInfos($_REQUEST["route"]);
-	switch($reqUrl->route){
+	//$reqUrl=Site::urlInfos($_REQUEST["route"]);
+        //Human::log($reqUrl->route." vs ".$this->route);
+	switch(self::$current->route){
 	    case $this->route:
 	    case $this->url:
 	    case $this->urlOptimized:

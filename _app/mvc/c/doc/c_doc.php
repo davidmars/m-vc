@@ -21,7 +21,7 @@ class DocController extends Controller{
             $this->redirect302($this->routeToFunction."/$page");
         }
         
-        $vv=  VV_doc_page::getPage($page);
+        $vv= VV_doc_static::getPage($page);
         
         //if no page found display the 404
         if(!$vv){
