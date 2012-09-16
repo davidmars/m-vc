@@ -7,7 +7,10 @@
  */
 class View {
 
-	
+	/** 
+         * @var $_view View the view inside the template
+         */
+    
 	/**
          * 
          * @var ViewVariables Here are the variables used in the view. 
@@ -40,6 +43,9 @@ class View {
         */
 	public function __construct( $path,$viewVariables=null ){
 		$this->path = $path;
+                if(!$viewVariables){
+                    $viewVariables=new ViewVariables();
+                }
 		$this->viewVariables=$viewVariables;
 	}
         /**
@@ -54,6 +60,7 @@ class View {
             }else{
                 return false;
             }
+            
         }
 
         /**
@@ -72,9 +79,13 @@ class View {
 		}
 
                 //declare the variables in the template
+                /* @var $_vars ViewVariables */
                 $_vars=$this->viewVariables;
+                $view=$this;
                 $_content=$this->insideContent;
+                
                 $_view=$this;
+                
                 ob_start();
                 include $scriptPath;
                 $content = ob_get_contents();
