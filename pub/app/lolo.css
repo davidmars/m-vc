@@ -1,0 +1,17 @@
+/* 
+    Document   : lolo.css
+    Created on : 14 sept. 2012, 14:03:50
+    Author     : whoareyou
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+h1{
+    color:purple;
+}
+p.on{
+    color:red;
+}
+p.off{
+    color:blue;
+}
