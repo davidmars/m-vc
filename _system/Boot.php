@@ -37,45 +37,27 @@ class Boot {
     public static function theSystem(){
         
         
-        
+        //includes
         self::includeFiles();
-        
-        
-        
 
         //search for the correct controller, function and params
         Human::log($_REQUEST["route"],"At the begining it was the route param");
-
         
-        $route=$_REQUEST["route"];
-        
-        //search for a native system route
-        $controller=Controller::getByRoute($route);
-
-        if(!$controller){
-            //search for a special route designed in the UrlControler::$routes array
-            $route=  UrlControler::getRoute($route);
-            $controller=Controller::getByRoute($route);
-        }
-        
-        //search for a better url
-        if(Site::$redirectToBestUrl){
-            //checks if there is not a better url
-            if($controller){
-                $optimizedUrl=UrlControler::getOptimizedUrl($route);
-                if($_REQUEST["route"] != $optimizedUrl){
-                    $header=new Nerd_Header(301, Site::url($route, true));
-                    $header->run();
-                    echo "There is a better url !<br/>";
-                    echo "Your request : ".$_REQUEST["route"]."<br/>";
-                    echo "Best url : ".$optimizedUrl;
-                    die();
-                }
-            }
-        }
-        
-        //okay we loose...
-        if(!$controller){
+        $infos=new UrlInfos($_REQUEST["route"]);
+        UrlInfos::$current=$infos;
+        $controller=$infos->controller;
+	
+	if($controller){
+	    if(Site::$root."/".$_REQUEST["route"] != $infos->urlOptimized){ //best url found
+		$header=new Nerd_Header(301, $infos->urlAbsoluteOptimized);
+		$header->run();
+		echo "There is a better url !<br/>";
+		echo "Your request : ".$_REQUEST["route"]."<br/>";
+		echo "Best url : ".$infos->urlAbsoluteOptimized;
+		die();
+	    }
+	}else {
+	    //okay we loose...
             $msg="There is no controller for this route : ".$route;
             Human::log($msg, "Route error", Human::TYPE_ERROR);
             die($msg); 
@@ -86,7 +68,6 @@ class Boot {
         
         if($view){
 
-            
             //headers from the controller 404,301,302...
             if($controller->headerCode){
                 $controller->headerCode->run();

@@ -9,15 +9,21 @@ $return=CodeComments::getReturn($comments);
 ?>
 <div class="doc-reference-function">
 <?=$this->render("doc/reference/toggleVarDump",$comments)?>
-<h3> <?=$vv->name?>
+<h3><?if($vv->isStatic()):?><span class="text-color-grayLight"><?=$vv->class?>::</span><?endif?><?=$vv->name?>
     (<span class="text-color-grayLight">
         <?=CodeComments::getParametersOverview($vv)?>
     </span>)
     :   <?=CodeComments::getReturnOverview($comments)?>
 </h3>
-
-
+    
 <div class="row">
+    <div class="span8  fs-description"><?=CodeComments::getDescription($comments)?></div>
+    
+    
+    <div class="span8"><hr/></div>
+
+    
+    
     <div class="span2">Visibility</div>
     <div class="span6">
         <?if($vv->isPublic()):?>
@@ -26,8 +32,8 @@ $return=CodeComments::getReturn($comments);
         <span class="label label-inverse">Private</span>
         <?endif?>
     </div>
-</div>
-<div class="row">
+    
+    
     <div class="span2">Scope</div>
     <div class="span6">
         <?if(!$vv->isStatic()):?>
@@ -36,15 +42,12 @@ $return=CodeComments::getReturn($comments);
             <span class="label label-inverse">Static</span>
         <?endif?>
     </div>
-</div>
-<div class="row">
+    
+    
     <div class="span2">Declared in </div>
     <div class="span6"><?=$vv->getDeclaringClass()->name?> <span class="text-color-grayLight"><?=$vv->getDeclaringClass()->getFileName()?></span> </div>
 </div>
-<div class="row">
-    <div class="span2">Description </div>
-    <div class="span6"><?=CodeComments::getDescription($comments)?></div>
-</div>
+
 
 
 <div class="row">

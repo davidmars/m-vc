@@ -14,9 +14,10 @@ class UrlControler {
     public static $routes=array();
     
     
-    private static $systemRoutes=array(
-         "pub/media/cache/img/(:any)"=>"imageTools/$1"
-    );
+    private static $systemRoutes=array();
+    
+    public static $allRoutes=array();
+    
     /**
      *
      * @var array reversed routes to get optimized urls. This array is automatically filed by reverseRoutes() function. 
@@ -29,11 +30,24 @@ class UrlControler {
      */
     public static function getRoute($url){
         //merge $systemRoutes & $routes
+	if(count(self::$systemRoutes)>0){
+	   self::$allRoutes=array_merge(self::$systemRoutes,self::$routes); 
+	   self::$systemRoutes=array();
+	}else{
+            self::$allRoutes=self::$routes;
+        }
+	
+	
+	/*
         while(count(self::$systemRoutes)>0){
              $r=array_pop(self::$systemRoutes);
+	     Human::log("tototo ".$r);
              array_unshift(self::$routes, $r);
         }
-        foreach(self::$routes as $k=>$v){
+	 
+
+	 */
+        foreach(self::$allRoutes as $k=>$v){
             Human::log($k."---->".$v, "Test route");
             // Convert wild-cards to RegEx
             $k = str_replace(':any', '.+', str_replace(':num', '[0-9]+', $k));
@@ -51,9 +65,9 @@ class UrlControler {
      * @return string a route optimized by $routes regexps
      */
     public static function getOptimizedUrl($url){
-        
+        self::$allRoutes=array_merge(self::$systemRoutes,self::$routes);
         // Loop through routes to check for back-references
-        $revRoutes = self::reverseRoutes(self::$routes);
+        $revRoutes = self::reverseRoutes(self::$allRoutes);
         foreach ($revRoutes as $route) {
             if (preg_match($route['uri_pattern'], $url)) {
                 $rewritten = preg_replace($route['uri_pattern'], $route['rewritten'], $url);

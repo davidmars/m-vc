@@ -2,6 +2,7 @@
 $vv=new VV_doc_reference_class($_vars);
 ?>
 <?$this->inside("doc/layout/html5bp")?>
+<?=$this->render("doc/layout/main-menu",$vv)?>
 
 <div class="container doc-reference" style="padding-top: 80px;">
     <div class="row">
@@ -37,6 +38,23 @@ $vv=new VV_doc_reference_class($_vars);
 
                 
             </div>
+            
+            <h2>Variables</h2>
+            <?
+            $variables=$vv->publicVariables;
+            foreach($variables as $k=>$v):?>
+            
+             <?=$this->render("doc/reference/variable",$v)?>
+            <?endforeach?>
+            
+            <h2>Static variables</h2>
+            <?
+            $variables=$vv->publicStaticVariables;
+            foreach($variables as $k=>$v):?>
+            
+             <?=$this->render("doc/reference/variable",$v)?>
+            <?endforeach?>
+            
             
             <h2>Functions</h2>
             <?

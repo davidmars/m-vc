@@ -28,7 +28,15 @@ class CodeComments {
         $value=trim($value);
         $value=trim($value);
         $value=  nl2br($value);
+        
+
+        
         if(!$value){
+            //here we will try to find a @return parameter...
+            $return=self::getReturn($comments);
+            if($return["description"]){
+                $value = "(from @return comment)".$return["description"];
+            }
            $value="Missing documentation."; 
         }
         
@@ -43,6 +51,9 @@ class CodeComments {
     * @return string the value 
     */
     public static function getMeta($paramName,$comments){
+        if(!$comments){
+            return null;
+        }
         preg_match_all("/@".$paramName." (.*)/",$comments,$out);
         if($out && $out[0]){
             $value=$out[1][0];
@@ -56,8 +67,24 @@ class CodeComments {
      * @param string $comments The php comment block to parse.
      */
     public static function getArgument($argument,$comments){
+
         $argument= str_replace("$","",$argument);
         $reg="/@param(.*)\\$".$argument."(.*)/";
+        preg_match_all($reg,$comments,$out);
+        if($out && $out[0]){
+            $type=$out[1][0];
+            $description=$out[2][0];
+        }
+        return self::getTypeAndDescription($type, $description); 
+    }
+    /**
+     * Return the @var $argument type and description...it is for variables (property) for sure!
+     * @param string $comments The php comment block to parse.
+     */
+    public static function getVariable($comments){
+
+       
+        $reg="/@var (.*?) (.*)/";
         preg_match_all($reg,$comments,$out);
         if($out && $out[0]){
             $type=$out[1][0];
@@ -90,10 +117,13 @@ class CodeComments {
      */
     private static function getTypeAndDescription($type,$description){
             $type=  trim($type);
+            $type=  trim($type);
+            $type=  trim($type);
             switch($type){
+                case null;
                 case "type":
                 case "":
-                   $type="undocumented";
+                   $type="Missing documentation";
                    break;
             } 
             
@@ -144,6 +174,36 @@ class CodeComments {
         $return = self::getReturn($comments);
         $str=$return["type"];
         return $str;
+    }
+    /**
+     * Search for classes in a file
+     * @param string $filepath a valid path to a php file
+     * @return array the name of the classes 
+     */
+    public static function fileGetPhpClasses($filepath) {
+      $php_code = file_get_contents($filepath);
+      $classes = self::getPhpClasses($php_code);
+      return $classes;
+    }
+    /**
+     * Search for classes in a php code
+     * @param string $php_code php code to parse
+     * @return array the name of the classes 
+     */
+    public static function getPhpClasses($php_code) {
+      $classes = array();
+      $tokens = token_get_all($php_code);
+      $count = count($tokens);
+      for ($i = 2; $i < $count; $i++) {
+	if (   $tokens[$i - 2][0] == T_CLASS
+	    && $tokens[$i - 1][0] == T_WHITESPACE
+	    && $tokens[$i][0] == T_STRING) {
+
+	    $class_name = $tokens[$i][1];
+	    $classes[] = $class_name;
+	}
+      }
+      return $classes;
     }
     
 }
