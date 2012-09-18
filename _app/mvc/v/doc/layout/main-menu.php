@@ -1,4 +1,6 @@
 <?
+/* @var $template View View object related to this template*/
+$template=$_view;
 $vv=new VV_doc_page($_vars);
 ?>
 <div class=" navbar navbar-inverse navbar-fixed-top">

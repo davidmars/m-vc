@@ -21,12 +21,14 @@ $vv=new VV_doc_page($_vars);
 </p>
     <ol>
         <li>url of the original image (required)</li>
-        <li>final width (required)</li>
-        <li>final height (required)</li>
+        <li>final width in pixels or 'auto' (required)</li>
+        <li>final height in pixels or 'auto' (required)</li>
         <li>background color (optional, black if not specified)</li>
         <li>MIME type (optional, jpg if not specified)</li>
     </ol>
-
+<p>
+    This function will return the url of the resized image.
+</p>
 <div class="alert alert-info">
     <h4>Important</h4> 
     Note that the <code>GiveMe::imageSized()</code> function <b>will crop the image</b> vertically or horizontally 
@@ -124,7 +126,7 @@ $vv=new VV_doc_page($_vars);
 </div>   
 
 <div class="">
-    <h4>Other examples of resizing without cropping</h4>
+    <h4>Comparison of both functions</h4>
     <p>
         See how the two functions are resizing the same image with the same <em>width</em> and <em>height</em> specified:
     </p>
@@ -154,6 +156,45 @@ $vv=new VV_doc_page($_vars);
     <p class="floating">
         <img class="toshop" src="<?=GiveMe::imageSizedWithoutCrop("pub/app/fmk/img/logo.png",300,100,"transparent","png")?>"/>
         <img class="toshop" src="<?=GiveMe::imageSized("pub/app/fmk/img/logo.png",300,100,"transparent","png")?>"/>
+    </p>    
+</div>
+
+<div class="">
+    <h4>Resizing with an 'auto' value</h4>
+    <p>
+        Sometimes  you will need to fit an image in a specified width but you won't know the corresponding height.<br />
+        With both functions, you can set a specific width and set the height to 'auto'. 
+        This will automatically calculate the height of the picture so that the original proportions are kept.
+    </p>
+    <pre class="prettyprint linenums lang-php">
+<?=htmlentities(
+'<img class="toshop" 
+  src="<?=GiveMe::imageSizedWithoutCrop("pub/app/fmk/img/logo.png",100,auto,"transparent","png")?>"/>
+<!-- Vs -->
+<img class="toshop" 
+  src="<?=GiveMe::imageSized("pub/app/fmk/img/logo.png",100,auto,"transparent","png")?>"/>'
+)?>
+    </pre>
+    <p class="floating">
+        <img class="toshop" src="<?=GiveMe::imageSizedWithoutCrop("pub/app/fmk/img/logo.png",100,auto,"transparent","png")?>"/>
+        <img class="toshop" src="<?=GiveMe::imageSized("pub/app/fmk/img/logo.png",100,auto,"transparent","png")?>"/>
+    </p>
+    
+    <pre class="prettyprint linenums lang-php">
+<?=htmlentities(
+'<img class="toshop" 
+  src="<?=GiveMe::imageSizedWithoutCrop("pub/app/fmk/img/logo.png",auto,100,"transparent","png")?>"/>
+<!-- Vs -->
+<img class="toshop" 
+  src="<?=GiveMe::imageSized("pub/app/fmk/img/logo.png",auto,100,"transparent","png")?>"/>'
+)?>
+    </pre>
+    <p class="floating">
+        <img class="toshop" src="<?=GiveMe::imageSizedWithoutCrop("pub/app/fmk/img/logo.png",auto,100,"transparent","png")?>"/>
+        <img class="toshop" src="<?=GiveMe::imageSized("pub/app/fmk/img/logo.png",auto,100,"transparent","png")?>"/>
+    </p>
+    <p>
+        Note that when you use the auto value, then both functions return the same result.
     </p>
     
 </div>

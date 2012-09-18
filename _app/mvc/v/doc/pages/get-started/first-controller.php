@@ -12,6 +12,8 @@ $vv = new VV_doc_page($_vars);
     </p>
     <p>All controller files should be stored in the _app/mvc/c folder. Inside that folder, you can create as many subfolders as you want to organize your files.</p>
 </div>
+
+
 <div class="">
     <h3>Your first controller</h3>
     <p>We will start by creating a controller that will only load a template.<br />
@@ -56,6 +58,7 @@ class MycontrollerController extends Controller {
     </p>
 </div>
 
+
 <div class="">
     <h3>Let's add a second method</h3>
     <p>Let's add the following code just before the last "}" of our controller file.</p>
@@ -76,6 +79,7 @@ class MycontrollerController extends Controller {
         <img style="border:1px dotted;" src="<?=GiveMe::url("pub/app/doc/img/ex7.PNG")?>"/>
     </p>
 </div>
+
 
 <div class="">
     <h3>Let's send a parameter to a method</h3>

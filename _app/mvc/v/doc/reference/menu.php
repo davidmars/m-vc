@@ -1,6 +1,16 @@
 <?php
 $vv=new VV_doc_reference($_vars);
 ?>
+<div>
+<ul class="nav nav-list " data-spy="affix" data-offset-top="300">
+    <?
+    $variables=$vv->publicVariables;
+    foreach($variables as $k=>$v):?>
+        <li>var <?=$v->name?></li>
+    <?endforeach?>
+</ul>
+    &nbsp;
+</div>
 <div class="sections-menu">
     <ul class="nav nav-list " zzzdata-spy="affix" zzzdata-offset-top="0">
             <li class="nav-header">

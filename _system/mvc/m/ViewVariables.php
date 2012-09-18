@@ -10,7 +10,6 @@ class ViewVariables{
 	if($_vars){
 	    $this->feedMe($_vars);
 	}
-        $this->modelType=get_class($this);
     }
     
     public function json(){
@@ -27,11 +26,7 @@ class ViewVariables{
      */
     public $anarchy=array();
 
-    /**
-     *
-     * @var String The class name of the current object. 
-     */
-    public $modelType;
+
 
 
     /**
@@ -47,6 +42,7 @@ class ViewVariables{
 	}
 
     }
+
 
     
 

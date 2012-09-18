@@ -1,3 +1,3 @@
-
-<li>item <?=$_vars["toto"]?> <?=$_vars["titi"]?></li>
-
+<?for($i=1;$i<=3;$i++):?>
+<li>item <?=$i?></li>
+<?endfor?>
