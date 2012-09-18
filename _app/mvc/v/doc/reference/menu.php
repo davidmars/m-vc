@@ -1,48 +1,38 @@
 <?php
-$vv=new VV_doc_reference($_vars);
+$vv=new VV_doc_reference_class($_vars);
+/* @var $template View */
+$template=$_view;
 ?>
-<div>
-<ul class="nav nav-list " data-spy="affix" data-offset-top="300">
-    <?
-    $variables=$vv->publicVariables;
-    foreach($variables as $k=>$v):?>
-        <li>var <?=$v->name?></li>
-    <?endforeach?>
-</ul>
-    &nbsp;
-</div>
-<div class="sections-menu">
-    <ul class="nav nav-list " zzzdata-spy="affix" zzzdata-offset-top="0">
-            <li class="nav-header">
-                Your project
-            </li>
+<div class="row">
 
-            <li class="divider"></li>
+    <div class="span4">
+        &nbsp;
+        <div style="position: fixed;top: 100px;bottom:0px;">
             
-            <li class="nav-header">
-                Your Controllers
-            </li>
-            
-            <li>
-                <?=$this->render("doc/reference/menu-folder",$vv->appControllers)?>
-            </li>
-            
-            <li class="nav-header">
-                Your Models
-            </li>
-            
-            <li>
-                <?=$this->render("doc/reference/menu-folder",$vv->appModels)?>
-            </li>
-            
-            <li class="divider"></li>
-            
-            <li class="nav-header">
-                Tools
-            </li>
-            <li>
-                <?=$this->render("doc/reference/menu-folder",$vv->systemTools)?>
-            </li>
-    </ul>
-    &nbsp;
+            <div class="row">
+
+                
+                <div class="span4" style="position: absolute;height:100%;">
+                    
+                    <ul class="nav nav-tabs">
+                        <li><a href="#project_tab" data-toggle="tab">All Classes</a></li>
+                        <li class="active"><a href="#here_tab"  data-toggle="tab"><?=$vv->className?></a></li>
+                    </ul>
+
+                    <div class="tab-content" style="position: absolute; top:40px; bottom: 0px; width:100%; overflow-x: auto;overflow-y: auto;">
+
+                        <div id="here_tab" class="tab-pane active class-overview sections-menu" >
+                            <?=$template->render("doc/reference/menu/class-overwiew", $vv)?>
+                        </div>
+
+                        <div id="project_tab" class="tab-pane">
+                            <?=$template->render("doc/reference/menu/all-classes", $vv)?>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+  
+         </div>
+     </div>    
 </div>

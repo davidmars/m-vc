@@ -7,7 +7,7 @@ $param="";
 $comments=$vv->getDocComment();
 $return=CodeComments::getReturn($comments);
 ?>
-<div class="doc-reference-function">
+<div id="fn_<?=$vv->name?>" class="doc-reference-function">
 <?=$this->render("doc/reference/toggleVarDump",$comments)?>
 <h3><?if($vv->isStatic()):?><span class="text-color-grayLight"><?=$vv->class?>::</span><?endif?><?=$vv->name?>
     (<span class="text-color-grayLight">

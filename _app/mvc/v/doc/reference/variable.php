@@ -4,7 +4,7 @@ $vv=$_vars;
 $comments=$vv->getDocComment();
 $doc=  CodeComments::getVariable($comments);
 ?>
-<div class="doc-reference-function">
+<div id="var_<?=$vv->name?>" class="doc-reference-variable">
 
 <?=$this->render("doc/reference/toggleVarDump",$comments)?>
 <h3>
