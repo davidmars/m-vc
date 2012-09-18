@@ -29,7 +29,7 @@ $vv=new LayoutVariables($_vars);
         <?=CSS::includeHeaderFiles()?>
         <script src="<?=Site::url(Site::$publicFolder."/libs/modernizr-2.5.3-respond-1.1.0.min.js")?>"></script>
 </head>
-<body data-spy="scroll" data-target=".sections-menu">
+<body class="fmk-doc" data-spy="scroll" data-target=".sections-menu">
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
 

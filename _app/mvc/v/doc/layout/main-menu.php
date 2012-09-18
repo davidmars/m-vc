@@ -11,7 +11,10 @@ $vv=new VV_doc_page($_vars);
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="./index.html">Point of view</a>
+        <a class="brand" href="<?=GiveMe::url("doc/doc/index/overview")?>">
+            <img src="<?=  GiveMe::imageSizedWithoutCrop("pub/app/fmk/img/logo.png", 100, "auto", "ffffff")?>"/>
+            <div>Point Of View</div>
+        </a>
         <div class="nav-collapse collapse">
         <ul class="nav">
             <?
