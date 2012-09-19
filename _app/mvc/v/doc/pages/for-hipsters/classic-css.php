@@ -57,4 +57,7 @@ $vv=new VV_doc_page($_vars);
     <link rel="stylesheet" href="/example/pub/app/style3.css">
 </head>')?>
     </pre>
+    <p>
+        Note that once you called the <code>CSS::includeHeaderFiles()</code> function in a page, it empties the list of files!
+    </p>
 </div>

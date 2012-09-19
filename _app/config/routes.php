@@ -11,7 +11,8 @@ UrlControler::$routes=array(
 	"documentation/class/(:any)"=>"doc/doc/classDefinition/$1",
         "documentation/(:any)"=>"doc/doc/index/$1",
         
-        
+    //"car/[[:alnum:]/]*/(.*)"=>"lolo/index/$1",
+         
         //home
         "page/(:any)/(:any)"=>"home/index/$1/$2",
         "page/(:any)"=>"home/index/$1",

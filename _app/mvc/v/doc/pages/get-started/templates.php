@@ -92,11 +92,14 @@ $vv = new VV_doc_page($_vars);
 
 <div class="">
     <h3 class="section">Use variables and basic PHP codes in a view</h3>
+    <p>
+        Note that the following codes are written in PHP language and therefore can be used, not just in this framework, but in any php file as well.
+    </p>
        <h4>Need to repeat something? Use the FOR loop</h4>
         <p>This loop will let your repeat some piece of code as many times as you want.<br />
         In your 'list-item' view, replace the content by the following code:</p>
         <pre class="prettyprint linenums lang-php">
-    <?=htmlentities('<?for($i=1;$i<=3;$i++):?> <!--sets the start and end of the loop-->
+    <?=htmlentities('<?for($i=0;$i<3;$i++):?> <!--sets the start and end of the loop-->
         <li>item</li><!--code to be repeated-->
     <?endfor?>')?>
         </pre>
@@ -105,16 +108,16 @@ $vv = new VV_doc_page($_vars);
         </p>
         <p>Let's explain the first line of the code:</p>
         <ul>
-            <li>$i=1 // $i is a variable that is created and starts at 1.</li>
-            <li>$i<=3 // is a condition evaluated at each loop iteration. The loop will go on as long as the condition is true.</li>
+            <li>$i=0 // $i is a variable that is created and starts at 0.</li>
+            <li>$i<3 // is a condition evaluated at each loop iteration. The loop will go on as long as the condition is true.</li>
             <li>$i++ // tells the loop to increment $i at every loop iteration (same as $i+1)</li>
         </ul>
-        <p>So basically, the loop will execute the code with $i=1, then with $i=2, 
-            then with $i=3 and then will stop because $i=4 and the condition $i<=3 isn't true anymore.
+        <p>So basically, the loop will execute the code with $i=0, then with $i=1, 
+            then with $i=2 and then will stop because $i=3 and the condition $i<3 isn't true anymore.
         This code will be executed 3 times.</p>
         <p><span class="label">NOTE</span> $i is a variable that exists only in the loop. It can be displayed but only in the loop.<p>
         <pre class="prettyprint linenums lang-php">
-    <?=htmlentities('<?for($i=1;$i<=3;$i++):?>
+    <?=htmlentities('<?for($i=0;$i<3;$i++):?>
         <li>item <?=$i?></li>
     <?endfor?>')?>
         </pre>
@@ -124,7 +127,7 @@ $vv = new VV_doc_page($_vars);
         <div class="alert alert-info">
             <h4>Important</h4> 
             Make sure that the condition you use in the loop <b>isn't always true</b> or else the loop will never end, therefore crashing the system.<br>
-            For the same reason, never write the condition with just <code>$i=3</code>, always use <code>$i<=3</code> or <code>$i<3</code>.
+            For the same reason, never write the condition with just <code>$i=3</code>, always use <code>$i<3</code>.
         </div>
         
         
@@ -161,12 +164,12 @@ $vv = new VV_doc_page($_vars);
             Go to your 'list-item' file and replace its content by the following code:
         </p>
         <pre class="prettyprint linenums lang-php">
-    <?=htmlentities('<?$data=array("item1","item2","item3");?>
-    <!-- this creates a variable $data that is an array of values -->
-        <?foreach ($data as $item):?>
-        <!-- for each item in this array we execute the following code -->
-            <li><?=$item?></li>
-        <?endforeach?>')?>
+<?=htmlentities('<?$data=array("apple","banana","cherry");?>
+<!-- this creates a variable $data that is an array of values -->
+    <?foreach ($data as $item):?>
+    <!-- for each item in this array we execute the following code -->
+        <li><?=$item?></li>
+    <?endforeach?>')?>
         </pre>
         <p>This will display:<br />   
             <img style="border:1px dotted;" src="<?=GiveMe::url("pub/app/doc/img/ex5.PNG")?>"/>
