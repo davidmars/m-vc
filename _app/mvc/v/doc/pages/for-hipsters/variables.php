@@ -88,47 +88,47 @@ $vv = new VV_doc_page($_vars);
     <h4 class="section">Need to repeat something? Use the FOR loop</h4>
     <p>This loop will let your repeat some piece of code as many times as you want.</p>
     <pre class="prettyprint linenums lang-php">
-<?=htmlentities('<?for($i=1;$i<=3;$i++):?> <!--sets the start and end of the loop-->
+<?=htmlentities('<?for($i=0;$i<3;$i++):?> <!--sets the start and end of the loop-->
     This is a line.<br /> <!--code to be repeated-->
 <?endfor?>')?>
     </pre>
     <p>This code will generate the same line 3 times:<br />
-<?for($i=1;$i<=3;$i++):?>
+<?for($i=0;$i<3;$i++):?>
     This is a line.<br />
 <?endfor?>
     </p>
     <p>Let's explain the first line of the code:</p>
     <ul>
-        <li>$i=1 // $i is a variable that is created and starts at 1.</li>
-        <li>$i<=3 // is a condition evaluated at each loop iteration. The loop will go on as long as the condition is true.</li>
+        <li>$i=0 // $i is a variable that is created and starts at 0.</li>
+        <li>$i<3 // is a condition evaluated at each loop iteration. The loop will go on as long as the condition is true.</li>
         <li>$i++ // tells the loop to increment $i at every loop iteration (same as $i+1)</li>
     </ul>
-    <p>So basically, the loop will execute the code with $i=1, then with $i=2, 
-        then with $i=3 and then will stop because $i=4 and the condition $i<=3 isn't true anymore.
+    <p>So basically, the loop will execute the code with $i=0, then with $i=1, 
+        then with $i=2 and then will stop because $i=3 and the condition $i<3 isn't true anymore.
     This code will be executed 3 times.</p>
     <p><span class="label">NOTE</span> $i is a variable that exists only in the loop. It can be displayed but only in the loop.<p>
     <pre class="prettyprint linenums lang-php">
-<?=htmlentities('<?for($i=1;$i<=3;$i++):?>
+<?=htmlentities('<?for($i=0;$i<3;$i++):?>
     This is line number <?=$i?>.<br />
 <?endfor?>')?>
     </pre>
     <p>This code will display the following:<br />
-<?for($i=1;$i<=3;$i++):?>
+<?for($i=0;$i<3;$i++):?>
     This is line number <?=$i?>.<br />
 <?endfor?>
     </p>
     <div class="alert alert-info">
         <h4>Important</h4> 
         Make sure that the condition you use in the loop <b>isn't always true</b> or else the loop will never end, therefore crashing the system.<br>
-        For the same reason, never write the condition with just <code>$i=3</code>, always use <code>$i<=3</code> or <code>$i<3</code>.
+        For the same reason, never write the condition with just <code>$i=3</code>, always use <code>$i<3</code>.
     </div>
 </div>
 <div class="">
      <h4 class="section">example : IF...ELSE statement in a FOR loop</h4>
      <p>In a FOR loop, we create a variable. Why not adding a condition depending on that variable?</p>
      <pre class="prettyprint linenums lang-php">
-<?=htmlentities('<?for($i=1;$i<=3;$i++):?>
-    <?if($i==3):?>
+<?=htmlentities('<?for($i=0;$i<3;$i++):?>
+    <?if($i==2):?>
         This is the last line!
     <?else:?>
         This is line number <?=$i?>.<br />
@@ -136,8 +136,8 @@ $vv = new VV_doc_page($_vars);
 <?endfor?>')?>
     </pre>
     <p>This code will display the following:<br />
-<?for($i=1;$i<=3;$i++):?>
-    <?if($i==3):?>
+<?for($i=0;$i<3;$i++):?>
+    <?if($i==2):?>
         This is the last line!
     <?else:?>
         This is line number <?=$i?>.<br />
@@ -154,21 +154,23 @@ $vv = new VV_doc_page($_vars);
         To do so, we will use the FOREACH loop.
     </p>
     <pre class="prettyprint linenums lang-php">
-<?=htmlentities('<?$data=array("item1","item2","item3");?>
-<!-- this creates a variable $data that is an array of values -->
-    <ul>
-    <?foreach ($data as $item):?>
+<?=htmlentities('<?$fruits=array("apple","banana","cherry");?>
+<!-- this creates a variable $fruits that is an array of values -->
+<ul>
+    <?foreach ($fruits as $item):?>
     <!-- for each item in this array we execute the following code -->
         <li><?=$item?></li>
     <?endforeach?>
-    </ul>')?>
+</ul>')?>
     </pre>
     <p>This will display:<br />   
-<?$data=array("item1","item2","item3");?>
-    <ul>
-<?foreach ($data as $item):?>
+<?$fruits=array("apple","banana","cherry");?>
+<!-- this creates a variable $fruits that is an array of values -->
+<ul>
+    <?foreach ($fruits as $item):?>
+    <!-- for each item in this array we execute the following code -->
         <li><?=$item?></li>
-<?endforeach?>
-    </ul>
+    <?endforeach?>
+</ul>
     </p>
 </div>

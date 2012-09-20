@@ -1,7 +1,7 @@
 <p>
    As we saw in the 'First Controller' section, there is a connection between the URL and the controller's method beeing called. 
    All controller methods can be called in the URL by using the path :<br />
-   example.com//<span class="alert-error">controllerName</span>/<span class="alert-info">methodName</span>/<span class="alert-success">param1/param2/paramN</span><br />
+   example.com/<span class="alert-error">controllerName</span>/<span class="alert-info">methodName</span>/<span class="alert-success">param1/param2/paramN</span><br />
 </p>
 <p>
    For instance, the following URL:<br />
@@ -23,7 +23,7 @@
     So we will tell the system to redirect these URL's to the right controller and method with the right parameters.
 </p>
 <div class="">
-    <h3>route.php file</h3>
+    <h3 class="section">route.php file</h3>
     <p>Redirection rules are set in the _app/config/routes.php file. It only contains an array called $routes.<br />
     This array follows this model:<br />
     "Regular expression of an URL" =>"Internal route to the controller",</p>
@@ -63,7 +63,7 @@
 </div>
 
 <div class="">
-    <h3>Using jokers</h3>
+    <h3 class="section">Using jokers</h3>
     <p>To help you construct a regular expression, you have two jokers at your disposal:</p>
     <ul>
         <li>(:any) will represent any characters</li>
@@ -73,7 +73,7 @@
         Therefore the following pattern <code>product/(:any)</code> will be matched if product/
         is followed by any characters while <code>product/(:num)</code> will only be matched if product/ is followed by a number.<br />
         The characters represented by (:any) and (:num) can be passed along to the internal route using $1 or $2... $n.
-        $1 is the parameter that matched the firt pattern between (), $2 is the parameter that matched the second pattern between ()...
+        $1 is the parameter that matched the first pattern between (), $2 is the parameter that matched the second pattern between ()...
     </p>
         <pre class="prettyprint linenums lang-php">
 <?=htmlentities('"product/(:any)/(:num)"=>"products/search/$1/$2",
@@ -102,7 +102,7 @@ and $2 has the value of what matched (:num) */')?>
 </div>
 
 <div class="">
-    <h3>To go further...</h3>
+    <h3 class="section">To go further...</h3>
     <p>
         Using regular expressions in the route.php file will let you manage precisely which URL will be redirected to which controller.<br />
         It can also let you select which parameter you want to pass along.
@@ -110,7 +110,7 @@ and $2 has the value of what matched (:num) */')?>
     <p>Consider the following URL:<br />
         <code>example.com/car/volkswagen/black/polo</code><br /><br />
         This kind of URL is very well formated for SEO purposes.
-        But we also need from this URL is to send the parameter 'polo' to a method 'search()' in the Products controller.<br/>
+        But we also need this URL to send the parameter 'polo' to a method 'search()' in the Products controller.<br/>
         We need to replace this URL by the following:<br />
         example.com/<span class="alert-error">products</span>/<span class="alert-info">search</span>/<span class="alert-success">polo</span>/<br />
     </p>

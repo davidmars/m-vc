@@ -4,24 +4,24 @@ $vv = new VV_doc_page($_vars);
 
 <p>
     A template is simply a webpage, even sometimes a partial webpage (like a header, sidebar, footer...).<br />
-    Views are HTML pages, with sometimes a bit of PHP inside. This means that you can write all HTML you want in a view.<br />
     In an MVC architecture, Templates are called Views.<br />
+    Views are HTML pages, with sometimes a bit of PHP inside. This means that you can write all HTML you want in a view.<br />
     We will describe here how to simply create views and how to include a page or a view in an other one.
 </p>
 
 <div class="">
     <h3 class="section">Include a page in your current view: function render()</h3>
     <p>
-        Consider the following file called 'myview':
+        Consider the following file called 'myview.php':
     </p>
     <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<h1>Hello World</h1>
 <ul>
-<?=$this->render("doc/samples/list-item")?>
+    <?=$this->render("doc/samples/list-item")?>
 </ul>')?>
     </pre>
     <p>
-        Now consider the following file called 'list-item':
+        Now consider the following file called 'list-item.php':
     </p>
     <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<li>item 1</li>
@@ -41,7 +41,7 @@ $vv = new VV_doc_page($_vars);
 
 <div class="">
     <h3 class="section">Create a layout: function inside()</h3>
-    <p>Let's consider a new page called 'layout' with the following code:</p>
+    <p>Let's consider a new page called 'layout.php' with the following code:</p>
     <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<!doctype html>
 <html>
@@ -50,11 +50,11 @@ $vv = new VV_doc_page($_vars);
     </head>
     <body>
         <?=$_content?>
-        <!-- $_content will be replace by the content of the page that called the function inside() -->
+        <!-- $_content will be replaced by the content of the page that called the function inside() -->
     </body>
 </html>')?>
     </pre>
-    <p>Now we add this line of code on top of the 'myview' page:</p>
+    <p>Now we add this line of code on top of the 'myview.php' page:</p>
     <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<?=$this->inside("doc/samples/layout")?>')?>
     </pre>

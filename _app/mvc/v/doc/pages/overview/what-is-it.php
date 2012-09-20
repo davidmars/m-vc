@@ -1,6 +1,6 @@
 <div class="well">
     
-    This is a little MVC php framework with one goal : 
+    This is a little MVC php framework with one goal: 
     Encourage better communication between nerds and hipsters. 
 
     <h5>It provides:</h5>

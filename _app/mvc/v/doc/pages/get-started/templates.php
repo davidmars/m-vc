@@ -19,12 +19,14 @@ $vv = new VV_doc_page($_vars);
 
 <div class="">
     <h3 class="section">Hello World: first view</h3>
-    <p>First we will create a new file in the '/v/doc/samples/' directory named 'hello-world'. Write the following code in it:</p>
+    <p>First we will create a new file in the '/v/doc/samples/' directory named 'hello-world.php'. Write the following code in it:</p>
     <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<h1>Hello world</h1>
 <p>This is my first template</p>')?>
     </pre>
-    <p>This will display:<br />
+    <p>
+        Go to: <u>http://www.your-domain.com/root-directory-here/doc/example/index/hello-world</u><br />
+        This will display:<br />
         <img style="border:1px dotted;" src="<?=GiveMe::url("pub/app/doc/img/ex1.PNG")?>"/>
     </p>
     <p>You can write all html you want in a view.</p>
@@ -40,7 +42,7 @@ $vv = new VV_doc_page($_vars);
     <?=$this->render("doc/samples/list-item")?>
 </ul>')?>
     </pre>
-    <p>Then create a new file named 'list-item'. Write the following code in it:</p>
+    <p>Then create a new file named 'list-item.php'. Write the following code in it:</p>
     <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<li>item 1</li>
 <li>item 2</li>')?>
@@ -60,7 +62,7 @@ $vv = new VV_doc_page($_vars);
     <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<?=$this->inside("doc/samples/layout")?>')?>
     </pre>
-    <p>Now create a new file named 'layout'. Write the following code in it:</p>
+    <p>Now create a new file named 'layout.php'. Write the following code in it:</p>
     <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<html>
 <head>
@@ -69,7 +71,7 @@ $vv = new VV_doc_page($_vars);
 <body>
     <div style="border:1px solid red;">
         <?=$_content?>
-        <!-- $_content will be replace by the content of the page that called the function inside() -->
+<!-- $_content will be replaced by the content of the page that called the function inside() -->
     </div>
 </body>
 </html>')?>
@@ -99,9 +101,9 @@ $vv = new VV_doc_page($_vars);
         <p>This loop will let your repeat some piece of code as many times as you want.<br />
         In your 'list-item' view, replace the content by the following code:</p>
         <pre class="prettyprint linenums lang-php">
-    <?=htmlentities('<?for($i=0;$i<3;$i++):?> <!--sets the start and end of the loop-->
-        <li>item</li><!--code to be repeated-->
-    <?endfor?>')?>
+<?=htmlentities('<?for($i=0;$i<3;$i++):?> <!--sets the start and end of the loop-->
+    <li>item</li><!--code to be repeated-->
+<?endfor?>')?>
         </pre>
         <p>This will display:<br />   
             <img style="border:1px dotted;" src="<?=GiveMe::url("pub/app/doc/img/ex9.PNG")?>"/>
@@ -117,9 +119,9 @@ $vv = new VV_doc_page($_vars);
         This code will be executed 3 times.</p>
         <p><span class="label">NOTE</span> $i is a variable that exists only in the loop. It can be displayed but only in the loop.<p>
         <pre class="prettyprint linenums lang-php">
-    <?=htmlentities('<?for($i=0;$i<3;$i++):?>
-        <li>item <?=$i?></li>
-    <?endfor?>')?>
+<?=htmlentities('<?for($i=0;$i<3;$i++):?>
+    <li>item <?=$i?></li>
+<?endfor?>')?>
         </pre>
          <p>This will display:<br />   
             <img style="border:1px dotted;" src="<?=GiveMe::url("pub/app/doc/img/ex10.PNG")?>"/>
@@ -136,18 +138,18 @@ $vv = new VV_doc_page($_vars);
         <p>You can use PHP IF...ELSE statement to execute some code only if a specified condition is true.</p>
         <p>Let's go back to our 'hello-world' file and add the following code at the end:</p>
         <pre class="prettyprint linenums lang-php">
-    <?=htmlentities('<?if($this->viewVariables->title):?>
-    <!--checks if the variable $this->viewVariables->title exists-->
-        <p>The variable does exist! it is: "<?=$this->viewVariables->title?>"</p>
-        <!--line to display if it does exist-->
-    <?else:?>
-        <p>sorry, the variable doesn\'t exist.</p>
-        <!--line to display if it doesn\'t exist-->
-    <?endif?>')?>
+<?=htmlentities('<?if($this->viewVariables->title):?>
+<!--checks if the variable $this->viewVariables->title exists-->
+    <p>The variable does exist! it is: "<?=$this->viewVariables->title?>"</p>
+    <!--line to display if it does exist-->
+<?else:?>
+    <p>sorry, the variable doesn\'t exist.</p>
+    <!--line to display if it doesn\'t exist-->
+<?endif?>')?>
         </pre>
-        <p>This will check if the variable $this->viewVariables->title exists. 
-            If it does, it will display "The variable does exist! it is:" and the value of the variable. 
-            If it doesn't exist, it will display "sorry, the variable doesn't exist."
+        <p>This will check if the variable $this->viewVariables->title exists.<br />
+            If it does, it will display "The variable does exist! it is:" and the value of the variable.<br />
+            If it doesn't exist, it will display "sorry, the variable doesn't exist.".<br />
         </p>
         <p>This will display:<br />   
             <img style="border:1px dotted;" src="<?=GiveMe::url("pub/app/doc/img/ex4.PNG")?>"/>
@@ -164,9 +166,9 @@ $vv = new VV_doc_page($_vars);
             Go to your 'list-item' file and replace its content by the following code:
         </p>
         <pre class="prettyprint linenums lang-php">
-<?=htmlentities('<?$data=array("apple","banana","cherry");?>
-<!-- this creates a variable $data that is an array of values -->
-    <?foreach ($data as $item):?>
+<?=htmlentities('<?$fruits=array("apple","banana","cherry");?>
+<!-- this creates a variable $fruits that is an array of values -->
+    <?foreach ($fruits as $item):?>
     <!-- for each item in this array we execute the following code -->
         <li><?=$item?></li>
     <?endforeach?>')?>

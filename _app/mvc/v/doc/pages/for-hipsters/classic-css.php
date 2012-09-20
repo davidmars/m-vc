@@ -10,7 +10,7 @@ $vv=new VV_doc_page($_vars);
     Since all css files should be included in the &lt;head&gt; of your HTML page, you will call these functions from there.
 </p>
 <div class="">
-    <h4>Add a css file to the list of files to be included</h4>
+    <h4 class="section">Add a css file to the list of files to be included</h4>
     <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<head>
     <?=CSS::addToHeader("pub/app/style.css")?>
@@ -35,13 +35,13 @@ $vv=new VV_doc_page($_vars);
 
 
 <div class="">
-    <h4>Display the HTML &lt;script&gt; tags</h4>
+    <h4 class="section">Display the HTML &lt;link&gt; tags</h4>
     <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<?=CSS::includeHeaderFiles()?>')?>
     </pre>
     <p>
         The function <code>CSS::includeHeaderFiles()</code> has <b>no parameter</b>.<br />
-        It creates a &lt;script&gt; tag for each file you put in the list.
+        It creates a &lt;link&gt; tag for each file you put in the list.
     </p>
         <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<head>
@@ -57,7 +57,8 @@ $vv=new VV_doc_page($_vars);
     <link rel="stylesheet" href="/example/pub/app/style3.css">
 </head>')?>
     </pre>
-    <p>
+    <div class="alert alert-info">
+        <h4>Important</h4> 
         Note that once you called the <code>CSS::includeHeaderFiles()</code> function in a page, it empties the list of files!
-    </p>
+    </div>
 </div>

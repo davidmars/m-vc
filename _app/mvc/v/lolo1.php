@@ -68,13 +68,11 @@ $vv=new VV_fmk_page($_vars);
     </div>
 </div>
 
-<?/*
- * 
- * 
- * lib scripts here...
- * 
- * 
- */?>
+<?
+    Human::log("content of the log", "title ->", Human::TYPE_LOG);
+    Human::log("content of the error", "title ->", Human::TYPE_ERROR);
+    Human::log("content of the warning", "title ->", Human::TYPE_WARN);
+?>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="<?=Site::$root."/".Site::$publicFolder."/libs/bootstrap/js/bootstrap.js"?>"></script>

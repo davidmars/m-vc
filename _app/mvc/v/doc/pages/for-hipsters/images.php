@@ -164,7 +164,7 @@ $vv=new VV_doc_page($_vars);
     <p>
         Sometimes  you will need to fit an image in a specified width but you won't know the corresponding height.<br />
         With both functions, you can set a specific width and set the height to 'auto'. 
-        This will automatically calculate the height of the picture so that the original proportions are kept.
+        This will automatically calculate the height of the picture so that the original proportions are preserved.
     </p>
     <pre class="prettyprint linenums lang-php">
 <?=htmlentities(
@@ -219,13 +219,13 @@ $vv=new VV_doc_page($_vars);
         The URL you'll get in fact is a route with its own controller, methods etc... 
         So when a browser go to this url there are two possibilities:<br/><br/>
         
-        <b>First time:</b> The url is not a file yet, so the .htacces, index.php etc... lead us to the controller, 
+        <b>First time:</b> The url is not a file yet, so the .htaccess, index.php etc... lead us to the controller, 
         that parses the url, 
         processes the image, 
         returns it to the browser like a "View"
-        ... and it saves the file in pub/media/cache/img/route-controler.<br/></br>
+        ... and it saves the file in pub/media/cache/img/route-controller.<br/></br>
         
-        <b>Second time:</b> The url is already a file that was created before, so the file will be returned to the browser normaly without any php processing.<br/>
+        <b>Second time:</b> The url is already a file that was created before, so the file will be returned to the browser normally without any php processing.<br/>
     </p>
 
 </div>

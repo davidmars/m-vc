@@ -19,7 +19,11 @@ class LoloController extends Controller {
             if(func_num_args()>2){
                 $this->redirect302($this->routeToFunction."/$param1/$param2");
             }
-            
+            /*
+            Human::log("content of the log", "title ->", Human::TYPE_LOG);
+            Human::log("content of the error", "title ->", Human::TYPE_ERROR);
+            Human::log("content of the warning", "title ->", Human::TYPE_WARN);
+             */
             $vv=new VV_fmk_page();
             $vv->htmlHeader=new VV_html_header();
             $vv->htmlHeader->author="you@you.com";

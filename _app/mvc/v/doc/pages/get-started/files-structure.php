@@ -68,7 +68,7 @@
         <ul>
             <span rel="tooltip" data-placement="right" title="This folder is public. 
                   Here you put CSS, Javascript, images and all files you want to be directly accessible via http://...
-                  using /pub* main folder should help you later to write simple rules for caching. 
+                  Using /pub* main folder should help you later to write simple rules for caching. 
                   ">
                 <i class="icon-folder-open"></i> _pub
             </span>
@@ -82,9 +82,9 @@
                 </span>
             </li>
             <li>
-                <span rel="tooltip" data-placement="right" title="You may know this files: jQuery, Bootstrap, modernizr...
+                <span rel="tooltip" data-placement="right" title="You may know these files: jQuery, Bootstrap, modernizr...
                       Note that folders are organized by projects names and not by file type.
-                      This is designed to easyly update those librairies">
+                      This is designed to easily update those librairies">
                 <i class="icon-folder-open"></i> libs
                 </span>
             </li>

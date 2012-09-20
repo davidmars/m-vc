@@ -126,11 +126,11 @@ class VV_doc_static extends VV_doc_page {
                 $page->sections[]=new VV_doc_page_section("Images manipulation",          "doc/pages/for-hipsters/images");
 
                 $page->sections[]=new VV_doc_page_section("Libraries");
-                $page->sections[]=new VV_doc_page_section("CSS & javascript",          "doc/pages/for-hipsters/main-js");
+                $page->sections[]=new VV_doc_page_section("CSS & javascript",          "doc/pages/for-hipsters/libraries");
                 
                 $page->sections[]=new VV_doc_page_section("Javascript side");
                 $page->sections[]=new VV_doc_page_section("The Main.js structure",          "doc/pages/for-hipsters/main-js");
-                $page->sections[]=new VV_doc_page_section("Classic javascript",          "doc/pages/for-hipsters/main-js");
+                $page->sections[]=new VV_doc_page_section("Classic javascript",          "doc/pages/for-hipsters/classic-js");
                 
                 $page->sections[]=new VV_doc_page_section("CSS"); 
                 $page->sections[]=new VV_doc_page_section("Classic Css",          "doc/pages/for-hipsters/classic-css");
