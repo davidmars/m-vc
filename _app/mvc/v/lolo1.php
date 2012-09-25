@@ -17,25 +17,33 @@ $vv=new VV_fmk_page($_vars);
 	<meta name="viewport" content="width=device-width">
 
 
-        <?=CSS::addToHeader("pub/libs/bootstrap/css/bootstrap.min.css")?>
+        <?=CSS::addToHeader("pub/libs/bootstrap/css/bootstrap.css")?>
         <?=CSS::addToHeader("pub/app/lolo.css")?>
         <?=CSS::includeHeaderFiles()?>
+        
+        <?//=JS::addAfterBody("pub/libs/jquery-1.7.2.js")?>
+        <?=JS::addToHeader("pub/libs/jquery-1.7.2.js")?>
+        <?//=JS::addToHeader("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js")?>
+        <?//=JS::addAfterBody("pub/libs/bootstrap/js/bootstrap.min.js")?>
+        <?//=JS::addToHeader("pub/libs/modernizr-2.5.3-respond-1.1.0.min.js")?>
+        <?//=JS::addToHeader("pub/app/lolo.js")?>
         <?=JS::addAfterBody("pub/app/lolo.js")?>
+
         <?=JS::includeHeaderFiles()?>
         
-        <script src="<?=Site::url(Site::$publicFolder."/libs/modernizr-2.5.3-respond-1.1.0.min.js")?>"></script>
+        
 </head>
-<body style="margin-bottom: 40px;margin-top: 40px;">
+<body style="margin: 40px;">
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
 <div class="row">
     <div class="span9">
-        <h1><?=$vv->title?></h1>
+        <h1 class="lolo"><?=$vv->title?></h1>
     </div>
 </div>
 <div class="row">
   <div class="span3">
-    <p class="off">
+    <p class="lolo_off">
         lorem ipsum il parait qu'il faut mettre.<br />
         lorem ipsum il parait qu'il faut mettre.<br />
     </p>
@@ -68,14 +76,9 @@ $vv=new VV_fmk_page($_vars);
     </div>
 </div>
 
-<?
-    Human::log("content of the log", "title ->", Human::TYPE_LOG);
-    Human::log("content of the error", "title ->", Human::TYPE_ERROR);
-    Human::log("content of the warning", "title ->", Human::TYPE_WARN);
-?>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="<?=Site::$root."/".Site::$publicFolder."/libs/bootstrap/js/bootstrap.js"?>"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+<!--<script src="<?//=Site::$root."/".Site::$publicFolder."/libs/bootstrap/js/bootstrap.js"?>"></script>-->
 
 <?/*
  * 

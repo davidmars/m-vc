@@ -1,8 +1,4 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-$('p').click(function(){
-   $(this).toggleClass('on off');
+jQuery('p').click(function(){
+   jQuery(this).toggleClass('lolo_on lolo_off');
 });
+//alert('toto');
