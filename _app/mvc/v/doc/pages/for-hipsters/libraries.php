@@ -25,16 +25,25 @@ $vv=new VV_doc_page($_vars);
             The framework system has been configured so that every PHP file found in the /pub/ folder will be executed every time an URL is called.<br />
             So we will create a new PHP file in the /pub/your-library/ directory that will list all the files we want to include.
         </p>
-         <pre class="prettyprint linenums lang-php">
+        
+        <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<?php
     //This file will define which files will be included in your html pages')?>
-         </pre>
+        </pre>
+        
+        <div class="alert alert-info">
+            <h4>Important</h4> 
+            Note that the system will read <b>ALL</b> PHP files it will find in the /pub/ folder. If you don't want one of the files to be read anymore, you should delete it.
+        </div>
+        
+        
         <h4>Add CSS files</h4>
         <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<?php
     //This file will define which files will be included in your html pages
     CSS::addToHeader("pub/libs/lib-style.css");')?>
         </pre>
+        
         <p>
             The function <code>CSS::addToHeader("url")</code> has <b>one parameter</b>.<br />
             It is <b>the path</b> of the file you want to include.<br/>
@@ -92,6 +101,15 @@ $vv=new VV_doc_page($_vars);
         Now you will need three more functions to actually include the &lt;script&gt; and  &lt;link&gt; tags in your HTML page.<br />
     </p>
     <p>
+        These functions are:<br />
+        <code>CSS::includeHeaderFiles(compress)</code><br /><code>JS::includeHeaderFiles(compress)</code><br /><code>JS::includeBeforeBody(compress)</code>
+        <br /><br />
+        They each have <b>one</b> parameter: <em>compress</em> that is either <em>true</em> or <em>false</em><br />
+        By default compress is set to <em>true</em>. It will compress all your .js (or CSS) files and combine them into one script faster to load.<br />
+        With the <em>compress</em> parameter set to <em>false</em>, these functions create &lt;script&gt; or &lt;link&gt; tags for each file you put in the list, where you want to put them. 
+        The files indicated in the PHP file will be included on every page where you called the include functions from.
+    </p>
+    <p>
         Let's consider the following PHP file:
     </p>
     <pre class="prettyprint linenums lang-php">
@@ -109,12 +127,12 @@ $vv=new VV_doc_page($_vars);
 <?=htmlentities('<!doctype html>
 <html>
     <head>
-    <?=CSS::includeHeaderFiles()?>
-    <?=JS::includeHeaderFiles()?>
+    <?=CSS::includeHeaderFiles(false)?>
+    <?=JS::includeHeaderFiles(false)?>
     </head>
     <body>
     <!-- my content -->
-    <?=JS::includeAfterBodyFiles()?>
+    <?=JS::includeAfterBodyFiles(false)?>
     </body>
 </html>')?>
     </pre>
@@ -135,15 +153,44 @@ $vv=new VV_doc_page($_vars);
     </body>
 </html>')?>
     </pre>
+    
+</div>
+<div>
+    <h3 class="section">Use the compression feature</h3>
     <p>
-        The functions <code>CSS::includeHeaderFiles()</code>, <code>JS::includeHeaderFiles()</code> and <code>JS::includeBeforeBody()</code>, 
-        have <b>no parameter</b>.<br />
-        They create &lt;script&gt; or &lt;link&gt; tags for each file you put in the list, where you want to put them. 
-        The files indicated in the PHP file will be included on every page where you called the include functions from.
+        Now let's write the following view with <em>true</em> as a parameter to our functions:
+    </p>
+    <pre class="prettyprint linenums lang-php">
+<?=htmlentities('<!doctype html>
+<html>
+    <head>
+    <?=CSS::includeHeaderFiles(true)?>
+    <?=JS::includeHeaderFiles(true)?>
+    </head>
+    <body>
+    <!-- my content -->
+    <?=JS::includeAfterBodyFiles(true)?>
+    </body>
+</html>')?>
+    </pre>
+    <p>
+        This will render the following source code:
+    </p>
+    <pre class="prettyprint linenums lang-php">
+<?=htmlentities('<!doctype html>
+<html>
+    <head>
+    <link rel="stylesheet" href="/media/cache/css/stylexxxxxxxxxx.css">
+    <script src="/media/cache/js/scriptxxxxxxxxxx.js"></script>
+    </head>
+    <body>
+    <!-- my content -->
+    <script src="/media/cache/js/scriptyyyyyyyyy.js"></script>
+    </body>
+</html>')?>
+    </pre>
+    <p>
+        Note how <code>JS::includeAfterBodyFiles(true)</code> returns only one script. The compression feature will compress and minify files (remove comments, suppress empty new lines and useless white spaces...) and will combine all your script into one file.
     </p>
 </div>
 
-<div class="alert alert-info">
-    <h4>Important</h4> 
-    Note that the system will read <b>ALL</b> PHP files it will find in the /pub/ folder. If you don't want one of the files to be read anymore, you should delete it.
-</div>

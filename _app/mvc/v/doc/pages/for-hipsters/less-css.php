@@ -4,7 +4,7 @@ $vv=new VV_doc_page($_vars);
 
 <p>
     LESS is a dynamic stylesheet language. It extends CSS with dynamic behaviour such as variables, mixins, operations and functions.<br/>
-    This framework features LESS CSS autocompletion.<br/>
+    This framework features LESS CSS autocompilation.<br/>
     If you don't know about the LESS language, <a href="<?=GiveMe::url("http://lesscss.org/")?>" target="_blank">please check the official doc</a>.
 </p>
 <p>
@@ -27,7 +27,7 @@ $vv=new VV_doc_page($_vars);
     All .less files must be placed in the "pub/app" directory.
 </p>
 <p>
-    Your variables can be either set winthin your .less file or set by the PHP array you send in the <code>Less::getIncludeTag(URL,VAR)</code> function.
+    Your variables can be either set within your .less file or set by the PHP array you send in the <code>Less::getIncludeTag(URL,VAR)</code> function.
 </p>
 <p>
     If you send them in the function, the code should look like that:<br/>

@@ -23,12 +23,14 @@ $vv=new VV_fmk_page($_vars);
         
         <?//=JS::addAfterBody("pub/libs/jquery-1.7.2.js")?>
         <?=JS::addToHeader("pub/libs/jquery-1.7.2.js")?>
+        
         <?//=JS::addToHeader("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js")?>
-        <?//=JS::addAfterBody("pub/libs/bootstrap/js/bootstrap.min.js")?>
+        <?=JS::addAfterBody("pub/libs/bootstrap/js/bootstrap.min.js")?>
         <?//=JS::addToHeader("pub/libs/modernizr-2.5.3-respond-1.1.0.min.js")?>
         <?//=JS::addToHeader("pub/app/lolo.js")?>
-        <?=JS::addAfterBody("pub/app/lolo.js")?>
-
+       
+        <?//=JS::addAfterBody("pub/libs/code-prettify/vkbeautify.0.98.01.beta.js")?>
+ <?=JS::addAfterBody("pub/app/lolo.js")?>
         <?=JS::includeHeaderFiles()?>
         
         

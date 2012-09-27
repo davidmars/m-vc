@@ -40,15 +40,17 @@ $vv=new VV_doc_page($_vars);
 <?=htmlentities('<?=CSS::includeHeaderFiles()?>')?>
     </pre>
     <p>
-        The function <code>CSS::includeHeaderFiles()</code> has <b>no parameter</b>.<br />
-        It creates a &lt;link&gt; tag for each file you put in the list.
+        The function <code>CSS::includeHeaderFiles(compress)</code> has <b>one parameter</b>: <em>compress</em> that is either <em>true</em> or <em>false</em><br />
+        By default compress is set to <em>true</em>. It will compress all your .js files and combine them into one script faster to load, then create a &lt;link&gt; tag calling the resulting file.<br />
+        With the compress parameter set to <em>false</em>, this function creates a &lt;link&gt; tag for each file you put in the list.
     </p>
-        <pre class="prettyprint linenums lang-php">
+    
+    <pre class="prettyprint linenums lang-php">
 <?=htmlentities('<head>
     <?=CSS::addToHeader("pub/app/style.css")?>
     <?=CSS::addToHeader("pub/app/style2.css")?>
     <?=CSS::addToHeader("pub/app/style3.css")?>
-    <?=CSS::includeHeaderFiles()?>
+    <?=CSS::includeHeaderFiles(false)?>
 </head>
 <!-- will generate -->
 <head>
@@ -57,6 +59,24 @@ $vv=new VV_doc_page($_vars);
     <link rel="stylesheet" href="/example/pub/app/style3.css">
 </head>')?>
     </pre>
+    
+    <p>
+        With the compress parameter set to <em>true</em> (or not specified), this function will compress and minify files (remove comments, suppress empty new lines and useless white spaces...) and will combine all your script into one file. It will create only one &lt;link&gt; tag calling the resulting file.
+    </p>
+    
+    <pre class="prettyprint linenums lang-php">
+<?=htmlentities('<head>
+    <?=CSS::addToHeader("pub/app/style.css")?>
+    <?=CSS::addToHeader("pub/app/style2.css")?>
+    <?=CSS::addToHeader("pub/app/style3.css")?>
+    <?=CSS::includeHeaderFiles()?>
+</head>
+<!-- will generate -->
+<head>
+    <link rel="stylesheet" href="/media/cache/css/stylexxxxxxxxxx.css">
+</head>')?>
+    </pre>
+    
     <div class="alert alert-info">
         <h4>Important</h4> 
         Note that once you called the <code>CSS::includeHeaderFiles()</code> function in a page, it empties the list of files!

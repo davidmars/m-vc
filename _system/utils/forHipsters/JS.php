@@ -108,9 +108,10 @@ class JS{
                 //if file doesn't exist or exists but is too old: create
                 foreach(self::$afterBodyFiles as $f){
                     $c=file_get_contents($f);
-                    $packer = new JavaScriptPacker($c, 'Normal', true, false);
+                    $packer = new JavaScriptPacker($c, 'Normal', true, true);
                     $outp .= $packer->pack();
                 }
+                $outp.=";";
                 //create file
                 FileTools::mkDirOfFile($targetUrl);
                 file_put_contents($targetUrl, $outp);

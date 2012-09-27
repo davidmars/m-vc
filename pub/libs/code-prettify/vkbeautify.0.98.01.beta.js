@@ -148,7 +148,7 @@ vkbeautify.prototype.xml = function(text,step) {
 		}
 		
 	return  (str[0] == '\n') ? str.slice(1) : str;
-}
+};
 
 vkbeautify.prototype.json = function(text,step) {
 
@@ -202,7 +202,7 @@ vkbeautify.prototype.json = function(text,step) {
 		}
 	}
 	return str.replace(/^\n{1,}/,'');
-}
+};
 
 vkbeautify.prototype.css = function(text, step) {
 
@@ -236,13 +236,13 @@ vkbeautify.prototype.css = function(text, step) {
 			}
 		}
 		return str.replace(/^\n{1,}/,'');
-}
+};
 
 //----------------------------------------------------------------------------
 
 function isSubquery(str, parenthesisLevel) {
 	return  parenthesisLevel - (str.replace(/\(/g,'').length - str.replace(/\)/g,'').length )
-}
+};
 
 function split_sql(str, tab) {
 
@@ -296,7 +296,7 @@ function split_sql(str, tab) {
 							
 				.replace(/~::~{1,}/g,"~::~")
 				.split('~::~');
-}
+};
 
 vkbeautify.prototype.sql = function(text,step) {
 
@@ -352,7 +352,7 @@ vkbeautify.prototype.sql = function(text,step) {
 
 		str = str.replace(/^\n{1,}/,'').replace(/\n{1,}/g,"\n");
 		return str;
-}
+};
 
 
 vkbeautify.prototype.xmlmin = function(text, preserveComments) {
@@ -361,7 +361,7 @@ vkbeautify.prototype.xmlmin = function(text, preserveComments) {
 							   : text.replace(/\<![ \r\n\t]*(--([^\-]|[\r\n]|-[^\-])*--[ \r\n\t]*)\>/g,"")
 									 .replace(/[ \r\n\t]{1,}xmlns/g, ' xmlns');
 	return  str.replace(/>\s{0,}</g,"><"); 
-}
+};
 
 vkbeautify.prototype.jsonmin = function(text) {
 								  
@@ -379,7 +379,7 @@ vkbeautify.prototype.jsonmin = function(text) {
 				.replace(/\,\s{0,}\[/g,',[')
 				.replace(/\,\s{2,}/g,', ')
 				.replace(/\]\s{0,},\s{0,}\[/g,'],[');							  
-}
+};
 
 vkbeautify.prototype.cssmin = function(text, preserveComments) {
 	
@@ -392,11 +392,11 @@ vkbeautify.prototype.cssmin = function(text, preserveComments) {
 			  .replace(/\;\s{1,}/g,";")
 			  .replace(/\/\*\s{1,}/g,"/*")
 			  .replace(/\*\/\s{1,}/g,"*/");
-}
+};
 
 vkbeautify.prototype.sqlmin = function(text) {
 	return text.replace(/\s{1,}/g," ").replace(/\s{1,}\(/,"(").replace(/\s{1,}\)/,")");
-}
+};
 
 window.vkbeautify = new vkbeautify();
 
