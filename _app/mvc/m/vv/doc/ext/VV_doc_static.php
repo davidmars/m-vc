@@ -46,9 +46,9 @@ class VV_doc_static extends VV_doc_page {
                 $page->sections[]=new VV_doc_page_section("Image manipulations",          "doc/pages/overview/images");
                 $page->sections[]=new VV_doc_page_section("Translations management",          "doc/pages/overview/translations");
                 $page->sections[]=new VV_doc_page_section("HTML, XML or JSON outputs",          "doc/pages/overview/xml-json-outputs");
-                $page->sections[]=new VV_doc_page_section("A good worflow",          "doc/pages/overview/workflow");
+                $page->sections[]=new VV_doc_page_section("A good workflow",          "doc/pages/overview/workflow");
                 
-                $page->sections[]=new VV_doc_page_section("It cames with...");
+                $page->sections[]=new VV_doc_page_section("It comes with...");
                 
                 $page->sections[]=new VV_doc_page_section("jQuery",          "doc/pages/overview/jquery");
                 $page->sections[]=new VV_doc_page_section("Twitter Bootstrap",          "doc/pages/overview/bootstrap");
@@ -85,9 +85,9 @@ class VV_doc_static extends VV_doc_page {
                 
                 $page->sections[]=new VV_doc_page_section("Let's practice");
                 
-                $page->sections[]=new VV_doc_page_section("1. Play with templates",          "doc/pages/get-started/");
-                $page->sections[]=new VV_doc_page_section("2. Create your first controler",          "doc/pages/get-started/");
-                $page->sections[]=new VV_doc_page_section("3. Let's beautify this url",          "doc/pages/get-started/");
+                $page->sections[]=new VV_doc_page_section("1. Play with templates",          "doc/pages/get-started/templates");
+                $page->sections[]=new VV_doc_page_section("2. Create your first controller",          "doc/pages/get-started/first-controller");
+                $page->sections[]=new VV_doc_page_section("3. Let's beautify this url",          "doc/pages/get-started/beautify-url");
                 $page->sections[]=new VV_doc_page_section("4. Templates autocompletion",          "doc/pages/get-started/");
                 $page->sections[]=new VV_doc_page_section("5. JSON & XML !",          "doc/pages/get-started/");
                 
@@ -95,7 +95,7 @@ class VV_doc_static extends VV_doc_page {
                 
                 $page->sections[]=new VV_doc_page_section("Theory after practice");
                 
-                $page->sections[]=new VV_doc_page_section("What's happened?",          "doc/pages/get-started/");
+                $page->sections[]=new VV_doc_page_section("What's happened?",          "doc/pages/get-started/what-happened");
                 $page->sections[]=new VV_doc_page_section("File naming",          "doc/pages/get-started/");
                 $page->sections[]=new VV_doc_page_section("View Variables are they necessary?",          "doc/pages/get-started/");
                 
@@ -125,9 +125,12 @@ class VV_doc_static extends VV_doc_page {
                 $page->sections[]=new VV_doc_page_section("Urls",          "doc/pages/for-hipsters/urls");
                 $page->sections[]=new VV_doc_page_section("Images manipulation",          "doc/pages/for-hipsters/images");
 
+                $page->sections[]=new VV_doc_page_section("Libraries");
+                $page->sections[]=new VV_doc_page_section("CSS & javascript",          "doc/pages/for-hipsters/libraries");
                 
                 $page->sections[]=new VV_doc_page_section("Javascript side");
-                $page->sections[]=new VV_doc_page_section("The Main.js structure",          "doc/pages/for-hipsters/main.js");
+                $page->sections[]=new VV_doc_page_section("The Main.js structure",          "doc/pages/for-hipsters/main-js");
+                $page->sections[]=new VV_doc_page_section("Classic javascript",          "doc/pages/for-hipsters/classic-js");
                 
                 $page->sections[]=new VV_doc_page_section("CSS"); 
                 $page->sections[]=new VV_doc_page_section("Classic Css",          "doc/pages/for-hipsters/classic-css");

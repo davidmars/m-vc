@@ -3,7 +3,6 @@ $vv=new VV_doc_page($_vars);
 ?>
 <p>
     We will describe through step by step examples how to do common stuff with images.<br/><br/>
-
 </p>
 <div class="">
     First, here is our native image without any manipulations.<br/>
@@ -19,14 +18,17 @@ $vv=new VV_doc_page($_vars);
 <p>
     To manipulate images we will use the function <code>GiveMe::imageSized()</code>.<br />
     This function has <b>five parameters:</b><br/>
+</p>
     <ol>
         <li>url of the original image (required)</li>
-        <li>final width (required)</li>
-        <li>final height (required)</li>
+        <li>final width in pixels or 'auto' (required)</li>
+        <li>final height in pixels or 'auto' (required)</li>
         <li>background color (optional, black if not specified)</li>
         <li>MIME type (optional, jpg if not specified)</li>
     </ol>
-
+<p>
+    This function will return the url of the resized image.
+</p>
 <div class="alert alert-info">
     <h4>Important</h4> 
     Note that the <code>GiveMe::imageSized()</code> function <b>will crop the image</b> vertically or horizontally 
@@ -34,7 +36,7 @@ $vv=new VV_doc_page($_vars);
     
 </div>
 
-</p>
+
 <div class="">
     <h4>Basic resize to 200px by 200px </h4>
     <pre class="prettyprint linenums lang-php">
@@ -124,7 +126,7 @@ $vv=new VV_doc_page($_vars);
 </div>   
 
 <div class="">
-    <h4>Other examples of resizing without cropping</h4>
+    <h4>Comparison of both functions</h4>
     <p>
         See how the two functions are resizing the same image with the same <em>width</em> and <em>height</em> specified:
     </p>
@@ -154,6 +156,45 @@ $vv=new VV_doc_page($_vars);
     <p class="floating">
         <img class="toshop" src="<?=GiveMe::imageSizedWithoutCrop("pub/app/fmk/img/logo.png",300,100,"transparent","png")?>"/>
         <img class="toshop" src="<?=GiveMe::imageSized("pub/app/fmk/img/logo.png",300,100,"transparent","png")?>"/>
+    </p>    
+</div>
+
+<div class="">
+    <h4>Resizing with an 'auto' value</h4>
+    <p>
+        Sometimes  you will need to fit an image in a specified width but you won't know the corresponding height.<br />
+        With both functions, you can set a specific width and set the height to 'auto'. 
+        This will automatically calculate the height of the picture so that the original proportions are preserved.
+    </p>
+    <pre class="prettyprint linenums lang-php">
+<?=htmlentities(
+'<img class="toshop" 
+  src="<?=GiveMe::imageSizedWithoutCrop("pub/app/fmk/img/logo.png",100,auto,"transparent","png")?>"/>
+<!-- Vs -->
+<img class="toshop" 
+  src="<?=GiveMe::imageSized("pub/app/fmk/img/logo.png",100,auto,"transparent","png")?>"/>'
+)?>
+    </pre>
+    <p class="floating">
+        <img class="toshop" src="<?=GiveMe::imageSizedWithoutCrop("pub/app/fmk/img/logo.png",100,auto,"transparent","png")?>"/>
+        <img class="toshop" src="<?=GiveMe::imageSized("pub/app/fmk/img/logo.png",100,auto,"transparent","png")?>"/>
+    </p>
+    
+    <pre class="prettyprint linenums lang-php">
+<?=htmlentities(
+'<img class="toshop" 
+  src="<?=GiveMe::imageSizedWithoutCrop("pub/app/fmk/img/logo.png",auto,100,"transparent","png")?>"/>
+<!-- Vs -->
+<img class="toshop" 
+  src="<?=GiveMe::imageSized("pub/app/fmk/img/logo.png",auto,100,"transparent","png")?>"/>'
+)?>
+    </pre>
+    <p class="floating">
+        <img class="toshop" src="<?=GiveMe::imageSizedWithoutCrop("pub/app/fmk/img/logo.png",auto,100,"transparent","png")?>"/>
+        <img class="toshop" src="<?=GiveMe::imageSized("pub/app/fmk/img/logo.png",auto,100,"transparent","png")?>"/>
+    </p>
+    <p>
+        Note that when you use the auto value, then both functions return the same result.
     </p>
     
 </div>
@@ -178,13 +219,13 @@ $vv=new VV_doc_page($_vars);
         The URL you'll get in fact is a route with its own controller, methods etc... 
         So when a browser go to this url there are two possibilities:<br/><br/>
         
-        <b>First time:</b> The url is not a file yet, so the .htacces, index.php etc... lead us to the controller, 
+        <b>First time:</b> The url is not a file yet, so the .htaccess, index.php etc... lead us to the controller, 
         that parses the url, 
         processes the image, 
         returns it to the browser like a "View"
-        ... and it saves the file in pub/media/cache/img/route-controler.<br/></br>
+        ... and it saves the file in pub/media/cache/img/route-controller.<br/></br>
         
-        <b>Second time:</b> The url is already a file that was created before, so the file will be returned to the browser normaly without any php processing.<br/>
+        <b>Second time:</b> The url is already a file that was created before, so the file will be returned to the browser normally without any php processing.<br/>
     </p>
 
 </div>

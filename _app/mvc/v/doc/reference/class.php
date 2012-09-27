@@ -1,17 +1,14 @@
 <?
-/* @var $template View */
-$template=$_view;
 $vv=new VV_doc_reference_class($_vars);
 ?>
-<?$template->inside("doc/layout/html5bp")?>
-<?=$template->render("doc/layout/main-menu",$vv)?>
+<?$this->inside("doc/layout/html5bp")?>
+<?=$this->render("doc/layout/main-menu",$vv)?>
 
 <div class="container doc-reference" style="padding-top: 80px;">
     <div class="row">
         <div class="span4">
-
             <div class="">
-                <?=$template->render("doc/reference/menu",$vv)?>
+                <?=$this->render("doc/reference/menu",$vv)?>
             </div>
         </div>
         <div class="span8">
@@ -47,7 +44,7 @@ $vv=new VV_doc_reference_class($_vars);
             $variables=$vv->publicVariables;
             foreach($variables as $k=>$v):?>
             
-             <?=$template->render("doc/reference/variable",$v)?>
+             <?=$this->render("doc/reference/variable",$v)?>
             <?endforeach?>
             
             <h2>Static variables</h2>
