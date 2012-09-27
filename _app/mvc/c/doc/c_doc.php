@@ -53,6 +53,6 @@ class DocController extends Controller{
     }
     public function basicTemplate(){
        return new View("doc/samples/simple-template", null); 
-       }
+    }
     
 }

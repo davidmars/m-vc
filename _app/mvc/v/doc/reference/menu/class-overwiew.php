@@ -4,7 +4,7 @@ $vv=new VV_doc_reference_class($_vars);
 ?>
 <div class="row">
     <ul class=" span3 nav nav-list " >
-        
+
         <li class="nav-header">Properties</li>
         
         <?
@@ -48,6 +48,7 @@ $vv=new VV_doc_reference_class($_vars);
             ?>
             <li><a href="#fn_<?=$v->name?>">Static <?=$v->name?>(): <?=$r["type"]?></a></li>
         <?endforeach?>
+
     </ul>
 </div>
 &nbsp;

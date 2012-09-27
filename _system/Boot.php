@@ -103,7 +103,7 @@ class Boot {
         self::includeFile(Site::$systemLibs."/ChromePhp.php");
         self::includeFile(Site::$systemLibs."/lessc.inc.php");
         self::includeFile(Site::$systemLibs."/JavaScriptPacker.php");
-        self::includeFile(Site::$systemLibs."/CSSmin.php");
+        self::includeFile(Site::$systemLibs."/cssMin.php");
         //self::includeFile(Site::$systemLibs."/PHPthumb/ThumbLib.inc.php");
         //system FMK
         self::includeFilesInFolder(Site::$systemMVC);

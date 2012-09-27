@@ -1,5 +1,9 @@
-
+<?
+/* @var $this View */
+?>
+<?if($_vars && count($_vars)>0):?>
 <ul class="files-tree">
+
     <?foreach($_vars as $item):?>
     
         <?if($item["type"]=="file"):?>
@@ -17,9 +21,10 @@
 		    </a>
 		<?endif?>
 	    </li>
-        <?else:?>
+        <?elseif($item["type"]=="folder"):?>
             <li>
                 <i class="icon-folder-open"></i> <?=$item["name"]?>
+		<?  Human::log($item["content"],"temp")?>
                 <?=$this->render("doc/reference/menu-folder",$item["content"])?>
             </li>
             
@@ -27,3 +32,5 @@
     
     <?endforeach?>
 </ul>
+<?endif?>
+

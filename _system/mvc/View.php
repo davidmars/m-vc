@@ -3,7 +3,7 @@
 /**
  * Description the view system
  *
- * @author juliette david
+ * @author david marsalone
  */
 class View {
 
@@ -26,10 +26,9 @@ class View {
 	public $path;
 	/**
 	 *
-	 * @var String it will be filled only if the current view is a kind of layout. 
-         * Inside the template use $_content to get it. 
+	 * @var string Contains the sub-templates that have called the inside function. So this will be set only if the current view is a kind of layout. 
 	 */
-	private $insideContent;
+	public $insideContent;
 	/**
 	 *
 	 * @var View a view outside this view, in practice this view is a layout
@@ -108,7 +107,7 @@ class View {
 	 **/
 	function render( $path=null , $viewVariables=null ){
             
-            $viewVariables=$viewVariables ? $viewVariables : $this->viewVariables;
+            $viewVariables=isset($viewVariables) ? $viewVariables : $this->viewVariables;
             if($path){
                 $view = new View($path,$viewVariables);
                 return $view->run();

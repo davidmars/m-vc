@@ -1,11 +1,9 @@
 <?
-    /* @var $template View */
-    $template=$_view;
-    $vv=new VV_doc_page($_vars);
-    
+/* @var $this View */
+$vv=new VV_doc_page($_vars); 
 ?>
-<?=$template->inside("doc/layout/html5bp",$vv)?>
-<?=$template->render("doc/layout/main-menu",$vv)?>
+<?=$this->inside("doc/layout/html5bp",$vv)?>
+<?=$this->render("doc/layout/main-menu",$vv)?>
 
 <div class="container" style="padding-top: 100px;">
     <div class="row">
@@ -15,8 +13,7 @@
             </div>
         </div>
         <div class="span8">
-            <?=$_content?>
-            
+            <?=$this->insideContent?>
             <?
             $sections=$vv->sections;
             foreach($sections as $k=>$v):?>
@@ -33,7 +30,7 @@
                             <h3 ><?=$v->title?></h3>
                             <h4><?=$v->templatePath?></h4>
                         </div>
-                        <?=$template->render($v->templatePath)?>
+                        <?=$this->render($v->templatePath)?>
                     <?endif?>
                 </div>
             <?endforeach;?>

@@ -6,6 +6,9 @@ class VV_doc_reference extends VV_doc_page{
      */
     public function run(){
         $this->appControllers=self::browseFolder(Site::$appControllersFolder);
+	Human::log($this->appControllers,"ici");
+	//var_dump($this->appControllers);
+	//die();
         $this->appModels=self::browseFolder(Site::$appModelsFolder);
         $this->systemTools=self::browseFolder(Site::$systemUtils);
         //so here $classesFiles is complete!
@@ -63,8 +66,9 @@ class VV_doc_reference extends VV_doc_page{
         for($i=0;$i<count($folders);$i++){
             $folders[$i]["content"]=self::browseFolder($folders[$i]["file"], $recursive);
         }
-        
-        return array_merge($files,$folders);
+        $ret=array_merge($files,$folders);
+        return $ret;
+	
     }
     
     

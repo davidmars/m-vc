@@ -1,4 +1,5 @@
 <?
+/* @var $vv VV_doc_refernce_class */
 $vv=$_vars;
 ?>
 <ul class="nav nav-list " zzzdata-spy="affix" zzzdata-offset-top="0">
