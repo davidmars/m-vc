@@ -104,6 +104,8 @@ class Boot {
         self::includeFile(Site::$systemLibs."/lessc.inc.php");
         self::includeFile(Site::$systemLibs."/JavaScriptPacker.php");
         self::includeFile(Site::$systemLibs."/cssMin.php");
+        //self::includeFile(Site::$systemLibs."/minify/JSMin.php");
+        //self::includeFile(Site::$systemLibs."/minify/Minify/YUICompressor.php");
         //self::includeFile(Site::$systemLibs."/PHPthumb/ThumbLib.inc.php");
         //system FMK
         self::includeFilesInFolder(Site::$systemMVC);

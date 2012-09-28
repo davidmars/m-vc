@@ -1,4 +1,5 @@
 <?
+/* @var $this View */
 $vv=new LayoutVariables($_vars);
 ?>
 <!doctype html>
@@ -26,38 +27,26 @@ $vv=new LayoutVariables($_vars);
             "phpAppFolder"=>"'".Site::url("pub")."'"
             ))
                  ?>
-        <?=CSS::includeHeaderFiles()?>
-        <script src="<?=Site::url(Site::$publicFolder."/libs/modernizr-2.5.3-respond-1.1.0.min.js")?>"></script>
+        <?=CSS::includeHeaderFiles(false)?>
+        <?=JS::includeHeaderFiles(false)?>
+
 </head>
 <body class="fmk-doc" data-spy="scroll" data-target=".sections-menu">
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
 
 
-<?=$_content?>
+<?=$this->insideContent?>
 
 <?/*
  * 
  * 
- * lib scripts here...
+ * js scripts here...
  * 
  * 
  */?>
+<?=JS::includeAfterBodyFiles(true,true)?>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="assets/lib/jquery-1.7.2.min.js"><\/script>')</script>
-<script src="<?=GiveMe::url("libs/bootstrap/js/bootstrap.js")?>"></script>
-
-<?/*
- * 
- * 
- * app scripts here...
- * 
- * 
- */?>
-<?=JS::includeAfterBodyFiles()?>
-
-<script src="<?=Site::$root."/".Site::$publicFolder."/app/Main.js"?>"></script>
 <script>
 	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
 	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
