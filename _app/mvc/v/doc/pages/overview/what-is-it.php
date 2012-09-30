@@ -14,7 +14,7 @@
 
     <h5>Well used it will provide:</h5>
     <ul>
-        <li>Autocompletion in php templates</li>
+        <li>Autocompletion in php everywhere including in templates</li>
         <li>Page display as HTML or XML or JSON...<em> Just add .xml or .json and it's done!</em></li>
     </ul>
 

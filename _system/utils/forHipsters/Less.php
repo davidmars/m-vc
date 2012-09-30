@@ -44,6 +44,19 @@ class Less {
         self::$less->setPreserveComments(true);
     }
     /**
+     *
+     * @param string $lessFile The file to compile
+     * @param array $variables The less variables to set from php.
+     * @return string the relative path to the generated css file.
+     */
+    public static function getCss($lessFile,$variables=array()){
+        self::$outputPath=Site::$cacheFolder."/less-css";
+        $outputFile= self::$outputPath."/".$lessFile."-".md5(implode("-", $variables));
+        FileTools::mkDirOfFile($outputFile);
+        $path=self::me()->compile($lessFile, $outputFile,$variables);
+        return $path;
+    }
+    /**
      * 
      * @param String $inputFile the path to the less file you want to compile.
      * @param String $outputFile the path to the css file you want as result.
@@ -93,13 +106,15 @@ class Less {
             return false;
         }
     }
-    
+    /**
+     * Return a <link type="text/css"... tag that will include the less compiled file.
+     * @param string $lessFile The file to compile
+     * @param array $variables The less variables to set from php.
+     * @return string a <link type="text/css"... tag that will include the less compiled file.
+     */
     public static function getIncludeTag($lessFile,$variables=array()){
-        self::$outputPath=Site::$cacheFolder."/less-css";
-        $outputFile= self::$outputPath."/".$lessFile."-".md5(implode("-", $variables));
-        FileTools::mkDirOfFile($outputFile);
-        $path=Site::$root."/".self::me()->compile($lessFile, $outputFile,$variables);
-        return "<link type=\"text/css\" rel=\"stylesheet\" href=\"".$path."\"/>";
+        $css=self::getCss($lessFile, $variables);
+        return CSS::getIncludeTag(GiveMe::url($css));
     }
 }
 

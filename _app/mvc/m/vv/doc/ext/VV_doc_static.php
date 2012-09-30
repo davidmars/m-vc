@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Description of vv_doc_static
+ * This page model is used for static documentation pages.
+ * This pages refers to static html templates.
  *
  * @author David Marsalone
  */
@@ -125,8 +126,9 @@ class VV_doc_static extends VV_doc_page {
                 $page->sections[]=new VV_doc_page_section("Urls",          "doc/pages/for-hipsters/urls");
                 $page->sections[]=new VV_doc_page_section("Images manipulation",          "doc/pages/for-hipsters/images");
 
-                $page->sections[]=new VV_doc_page_section("Libraries");
-                $page->sections[]=new VV_doc_page_section("CSS & javascript",          "doc/pages/for-hipsters/libraries");
+                $page->sections[]=new VV_doc_page_section("CSS & Javascript purpose");
+                $page->sections[]=new VV_doc_page_section("How to organize CSS and JS files?",          "doc/pages/for-hipsters/organize-css-js");
+                $page->sections[]=new VV_doc_page_section("Librairies",          "doc/pages/for-hipsters/libraries");
                 
                 $page->sections[]=new VV_doc_page_section("Javascript side");
                 $page->sections[]=new VV_doc_page_section("The Main.js structure",          "doc/pages/for-hipsters/main-js");

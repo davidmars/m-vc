@@ -4,14 +4,14 @@ $vv = new VV_doc_page($_vars);
 
 <p>
     This framework comes with a PHP debugging function based on Chrome PHP extension.<br />
-    This function will help you create your own log, warning and error messages that will be available from the Chrome console.
+    This function will help you to create your own logs, warnings and error messages that will be available in the Chrome console.
 </p>
 <div class="">
     <h3 class="section">Get set</h3>
     <p>
-        First you must <a href="https://chrome.google.com/extensions/detail/noaneddfkdjfnfdakjjmocngnfkfehhd" target="_blank">download</a> 
-        and install the ChromePHP extension from the Google Chrome Extension Gallery.<br />
-        Click the extension icon to enable logging for the current tab's domain.<br />
+        First you must <a href="https://chrome.google.com/extensions/detail/noaneddfkdjfnfdakjjmocngnfkfehhd" target="_blank">install</a> 
+        the ChromePHP extension from the Google Chrome Extension Gallery.<br />
+        Click the extension icon to enable logging for the current tab's domain (it should be grey when it's off, blue otherwise).<br /><br />
         <img style="border:1px solid;" src="<?=GiveMe::url("pub/app/doc/img/chrome-click.png")?>"/><br /><br />
         Then press F12 to access the console.
     </p>
@@ -20,11 +20,12 @@ $vv = new VV_doc_page($_vars);
 <div class="">
     <h3 class="section">Create debug messages</h3>
     <p>
-        You can create a message everywhere you want in every model, controller or view.<br />
-        (In case you want to create a message in a view, just make sure to enclose your code in PHP tags.)
+        You can create a message everywhere you want in PHP files<br />
     </p>
     <pre class="prettyprint linenums lang-php">
-<?=htmlentities('<?=Human::log("content", "title", Human::TYPE)?>')?>
+        <?=htmlentities('<? 
+            Human::log("content", "title", Human::TYPE); 
+            ?>')?>
     </pre>
     <p>
         The function <code>Human::log()</code> has <b>three</b> parameters.

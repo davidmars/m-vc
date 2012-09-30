@@ -23,10 +23,7 @@ $vv=new LayoutVariables($_vars);
           fonts loaded before...then used in less
           <link rel="stylesheet" href="assets/project/fonts.css">
          */?>
-        <?=  Less::getIncludeTag("pub/app/Doc", array(
-            "phpAppFolder"=>"'".Site::url("pub")."'"
-            ))
-                 ?>
+
         <?=CSS::includeHeaderFiles(false)?>
         <?=JS::includeHeaderFiles(false)?>
 
@@ -45,7 +42,7 @@ $vv=new LayoutVariables($_vars);
  * 
  * 
  */?>
-<?=JS::includeAfterBodyFiles(true,true)?>
+<?=JS::includeAfterBodyFiles(false,false)?>
 
 <script>
 	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

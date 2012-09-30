@@ -68,4 +68,14 @@ class CSS{
             return $outp;
         }
     }
+    
+    /**
+     * A shortcut to have CSS include tag.
+     * @param string $cssFile path to the css file
+     * @return string  something like <link type="text/css" href="YOUR-FILE" etc...
+     */
+    public static function getIncludeTag($cssFile){
+        return "<link type=\"text/css\" rel=\"stylesheet\" href=\"".$cssFile."\"/>";
+    }
+    
 }
