@@ -1,6 +1,7 @@
 <?php
 /**
- * Description of Controller
+ * Here we are inside the Matrix Neo. 
+ * This controller class is the basic controller that will be extended by others controllers.
  *
  * @author david marsalone
  */
@@ -79,12 +80,14 @@ class Controller {
      * @return string 
      * @exemple [toto,titi,tata] will return _app/mvc/c/toto/titi/c_tata.php
      */
+    /*
     private static function getControlerPath($parts){
         $controllerFile=array_pop($parts);
         $controllerFile="/c_".$controllerFile.".php";
         $url=  Site::$appControllersFolder."/".implode("/", $parts).$controllerFile;
         return $url;
     }
+    */
 
 
     /**
