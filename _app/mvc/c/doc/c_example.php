@@ -7,7 +7,7 @@
  *
  * @author laurence
  */
-class ExampleController extends Controller {
+class C_example extends Controller {
         /**
          * This is the Examples page.
          * @param string $template Name of the template you want to display

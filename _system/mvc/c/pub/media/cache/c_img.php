@@ -8,7 +8,7 @@
  *
  * @author david marsalone
  */
-class ImgController extends Controller {
+class C_Img extends Controller {
         /**
          * This contoller function refers to ImageTools::sized function
          */

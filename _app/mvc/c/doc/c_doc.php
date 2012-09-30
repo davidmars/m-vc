@@ -7,7 +7,7 @@
  *
  * @author David Marsalone
  */
-class DocController extends Controller{
+class C_doc extends Controller{
     
     /**
      * Display various static pages wich explain how to use the framework.

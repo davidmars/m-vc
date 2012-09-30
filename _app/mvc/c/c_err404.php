@@ -5,7 +5,7 @@
  *
  * @author david marsalone
  */
-class Err404Controller extends Controller {
+class C_err404 extends Controller {
     
     	public function index($param1=null)
 	{

@@ -5,7 +5,7 @@
  *
  * @author david marsalone
  */
-class HomeController extends Controller {
+class C_home extends Controller {
         /**
          * This is the home page.
          * @param string $param1 The first parameter that can be displayed

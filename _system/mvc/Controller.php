@@ -132,7 +132,7 @@ class Controller {
             return false;
         }
 
-        $className=ucfirst($parts[$i])."Controller";
+        $className="C_".$parts[$i];
         $fn=$parts[++$i];
         $params=  array_slice($parts, ++$i);
         $routeToController=implode("/",array_slice($parts,0,$i-1));
