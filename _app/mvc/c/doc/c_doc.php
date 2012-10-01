@@ -15,7 +15,7 @@ class C_doc extends Controller{
      * @return View The view will be one of the template located in v/doc/pages.
      */
     public function index($page=null){
-        $this->setCssAndJs();
+        POV_CssAndJs::applyCommonSettings();
         //if too much arguments redirect to the best page url
         if(func_num_args()>1){
             $this->redirect302($this->routeToFunction."/$page");
@@ -44,7 +44,7 @@ class C_doc extends Controller{
      * @return View The view template will be doc/reference/class.php and can 
      */
     public function classDefinition($className=false){
-        $this->setCssAndJs();
+        POV_CssAndJs::applyCommonSettings();
         $vv=new VV_doc_reference_class();
         $vv->run();
         $vv->setClassName($className);
@@ -55,39 +55,6 @@ class C_doc extends Controller{
     public function basicTemplate(){
        return new View("doc/samples/simple-template", null); 
     }
-    /**
-     * include javascripts and CSS to the right places
-     */
-    private function setCssAndJs(){
 
-        //modernizer
-        JS::addToHeader("pub/libs/modernizr-2.5.3-respond-1.1.0.min.js");
-        //jquery
-        JS::addAfterBody("pub/libs/jquery-1.7.2.js");
-        //bootstrap
-        JS::addAfterBody("pub/libs/bootstrap/js/bootstrap.js");
-
-        //vkbeautify (to manage code formating like indentation in xmls)
-        JS::addAfterBody("pub/libs/code-prettify/vkbeautify.0.98.01.beta.js"); // bug if compress and minified
-        //google code prettify
-        JS::addAfterBody("pub/libs/code-prettify/google-code-prettify/prettify.js");
-        CSS::addToHeader("pub/libs/code-prettify/google-code-prettify/prettify.css");
-        //our class that manage both librairies
-        JS::addAfterBody("pub/libs/code-prettify/Prettify.js");
-        
-        //compile and integrate less files
-        $lessVariables=array(
-            "phpAppFolder"=>"'".Site::url("pub")."'"
-        );
-        //get the compiled less file
-        $lessFile=Less::getCss("pub/app/Doc",$lessVariables);
-        //add the file to header section
-        CSS::addToHeader($lessFile);
-        
-        
-        //app...the last one!
-        JS::addAfterBody("pub/app/Main.js");
-        
-    }
     
 }

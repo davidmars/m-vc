@@ -73,6 +73,7 @@
 		 * @param <type> $driverOptions
 		 */
 		public function __construct( $host, $dbname , $username = null, $password = null, $driver = "mysql", $driverOptions = array() ) {
+                    Human::log("NEW DB CONNECTION !!!!!!!!!!!!!!!!!!!!!!");
 			$this->host = $host;
 			$this->dbname = $dbname;
 			$this->driver = $driver;
@@ -84,10 +85,12 @@
 			//parent::__construct( $dsn, $username, $password, $driver_options );
 			
 			array_push( self::$instances , $this );
+                        $this->connect();
 
 		}
 
 		private function connect(){
+                        Human::log("MYSQL CONNECT");
 			if( $this->driver == "mysql" ) {
 				$this->resource = mysql_connect( $this->host, $this->username, $this->password , true );
 				// trace($this->dbname);
@@ -106,6 +109,7 @@
 		 *
 		 */
 		public function query( $query ) {
+                    Human::log($query);
 		//$r = mysql_query( $query );
 		//trace("dbconnection query");
 		//trace("QUERY : $query");

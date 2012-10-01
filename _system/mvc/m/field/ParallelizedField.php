@@ -1,0 +1,8 @@
+<?
+
+class ParallelizedField extends NtoNAssoc {
+
+
+}
+
+?>

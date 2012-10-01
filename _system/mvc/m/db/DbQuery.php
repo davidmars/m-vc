@@ -949,12 +949,14 @@ class DbQuery implements IteratorAggregate
 		{
 			return array();
 		}
-
+                $this->source=  DbManager::$cnx;
 		if( $this->source == null && $this->source = DbConnection::getInstance())
 		{
 			throw new Exception( "No valid DB connection found" );
+			Human::log( "No valid DB connection found" );
 		}
 		//trace($query);
+                Human::log( $query );
 		$q = $this->__toString();
 
 		return $this->source->query( $q );

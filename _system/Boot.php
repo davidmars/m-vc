@@ -107,15 +107,17 @@ class Boot {
         //self::includeFile(Site::$systemLibs."/minify/JSMin.php");
         //self::includeFile(Site::$systemLibs."/minify/Minify/YUICompressor.php");
         //self::includeFile(Site::$systemLibs."/PHPthumb/ThumbLib.inc.php");
+        self::includeFilesInFolder(Site::$systemUtils);
+        self::includeFilesInFolder(Site::$appConfigFolder);
         //system FMK
         self::includeFilesInFolder(Site::$systemMVC);
-        self::includeFilesInFolder(Site::$systemUtils);
+        
         //app
         //self::includeFilesInFolder(Site::$appControllersFolder); //it is included when needed in fact.
         self::includeFilesInFolder(Site::$appModelsFolder); 
-        self::includeFilesInFolder(Site::$appConfigFolder);
+        
         //javascript and css modules
-        self::includeFilesInFolder(Site::$publicFolder); 
+        //self::includeFilesInFolder(Site::$publicFolder); 
     }
     
     /**
@@ -239,6 +241,54 @@ class Boot {
             self::includeFilesInFolder($f, $recursive);
         }
     }
+    /**
+     * returns all the folders and subfolders where is is possible to include a php file 
+     */
+    public static function getAllIncludePaths($folder,$recursive=true){
+        $folders=array();
+        if ($handle = opendir($folder)) {
+            while (false !== ($entry = readdir($handle))) {
+                $abs=$folder."/".$entry;
+                if($recursive && $entry != "." && $entry != ".." && is_dir($abs)){
+                    $folders[]=$abs;
+                    $subFolders=self::getAllIncludePaths($abs,$recursive);
+                    $folders=  array_merge($folders, $subFolders);
+                }
+            }
+            closedir($handle);
+        }
+        return $folders;
+    }
 }
+
+function __autoload($class_name) {
+
+	$class_name = trim($class_name);
+        $includePaths=array();
+	$includePaths = Boot::getAllIncludePaths(Site::$systemMVC."/m");
+        //$includePaths=array_merge($includePaths, Boot::getAllIncludePaths(Site::$appModelsFolder));
+        $includePaths=array_merge($includePaths, Boot::getAllIncludePaths(Site::$systemFolder));
+	
+	$ext = ".php";
+	
+	foreach($includePaths as $include){
+		
+		$path = $include . "/" . $class_name . $ext ;
+		//echo $path."<br/>";
+		if(file_exists( $path )){
+			//echo $path."<br/>";
+			require_once($path);
+			return;
+		}
+	}
+	//echo join(",",$includePaths);
+}
+
+
+
+
+
+
+
 
 Boot::preBoot();

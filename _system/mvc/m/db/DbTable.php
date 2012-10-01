@@ -303,8 +303,8 @@ class DbTable {
 	 * @param DbConnection $db Connection de BD cible
 	 * @return DbStatement Résultat de la requête
 	 */
-    public function doCreate( DbConnection $db ){
-    	return $db->query( $this->create() );	
+        public function doCreate( DbConnection $db ){
+            return $db->query( $this->create() );	
 	}
 
 	/**
