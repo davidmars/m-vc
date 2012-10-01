@@ -35,4 +35,19 @@ class POV_CssAndJs {
         //app...the last one!
         JS::addAfterBody("pub/app/Main.js");
     }
+    public static function applyAdminSettings(){
+	self::applyCommonSettings();
+	
+	JS::addToHeader("pub/app/admin/api/Config.js");
+	
+	JS::addAfterBody("pub/app/admin/lib/jquery.history.js");
+	JS::addAfterBody("pub/app/admin/JQ.js");
+	JS::addAfterBody("pub/app/admin/api/Fields.js");
+	JS::addAfterBody("pub/app/admin/api/Api.js");
+	
+	
+	JS::addAfterBody("pub/app/admin/Application.js");
+	JS::addAfterBody("pub/app/admin/api/Model.js");
+	
+    }
 }

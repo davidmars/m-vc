@@ -1,7 +1,7 @@
 <?php
 /* @var $this View */
 /* @var $vv VV_admin_model_list */
-$vv=$this->viewVariables;
+$vv=$_vars;
 ?>
 <?$this->inside("doc/layout/html5bp")?>
 <div class="container">
@@ -13,6 +13,9 @@ $vv=$this->viewVariables;
         </div>
         
         <div class="span8">
+	    <h2>New <?=$vv->modelType?></h2>
+	    <?=$this->render("admin/model-form",$vv->emptyModel)?>
+	    
             <div class="well">
                 <h1>This is a list of : <?=$vv->modelType?></h1>
             </div>
@@ -24,3 +27,7 @@ $vv=$this->viewVariables;
 
     </div>
 </div>
+<script>
+    Config.apiUrl="/admin/api/index/"
+    Config.rootUrl="<?=Site::$root?>";
+</script>    

@@ -6,6 +6,31 @@ class M_ extends Model{
         $this->init();
         parent::__construct();  
     }
+    
+     /**
+     *
+     * @var CreatedField 
+     */
+    public $created;
+    /**
+     *
+     * @var ModifiedField 
+     */
+    public $modified;
+    
+    /**
+     *
+     * @var IdField  
+     */
+    public $id;
+
+
+
+
+
+
+
+
     private static $yetInit=false;
     
     /**
@@ -41,7 +66,7 @@ class M_ extends Model{
                     self::$dbFields[]=$fieldName;
                     Human::log(" field->".$fieldName."= new ".$type, "db model creation ".$modelName);
                     
-                    $options=array();
+                    $options=array("modelType"=>$modelName);
                     
                     switch($type){
                       case "EnumField":
@@ -92,6 +117,9 @@ class M_ extends Model{
             "TextField",
             "BoolField",
             "EnumField",
+            "IdField",
+            "UIdField",
+            "HtmlField",
         );
         if(in_array($className, $areFileds)){
             return true;

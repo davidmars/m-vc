@@ -17,10 +17,15 @@ class VV_admin_model_list extends ViewVariables{
      */
     public $models=array();
     
-    
+    public $emptyModel;
     
     public function init($modelType) {
         M_::initModel($modelType);
+	
+	$emptyModel=new $modelType();
+	$this->emptyModel=new VV_admin_model();
+        $this->emptyModel->init($emptyModel);
+	
         $this->modelType=$modelType;
         
         $class=new ReflectionClass($modelType);

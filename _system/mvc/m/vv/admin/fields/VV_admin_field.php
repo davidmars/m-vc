@@ -26,7 +26,7 @@ class VV_admin_field extends ViewVariables{
      *
      * @var Field the field itsef 
      */
-    private $field;
+    public $field;
     /**
      *
      * @param Field $field 
@@ -34,7 +34,7 @@ class VV_admin_field extends ViewVariables{
     public function init($model,$field){
         $this->type=  get_class($field);
         $this->name=$fieldName=$field->name;
-        
+        $this->field=$field;
         
         $this->value=$model->$fieldName;
     }

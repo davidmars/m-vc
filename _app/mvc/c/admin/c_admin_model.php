@@ -11,7 +11,7 @@ class c_admin_model extends Controller{
      * @param string $modelType the model 
      */
     public function listModels($modelType){
-        POV_CssAndJs::applyCommonSettings();
+        POV_CssAndJs::applyAdminSettings();
         //unexisting model
         if(!class_exists($modelType)){
             $this->setHeader404();
