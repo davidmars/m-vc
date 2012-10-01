@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of CssAndJs
+ * Content common include settings for css and js.
  *
  * @author David Marsalone
  */
