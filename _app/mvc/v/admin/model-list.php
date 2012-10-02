@@ -13,7 +13,9 @@ $vv=$_vars;
             <?foreach(M_::$allNames as $modelName):?>
                 <li class="<?=$modelName==$vv->modelType?"active":""?> ">
                     <a href="<?=GiveMe::url("admin/admin_model/listModels/".$modelName)?> ">
-                    <?=$modelName?> (<?=call_user_func($modelName."::qTotal")?>)
+                    <?=$modelName?> (<?
+		    $m=new $modelName();
+		    echo $m->qTotal();?>)
                     </a>
                 </li>
             <?endforeach;?>

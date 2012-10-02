@@ -47,8 +47,17 @@ class M_ extends Model{
     /**
      * Prepare the model, so init the field associations with database 
      */
+    
+    /**
+     * Return a manager that will allow you to do database queries on this model.
+     * @return Manager The manager related to the model. In fact the best entry to perform database queries. 
+     */
+    public function db(){
+	return Manager::getManager($this);
+    }
+    
     public function init(){
-       Human::log("init model------------".get_class($this));
+	Human::log("init model------------".get_class($this));
         if(!self::$yetInit[get_class($this)]){
             Human::log("init model for true-------------".get_class($this));
             self::$yetInit[get_class($this)]=true;
@@ -58,8 +67,8 @@ class M_ extends Model{
             if(!class_exists($modelNameManager)){
                $modelNameManager="DbManager";
             }
-            //$rc=new ReflectionClass($modelName);
-            //$rc->setStaticPropertyValue("manager", new $modelNameManager(  $modelName ));
+            $rc=new ReflectionClass($modelName);
+            $rc->setStaticPropertyValue("manager", new $modelNameManager(  $modelName ));
             //self::$manager = new $modelNameManager( $modelName );
             Human::log("init model for true manager is-------------".get_class(self::$manager));
             /*@var $field ReflectionProperty */
@@ -91,7 +100,7 @@ class M_ extends Model{
                 }
             }
 
-            //self::$manager->init(); 
+            $this->db()->init(); 
         }
         $this->unsetProperties();
         
@@ -138,10 +147,12 @@ class M_ extends Model{
     }
     
     
-    
-    public static function qTotal(){
-        Human::log("-------count----------".get_class(self::$manager));
-        return self::$manager->select()->count();
+    /**
+     * Returns the number of records of this model in the database.
+     * @return int The number of records 
+     */
+    public function qTotal(){
+        return Manager::getManager($this)->select()->count();
     }
     
     

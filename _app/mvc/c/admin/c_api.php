@@ -28,7 +28,11 @@ class C_api extends Controller{
 	
 
     }
-    
+    /**
+     * Some fields should not be updated via thze api but the framework itself...this method will tell you
+     * @param string $fieldName
+     * @return bool true if the field can be updated.  
+     */
     public static function isRecordableField($fieldName){
 	switch ($fieldName){
 	    case "id":

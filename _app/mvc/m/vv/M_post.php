@@ -32,6 +32,13 @@ class M_post extends M_{
     
 }
 
-
+class M_postManager extends DbManager {
+    
+}
+M_::generate("M_post", M_postManager);
+//M_post::$manager=new M_postManager(M_post);
+$m=new M_post();
+$m->init();
+M_post::$manager->init();
 
 

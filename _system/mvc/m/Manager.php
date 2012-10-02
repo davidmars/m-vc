@@ -209,10 +209,14 @@ class Manager {
 	 * @return Manager le manager lié au model
 	 */
 	static function getManager( $model ) {
-
+		if(is_object ($model)){
+		    $model=get_class($model);
+		}
 		if( class_exists( $model ) ) {
-			return self::$managers[$model];
+		    return self::$managers[$model];
 		//throw new Exception("Class [$model] doesn't exists");
+		}else{
+		    return null;
 		}
 
 	}
