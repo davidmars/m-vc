@@ -56,6 +56,14 @@ class M_ extends Model{
 	return Manager::getManager($this);
     }
     
+    public function humanName(){
+	if($this->title){
+	    return $this->title;
+	}else{
+	    return get_class($this)." ".$this->id;
+	}
+    }
+    
     public function init(){
 	Human::log("init model------------".get_class($this));
         if(!self::$yetInit[get_class($this)]){
@@ -75,31 +83,49 @@ class M_ extends Model{
             
             $rc=new ReflectionClass($modelName);
             
-            //browse the class propeties to find db fields.
+            //browse the class propeties to find db fields and then store it in a good order (keys first, associations later)
+	    $fields=array();
             foreach ($rc->getProperties() as $field){
-                $comments=$field->getDocComment();
+                //get the type from the @var type $field name comment...yes, I'm sure.
+		$comments=$field->getDocComment();
                 $details=CodeComments::getVariable($comments);
+		
                 $type=$details["type"];
+                $description=$details["description"];
                 $fieldName=$field->name;
-                if(self::isDbField($type)){
-                    self::$dbFields[]=$fieldName;
-                    Human::log(" field->".$fieldName."= new ".$type, "db model creation ".$modelName);
-                    
-                    $options=array("modelType"=>$modelName);
-                    
-                    switch($type){
-                      case "EnumField":
-                      $states=$fieldName."States";
-                      $options[EnumField::STATES]=$this->$states;
-                      $options[Field::DEFAULT_VALUE]=$this->$fieldName;
-                      break;
-                    }
-                    
-                   
-                    Field::create("$modelName.$fieldName", $type,$options); 
+		
+		$fieldObject=$this->getDbField($fieldName,$type);
+                if($fieldObject){
+		    $fieldObject["comments"]=$description;
+		    Human::log($fieldObject["type"]);
+
+		    
+		    
+		    switch($fieldObject["type"]){
+			
+			case "OneToOneAssoc":
+			    //associations at the end
+			    array_push($fields, $fieldObject);
+			break;
+		    
+			default :
+			    //classic fields at the begining
+			    array_unshift($fields, $fieldObject);
+			
+		    }
+  
                 }
             }
-
+	    Human::log($fields);
+	    //create the fields
+	    foreach ($fields as $f){
+		self::$dbFields[]=$f["name"];
+		Human::log($f);
+		$f["options"]["comments"]=$f["comments"];
+                Field::create($modelName.".".$f["name"],$f["type"],$f["options"]); 
+	    }
+	    
+	    //whooho!
             $this->db()->init(); 
         }
         $this->unsetProperties();
@@ -129,7 +155,11 @@ class M_ extends Model{
      * @param string $className 
      * @return bool true if the className is a Field
      */
-    public static function isDbField($className){
+    public function getDbField($fieldName,$className){
+	$r=array(
+	    "name"=>$fieldName
+	);
+	
         $areFields=array(
             "IdField",
             "CreatedField",
@@ -139,9 +169,41 @@ class M_ extends Model{
             "EnumField",
             "HtmlField",
         );
-        if(in_array($className, $areFields)){
-            return true;
+	
+	
+	
+        if(in_array($className,$areFields)){
+	    
+	    //standard field
+	    $options=array();
+
+	    switch($className){
+	      case "EnumField":
+	      $states=$fieldName."States";
+	      $options[EnumField::STATES]=$this->$states;
+	      $options[Field::DEFAULT_VALUE]=$this->$fieldName;
+	      break;
+	    }
+	    
+	    $r["options"]=$options;
+	    $r["type"]=$className;
+	    return $r;
+	    
+	    
+	}else if(class_exists ($className) && is_subclass_of($className,"M_")){
+	    
+	    //an association
+	    $r["options"]=array( Assoc::TO => $className );
+	    $r["type"]="OneToOneAssoc";
+	    return $r;
+	    
+	    
+	    
+	    
         }else{
+	    
+	    //not a field
+	    
             return false;
         }
     }

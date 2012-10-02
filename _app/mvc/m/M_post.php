@@ -7,18 +7,18 @@ class M_post extends M_{
     public static $manager;
     /**
      *
-     * @var TextField 
+     * @var TextField The name of the poste like it is displayed
      */
     public $title;
     /**
      *
-     * @var BoolField 
+     * @var BoolField If positive, the post will be displayed in variaous important places.
      */
     public $sticky=true;
     
     /**
      *
-     * @var EnumField 
+     * @var EnumField Options for displaying the post.
      */
     public $template="big";
     /**
@@ -27,6 +27,11 @@ class M_post extends M_{
      */
     public $templateStates=array("small","medium","big");
     
+    /**
+     *
+     * @var M_category The category where it will be possible to find the post.
+     */
+    public $category;
 
            
     

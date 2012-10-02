@@ -14,7 +14,7 @@ $field=$vv->field;
 		    <option value="<?=$state?>" <?=$vv->value==$state?"selected":""?>><?=$state?></option>
 		<?endforeach?>
 	    </select>
-	    
+	    <span class="help-block"><?=$vv->comments?></span>
 	</div>
     </div>
 </div>

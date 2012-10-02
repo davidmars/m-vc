@@ -4,13 +4,10 @@
 $vv=$_vars;
 ?>
 <div class="span4">
-    <div class="control-group" data-field="root[<?=$vv->field->name?>]" data-field-type="BoolField">
+    <div class="control-group">
 	<label class="control-label"><?=$vv->name?> : <?=$vv->type?></label>
 	<div class="controls">
-	    <select>
-		<option value="1" <?=$vv->value?"selected":""?>>Yes</option>
-		<option value="0" <?=$vv->value?"":"selected"?>>No</option>
-	    </select>
+	    <?=$vv->value?>
 	</div>
 	<span class="help-block"><?=$vv->comments?></span>
     </div>

@@ -47,16 +47,10 @@ JQ.bo.on("change",Fields.Date.CTRL.INPUT,function(){
     Fields.validate(fieldDate.jq); 
 })
 JQ.bo.on("mousedown",Fields.Date.CTRL.INPUT,function(){
+    //http://www.kelvinluck.com/assets/jquery/datePicker/v2/demo/documentation.html
     if(!$(this).hasClass("hasDatepicker")){
-       $(this).datepicker(
-        {
-            showOtherMonths: true,
-            selectOtherMonths: true,
-            dateFormat: "dd M yy",
-            changeMonth: true,
-            changeYear: true,
-            firstDay: 1 
-        }
-       );
+       $(this).datePicker({clickInput:true,startDate:'01/01/1970'})
+	$(this).dpDisplay();
+	$(this).addClass("hasDatepicker")
     }
 })

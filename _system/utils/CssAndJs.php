@@ -38,11 +38,22 @@ class POV_CssAndJs {
     public static function applyAdminSettings(){
 	self::applyCommonSettings();
 	
+	
 	JS::addToHeader("pub/app/admin/api/Config.js");
+	
+
 	
 	JS::addAfterBody("pub/app/admin/lib/jquery.history.js");
 	JS::addAfterBody("pub/app/admin/JQ.js");
 	JS::addAfterBody("pub/app/admin/api/Fields.js");
+	
+	JS::addAfterBody("pub/app/admin/lib/date.js");
+	JS::addAfterBody("pub/app/admin/lib/jquery.datePicker.js");
+	CSS::addToHeader("pub/app/admin/lib/jquery.datePicker.css");
+	JS::addAfterBody("pub/app/admin/api/Fields/Fields.Date.js");
+	
+	
+	
 	JS::addAfterBody("pub/app/admin/api/Api.js");
 	
 	

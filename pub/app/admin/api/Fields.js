@@ -152,9 +152,13 @@ var Fields={
                 return Fields.getModelsValues( jq.find("["+ Model.CTRL.DATA_MODEL_TYPE + "='"+jq.attr(Model.CTRL.DATA_CHILDS_TYPES)+"']") );
                 break;                
             case "PhotoRectangle":
+	    case "ModelSelect":
+		return $(jq.find("select")[0]).val();
+		break;
             case "File":
+            
                 return jq.attr(Model.CTRL.DATA_MODEL_ID);
-                break;                
+                break;                               
             case "PageUrls":
                 var arr = [];
                 var pageUrl = jq.find("["+ Model.CTRL.DATA_MODEL_TYPE + "='PageUrl']");
@@ -172,6 +176,7 @@ var Fields={
                 return jq.html();
                 break;
             case "SelectBox":
+	    case "BoolField":
                 return jq.find("select").val();
                 break;
                 

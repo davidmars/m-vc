@@ -7,6 +7,10 @@ $vv=$_vars;
     case "BoolField": ?>
 	<?=$this->render("admin/fields/BoolField",$vv)?>
     <?break;?>
+    <?case "IdField": ?>
+	<?=$this->render("admin/fields/IdField",$vv)?>
+    <?break;?>
+
     <?case "EnumField": ?>
 	<?=$this->render("admin/fields/EnumField",$vv)?>
     <?break;?>
@@ -15,6 +19,10 @@ $vv=$_vars;
     <?case "CreatedField":?>
     <?case "ModifiedField":?>
 	<?=$this->render("admin/fields/DateField",$vv)?>
+    <?break;?>
+
+    <?case "OnetoOneAssoc":?>
+	<?=$this->render("admin/fields/ModelField",$vv)?>
     <?break;?>
 
     <?case "TextField":?>

@@ -11,5 +11,6 @@ $vv=$_vars;
 	<div class="controls">
 	    <textarea><?=$vv->value?></textarea>
 	</div>
+	<span class="help-block"><?=$vv->comments?></span>
     </div>
 </div>

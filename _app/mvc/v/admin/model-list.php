@@ -7,7 +7,6 @@ $vv=$_vars;
 <div class="container">
     
     <div class="row">
-        
         <div class="span4">
             <ul class="nav nav-list">
             <?foreach(M_::$allNames as $modelName):?>
@@ -24,6 +23,16 @@ $vv=$_vars;
         </div>
         
         <div class="span8">
+	    
+
+	    <div class="well">
+		<h1><?=$vv->modelType?></h1>
+		<p><?$rc=new ReflectionClass($vv->modelType);
+			echo CodeComments::getDescription($rc->getDocComment())?></p>
+	    </div>
+
+	    
+	    
 	    <h2>New <?=$vv->modelType?></h2>
 	    <?=$this->render("admin/model-form",$vv->emptyModel)?>
 	    

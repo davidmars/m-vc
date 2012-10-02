@@ -27,6 +27,12 @@ class VV_admin_field extends ViewVariables{
      * @var Field The field model itsef 
      */
     public $field;
+    
+    /**
+     *
+     * @var string The description comments found in the php code.
+     */
+    public $comments;
     /**
      *
      * @param Field $field 
@@ -35,6 +41,7 @@ class VV_admin_field extends ViewVariables{
         $this->type=  get_class($field);
         $this->name=$fieldName=$field->name;
         $this->field=$field;
+	$this->comments=$field->options["comments"]."...";
         
         $this->value=$model->$fieldName;
     }

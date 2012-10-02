@@ -4,10 +4,11 @@
 $vv=$_vars;
 ?>
 <div class="span4">
-    <div class="control-group" data-field-type="Text" data-field="root[<?=$vv->name?>]">
+    <div class="control-group" data-field-type="Date" data-field="root[<?=$vv->name?>]">
 	<label class="control-label"><?=$vv->name?> : <?=$vv->type?></label>
 	<div class="controls">
-	    <input type="text" value="<?=$vv->value?>"></input>
+	    <input class="date-picker" type="text" value="<?=$vv->value->format("d/m/Y")?>"></input>
 	</div>
+	<span class="help-block"><?=$vv->comments?></span>
     </div>
 </div>
