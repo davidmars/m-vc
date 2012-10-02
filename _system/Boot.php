@@ -7,9 +7,15 @@
  */
 class Boot {
     
+    /**
+     *
+     * @var array Lis of yet included files. 
+     */
     private static $yetIncluded=array();
     
-    
+    /**
+     * Prepare and check some stuff before booting.  
+     */
     public static function preBoot(){
         require_once '_system/Site.php'; //by default it should works, if you change the _system folder location, you will have to change this line.
         
@@ -31,14 +37,17 @@ class Boot {
         
     }
     
+    
+
+    
     /**
      * It boots...the system. 
      */
-    public static function theSystem(){
-        
+    public static function theSystem(){  
         
         //includes
         self::includeFiles();
+        self::bootModels();
 
         //search for the correct controller, function and params
         Human::log($_REQUEST["route"],"At the begining it was the route param");
@@ -118,6 +127,17 @@ class Boot {
         
         //javascript and css modules
         //self::includeFilesInFolder(Site::$publicFolder); 
+    }
+    /**
+     * boot the models
+     */
+    private function bootModels(){
+        foreach (get_declared_classes() as $cl){
+            if(in_array("M_",class_parents($cl))){
+                M_::initModel($cl);
+                M_::$allNames[]=$cl;
+            }
+        }
     }
     
     /**

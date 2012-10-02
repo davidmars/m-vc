@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of VV_admin_model_list
+ * This model is used to display list of models in the admin.
  *
  * @author David Marsalone
  */
@@ -20,19 +20,15 @@ class VV_admin_model_list extends ViewVariables{
     public $emptyModel;
     
     public function init($modelType) {
-        M_::initModel($modelType);
-	
+	$this->modelType=$modelType;
 	$emptyModel=new $modelType();
+        
 	$this->emptyModel=new VV_admin_model();
         $this->emptyModel->init($emptyModel);
 	
-        $this->modelType=$modelType;
-        
         $class=new ReflectionClass($modelType);
+        //$manager=  Manager::getManager($modelType);        
         $manager=$class->getStaticPropertyValue("manager");
-        if(!$manager){
-            
-        }
         $models=$manager->select()->all();
         foreach($models as $m){
             $vvm=new VV_admin_model();

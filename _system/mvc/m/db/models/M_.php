@@ -9,29 +9,35 @@ class M_ extends Model{
     
      /**
      *
-     * @var CreatedField 
+     * @var CreatedField When was it created?
      */
     public $created;
     /**
      *
-     * @var ModifiedField 
+     * @var ModifiedField When was it last modified?
      */
     public $modified;
     
     /**
      *
-     * @var IdField  
+     * @var IdField  This is an unique identifier for this record.
      */
     public $id;
 
 
 
+    /**
+     *
+     * @var array Contains all the model classes names. 
+     */
+    public static $allNames=array();
 
 
-
-
-
-    private static $yetInit=false;
+    /**
+     *
+     * @var bool will be true if the model has been boot once. 
+     */
+    public static $yetInit=array();
     
     /**
      *
@@ -42,16 +48,20 @@ class M_ extends Model{
      * Prepare the model, so init the field associations with database 
      */
     public function init(){
-       
-        if(!self::$yetInit){
-            self::$yetInit=true;
+       Human::log("init model------------".get_class($this));
+        if(!self::$yetInit[get_class($this)]){
+            Human::log("init model for true-------------".get_class($this));
+            self::$yetInit[get_class($this)]=true;
             //let's init database.
             $modelName=get_class($this);
             $modelNameManager=$modelName."Manager";
             if(!class_exists($modelNameManager)){
                $modelNameManager="DbManager";
             }
-            self::$manager = new $modelNameManager( $modelName );
+            //$rc=new ReflectionClass($modelName);
+            //$rc->setStaticPropertyValue("manager", new $modelNameManager(  $modelName ));
+            //self::$manager = new $modelNameManager( $modelName );
+            Human::log("init model for true manager is-------------".get_class(self::$manager));
             /*@var $field ReflectionProperty */
             
             $rc=new ReflectionClass($modelName);
@@ -81,13 +91,17 @@ class M_ extends Model{
                 }
             }
 
-            self::$manager->init(); 
+            //self::$manager->init(); 
         }
         $this->unsetProperties();
         
          
           
     }
+    /**
+     * Performs a call to the specified model, like that it will be ready to use.
+     * @param string $modelType The class name of the model to boot 
+     */
     public static function initModel($modelType){
         $m=new $modelType();
         unset($m);
@@ -101,31 +115,33 @@ class M_ extends Model{
            unset($this->$f);
        } 
     }
-
-
-    
     /**
-     *
+     * Checks if the $className given as parameter is a valid field class or not.
      * @param string $className 
      * @return bool true if the className is a Field
      */
     public static function isDbField($className){
-        $areFileds=array(
+        $areFields=array(
             "IdField",
             "CreatedField",
             "ModifiedField",
             "TextField",
             "BoolField",
             "EnumField",
-            "IdField",
-            "UIdField",
             "HtmlField",
         );
-        if(in_array($className, $areFileds)){
+        if(in_array($className, $areFields)){
             return true;
         }else{
             return false;
         }
+    }
+    
+    
+    
+    public static function qTotal(){
+        Human::log("-------count----------".get_class(self::$manager));
+        return self::$manager->select()->count();
     }
     
     

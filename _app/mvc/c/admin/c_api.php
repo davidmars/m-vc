@@ -3,7 +3,6 @@ class C_api extends Controller{
 
     public function index($modelType){
 	
-	M_::initModel("M_post");
 	$modelType=$_REQUEST["type"];
 	$modelId=$_REQUEST["id"];
 	

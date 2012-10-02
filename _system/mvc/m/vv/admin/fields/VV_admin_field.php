@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of VV_field
+ * This class represents a field in a model, it is usefull to display stuff like checkboxes, list, textfields etc...
  *
  * @author David Marsalone
  */
@@ -24,7 +24,7 @@ class VV_admin_field extends ViewVariables{
     
     /**
      *
-     * @var Field the field itsef 
+     * @var Field The field model itsef 
      */
     public $field;
     /**

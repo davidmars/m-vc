@@ -8,7 +8,6 @@
 class c_testModels extends Controller{
     
     public function post($id=null){
-        M_::initModel("M_post");
         $list= M_post::$manager->select()->all();
         foreach($list as $p){
             echo $p->title."<br>";

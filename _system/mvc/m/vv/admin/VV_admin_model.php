@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Represents a model. The goal when you will use this VV will be probably to display an admin form.
+ * Represents a model. The goal when you will use this class will be probably to display an admin form.
  *
  * @author David Marsalone
  */

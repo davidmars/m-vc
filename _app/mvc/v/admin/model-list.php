@@ -9,7 +9,16 @@ $vv=$_vars;
     <div class="row">
         
         <div class="span4">
-            Here we will list all the models types.
+            <ul class="nav nav-list">
+            <?foreach(M_::$allNames as $modelName):?>
+                <li class="<?=$modelName==$vv->modelType?"active":""?> ">
+                    <a href="<?=GiveMe::url("admin/admin_model/listModels/".$modelName)?> ">
+                    <?=$modelName?> (<?=call_user_func($modelName."::qTotal")?>)
+                    </a>
+                </li>
+            <?endforeach;?>
+            </ul>
+
         </div>
         
         <div class="span8">
