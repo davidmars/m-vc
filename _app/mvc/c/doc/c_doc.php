@@ -15,7 +15,7 @@ class C_doc extends Controller{
      * @return View The view will be one of the template located in v/doc/pages.
      */
     public function index($page=null){
-        POV_CssAndJs::applyCommonSettings();
+        POV_CssAndJs::docSettings();
         //if too much arguments redirect to the best page url
         if(func_num_args()>1){
             $this->redirect302($this->routeToFunction."/$page");
@@ -44,7 +44,7 @@ class C_doc extends Controller{
      * @return View The view template will be doc/reference/class.php and can 
      */
     public function classDefinition($className=false){
-        POV_CssAndJs::applyCommonSettings();
+        POV_CssAndJs::docSettings();
         $vv=new VV_doc_reference_class();
         $vv->run();
         $vv->setClassName($className);

@@ -333,10 +333,8 @@ class DbManager extends Manager
 
 	public function quote( $str )
 	{
-            Human::log($this->source);
-            Human::log(self::$cnx);
             $this->source=self::$cnx;
-		return $this->source->quote( $str);
+            return $this->source->quote( $str);
 	}
 
 	/**

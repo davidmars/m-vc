@@ -29,6 +29,9 @@ class IdField extends KeyField {
 		}
 	}
 */
+        public function val(){
+            return $this->model->id;
+        }
 	function asDbColumn(){
 		$field = parent::asDbColumn();
 		$field->extra = "auto_increment";

@@ -99,9 +99,8 @@ class Model implements IteratorAggregate
 	public function __set( $fieldName, $value )
 	{
             
-            Human::log("$value","set $fieldName");
+            Human::log("------set in model-----".$fieldName." = ".$value);
             
-            /*
 	// on essaie d'abord en lower-case
 		if(property_exists( $this, strtolower( $fieldName ) ))
 		{
@@ -115,7 +114,7 @@ class Model implements IteratorAggregate
 		}
 
 
-            */
+            
 		$field = Field::getField( $this, $fieldName );
 
 		if( $field )

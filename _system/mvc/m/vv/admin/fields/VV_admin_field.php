@@ -33,6 +33,12 @@ class VV_admin_field extends ViewVariables{
      * @var string The description comments found in the php code.
      */
     public $comments;
+    
+    /**
+     *
+     * @var bool True if the field is updatable 
+     */
+    public $editable=false;
     /**
      *
      * @param Field $field 
@@ -42,6 +48,8 @@ class VV_admin_field extends ViewVariables{
         $this->name=$fieldName=$field->name;
         $this->field=$field;
 	$this->comments=$field->options["comments"]."...";
+        $this->editable=$field->editableByHuman;
+        
         
         $this->value=$model->$fieldName;
     }

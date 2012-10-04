@@ -30,6 +30,10 @@ class DatetimeField extends Field {
 	    }
 
 	}
+        
+        public function val(){
+            return $this->format("d/m/Y H:i:s");
+        }
 
 	/**
 	 * Setter

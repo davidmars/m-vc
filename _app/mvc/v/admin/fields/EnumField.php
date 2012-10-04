@@ -6,10 +6,12 @@ $vv=$_vars;
 $field=$vv->field;
 ?>
 <div class="span4">
-    <div class="control-group">
+    <div class="control-group"
+         data-field="root[<?=$vv->name?>]"
+         data-field-type="SelectBox">
 	<label class="control-label"><?=$vv->name?> : <?=$vv->type?></label>
 	<div class="controls">
-	    <select>
+	    <select class="span3" <?=$vv->editable?"":"disabled"?> >
 		<?foreach($field->options[EnumField::STATES] as $state):?>
 		    <option value="<?=$state?>" <?=$vv->value==$state?"selected":""?>><?=$state?></option>
 		<?endforeach?>

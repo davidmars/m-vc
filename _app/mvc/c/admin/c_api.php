@@ -5,7 +5,10 @@ class C_api extends Controller{
 	
 	$modelType=$_REQUEST["type"];
 	$modelId=$_REQUEST["id"];
-	
+	$templatePath=$_REQUEST["template"];
+	//return in all cases will be here
+        $json=new VV_apiReturn();
+        
 	if($modelId && $modelType){
 	    $manager = Manager::getManager($modelType);
 	    $m=$manager->get($modelId);
@@ -13,16 +16,22 @@ class C_api extends Controller{
 	    $m=new $modelType();
 	}
 	if($m){
+            //loop on fields
 	    foreach($_REQUEST["root"] as $var=>$value){
 		if(self::isRecordableField($var)){
 		$m->$var=$value;
 		}
 	    }
+            $json->success=true;
 	    $m->save();
 	}
-	
-	$vv=new VV_admin_model();
-	$vv->init($m);
+        //the template we will send via json
+        $VVmodel=new VV_admin_model();
+        $VVmodel->init($m);
+        $template=new View($templatePath, $VVmodel);
+        //the json
+        $json->template=$template->render();
+        die($json->json());
 	
 	
 	
@@ -43,4 +52,27 @@ class C_api extends Controller{
 		return true;
 	}
     }
+    
+    /*
+    private function apiReturn(){
+        $obj=array();
+        $obj["success"]=$this->success;
+        $obj["redirect"]=$this->redirect;
+        $obj["messages"]=$this->messages;
+        $obj["errors"]=$this->errors;
+        $obj["template"]=$this->template;
+    }
+     
+     */
+
+    
+    
+}
+
+class VV_apiReturn extends ViewVariables{
+    public  $success=false;
+    public  $redirect=false;
+    public  $messages=array();
+    public  $errors=array();
+    public  $template=""; 
 }

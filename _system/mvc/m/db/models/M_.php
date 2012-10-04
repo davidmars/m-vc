@@ -64,8 +64,16 @@ class M_ extends Model{
 	}
     }
     
+    public function getDatas(){
+        $r=array();
+        $className=get_class($this);
+        foreach($this->fields() as $f){
+            $r[$f->name]=$f;
+        }
+        return $r;
+    }
+    
     public function init(){
-	Human::log("init model------------".get_class($this));
         if(!self::$yetInit[get_class($this)]){
             Human::log("init model for true-------------".get_class($this));
             self::$yetInit[get_class($this)]=true;
@@ -77,11 +85,6 @@ class M_ extends Model{
             }
             $rc=new ReflectionClass($modelName);
             $rc->setStaticPropertyValue("manager", new $modelNameManager(  $modelName ));
-            //self::$manager = new $modelNameManager( $modelName );
-            Human::log("init model for true manager is-------------".get_class(self::$manager));
-            /*@var $field ReflectionProperty */
-            
-            $rc=new ReflectionClass($modelName);
             
             //browse the class propeties to find db fields and then store it in a good order (keys first, associations later)
 	    $fields=array();
@@ -97,10 +100,6 @@ class M_ extends Model{
 		$fieldObject=$this->getDbField($fieldName,$type);
                 if($fieldObject){
 		    $fieldObject["comments"]=$description;
-		    Human::log($fieldObject["type"]);
-
-		    
-		    
 		    switch($fieldObject["type"]){
 			
 			case "OneToOneAssoc":
@@ -116,19 +115,19 @@ class M_ extends Model{
   
                 }
             }
-	    Human::log($fields);
 	    //create the fields
 	    foreach ($fields as $f){
-		self::$dbFields[]=$f["name"];
-		Human::log($f);
 		$f["options"]["comments"]=$f["comments"];
-                Field::create($modelName.".".$f["name"],$f["type"],$f["options"]); 
+                Field::create($modelName.".".$f["name"],$f["type"],$f["options"]);
+                Human::log("crate ".$f["name"]);
 	    }
+            
 	    
 	    //whooho!
             $this->db()->init(); 
+        }else{
+            $this->unsetProperties();
         }
-        $this->unsetProperties();
         
          
           
@@ -146,8 +145,12 @@ class M_ extends Model{
      * After that, the setters in Model will take effect.
      */
     private function unsetProperties(){
-       foreach(self::$dbFields as $f){
-           unset($this->$f);
+
+       foreach($this->fields() as $f){
+           
+           $fieldName=$f->name;
+           Human::log("unset $fieldName");
+           unset($this->$fieldName);
        } 
     }
     /**
@@ -168,6 +171,7 @@ class M_ extends Model{
             "BoolField",
             "EnumField",
             "HtmlField",
+            "FileField",
         );
 	
 	

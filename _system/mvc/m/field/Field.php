@@ -64,7 +64,20 @@ class Field {
     public $options = array(
 	    //self::PASS_THROUGH => true
     );
-
+    
+    /**
+     * Returns the field value that will be readable by an human 
+     * @return string A way to get the field value that will be readable by an human 
+     */
+    public function val(){
+        return $this->value;
+    }
+    
+    /*
+    public function getDatas(){
+        
+    }
+    */
     /**
      *
      * @var Model Instance du modèle associé
@@ -91,7 +104,12 @@ class Field {
 
     /**
      *
-     * @var boolean Définit si le field est éditable ou non (lecture seule)
+     * @var bool Is the field editable by an admin user?
+     */
+    public $editableByHuman=true;
+    /**
+     *
+     * @var bool Définit si le field est éditable ou non (lecture seule)
      */
     public $editable;
 
@@ -200,6 +218,7 @@ class Field {
       * @param mixed $value La nouvelle valeur
       */
     function set( $value ) {
+        Human::log("set field value ".$this->name." = ".$value);
 	if( $this->options[self::PASS_THROUGH]){
 	    $this->model->{$this->name} = $value;
 	}else{
@@ -221,6 +240,7 @@ class Field {
         }
         else
         {
+            
             trigger_error("The field ".$this->name." can't be edited. See the definition of Model '".$this->from."' or the constructors of its assocs", E_USER_ERROR );
         }
     }

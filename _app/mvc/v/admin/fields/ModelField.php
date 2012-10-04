@@ -10,19 +10,16 @@ $associatedModel=$vv->value;
 $associatedModelClass=$field->options[OnetoOneAssoc::TO];
 $manager=  Manager::getManager($associatedModelClass);
 $total=$manager->select()->count();
-if($associatedModel){
-    
-}else{
-    
-}
+
 ?>
 <div class="span4">
-    <div class="control-group" data-field="root[<?=$field->name?>]" data-field-type="ModelSelect">
+    <div class="control-group" 
+         data-field="root[<?=$field->name?>]" 
+         data-field-type="ModelSelect">
 	<label class="control-label"><?=$vv->name?> : <?=$vv->type?></label>
 	<div class="controls">
-	    current value : <?=$vv->value->id?><br/>
 	    <?if($total<20):?>
-	    <select>
+	    <select class="span3" <?=$vv->editable?"":"disabled"?> >
 		<?foreach($manager->select()->all() as $m):?>
 		    <option value="<?=$m->id?>" <?=$vv->value->id==$m->id?"selected":""?>><?=$m->humanName()?></option>
 		<?endforeach?>

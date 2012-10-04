@@ -3,23 +3,17 @@
 /* @var $vv VV_admin_model_list */
 $vv=$_vars;
 ?>
-<?$this->inside("doc/layout/html5bp")?>
+<?$this->inside("admin/layout/admin-layout")?>
 <div class="container">
     
     <div class="row">
         <div class="span4">
-            <ul class="nav nav-list">
-            <?foreach(M_::$allNames as $modelName):?>
-                <li class="<?=$modelName==$vv->modelType?"active":""?> ">
-                    <a href="<?=GiveMe::url("admin/admin_model/listModels/".$modelName)?> ">
-                    <?=$modelName?> (<?
-		    $m=new $modelName();
-		    echo $m->qTotal();?>)
-                    </a>
-                </li>
-            <?endforeach;?>
-            </ul>
-
+            <div class="">
+                <div class="affix" data-spy="affix" data-offset-top="0">
+                    <?=$this->render("admin/layout/menu-models", $vv)?>
+                </div>
+                &nbsp;
+            </div>
         </div>
         
         <div class="span8">
@@ -47,7 +41,4 @@ $vv=$_vars;
 
     </div>
 </div>
-<script>
-    Config.apiUrl="/admin/api/index/"
-    Config.rootUrl="<?=Site::$root?>";
-</script>    
+   

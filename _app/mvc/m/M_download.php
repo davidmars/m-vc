@@ -17,9 +17,9 @@ class M_download extends M_{
     public $description;    
     /**
      *
-     * @var File The file itself.
+     * @var FileField The file that the final user will be able to download 
      */
-    public $file;
+    public $theFile;
     /**
      *
      * @var PhotoRectangle The thumbnail for this download.
@@ -36,6 +36,9 @@ class M_download extends M_{
      * @var M_category The category where it will be possible to find the download.
      */
     public $category;
+    
+
+
 
            
     

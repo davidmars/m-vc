@@ -14,10 +14,8 @@ class C_Img extends Controller {
          */
     	public function sized()
 	{
-            Human::log("----ImgController--------");
             ImageTools::$doTheJob=true;
             $params=func_get_args();
-            Human::log($params);
             $img=ImageTools::processUrl("sized", $params,$this->extension);
             ImageTools::output($img);
             die();

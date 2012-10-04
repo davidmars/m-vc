@@ -153,10 +153,11 @@ var Fields={
                 break;                
             case "PhotoRectangle":
 	    case "ModelSelect":
+            case "SelectBox":
+	    case "BoolField":
 		return $(jq.find("select")[0]).val();
 		break;
             case "File":
-            
                 return jq.attr(Model.CTRL.DATA_MODEL_ID);
                 break;                               
             case "PageUrls":
@@ -175,15 +176,12 @@ var Fields={
             case "TextHtml":
                 return jq.html();
                 break;
-            case "SelectBox":
-	    case "BoolField":
-                return jq.find("select").val();
-                break;
+
+
                 
             case "Text":
-
+            case "FileField":
                 var value = jq.find("textarea, input[type='text']").val();
-                
                 if (jq.attr("data-prefix") !== undefined){
                     return jq.attr("data-prefix") + "." + value;
                 }

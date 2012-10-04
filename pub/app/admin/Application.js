@@ -37,45 +37,10 @@ var Application={
         } );       
         Fields.Text.autoHeightTextareas();
         
-        //animations
-        ShicTween.startSequencesFromDom(jq);
         
-        jq.find( Application.CTRL.DATE_PICKER ).datepicker(
-        {
-            showOtherMonths: true,
-            selectOtherMonths: true,
-            dateFormat: "dd M yy",
-            changeMonth: true,
-            changeYear: true,
-            firstDay: 1 ,
-            onClose: function(dateText, inst) {
-                $(inst.input).css("z-index",1);
-            },
-            beforeShow: function(input, inst) {                    
-                $(input).css("z-index",ModalsManager.getNextDepth());
-            }
-        }
-        );
+
             
-        //$("[" + Application.CTRL.LINK_CONFIRM + " = true]").easyconfirm();
-           
-        //jq.find( Application.CTRL.DATE_PICKER ).css("z-index",ModalsManager.getNextDepth());
-        //$('.carousel').carousel();
-        $(Application.CTRL.SORTABLE_LIST).sortable( "destroy" )
-        $( Application.CTRL.SORTABLE_LIST ).sortable({
-            revert: true,
-            stop : function (event, ui) {
-            },
-            cursor: 'move', 
-            update: function() {
-                
-                var m = Model.getParent($(this));
-                m.save();    
-                
-            //console.log("sortable update")
-            //console.log(m)
-            }
-        });        
+       
        
         FileUploader.init();
     },
@@ -113,13 +78,11 @@ var Application={
         });
     },
     loading : function (state) {        
-        var el=$("#application-loading");        
+        var el=$(Application.CTRL.LOADING_MAIN);        
         if( state == true ) {
-            //JQ.bo.css("opacity","0.2");
-            el.css("display","block");
+            el.addClass("active");
         } else {
-            ///JQ.bo.css("opacity","1");
-            el.css("display","none");  
+            el.removeClass("active"); 
         }
     },
     loadingProgress:function(current,total){
@@ -342,6 +305,8 @@ Application.loadingElement = function (element, state) {
 /*---------------------------------- CTRL -------------------------------*/
 
 Application.CTRL={
+    
+    LOADING_MAIN:"[data-admin-loading='main']",
     /**
      * will performs a main page change in ajax via History url
      */

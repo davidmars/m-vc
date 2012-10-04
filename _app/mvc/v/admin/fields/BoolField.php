@@ -7,7 +7,7 @@ $vv=$_vars;
     <div class="control-group" data-field="root[<?=$vv->field->name?>]" data-field-type="BoolField">
 	<label class="control-label"><?=$vv->name?> : <?=$vv->type?></label>
 	<div class="controls">
-	    <select>
+	    <select class="span3" <?=$vv->editable?"":"disabled"?> >
 		<option value="1" <?=$vv->value?"selected":""?>>Yes</option>
 		<option value="0" <?=$vv->value?"":"selected"?>>No</option>
 	    </select>

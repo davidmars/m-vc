@@ -13,6 +13,12 @@ class ModifiedField extends DatetimeField {
 		return parent::serialize();
 		
 	}
+        
+        /**
+        *
+        * @var bool Is the field editable by an admin user?
+        */
+        public $editableByHuman=false;
 		
 }
 

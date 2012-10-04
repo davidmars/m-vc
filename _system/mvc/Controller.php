@@ -243,7 +243,6 @@ class Controller {
             case self::OUTPUT_XML:
                 $this->outputType=$extension;
                 $this->headerType=new Nerd_Header(Nerd_Header::XML);
-                Human::log("set extension ".$extension);
                 break;
             
            default:

@@ -1,5 +1,6 @@
 var Api={
     call:function(id,type,datas,onComplete){ 
+        console.log("api call");
         datas.theme = "extranet";        
         //var url = ( id != "" && id) ? type + "/" + id : "";
         setTimeout(function(){
@@ -10,6 +11,7 @@ var Api={
                 dataType: 'json',
                 success:
                 function (ajaxReturn){
+                    console.log("api call success");
                     Application.checkLogin(ajaxReturn);
                     Application.updateNav();
                     if(typeof onComplete == 'function') {
@@ -59,38 +61,39 @@ var Api={
         });*/
     },
     processMessage:function(json,model) {
-        //console.log("processMessage")
+        console.log("processMessage");
+        console.log(model);
+        console.log(json);
+        
         Application.loading(false);
+        console.log("1");
         var i;
-        if(json.errors){
+        if(json.errors && json.errors.length>0){
             for(i=0;i<json.errors.length;i++){
                 alert(json.errors[i]);
             }
             model.isLoading(false);
             return;
         }
-	
-        if(json.logs){
-            for(i=0;i<json.logs.length;i++){
-                //console.log(json.logs[i]);
-                }
-        }
-        
-        if(ModalsManager.activeModel) {
+	console.log("a");
+
+        if(ModalsManager && ModalsManager.activeModel) {
             ModalsManager.activeModel.refresh();
             ModalsManager.activeModel = null;
         }
-        
+        console.log("b");
         // if model has attribute DATA_CLOSE_MODAL_AFTER_SAVE == true close this model modal box
         if(model.jq.attr(Model.CTRL.DATA_CLOSE_MODAL_AFTER_SAVE) == "true" ) {
             model.jq.modal("hide");
         }        
-                
+         console.log("c");       
         //refresh template
         if(model.avoidRefresh()){
+            console.log("We have a template....but avoidRefresh");
         //do nothing on the model 
         }else{
             if( json.success == true && json.template) {
+                console.log("We have a template....");
                 var newDom = new $(json.template);
                 var redirectUrl = newDom.attr( Model.CTRL.DATA_REDIRECT_URL );                
                 if( redirectUrl && newDom.attr( Model.CTRL.DATA_MODEL_ID ) != model.id() && model.id() == "new" ) {

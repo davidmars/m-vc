@@ -6,6 +6,11 @@
  *
  */
 	class DbConnection {
+                /**
+                 *
+                 * @var int Just a count of performed requests 
+                 */
+                public static $numberOfRequest=0;
 		/**
 		 *
 		 * @var array Tableau d'index des connections établies
@@ -109,12 +114,7 @@
 		 *
 		 */
 		public function query( $query ) {
-                    Human::log($query);
-		//$r = mysql_query( $query );
-		//trace("dbconnection query");
-		//trace("QUERY : $query");
-		///$time = microtime();
-		//$this->log->write( "$query" );
+
 			if( $this->debug ){
 				trace("$query;");
 			}
@@ -128,10 +128,8 @@
 			}
 
 			$result = mysql_query( $query , $this->resource );
+                        self::$numberOfRequest++;
 
-			//$this->log->write("\t took ".(microtime()-$time));
-			//trace($result);
-			//trace($query);
 			if(is_bool($result)) {
 				if( $result === false ) {
 					$ex = new DbException();

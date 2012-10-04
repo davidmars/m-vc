@@ -18,7 +18,15 @@ $vv=$_vars;
 
     <?case "CreatedField":?>
     <?case "ModifiedField":?>
-	<?=$this->render("admin/fields/DateField",$vv)?>
+	<?=$this->render("admin/fields/DateTimeField",$vv)?>
+    <?break;?>
+
+    <?case "DateField":?>
+        <?=$this->render("admin/fields/DateField",$vv)?>
+    <?break;?>
+
+    <?case "FileField":?>
+	<?=$this->render("admin/fields/FileField",$vv)?>
     <?break;?>
 
     <?case "OnetoOneAssoc":?>
