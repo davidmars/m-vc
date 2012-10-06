@@ -157,9 +157,7 @@ var Fields={
 	    case "BoolField":
 		return $(jq.find("select")[0]).val();
 		break;
-            case "File":
-                return jq.attr(Model.CTRL.DATA_MODEL_ID);
-                break;                               
+                                          
             case "PageUrls":
                 var arr = [];
                 var pageUrl = jq.find("["+ Model.CTRL.DATA_MODEL_TYPE + "='PageUrl']");
@@ -178,7 +176,7 @@ var Fields={
                 break;
 
 
-                
+            case "File":
             case "Text":
             case "FileField":
                 var value = jq.find("textarea, input[type='text']").val();

@@ -3,8 +3,18 @@
 class M_ extends Model{
     
     public function __construct() {
-        $this->init();
-        parent::__construct();  
+        $this->modelName=get_class($this);
+        
+        if(!self::$yetInit[get_class($this)]){
+            //in fact boot the model, but this model will not work
+            $this->createFields();
+        }else{
+            //a normal and cool model
+            $this->unsetProperties();
+            parent::__construct();
+        }
+
+          
     }
     
      /**
@@ -17,6 +27,8 @@ class M_ extends Model{
      * @var ModifiedField When was it last modified?
      */
     public $modified;
+    
+    
     
     /**
      *
@@ -73,10 +85,17 @@ class M_ extends Model{
         return $r;
     }
     
-    public function init(){
-        Human::log("init model ".get_class($this));
-        if(!self::$yetInit[get_class($this)]){
-            Human::log("init model for true-------------".get_class($this));
+
+    /**
+     * Performs a call to the specified model, like that it will be ready to use.
+     * @param string $modelType The class name of the model to boot 
+     */
+    public static function initModel($modelType){
+        $m=new $modelType();
+        unset($m);
+    }
+    private function createFields(){
+            Human::log("------------- Create fields model ".$this->modelName);
             self::$yetInit[get_class($this)]=true;
             //let's init database.
             $modelName=get_class($this);
@@ -120,39 +139,31 @@ class M_ extends Model{
 	    foreach ($fields as $f){
 		$f["options"]["comments"]=$f["comments"];
                 Field::create($modelName.".".$f["name"],$f["type"],$f["options"]);
-                Human::log("crate ".$f["name"]);
+                Human::log($this->modelName." Create field ".$f["name"]);
                 
 	    }
             
-	    $this->unsetProperties();
 	    //whooho!
             $this->db()->init(); 
-        }else{
-            $this->unsetProperties();
-        }
+    }
 
-        
-         
-          
-    }
-    /**
-     * Performs a call to the specified model, like that it will be ready to use.
-     * @param string $modelType The class name of the model to boot 
-     */
-    public static function initModel($modelType){
-        $m=new $modelType();
-        unset($m);
-    }
     /**
      * Remove the original propertie from the model that are related to database fields.
      * After that, the setters in Model will take effect.
      */
     private function unsetProperties(){
-
+       Human::log("--------------------------------------------------- unset initial properties for ".$this->modelName);
        foreach($this->fields() as $f){
+           
            $fieldName=$f->name;
-           Human::log("unset $fieldName ".  gettype($this->$fieldName));
+           Human::log("FIELD unset $fieldName ".gettype($this->$fieldName));
            unset($this->$fieldName);
+           
+           if(gettype($this->$fieldName)=="object"){
+              Human::log("FIELD now $fieldName is ".  get_class($this->$fieldName)); 
+           }else{
+              Human::log("FIELD now $fieldName is ".  gettype($this->$fieldName));  
+           }
        } 
     }
     /**

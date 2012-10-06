@@ -11,6 +11,6 @@
 
 
 <script>
-    Config.apiUrl="/admin/api/index/"
+    Config.apiUrl="/admin/api"
     Config.rootUrl="<?=Site::$root?>";
 </script> 

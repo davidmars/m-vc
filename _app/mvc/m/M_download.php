@@ -37,6 +37,12 @@ class M_download extends M_{
      */
     public $category;
     
+    /**
+     *
+     * @var ModifiedField Test sur un champ dan sle modele étendu 
+     */
+    public $modifiedInExtend;
+    
 
 
 

@@ -6,7 +6,7 @@ var Api={
         setTimeout(function(){
             $.ajax({   
                 type: "POST",
-                url: Config.rootUrl + Config.apiUrl + type + "/" + id,
+                url: Config.rootUrl + Config.apiUrl+"/record/" + type + "/" + id,
                 data: datas,
                 dataType: 'json',
                 success:
@@ -21,6 +21,32 @@ var Api={
             });
         },500);
     //console.log('refresh')
+    },
+    upload:function(oFile,progress,complete,onError){
+        // create XMLHttpRequest object, adding few event listeners, and POSTing our data
+        var oXHR = new XMLHttpRequest(); 
+        var vFD = new FormData();
+        
+        vFD.append("TheFile",oFile);
+        
+        oXHR.upload.addEventListener('progress', 
+            function(e){
+                progress(e.loaded,e.total);
+            }, 
+            false, false);
+            
+        oXHR.addEventListener('load', 
+            function(e){
+                complete(e.target.responseText);
+            }, 
+            false
+        );
+            
+        oXHR.addEventListener('error', onError, false);
+        //oXHR.addEventListener('abort', uploadAbort, false);
+        oXHR.open('POST', Config.rootUrl + Config.apiUrl+"/upload");
+        oXHR.send(vFD);
+        return oXHR;
     },
     save:function(model,datas,onComplete){
         datas.template = model.template();

@@ -45,7 +45,7 @@ class VV_admin_model extends ViewVariables{
         /* @var $f Field */
         foreach(Field::getFields($this->model) as $f){
             $field=new VV_admin_field();
-            $field->init($this->model,$f);
+            $field->init($this->model,$this->model->field($f->name));
             $ret[]=$field;
         }
         return $ret;

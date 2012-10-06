@@ -78,6 +78,8 @@ class POV_CssAndJs {
 	JS::addAfterBody("pub/app/admin/api/Fields/Fields.Date.js");
         
 	JS::addAfterBody("pub/app/admin/api/Fields/Fields.Text.js");
+        
+	JS::addAfterBody("pub/app/admin/api/Fields/Fields.File.js");
 	
 	JS::addAfterBody("pub/app/admin/api/Api.js");
 	JS::addAfterBody("pub/app/admin/api/Model.js");

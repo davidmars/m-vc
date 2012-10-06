@@ -212,6 +212,13 @@ class Field {
 	    return $this->value;
 	}
     }
+    /**
+     * 
+     * @return Field Return the field object itself and not its value
+     */
+    public function getFieldObject(){
+        return $this;
+    }
 
     /**
       * Setter
@@ -219,7 +226,7 @@ class Field {
       * @param mixed $value La nouvelle valeur
       */
     function set( $value ) {
-        
+        $this->insideValue = $value;
         Human::log("set field value ".$this->name." = ".$value);
 	if( $this->options[self::PASS_THROUGH]){
 	    $this->model->{$this->name} = $value;
@@ -227,7 +234,7 @@ class Field {
 	    $this->value = $value;
 	}
     }
-
+    public $insideValue;
     /**
      * Setter publique
      * @see Model::__set
@@ -394,6 +401,7 @@ class Field {
      * @return Field le field cloné attaché au model passé en paramètre
      **/
     function attach( $obj ) {
+        Human::log("clooooooooone");
 	$field = clone $this;
 	$field->model = $obj;
 	return $field;

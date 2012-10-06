@@ -44,10 +44,15 @@ class Model implements IteratorAggregate
 	 **/
 	public function __construct()
 	{
-
-		$this->__manager__ = Manager::getManager( get_class( $this ) );
+                $this->modelName=get_class($this);
+		$this->__manager__ = Manager::getManager( $this->modelName );
                 //Human::log($this->__manager__,"The fuckin manager!");
 	}
+        /**
+         *
+         * @var String The class name....same as get_class($this) in fact 
+         */
+        public $modelName;
 
 	/**
 	 * Getter automatique :
@@ -99,7 +104,7 @@ class Model implements IteratorAggregate
 	public function __set( $fieldName, $value )
 	{
             
-            Human::log("------set in model-----".$fieldName." = ".$value);
+            //Human::log($value,"------set in model-----".$fieldName." = ");
             
 	// on essaie d'abord en lower-case
             /*
@@ -117,22 +122,33 @@ class Model implements IteratorAggregate
 */
             
 		$field = Field::getField( $this, $fieldName );
+                Human::log("heuuuuuuuuuuuuuuuuuuuuuu ");
 
+
+                
+                
 		if( $field )
 		{
-			if( false && array_key_exists( $fieldName, $this->__fields__ ) )
-			{
-                            return $this->__fields__[$fieldName]->setter( $value );
-			}else{
-                            $newField = $field->attach( $this );
-                            $newField->setter( $value );
-                            $this->__fields__[$fieldName] = $newField;
-			}
+                    Human::log("aaaaaaaaaaaaaaaaa ".$fieldName);
+                    if( false && array_key_exists( $fieldName, $this->__fields__ ) )
+                    {
+                        return $this->__fields__[$fieldName]->setter( $value );
+                    }else{
+                        $newField = $field->attach( $this );
+                        $newField->setter( $value );
+                        $this->__fields__[$fieldName] = $newField;
+                        Human::log("toto ".$this->field($fieldName)->insideValue);
+                        
+                    }
 
-		}else
-		{
-
-			$this->{$fieldName} = $value;
+		}else{
+                    Human::log("bbbbbbbbbbbbbbbbbbbbb ".$fieldName);
+                    //var_dump($value);
+                    //die($fieldName);
+                    foreach($value as $k=>$v){
+                       $this->$k = $v; 
+                    }
+                    //$this->{$fieldName} = $value;
 
 		}
 

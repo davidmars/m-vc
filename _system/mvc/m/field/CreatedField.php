@@ -13,10 +13,10 @@ class CreatedField extends DatetimeField {
 	 * @return string La date/heure dans un format stockable
 	 */
 	public function serialize(){
-		if( !$this->model->id ){	
-			$this->value = time();
-		}
-		return parent::serialize();
+            if( !$this->model->id ){	
+                    $this->value = time();
+            }
+            return parent::serialize();
 	}
         
         /**

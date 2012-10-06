@@ -144,5 +144,26 @@ class FileTools {
             }
             return true;
     }
+    
+    /**
+     * Commonly used for uploads. Record a file in media/uploads/year/month/day/filename-version.
+     * @param array $inputFile The file object received via POST FILE
+     * @return string The path to the copied file 
+     */
+    public static function saveUploadAsMedia($upload){
+        $inputFile=$upload["name"];
+        $folder=Site::$mediaFolder."/uploads/".date("Y")."/".date("m")."/".date("d")."/";
+        $fileName=  FileTools::filename($inputFile);
+        $ext=  FileTools::extension($inputFile);
+        $incr=0;
+        while(file_exists($folder.$fileName.".".$ext)){
+            $fileName=FileTools::filename($inputFile)."-".$incr++;
+        }
+        $location=$folder.$fileName.".".$ext;
+        FileTools::mkDirOfFile($location);
+        
+        move_uploaded_file($upload["tmp_name"], $location);        
+        return $location;
+    }
 
 }

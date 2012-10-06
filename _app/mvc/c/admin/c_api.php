@@ -1,7 +1,7 @@
 <?
 class C_api extends Controller{
 
-    public function index($modelType){
+     public function record($modelType){
 	
 	$modelType=$_REQUEST["type"];
 	$modelId=$_REQUEST["id"];
@@ -36,6 +36,17 @@ class C_api extends Controller{
 	
 	
 
+    }
+    /**
+     * This controller copy  $_FILES['TheFile'] in the media folder and echo directly the new file location
+     */
+    public function upload(){
+        //print_r($_FILES);
+        $sFileName = $_FILES['TheFile']['name'];
+        $sFileType = $_FILES['TheFile']['type'];
+        $newFile=FileTools::saveUploadAsMedia($_FILES['TheFile']);
+        die($newFile);
+        //die("file received:".$_FILES['TheFile']["tmp_name"]."/".$_FILES['TheFile']['size']." saved into ".$newFile);
     }
     /**
      * Some fields should not be updated via thze api but the framework itself...this method will tell you

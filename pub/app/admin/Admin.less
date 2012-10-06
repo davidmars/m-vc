@@ -28,6 +28,22 @@
     }
 }
 
+//note that the text inside the button has to AFTER the input file button
+.btn-input-file{
+    position:relative;
+    display:inline-block;
+    overflow:hidden;
+    >input{
+        padding: 0px;
+        margin: 0px;
+        position: absolute;
+        size: 0px;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+}
+
 
 img.toshop{
     background-image:url(@phpAppFolder+"/app/fmk/img/bg/toshop-like.png");
