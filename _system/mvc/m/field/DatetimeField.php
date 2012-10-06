@@ -32,6 +32,9 @@ class DatetimeField extends Field {
 	}
         
         public function val(){
+            if(!$this->value){
+                return date("d/m/Y H:i:s");
+            }
             return $this->format("d/m/Y H:i:s");
         }
 
@@ -40,10 +43,11 @@ class DatetimeField extends Field {
 	 * @param mixed $value Si c'est un chiffre, il sera interprété comme un timestamp. Si c'est un string, il passe par strtotime()
 	 */
 	public function set( $value ){
+            
 	    if( is_numeric($value) ){
 		$this->value = $value;
 	    }else{
-		$this->value = strtotime( $value );
+                  $this->value = strtotime( $value );  
 	    }
 	}
 
@@ -61,6 +65,9 @@ class DatetimeField extends Field {
 	 * @return string La date/heure formattée
 	 */
 	public function format( $f, $isloc = false ){
+            if(!$this->value){
+               $this->value=time(); 
+            }
 	    if($isloc)
 	    {
 		$langue = (Langue::$current->code == "kr")?"ko":Langue::$current->code;

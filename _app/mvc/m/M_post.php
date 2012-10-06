@@ -6,7 +6,7 @@ class M_post extends M_{
 
     public static $manager;
     /**
-     *
+     * 
      * @var TextField The name of the poste like it is displayed
      */
     public $title;
@@ -32,6 +32,8 @@ class M_post extends M_{
      * @var M_category The category where it will be possible to find the post.
      */
     public $category;
+    
+    
 
            
     
