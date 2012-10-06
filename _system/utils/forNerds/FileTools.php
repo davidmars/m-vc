@@ -20,7 +20,7 @@ class FileTools {
 	}elseif( function_exists( "mime_content_type" ) ) {
 	    return mime_content_type( $path );
 	}else {
-	    trace("ola");
+	    //trace("ola");
 	    $type = exec("file -bi '".escapeshellarg( $path )."'");
 	    if( $type !== false ) {
 		return $type;

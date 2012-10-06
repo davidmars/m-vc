@@ -209,17 +209,20 @@ class ImageTools{
                 if(!self::$doTheJob){
                     return $newImgUrl;
                 }
-
+                $imgUrl=realpath($imgUrl);
 		if(!is_file($newImgUrl)){
+                    
 			ImageTools::mkDirOfFile($newImgUrl);
 			$resized=ImageTools::sizedImagick($imgUrl,$width,$height,$scaleMode,$mime,$background,$padding);
+                        
 			if(count($shadow)){
 				$s=ImageTools::sizedImagick($imgUrl,$width,$height,$scaleMode,$mime,$background,$padding);
 				$resized=ImageTools::setShadow($resized,$s,$shadow);
 			}
 			if($resized){
+                                
 				try{
-					$resized->writeImage($newImgUrl);
+					$resized->writeImage(realpath($newImgUrl));
 				}catch(Exception $e){
                                         Human::log($e);
 				}
@@ -261,9 +264,9 @@ class ImageTools{
 			$mime = "png";
 		}
 
-		if(!is_file($imgUrl) || ! preg_match("/image/i", mime_content_type($imgUrl))   ){
+		if(!is_file($imgUrl) || ! preg_match("/image/i", FileTools::mime($imgUrl))   ){
 			$resized = new Imagick();
-
+                       
 
 
 			if(!is_numeric($width)){
@@ -279,15 +282,20 @@ class ImageTools{
 			$resized->colorizeImage('#'.$background,$opacity);
 			return $resized;
 		}
-		 
+		  
 		$img = new Imagick( $imgUrl );
 
+                $s=$img->getImageGeometry();
+               $imgHeight = $s["height"];
+               $imgWidth = $s["width"];
+                //print_r($s);
+                //echo $imgWidth;
+                //die();
 
-
-
-		$imgHeight = $img->getImageHeight();
-		$imgWidth = $img->getImageWidth();
-	  
+		
+		
+		//$imgWidth = $img->getImageWidth();
+                die($imgHeight);
                 if($height=="auto"){
                     //pas testé encore mais doit marcher pour déduire une hauteur ou une largeur automatiquement
                     $ratio=$width/$imgWidth;

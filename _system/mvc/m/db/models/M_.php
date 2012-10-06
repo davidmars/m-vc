@@ -74,6 +74,7 @@ class M_ extends Model{
     }
     
     public function init(){
+        Human::log("init model ".get_class($this));
         if(!self::$yetInit[get_class($this)]){
             Human::log("init model for true-------------".get_class($this));
             self::$yetInit[get_class($this)]=true;
@@ -120,14 +121,16 @@ class M_ extends Model{
 		$f["options"]["comments"]=$f["comments"];
                 Field::create($modelName.".".$f["name"],$f["type"],$f["options"]);
                 Human::log("crate ".$f["name"]);
+                
 	    }
             
-	    
+	    $this->unsetProperties();
 	    //whooho!
             $this->db()->init(); 
         }else{
             $this->unsetProperties();
         }
+
         
          
           
@@ -147,9 +150,8 @@ class M_ extends Model{
     private function unsetProperties(){
 
        foreach($this->fields() as $f){
-           
            $fieldName=$f->name;
-           Human::log("unset $fieldName");
+           Human::log("unset $fieldName ".  gettype($this->$fieldName));
            unset($this->$fieldName);
        } 
     }

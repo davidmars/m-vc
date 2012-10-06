@@ -378,5 +378,3 @@ class OneToNAssoc extends NAssoc {
 	}
 
 }
-
-?>

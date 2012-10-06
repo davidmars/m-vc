@@ -70,6 +70,7 @@ class Field {
      * @return string A way to get the field value that will be readable by an human 
      */
     public function val(){
+        Human::log("vaaaaaaaaaaaaaaaaaaaaaaaaaaal".$this->value);
         return $this->value;
     }
     
@@ -218,6 +219,7 @@ class Field {
       * @param mixed $value La nouvelle valeur
       */
     function set( $value ) {
+        
         Human::log("set field value ".$this->name." = ".$value);
 	if( $this->options[self::PASS_THROUGH]){
 	    $this->model->{$this->name} = $value;
@@ -391,7 +393,7 @@ class Field {
      * @param Model $obj model auquel on attache le clone du field
      * @return Field le field cloné attaché au model passé en paramètre
      **/
-    function attach( Model $obj ) {
+    function attach( $obj ) {
 	$field = clone $this;
 	$field->model = $obj;
 	return $field;

@@ -116,7 +116,7 @@ class DbManagerQuery extends DbQuery {
 	 * @param string $field Colonne
 	 * @return DbQuery
 	 */
-	public function whereIn( $values , $field = "id" , $include = true ) {
+	public function whereIn( $values=array() , $field = "id" , $include = true ) {
 
 		$ids = array();
 		//trace($values);

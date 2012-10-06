@@ -4,7 +4,7 @@
 $vv=$_vars;
 /* @var $field FileField */
 $field=$vv->field;
-Human::log($field->get(),"rrrrrrrrrrrrrrrrr");
+Human::log($field,"rrrrrrrrrrrrrrrrr");
 ?>
 <div class="span4">
     <div class="control-group <?=$field->exists()?"":"error"?>" data-field-type="FileField" data-field="root[<?=$vv->name?>]">
@@ -12,7 +12,7 @@ Human::log($field->get(),"rrrrrrrrrrrrrrrrr");
 	<div class="controls">
 	    <input class="span3 date-picker" 
                    type="text" 
-                   value="<?=$field->name?>"
+                   value="<?=$field->val()?>"
                    <?=$vv->editable?"":"disabled"?> 
                    ></input>
 	</div>

@@ -102,6 +102,7 @@ class Model implements IteratorAggregate
             Human::log("------set in model-----".$fieldName." = ".$value);
             
 	// on essaie d'abord en lower-case
+            /*
 		if(property_exists( $this, strtolower( $fieldName ) ))
 		{
 			return $this->{strtolower($fieldName)} = $value;
@@ -113,7 +114,7 @@ class Model implements IteratorAggregate
 			return $this->{strtoupper($fieldName)} = $value;
 		}
 
-
+*/
             
 		$field = Field::getField( $this, $fieldName );
 
@@ -330,7 +331,7 @@ class Model implements IteratorAggregate
 	 **/
 	public static function generate( $model, $manager = Manager, $superClass = Model , $hasOwnManager = true )
 	{
-
+            Human::log("-----generate ".$model);
 		$staticProxies = "";
 		$validClass = "`^([a-zA-Z0-9_]+)$`si";
 		$classes = array_slice( func_get_args() , 0 , 3 );

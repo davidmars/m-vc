@@ -25,7 +25,15 @@ class VV_doc_static extends VV_doc_page {
     public static function getPage($pageName) {
         $page=new VV_doc_page();
         $page->name=$pageName;
+        /*if(!$page->layout){
+            $page->layout=new VV_doc_page();
+        }
+        if(!$page->layout){
+            $page->layout=new VV_doc_page();
+        }
         $page->layout->htmlHeader->title=$pageName;
+         
+         */
         $page->routeUrl="doc/doc/index/".$pageName;
         $page->templateUrl="doc/pages/".$pageName;
         //checks if the page exists

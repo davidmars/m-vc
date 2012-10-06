@@ -1,4 +1,6 @@
 <?
+error_reporting(E_ALL ^ E_NOTICE);
+
 $weAreIn=  str_replace("/setup.php", "", $_SERVER["REQUEST_URI"]);
 function full_url(){
     $s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";

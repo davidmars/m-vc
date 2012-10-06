@@ -110,7 +110,7 @@ class Boot {
     /**
      * all what we need to auto include before starting 
      */
-    private function includeFiles(){
+    private static function includeFiles(){
         //system libs
         self::includeFile(Site::$systemLibs."/ChromePhp.php");
         self::includeFile(Site::$systemLibs."/lessc.inc.php");
@@ -134,7 +134,7 @@ class Boot {
     /**
      * boot the models
      */
-    private function bootModels(){
+    private static function bootModels(){
         foreach (get_declared_classes() as $cl){
             if(in_array("M_",class_parents($cl))){
                 M_::initModel($cl);
