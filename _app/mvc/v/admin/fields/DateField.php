@@ -5,7 +5,7 @@ $vv=$_vars;
 ?>
 <div class="span4">
     <div class="control-group" data-field-type="Date" data-field="root[<?=$vv->name?>]">
-	<label class="control-label"><?=$vv->name?> : <?=$vv->type?></label>
+	<label class="control-label"><?=$vv->label?></label>
 	<div class="controls">
 	    <input class="span3 date-picker" 
                    type="text" 

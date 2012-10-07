@@ -34,22 +34,50 @@ class VV_admin_model extends ViewVariables{
 
 
     /**
-     * 
+     * Returns the list of fields related to the model
+     * @return VV_admin_field Returns the list of fields related to the model. 
      */
     public function getFields(){
         $ret=array();
         
-        $class = new ReflectionClass(get_class($this->model));
+        $rc = new ReflectionClass(get_class($this->model));
+        
+        
+        $conf=$this->model->getAdminConfig();
+        //the filed config we will use
+        $conf=$conf["default"]["fields"];
         
         //$fieldsNames=$class->getStaticPropertyValue("dbFields");
         /* @var $f Field */
         foreach(Field::getFields($this->model) as $f){
-            $field=new VV_admin_field();
-            $field->init($this->model,$this->model->field($f->name));
-            $ret[]=$field;
+            if(!$conf[$f->name]){
+                $conf[$f->name]=array(
+                    "visible"=>true,
+                    "label"=>$f->name
+                );
+            }
         }
+        
+        //list adminconfig fields
+
+        
+        foreach($conf as $fieldName=>$fieldValue){
+            if($conf[$fieldName]["visible"]){
+                if(($conf[$fieldName]["visibleIfNew"]!==false) || $this->model->id){
+                    $field=new VV_admin_field();
+                    $field->init($this->model,$fieldName);
+                    $ret[]=$field;
+                }
+            }
+        }
+        
+        //list all fields
+        
+
         return $ret;
     }
     
+    
+
     
 }

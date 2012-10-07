@@ -16,7 +16,7 @@ $total=$manager->select()->count();
     <div class="control-group" 
          data-field="root[<?=$field->name?>]" 
          data-field-type="ModelSelect">
-	<label class="control-label"><?=$vv->name?> : <?=$vv->type?></label>
+	<label class="control-label"><?=$vv->label?></label>
 	<div class="controls">
 	    <?if($total<20):?>
 	    <select class="span3" <?=$vv->editable?"":"disabled"?> >

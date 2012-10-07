@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * This is the basic database model instance. You will extend it a lot!
+ * It contains basics fields for a database records. It performs the field relationships with database.
+ */
 class M_ extends Model{
     
     public function __construct() {
@@ -17,6 +20,12 @@ class M_ extends Model{
           
     }
     
+    //----------fields--------------------------------
+    /**
+     *
+     * @var IdField  This is an unique identifier for this record.
+     */
+    public $id;
      /**
      *
      * @var CreatedField When was it created?
@@ -27,14 +36,7 @@ class M_ extends Model{
      * @var ModifiedField When was it last modified?
      */
     public $modified;
-    
-    
-    
-    /**
-     *
-     * @var IdField  This is an unique identifier for this record.
-     */
-    public $id;
+
 
 
 
@@ -47,22 +49,15 @@ class M_ extends Model{
 
     /**
      *
-     * @var bool will be true if the model has been boot once. 
+     * @var array An array where model names are keys. Each key will be true if the model has been boot once. 
      */
     public static $yetInit=array();
     
-    /**
-     *
-     * @var array The database fields names. 
-     */
-    public static $dbFields=array();
-    /**
-     * Prepare the model, so init the field associations with database 
-     */
+    
     
     /**
      * Return a manager that will allow you to do database queries on this model.
-     * @return Manager The manager related to the model. In fact the best entry to perform database queries. 
+     * @return DbManager The database manager related to the model. In fact the best entry to perform database queries. 
      */
     public function db(){
 	return Manager::getManager($this);
@@ -75,7 +70,10 @@ class M_ extends Model{
 	    return get_class($this)." ".$this->id;
 	}
     }
-    
+    /**
+     * Return an array with simple datas representations...mostly used in xml or json exports.
+     * @return array Keys are field names, values, field values.
+     */
     public function getDatas(){
         $r=array();
         $className=get_class($this);
@@ -94,6 +92,9 @@ class M_ extends Model{
         $m=new $modelType();
         unset($m);
     }
+    /**
+     * Create the fields relationship with database. 
+     */
     private function createFields(){
             Human::log("------------- Create fields model ".$this->modelName);
             self::$yetInit[get_class($this)]=true;
@@ -137,7 +138,7 @@ class M_ extends Model{
             }
 	    //create the fields
 	    foreach ($fields as $f){
-		$f["options"]["comments"]=$f["comments"];
+		$f["options"][Field::COMMENTS]=$f["comments"];
                 Field::create($modelName.".".$f["name"],$f["type"],$f["options"]);
                 Human::log($this->modelName." Create field ".$f["name"]);
                 
@@ -148,8 +149,13 @@ class M_ extends Model{
     }
 
     /**
-     * Remove the original propertie from the model that are related to database fields.
-     * After that, the setters in Model will take effect.
+     * Remove the original properties from the model that are related to database fields.
+     * <b>WARNING :</b> launch it once, no more!
+     * Why?
+     * Because public properties in the models are not real Field objects and are not declared as Fields, only the comments in the code does matter in fact. 
+     * So, the properties declared in a model are used as config and for autocompletion in your code.
+     * And so, we need to unset this properties because they hidde the real Fields setters ans getters.
+     * After that, the setters in Model will take effect...not before.
      */
     private function unsetProperties(){
        Human::log("--------------------------------------------------- unset initial properties for ".$this->modelName);
@@ -186,14 +192,10 @@ class M_ extends Model{
             "HtmlField",
             "FileField",
         );
-	
-	
-	
+
         if(in_array($className,$areFields)){
-	    
 	    //standard field
 	    $options=array();
-
 	    switch($className){
 	      case "EnumField":
 	      $states=$fieldName."States";
@@ -201,30 +203,59 @@ class M_ extends Model{
 	      $options[Field::DEFAULT_VALUE]=$this->$fieldName;
 	      break;
 	    }
-	    
 	    $r["options"]=$options;
 	    $r["type"]=$className;
 	    return $r;
 	    
-	    
 	}else if(class_exists ($className) && is_subclass_of($className,"M_")){
-	    
 	    //an association
 	    $r["options"]=array( Assoc::TO => $className );
 	    $r["type"]="OneToOneAssoc";
 	    return $r;
-	    
-	    
-	    
-	    
         }else{
-	    
-	    //not a field
-	    
+	    // $className is not a field...so false.
             return false;
         }
     }
     
+    //--------------------admin preferences--------------------------------
+    /**
+     *
+     * @var array Content options to display de model in admin UI.  
+     */
+    public static $adminConfig=array(
+        "default"=>array(
+            "fields"=>array(
+                "id"=>array
+                (
+                    "visible"=>false,
+                    "label"=>"Technical identifier"
+                ),
+                "created"=>array
+                (
+                    "visible"=>true,
+                    "visibleIfNew"=>false,
+                    "label"=>"Creation date"
+                ),
+                "modified"=>array
+                (
+                    "visible"=>true,
+                    "visibleIfNew"=>false,
+                    "label"=>"Last update"
+                )
+            )
+        )
+    );
+    /**
+     *
+     * @return array Return the $adminConfig array. To customize fields in extendeds M_ override this method. 
+     */
+    public function getAdminConfig(){
+        return self::$adminConfig;
+    }
+
+
+    //---------------------common requests---------------------------------
     
     /**
      * Returns the number of records of this model in the database.

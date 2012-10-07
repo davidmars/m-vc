@@ -39,6 +39,8 @@ class DbManager extends Manager
 	/**
 	 *
 	 * @var array Ordre par défaut dans lequel renvoyer les modèles, au format array("champ"=>"ASC" ou "DESC")
+         * @example array("fieldName"=>"ASC") 
+         * @example array("fieldName"=>"DESC") 
 	 */
 	public $order = array();
 

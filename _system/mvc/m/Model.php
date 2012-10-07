@@ -145,8 +145,10 @@ class Model implements IteratorAggregate
                     Human::log("bbbbbbbbbbbbbbbbbbbbb ".$fieldName);
                     //var_dump($value);
                     //die($fieldName);
-                    foreach($value as $k=>$v){
-                       $this->$k = $v; 
+                    if($value && (gettype($value)=="object" || gettype($value)=="array")){
+                        foreach($value as $k=>$v){
+                            $this->$k = $v; 
+                        }
                     }
                     //$this->{$fieldName} = $value;
 

@@ -35,6 +35,9 @@ $vv=$_vars;
 
     <?case "TextField":?>
     <?default:?>
-	<?=$this->render("admin/fields/TextField",$vv)?>
-
+        <?if($vv->template && View::isValid($vv->template)):?>
+            <?=$this->render($vv->template,$vv)?>
+        <?  else:?>
+            <?=$this->render("admin/fields/TextField",$vv)?>
+        <?endif?>
 <? endswitch;?>

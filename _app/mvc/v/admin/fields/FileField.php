@@ -7,7 +7,7 @@ $field=$vv->field;
 ?>
 <div class="span4">
     <div class="control-group <?= ($field->exists() || !$field->val()) ?"":"error"?>" data-field-type="File" data-field="root[<?=$vv->name?>]">
-	<label class="control-label"><?=$vv->name?> : <?=$vv->type?></label>
+	<label class="control-label"><?=$vv->label?></label>
 	<div class="controls input-append">
 	    <input class="span2" placeholder="select a file"
                    type="text" 

@@ -57,6 +57,7 @@ class Field {
      * Désactive la possibilité de modifier publiquement ce field. Seule manière de l'éditer : passer par une requête de type update
      */
     const EDITABLE = "editable";
+    const COMMENTS = "comments";
 
     /**
      * @var array Options
@@ -64,13 +65,17 @@ class Field {
     public $options = array(
 	    //self::PASS_THROUGH => true
     );
+    /**
+     *
+     * @var string the comments found in the code for this field 
+     */
+    public $comments;
     
     /**
      * Returns the field value that will be readable by an human 
      * @return string A way to get the field value that will be readable by an human 
      */
     public function val(){
-        Human::log("vaaaaaaaaaaaaaaaaaaaaaaaaaaal".$this->value);
         return $this->value;
     }
     
@@ -156,6 +161,7 @@ class Field {
 
         $this->editable = true;
 	$this->options = array_merge( self::$defaults , $options );
+        $this->comments= $options[self::COMMENTS];
         if(isset($options[self::EDITABLE]) && $options[self::EDITABLE] == false)
         {
             $this->editable = false;
@@ -536,6 +542,8 @@ class Field {
     public function raw() {
 	return $this->value;
     }
+
+
 
 }
 

@@ -408,11 +408,10 @@ class DbQuery implements IteratorAggregate
 	 * Ajoute un ordre de classement à la requete
 	 *
 	 * @param string $args liste des champs permettant le classement de la requete
-	 * @return DbQuery la requete
+	 * @return DbQuery The modified request
 	 */
 	public function orderBy( $order )
 	{
-	//trace("hello");
 		$this->orderBy = $order;
 		return $this;
 	}
