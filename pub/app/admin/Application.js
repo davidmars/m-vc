@@ -36,13 +36,7 @@ var Application={
             placement: "bottom"
         } );       
         Fields.Text.autoHeightTextareas();
-        
-        
 
-            
-       
-       
-        FileUploader.init();
     },
     /**
      * to call, just before a dom replacement

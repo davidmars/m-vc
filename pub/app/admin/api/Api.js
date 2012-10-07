@@ -14,39 +14,13 @@ var Api={
                     console.log("api call success");
                     Application.checkLogin(ajaxReturn);
                     Application.updateNav();
-                    if(typeof onComplete == 'function') {
+                    if(typeof(onComplete) == 'function') {
                         onComplete (ajaxReturn);
                     }
                 }                    
             });
         },500);
     //console.log('refresh')
-    },
-    upload:function(oFile,progress,complete,onError){
-        // create XMLHttpRequest object, adding few event listeners, and POSTing our data
-        var oXHR = new XMLHttpRequest(); 
-        var vFD = new FormData();
-        
-        vFD.append("TheFile",oFile);
-        
-        oXHR.upload.addEventListener('progress', 
-            function(e){
-                progress(e.loaded,e.total);
-            }, 
-            false, false);
-            
-        oXHR.addEventListener('load', 
-            function(e){
-                complete(e.target.responseText);
-            }, 
-            false
-        );
-            
-        oXHR.addEventListener('error', onError, false);
-        //oXHR.addEventListener('abort', uploadAbort, false);
-        oXHR.open('POST', Config.rootUrl + Config.apiUrl+"/upload");
-        oXHR.send(vFD);
-        return oXHR;
     },
     save:function(model,datas,onComplete){
         datas.template = model.template();
@@ -168,3 +142,57 @@ var Api={
         )
     }    
 }
+/**
+ * An api upload object call the upload service.
+ * Its goal is to upload a file to the server and return a field template.
+ * So you have to set right parameters.
+ * @param modelType String the type of the model where the field is.
+ * @param fieldName String the name of the field to associate the uploaded file.
+ * @param template String the template path to display.
+ * @param oFile File The file to upload, it's an HTML5 File object...oki doki?
+ */
+Api.Upload=function(modelType,fieldName,template,oFile){
+        var me=this;
+        /**
+         * dispatched when 
+         */
+        this.onProgress=function(loaded,total){};
+        this.onComplete=function(response){};
+        this.onError=function(response){};
+        
+        // create XMLHttpRequest object, adding few event listeners, and POSTing our data
+        var oXHR = new XMLHttpRequest(); 
+        var vFD = new FormData();
+        
+        vFD.append("modelType",modelType);
+        vFD.append("fieldName",fieldName);
+        vFD.append("template",template);
+        vFD.append("TheFile",oFile);
+
+        
+        oXHR.upload.addEventListener('progress', 
+            function(e){
+                me.onProgress(e.loaded,e.total);
+            }, 
+            false, false);
+            
+        oXHR.addEventListener('load', 
+            function(e){
+                me.onComplete(e.target.responseText);
+            }, 
+            false
+        );
+        oXHR.addEventListener('error', 
+            function(e){
+                me.onError(e);
+            }, 
+            false
+        );
+            
+        //oXHR.addEventListener('abort', uploadAbort, false);
+        
+        oXHR.open('POST', Config.rootUrl + Config.apiUrl+"/upload");
+        oXHR.send(vFD);
+        
+        //return this;
+    }

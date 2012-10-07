@@ -41,11 +41,32 @@ class C_api extends Controller{
      * This controller copy  $_FILES['TheFile'] in the media folder and echo directly the new file location
      */
     public function upload(){
-        //print_r($_FILES);
-        $sFileName = $_FILES['TheFile']['name'];
-        $sFileType = $_FILES['TheFile']['type'];
+        
+        $json=new VV_apiReturn();
+        
+        $modelType=$_REQUEST["modelType"];
+        $fieldName=$_REQUEST["fieldName"];
+        $fieldName=  preg_replace('#root\[(.*)\]#',"$1",$fieldName);
+        $templatePath=$_REQUEST["template"];
+       
         $newFile=FileTools::saveUploadAsMedia($_FILES['TheFile']);
-        die($newFile);
+        
+        $json->messages[]=$modelType;
+        $json->messages[]=$fieldName;
+        $json->messages[]=$templatePath;
+        $json->messages[]=$newFile;
+        
+        $json->success=true;
+        //the template we will send via json
+        $vv=new VV_admin_field();
+        //create an empty model just to get the good field settings
+        $m=new $modelType();
+        $m->$fieldName=$newFile;
+        
+        $vv->init($m, $fieldName);
+        $template=new View($templatePath,$vv);
+        $json->template=$template->render();
+        die($json->json());
         //die("file received:".$_FILES['TheFile']["tmp_name"]."/".$_FILES['TheFile']['size']." saved into ".$newFile);
     }
     /**

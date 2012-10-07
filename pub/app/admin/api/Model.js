@@ -589,6 +589,7 @@ JQ.bo.on("click",Model.CTRL.DUPLICATE_DATA,function(e){
 
 /**
  * returns a parent Model object relative to the jqery object passed as argument
+ * @return Model The model object.
  */
 Model.getParent=function(el){
     var m; 
@@ -598,6 +599,6 @@ Model.getParent=function(el){
         m=$(el.parent().closest('['+ Model.CTRL.DATA_MODEL_TYPE +']'));
     }
     
-    var model=new Model(m);
-    return model;
+    
+    return new Model(m);
 }
