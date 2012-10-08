@@ -24,7 +24,15 @@ class View {
          * @example a templates located at "_app/mvc/v/a-folder/hello-world.php" should be "a-folder/hello-world"
 	 */
 	public $path;
-	/**
+        
+        /**
+         *
+         * @var bool Will be true if the view is loaded via an ajax request. 
+         */
+        public $isAjax=false;
+
+
+        /**
 	 *
 	 * @var string Contains the sub-templates that have called the inside function. So this will be set only if the current view is a kind of layout. 
 	 */
@@ -46,6 +54,7 @@ class View {
                     $viewVariables=new ViewVariables();
                 }
 		$this->viewVariables=$viewVariables;
+                $this->isAjax=( $_SERVER["HTTP_X_REQUESTED_WITH"] == "XMLHttpRequest" );
 	}
         /**
          * Try to return a valid path for a template file.

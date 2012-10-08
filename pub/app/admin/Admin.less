@@ -4,6 +4,11 @@
 @import "../fmk/Pov";
 
 
+.txt-small{
+    font-size:10px;
+    line-height:10px;
+}
+
 .pov-admin{
 
     .control-group{
@@ -11,6 +16,35 @@
     }
     .help-block{
         color:@grayLight;
+    }
+
+    .model-form{
+        margin-bottom:60px;
+    }
+
+    .model-preview{
+        .model-name{
+            h3;
+        }
+    }
+
+    .labels{
+        clear:both;
+
+        .labeled-property{
+            
+            label{
+                color:@grayLight;
+                width:150px;
+                display:inline-block;
+                .txt-small;
+            }
+            div{
+                width:150px;
+                display:inline-block;
+                .txt-small;
+            }
+        }
     }
 }
 .loading-full{

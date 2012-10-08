@@ -1,0 +1,1 @@
+<a href="#Model.save" class="btn pull-right">save</a>

@@ -72,8 +72,11 @@ class Controller {
      */
     public $routeToFunction="";
 
-
-    
+    /**
+     *
+     * @var View The view object resulting a controller function 
+     */
+    public $resultView;
     /**
      * convert an url(splitted by folders) in an url that could match a controller. 
      * @param array $parts
