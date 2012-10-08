@@ -1,7 +1,7 @@
 <?
 class C_api extends Controller{
 
-     public function record($modelType){
+     public static function record($modelType){
 	
 	$modelType=$_REQUEST["type"];
 	$modelId=$_REQUEST["id"];
@@ -40,7 +40,7 @@ class C_api extends Controller{
     /**
      * This controller copy  $_FILES['TheFile'] in the media folder and echo directly the new file location
      */
-    public function upload(){
+    public static function upload(){
         
         $json=new VV_apiReturn();
         

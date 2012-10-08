@@ -9,31 +9,35 @@ class C_admin_model extends Controller{
     /**
      * Will display a list of models of the given type.
      * @param string $modelType the model 
+     * @return C_admin_model
      */
-    public function listModels($modelType){
+    public static function listModels($modelType){
+	
+	$c=new C_admin_model();
         POV_CssAndJs::adminSettings();
         //unexisting model
         if(!class_exists($modelType)){
-            $this->setHeader404();
-            return null;
+            $c->setHeader404();
+            return $c;
         }
         //get the model class
         $vv=new VV_admin_model_list();
         $vv->init($modelType);
-        $this->resultView=new View("admin/model-list", $vv);
-        return $this->resultView;
+        $c->resultView=new View("admin/model-list", $vv);
+        return $c;
     }
     /**
      * Will display a form to create or update a model.
      * @param string $modelType The type of the target model
      * @param string $modelId The id of the target model, if null an emty form of the requested model will be returned. 
      */
-    public function editModel($modelType,$modelId=null){
+    public static function editModel($modelType,$modelId=null){
+	$c=new C_admin_model();
         POV_CssAndJs::adminSettings();
         //unexisting model
         if(!class_exists($modelType)){
-            $this->setHeader404();
-            return null;
+            $c->setHeader404();
+            return $c;
         }
         if($modelId && $modelType){
 	    $manager = Manager::getManager($modelType);
@@ -44,28 +48,12 @@ class C_admin_model extends Controller{
 	if($m){
             $vv=new VV_admin_model();
             $vv->init($m);
-            return new View("admin/model-form",$vv);
+            $c->resultView=new View("admin/model-form",$vv);
 	}
+	return $c;
         
     }
-    /**
-     * Will display a form to create or update a model.
-     * @param string $modelType The type of the target model
-     * @param string $modelId The id of the target model, if null an emty form of the requested model will be returned. 
-     * @return Controller
-     */
-    public static function url_editModel($modelType,$modelId=null){
-        $c=new C_admin_model();
-        $view=$c->editModel($modelType, $modelId);
-        $path="admin/admin_model/";
-        //---- we need to find....
-        //the url of the current controller by its classNme
-        //the current function name
-        //the vurrent function params
-        $c->route=$path."editModel"."/".$modelType."/".$modelId;
-        
-        return $c;
-    }
+
     
     
 }

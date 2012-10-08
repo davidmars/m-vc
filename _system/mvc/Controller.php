@@ -91,8 +91,88 @@ class Controller {
         return $url;
     }
     */
+    
+    
+   public static function findControllerPath($controllerClass,$dir=null){
+      
+       if(!$dir){
+	   $dir=Site::$appControllersFolder; 
+       }
+       $dirs=array();
+       
+       //Human::log("findControllerPath ".$controllerClass. " ".$dir);
+       
+       if ($handle = opendir($dir)) {
+	   
+	    /* Ceci est la façon correcte de traverser un dossier. */
+	    while (false !== ($entry = readdir($handle))) {
+		if( $entry!="." && $entry!=".."){
+		    $abs=$dir."/".$entry;
+		    if(is_dir($abs)){
+			$dirs[]=$abs;
+		    }else if(is_file($abs)){
+		       if(strtolower($entry)==strtolower($controllerClass.".php")){
+			   closedir($handle);
+			   $path=$abs;
+			   $path=str_replace(Site::$appControllersFolder."/", "", $path);
+			   $path=str_replace(".php", "", $path);
+			   $path=str_replace("c_", "", $path);
+			   $path=str_replace("C_", "", $path);
+			   return $path;
+		       } 
+		    }
+		}
+	    }
+	    closedir($handle);
+	    foreach($dirs as $abs){
+	       return self::findControllerPath($controllerClass,$abs); 
+	    }
+	}
+
+	
+       
+   }
 
 
+   public function __construct() {
+	$this->route=$this->guessRoute();
+   }
+   
+   public function url(){
+       return GiveMe::url($this->route);
+   }
+    
+    
+    /**
+     * Set the route parametter by the constructor...
+     */
+    private function guessRoute(){
+	$back=debug_backtrace();
+	//print_r($back[1]);
+	//die();
+	$path=$back[1]["file"];
+	$function =$back[2]["function"];
+	$path=  Controller::findControllerPath(get_class($this));
+	$args =implode("/",$back[2]["args"]);
+	return $path."/".$function."/".$args;
+	/*
+	$className=get_class($this);
+	$c=new C_admin_model();
+        $view=$c->editModel($modelType, $modelId);
+        $path="admin/admin_model/";
+        //---- we need to find....
+        //the url of the current controller by its classNme
+        //the current function name
+        //the vurrent function params
+	$args=func_get_args();
+        $c->route=$path.__FUNCTION__."/".implode("/",$args);
+        
+        return $c;
+	 * 
+	 */
+    }
+
+        
     /**
      * Return a controller based on a route.
      * @param String $route an internal url that looks like : /path/to/controler/controlerName/function-in-the-controler/param1/param2/paramN
@@ -259,8 +339,8 @@ class Controller {
      * @return View the resulting view object
      */
     public function run(){
-        $view=call_user_func_array(array($this,$this->routeFunction), $this->routeParams);
-        return $view;
+        $controller=call_user_func_array(array($this,$this->routeFunction), $this->routeParams);
+        return $controller->resultView;
     }
     
     

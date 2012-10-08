@@ -14,7 +14,7 @@ class C_home extends Controller {
          */
     	public function index($param1=null,$param2=null)
 	{
-            
+            $c=new C_home();
             //if too much arguments redirect to the best page url
             if(func_num_args()>2){
                 $this->redirect302($this->routeToFunction."/$param1/$param2");
@@ -27,8 +27,8 @@ class C_home extends Controller {
             $vv->param1=$param1;
             $vv->param2=$param2;
             $vv->title="Hello world";
-            $view=new View("home", $vv);
-            return $view;
+            $c->resultView=new View("home", $vv);
+            return $c;
 	}
     	
 }

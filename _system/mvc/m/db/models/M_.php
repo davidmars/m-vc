@@ -158,18 +158,20 @@ class M_ extends Model{
      * After that, the setters in Model will take effect...not before.
      */
     private function unsetProperties(){
-       Human::log("--------------------------------------------------- unset initial properties for ".$this->modelName);
+       //Human::log("--------------------------------------------------- unset initial properties for ".$this->modelName);
        foreach($this->fields() as $f){
            
            $fieldName=$f->name;
-           Human::log("FIELD unset $fieldName ".gettype($this->$fieldName));
-           unset($this->$fieldName);
            
+           unset($this->$fieldName);
+           /*
            if(gettype($this->$fieldName)=="object"){
               Human::log("FIELD now $fieldName is ".  get_class($this->$fieldName)); 
            }else{
               Human::log("FIELD now $fieldName is ".  gettype($this->$fieldName));  
            }
+	    
+	    */
        } 
     }
     /**

@@ -6,7 +6,6 @@ $vv=$_vars;
 ?>
 <?$this->inside("admin/layout/model-layout")?>
 
-	    
 
 	    
 		<h1><?=$vv->modelType?></h1>
@@ -47,7 +46,8 @@ $vv=$_vars;
                         <td><?=$m->model->created->val()?></td>
                         <td><?=$m->model->modified->val()?></td>
                         <?/*<td><a class="btn btn-small" href="<?=GiveMe::url("admin/admin_model/editModel/".$m->modelType."/".$m->model->id)?>">Edit</a></td>*/?>
-                        <td><a class="btn btn-small" href="<?=GiveMe::url(C_admin_model::url_editModel($m->modelType, $m->model->id)->route)?>">Edit</a></td>
+                        <td><a class="btn btn-small" href="<?=C_admin_model::editModel($m->modelType, $m->model->id)->url()?>">Edit</a></td>
+                        
                     </tr>       
                     <?endforeach?>
                 </tbody>

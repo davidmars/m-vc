@@ -14,7 +14,8 @@ class C_doc extends Controller{
      * @param string $page the page to display
      * @return View The view will be one of the template located in v/doc/pages.
      */
-    public function index($page=null){
+    public static function index($page=null){
+	$c=new C_doc();
         POV_CssAndJs::docSettings();
         //if too much arguments redirect to the best page url
         if(func_num_args()>1){
@@ -26,15 +27,16 @@ class C_doc extends Controller{
         //if no page found display the 404
         if(!$vv){
             //custom 404 error page for doc section.
-            $this->setHeader404();
+            $c->setHeader404();
             $vv= new VV_404();
-            $vv->message="The page ".Site::url($this->route,true)." cannot be found";
-            return new View("doc/404",$vv);
+            $vv->message="The page ".Site::url($c->route,true)." cannot be found";
+            $c->resultView=new View("doc/404",$vv);
+	    return $c;
         }
         
         
-        $view=new View($vv->templateUrl,$vv);
-        return $view;
+        $c->resultView=new View($vv->templateUrl,$vv);
+        return $c;
     }
     /**
      * This route will display php documentation of the designed class. 
@@ -44,16 +46,19 @@ class C_doc extends Controller{
      * @return View The view template will be doc/reference/class.php and can 
      */
     public function classDefinition($className=false){
+	$c=new C_doc();
         POV_CssAndJs::docSettings();
         $vv=new VV_doc_reference_class();
         $vv->run();
         $vv->setClassName($className);
-        $view=new View("doc/reference/class",$vv);
-        return $view;
+        $c->resultView=new View("doc/reference/class",$vv);
+        return $c;
 
     }
     public function basicTemplate(){
-       return new View("doc/samples/simple-template", null); 
+	$c=new C_doc();
+        $c->resultView=new View("doc/samples/simple-template", null); 
+	return $c;
     }
 
     

@@ -407,7 +407,6 @@ class Field {
      * @return Field le field cloné attaché au model passé en paramètre
      **/
     function attach( $obj ) {
-        Human::log("clooooooooone");
 	$field = clone $this;
 	$field->model = $obj;
 	return $field;
