@@ -1,6 +1,10 @@
 <?php
 /* @var $this View */
+
 /* @var $vv VV_admin_model_list */
+
+
+
 /* @var $m VV_admin_model */
 $vv=$_vars;
 ?>
