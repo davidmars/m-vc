@@ -1,18 +1,23 @@
 <?php
 /**
- * A Download represents a file that is downloadable.  
+ * A Contact represents a contact information with a downloadable file
  */
-class M_download extends M_{
+class M_contact extends M_{
 
     public static $manager;
     /**
      *
-     * @var TextField The name of the download.
+     * @var TextField The name of the contact.
      */
-    public $title;    
+    public $title;        
     /**
      *
-     * @var TextField The description of the download.
+     * @var TextField The post of the contact
+     */
+    public $post;        
+    /**
+     *
+     * @var TextField The description of the contact.
      */
     public $description;    
     /**
@@ -30,13 +35,7 @@ class M_download extends M_{
      * @var BoolField Is the file downloadable without authorisation?
      */
     public $restricted=false;
-    
-    /**
-     *
-     * @var M_category The category where it will be possible to find the download.
-     */
-    public $category;
-    
+        
     /**
      *
      * @var ModifiedField Test sur un champ dans le modele étendu 
@@ -55,26 +54,27 @@ class M_download extends M_{
             "visible"=>true,
             "label"=>"Title"
         );
-        $conf["default"]["fields"]["category"]=array(
+        
+        $conf["default"]["fields"]["post"]=array(
             "visible"=>true,
-            "label"=>"Category"
+            "label"=>"Post"
         );
-
+        
+        $conf["default"]["fields"]["description"]=array(
+            "visible"=>true,
+            "label"=>"Description"
+        );
         
         $conf["default"]["fields"]["break"]=array(
             "notAField"=>true,
             "visible"=>true,
             "template"=>"admin/fields/xtra/section",
             "label"=>"Download details"
-        );
-        $conf["default"]["fields"]["description"]=array(
-            "visible"=>true,
-            "label"=>"Description"
-        );
+        );        
         $conf["default"]["fields"]["theFile"]=array(
             "visible"=>true,
             "label"=>"Downloadable file",
-            "help"=>"the file to download"
+            "help"=>"the file contact to download"
             
         );
         $conf["default"]["fields"]["restricted"]=array(

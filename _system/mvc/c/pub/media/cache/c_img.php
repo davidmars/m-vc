@@ -12,13 +12,16 @@ class C_Img extends Controller {
         /**
          * This contoller function refers to ImageTools::sized function
          */
-    	public function sized()
+    	public static function sized()
 	{
+            
             ImageTools::$doTheJob=true;
             $params=func_get_args();
-            $img=ImageTools::processUrl("sized", $params,$this->extension);
-            ImageTools::output($img);
-            die();
+            
+            $img=ImageTools::processUrl("sized", $params,"png");
+            
+             ImageTools::output($img);
+            //die("toto".$img);
 	}
     	
 }

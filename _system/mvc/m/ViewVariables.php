@@ -26,8 +26,11 @@ class ViewVariables{
      */
     public $anarchy=array();
 
-
-
+    /**
+     * Lets give you informations about the fact to put it in a layout or not.
+     * @var Boolean 
+     */
+    public $isAjax=false;
 
     /**
      *

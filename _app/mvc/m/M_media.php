@@ -1,8 +1,8 @@
 <?php
 /**
- * A Download represents a file that is downloadable.  
+ * A media can contain a file to download, youtube embedded video, etc 
  */
-class M_download extends M_{
+class M_media extends M_{
 
     public static $manager;
     /**
@@ -33,7 +33,7 @@ class M_download extends M_{
     
     /**
      *
-     * @var M_category The category where it will be possible to find the download.
+     * @var M_category_media The category where it will be possible to find the download.
      */
     public $category;
     
@@ -86,9 +86,8 @@ class M_download extends M_{
         return $conf;
     }
            
-    
-}
 
+}
 
 
 

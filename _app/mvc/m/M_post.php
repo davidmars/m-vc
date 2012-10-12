@@ -15,6 +15,11 @@ class M_post extends M_{
      * @var BoolField If positive, the post will be displayed in variaous important places.
      */
     public $sticky=true;
+    /**
+     * 
+     * @var TextField The content of the post
+     */
+    public $content;
     
     /**
      *
@@ -29,14 +34,9 @@ class M_post extends M_{
     
     /**
      *
-     * @var M_category The category where it will be possible to find the post.
+     * @var M_category_post The category where it will be possible to find the post.
      */
-    public $category;
-    
-    
-
-           
-    
+    public $category;          
 }
 
 

@@ -9,8 +9,7 @@ class M_category extends M_{
      *
      * @var TextField The name of the category
      */
-    public $title;
-  
+    public $title;    
 }
 
 

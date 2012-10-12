@@ -1,0 +1,18 @@
+<? 
+    /* @var $vv VV_categoryMedia */
+    $vv = $_vars;            
+    
+    /* @var $this View */
+    $this->inside("press/layout", $vv);    
+?>
+
+
+<!-- Affichage de chaque preview -->
+<? foreach ($vv->categoryMedia->getSubCategoryMediaForPage($vv->page) as $subcategory): ?>
+    <?=$vv->categoryMedia->title . " - " . $subcategory->title . "<br/>"?>
+<?endforeach;?>
+
+<!-- Affichage de la pagination si > a 1 page -->
+<?if($vv->categoryMedia->getNbPage() > 1):?>
+<?=$this->render("press/paginationCategoryMedia", $vv)?>
+<?endif?> 

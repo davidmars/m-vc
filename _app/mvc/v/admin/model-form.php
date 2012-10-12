@@ -1,10 +1,12 @@
-<?$this->inside("admin/layout/model-layout")?>
+
 <?php
 /* @var $this View */
 /* @var $vv VV_admin_model */
 $vv=$_vars;
 ?>
-
+<?if(!$vv->isAjax):?>
+<?$this->inside("admin/layout/model-layout")?>
+<?endif?>
 
 <div class="row model-form" 
      data-model-id="<?=$vv->model->id?>" 
@@ -26,7 +28,7 @@ $vv=$_vars;
 	<div class="span8 ">
             <?=$this->render("admin/components/btn/model-save")?> 
 	</div>
-	
+	0
     </div>
     
     <hr/>

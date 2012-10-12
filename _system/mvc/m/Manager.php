@@ -67,7 +67,7 @@ class Manager {
 	/**
 	 * Renvoie une occurence du modèle lié au manager ayant pour identifiant $id
 	 * @param mixed $id Identifiant du modèle à récupérer
-	 * @return Model Le modèle identifié, ou null
+	 * @return mixed Le modèle identifié, ou null
 	 */
 	public function get( $id ) {
 	//trace("getting [$id]");
