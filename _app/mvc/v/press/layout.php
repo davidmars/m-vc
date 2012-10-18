@@ -21,7 +21,7 @@
                         </div>
                         <a href="<?=C_press::categoryPost($category->id)->url()?>">
                             <div><?=$category->title?></div>
-                        </a>
+                        </a>    
                     </div>                    
                     <?endforeach;?>  
                     
