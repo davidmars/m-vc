@@ -3,25 +3,47 @@
     text-align: center;
     .bg-color-separator-bloc;
     
-    div {
-        &.item-nav {
-            height:@grid_square * 5px;
-            .font-nav-tab-title;
-            &.active {
-                .bg-image-active;
-                a {
-                    color:@color3;                    
-                }
-            }
-            
+    .item-nav {
+    
+        height:@grid_square * 5px;
+        position:relative;
+        .font-nav-tab-title;
+        
+        &.active {            
             a {
-                .font-nav-tab-title;
-                position:relative;
-                top:@grid_square * 2px;
-            }
-            
-            .bg-color-title-bloc;
+                .bg-image-active;
+                color:@color3;
+                &:hover{
+                    .bg-image-active;
+                }                            
+            }            
+            span.arrow {
+                display:block;                
+            }            
+        }        
+
+        a {
+            .font-nav-tab-title;
+            display:block;
+            line-height:80px;
+            &:hover{           
+                background:@color5;  
+                text-decoration:none;
+            }            
         }
+        
+        span.arrow {
+            background: url(/havana_pressroom/pub/app/press/img/nav_tab_arrow.gif);               
+            width:17px;
+            height:9px;
+            position:absolute;
+            left:50%;
+            bottom:-9px;
+            margin:0 0 0 -8px;
+            display:none;
+        }
+
+        .bg-color-title-bloc;
     }   
 }
     

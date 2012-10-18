@@ -11,29 +11,20 @@
         <div class="span8">
             
             <!-- Menu vers chaque category -->
-            <div class="navBarComponent">   
+            <div class="navBarComponent">  
                 <div class="row">                
                     <!-- Pour chaque category post -->
                     <? foreach ($vv->getAllCategoriesPost() as $category): ?>
                     <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
-                        <div class="<?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>">
-                            
-                        </div>
-                        <a href="<?=C_press::categoryPost($category->id)->url()?>">
-                            <div><?=$category->title?></div>
-                        </a>
+                        <a href="<?=C_press::categoryPost($category->id)->url()?>"><?=$category->title?></a>
+                        <span class="arrow"></span>
                     </div>                    
-                    <?endforeach;?>  
-                    
+                    <?endforeach;?>                    
                     
                     <? foreach ($vv->getAllCategoriesMedia() as $category): ?>                                
                     <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
-                        <div class="<?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>">
-                            
-                        </div>
-                        <a href="<?=C_press::categoryMedia($category->id)->url()?>">
-                            <div><?=$category->title?></div>
-                        </a>
+                        <a href="<?=C_press::categoryMedia($category->id)->url()?>"><?=$category->title?></a>
+                        <span class="arrow"></span>
                     </div>  
                     <?endforeach;?>     
                 </div>
