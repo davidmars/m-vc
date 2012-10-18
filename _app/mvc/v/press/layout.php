@@ -9,26 +9,38 @@
     <div class="row">
         
         <div class="span8">
+            
             <!-- Menu vers chaque category -->
-            <div class="row">
-                <!-- Pour chaque category post -->
-                <? foreach ($vv->getAllCategoriesPost() as $category): ?>
-                <div class="span2 <?=($vv->currentCategoryId == $category->getCategoryId())?("bg-color1"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
-                    <a href="<?=C_press::categoryPost($category->id)->url()?>">
-                        <h1><?=$category->title?></h1>
-                    </a>
+            <div class="navBarComponent">   
+                <div class="row">                
+                    <!-- Pour chaque category post -->
+                    <? foreach ($vv->getAllCategoriesPost() as $category): ?>
+                    <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
+                        <div class="<?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>">
+                            
+                        </div>
+                        <a href="<?=C_press::categoryPost($category->id)->url()?>">
+                            <div><?=$category->title?></div>
+                        </a>
+                    </div>                    
+                    <?endforeach;?>  
+                    
+                    
+                    <? foreach ($vv->getAllCategoriesMedia() as $category): ?>                                
+                    <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
+                        <div class="<?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>">
+                            
+                        </div>
+                        <a href="<?=C_press::categoryMedia($category->id)->url()?>">
+                            <div><?=$category->title?></div>
+                        </a>
+                    </div>  
+                    <?endforeach;?>     
                 </div>
-                <?endforeach;?>   
-
-                <!-- Pour chaque category media -->
-                <? foreach ($vv->getAllCategoriesMedia() as $category): ?>                                
-                <div class="span2 <?=($vv->currentCategoryId == $category->getCategoryId())?("bg-color1"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
-                    <a href="<?=C_press::categoryMedia($category->id)->url()?>">
-                        <h1><?=$category->title?></h1>
-                    </a>
-                </div>
-                <?endforeach;?>   
             </div>
+            
+            <!-- seperator bloc -->
+            <div class="separatorBloc">&nbsp;</div>
             
             <!-- main content -->
             <div id="mainContent">
@@ -37,7 +49,7 @@
         </div>
         
         <!-- sideBar -->
-        <div class="span4">
+        <div class="span4 sidebar">
                 <?=$this->render("press/sideBar", $vv)?>
         </div>        
    </div> 

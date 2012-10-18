@@ -2,7 +2,23 @@
 @import "../../libs/bootstrap/less/bootstrap";
 @import "../../libs/bootstrap/less/responsive";
 
-.bg-color1 {
-    background-color:red;    
+@import "variables";
+@import "backgrounds";
+@import "separators";
+@import "borders";
+@import "fonts";
+@import "sizes";
+
+/* HAVANA COMPOSENT */
+@import "components";
+
+
+body {
+    .bg-image-press-room;
 }
 
+#mainContent {
+    .posts {
+        .bg-color-content-bloc;
+    }
+}

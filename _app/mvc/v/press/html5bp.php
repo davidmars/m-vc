@@ -23,7 +23,6 @@ $vv=new LayoutVariables($_vars);
           fonts loaded before...then used in less
           <link rel="stylesheet" href="assets/project/fonts.css">
          */?>
-
         <?=CSS::includeHeaderFiles(false)?>
         <?=JS::includeHeaderFiles(false)?>
 

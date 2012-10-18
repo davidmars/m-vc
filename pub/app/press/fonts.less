@@ -1,0 +1,145 @@
+/* GENERIC FONTS */
+
+
+/* Functions */
+
+/**
+ * Function to add a font with params 
+ * mentadory params
+ * @param font it's the font family
+ * @param size it's the size for our font
+ * @param color it's the color for the text
+
+ * optional params
+ * @param weight it's the weight for the bold style
+ * @param style it's the style on your text like italic
+ * @param transform it's the transformation on your text
+ * @param spacing it's the letter spacing value
+ */
+.add-font(@font, @size, @color, @weight: normal, @style: normal, @transform: none, @spacing: normal) {
+    font-family:@font;
+    font-size:@size;
+    color:@color;
+    font-weight:@weight;
+    font-style:@style;
+    text-transform:@transform;
+    letter-spacing:@spacing;
+}
+
+
+/* Load fonts */
+@font-face {
+    font-family:'FuturaStdMediumCondensed';
+    src:url('/havana_pressroom/pub/app/press/font/futura-regular/futurastd-condensed-webfont.eot');
+    src:url('/havana_pressroom/pub/app/press/font/futura-regular/futurastd-condensed-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/havana_pressroom/pub/app/press/font/futura-regular/futurastd-condensed-webfont.woff') format('woff'),
+         url('/havana_pressroom/pub/app/press/font/futura-regular/futurastd-condensed-webfont.ttf') format('truetype'),
+         url('/havana_pressroom/pub/app/press/font/futura-regular/futurastd-condensed-webfont.svgz#FuturaStdMediumCondensed') format('svg');
+}
+
+.font-nav-tab-title {
+    .add-font(@ff1, @fs4, @color1, normal, normal, none, 1px);
+}
+
+.font-bloc-title {
+    .add-font(@ff1, @fs4, @color3, normal, normal, none, 1px);
+}
+
+.font-bloc-title-caps {
+    .add-font(@ff1, @fs4, @color3, normal, normal, uppercase, 1px);
+}
+
+
+.font-bloc-title.active {
+    color:@color2;
+}
+
+.font-subtitle-download-page {
+    .add-font(@ff2, @fs2, @color2, bold);
+}
+
+.font-subtitle-text-bloc {
+    .add-font(@ff2, @fs2, @color2, bold);
+}
+
+.font-subtitle-description-receipes-page {
+    .add-font(@ff2, @fs2, @color2, bold);
+}
+
+.font-description-receipes-page {
+    .add-font(@ff3, @fs3, @color1);        
+}
+
+.font-text-content-category-post {
+    .add-font(@ff4, @fs3, @color1);        
+}
+
+.font-text-content-category-post.important {
+    color:@color2;
+}
+
+.font-download-page {
+    .add-font(@ff3, @fs2, @color1);            
+}
+
+.font-download-text-bloc {
+    .add-font(@ff3, @fs2, @color1);        
+}
+
+.font-link-download-page {
+    .add-font(@ff3, @fs2, @color2);            
+}
+.font-link-download-page.decoration {
+    text-decoration: underline;
+}
+
+.font-link-products-page {
+    .add-font(@ff3, @fs2, @color2);        
+}
+.font-link-products-page.decoration {
+    text-decoration: underline;
+}
+
+.font-link-attachment-text {
+    .add-font(@ff3, @fs1, @color1);        
+}
+
+/* CONTACT BLOC */
+.font-contact-name {
+    .add-font(@ff5, @fs2, @color2, bold, normal, uppercase, normal);        
+}
+
+.font-contact-function {
+    .add-font(@ff3, @fs2, @color1);        
+}
+
+.font-contact-society {
+    .add-font(@ff2, @fs2, @color1, bold, normal, none, normal);
+}
+
+.font-contact-address {
+    .add-font(@ff3, @fs0, @color1);        
+}
+
+.font-contact-email {
+    .add-font(@ff3, @fs1, @color1);        
+}
+
+/* HAVANA CULTURA PRESS ROOM BANNER */
+.font-link-pressroom {
+    .add-font(@ff5, @fs2, @color3, bold, normal, uppercase, normal);
+}
+
+.font-havana-cultura {
+    .add-font(@ff1, @fs5, @color2, normal, normal, none, 1px);    
+}
+
+/* DOWNLOAD PRESS PACK BANNER */ 
+.font-banner-title {
+    .add-font(@ff1, @fs5, @color2, normal, normal, none, 1px);    
+}
+
+.font-banner-content {
+
+    .add-font(@ff1, @fs4, @color1, normal, normal, none, 1px);    
+}

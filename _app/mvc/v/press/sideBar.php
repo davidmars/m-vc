@@ -3,26 +3,24 @@
     $vv = $_vars;      
 ?>
 
-<h1>Sidebar</h1>
-
-<div>
-    Go to press Room Havana >
-</div>
-
-<h2>Contact</h2>
-<!-- Pour chaque category post -->
-<? foreach ($vv->getAllContact() as $contact): ?>
-<!-- The title of the Contact-->
-<div>
-    <?=$contact->title?>
-    <br/>
-    <small><?=$contact->post?></small>
-</div>
-
-<!-- The description of the contact -->
-<div>
-    <br/>
-    <?=$contact->description?>
+<!-- Havana cultura press room link -->
+<div class="pressRoomComponent">
+    <div class="item-content">
+        <div class="item-subtitle">Go to press room</div>
+        <div class="item-title">Havana Cultura</div>
+    </div>
     
 </div>
-<?endforeach;?>   
+
+<!-- Download -->
+<div class="downloadComponent">
+    <div class="item-title">
+        <div>Download</div>
+    </div>    
+    <div class="item-content">
+        <br/>
+    </div>
+</div>
+
+<!-- Contacts -->
+<?=$this->render("press/contact", $vv)?>

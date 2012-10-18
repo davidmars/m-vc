@@ -80,7 +80,21 @@ Class C_press extends Controller{
      */
     public function subCatMedia($subCat, $pagination = "") {
         
-    }      
+    }
+    
+    /**
+     *
+     * 
+     */
+    public function styleGuide() {
+        // set the css and the js 
+        self::setCssAndJs();
+        $c = new C_press();
+        
+        $vv = new VV_layout();
+        $c->resultView = new View("press/styleGuide", $vv);
+        return $c;
+    }
     
     /**
      * Settings for admin, need to be added

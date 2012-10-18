@@ -6,10 +6,15 @@
     $this->inside("press/layout", $vv);    
 ?>
 
-<!-- Affichage de chaque preview -->
-<? foreach ($vv->categoryPost->getPostsForPage($vv->page) as $post): ?>
-<?=$this->render("press/postPreview", $post)?>
-<?endforeach;?>
+<div class="posts">
+    <!-- Affichage de chaque preview -->
+    <? foreach ($vv->categoryPost->getPostsForPage($vv->page) as $post): ?>
+    <br/>
+    <?=$this->render("press/postPreview", $post)?>
+    <br/>
+    <div class="separatorTextBloc">&nbsp;</div>    
+    <?endforeach;?>
+</div>
 
 <!-- Affichage de la pagination si > a 1 page -->
 <?if($vv->categoryPost->getNbPage() > 1):?>

@@ -4,14 +4,36 @@
     $vv = $_vars;   
 ?>
 
+<br/>
+<br/>
 <div class="row">
-    <div class="span8 bg-color1">
-        <h3>More <?=$vv->categoryPost->title?></h3>
+    <div class="span8">
+        
+        <!-- Insertion d'un composant de pagination -->
+        <div class="paginationComponent">
+            
+            <!-- Insertion d'un composant de titre -->
+            <div class="item-title">
+                <div>More <?=$vv->categoryPost->title?></div>
+            </div>
+            
+            <!-- Insertion d'un composant de contenu -->
+            <div class="item-content">        
+                <div class="item-pagination">
+                    <div class="row">
+                    <?for($p = 1; $p < $vv->categoryPost->getNbPage() + 1; $p++):?>                
+                        <div class="span1 item-pagination-number <?=($p == $vv->page)?("active"):("")?>">
+                            <a href="<?=C_press::categoryPost($vv->categoryPost->id, $p)->url()?>"><?=$p?></a>
+                        </div>
+                        <?/* if($p != $vv->page):?>                        
+                            <div class="span1 item-separator">&nbsp;</div>                
+                        <?endif;*/?>
+                    <?endfor;?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
     </div>
-    <div class="span8">        
-        <?for($p = 1; $p < $vv->categoryPost->getNbPage() + 1; $p++):?>
-        <a href="<?=C_press::categoryPost($vv->categoryPost->id, $p)->url()?>"><?=$p?></a>
-        <?endfor;?>
-    </div>
-</div>
-    
+</div>    

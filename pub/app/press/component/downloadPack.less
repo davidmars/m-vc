@@ -1,0 +1,22 @@
+/* COMPOSENT DOWNLOAD */ 
+.downloadComponent {
+    div {
+        &.item-title {
+            height:@grid_square * 3px;    
+            .font-bloc-title-caps;
+            .bg-image-ban-grey;
+            &:first-child {
+                div {
+                    padding-left: @grid_square * 1px;
+                    position:relative;
+                    top: @grid_square * 1px;
+                }
+            }
+        }      
+        
+        &.item-content {
+            .bg-color-download-bloc;
+            height:@grid_square * 7px;    
+        }
+    }
+}

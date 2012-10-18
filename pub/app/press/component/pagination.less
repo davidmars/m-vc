@@ -1,0 +1,53 @@
+/* COMPOSENT PAGINATION */ 
+.paginationComponent {
+    div {
+        &.item-title {
+            height:@grid_square * 3px;    
+            .font-bloc-title-caps;
+            .bg-image-ban-grey;
+            &:first-child {
+                div {
+                    padding-left: @grid_square * 1px;
+                    position:relative;
+                    top: @grid_square * 1px;
+                }
+            }
+        }
+        
+        &.item-content {
+            .bg-color-pagination-bloc;
+            div {
+                &.item-pagination {
+                    div {
+                        /*margin:0;*/
+                        text-align:center;
+                        &.item-separator {
+                            .separator-nav-tab;
+                            height:@grid_square * 2.5px;     
+                        }
+                        
+                        .item-pagination-number {
+                            &.active {
+                                .bg-image-active;
+                                a {
+                                    color:@color3;
+                                }
+                            }
+                                            
+                            a {
+                                position:relative; 
+                                top:@grid_square * 0.5px;; 
+                                /*left:@grid_square * 1px; */
+                                color:@color2;
+                            }
+                        
+                            height:@grid_square * 2.5px;     
+                            /*width:@grid_square * 6px;                             */
+                        }
+                        
+                    }                                                        
+                }            
+            }            
+        }
+    }
+}

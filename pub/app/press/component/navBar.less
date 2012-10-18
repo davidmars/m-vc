@@ -1,0 +1,27 @@
+/* MAIN NAV TABS */
+.navBarComponent {
+    text-align: center;
+    .bg-color-separator-bloc;
+    
+    div {
+        &.item-nav {
+            height:@grid_square * 5px;
+            .font-nav-tab-title;
+            &.active {
+                .bg-image-active;
+                a {
+                    color:@color3;                    
+                }
+            }
+            
+            a {
+                .font-nav-tab-title;
+                position:relative;
+                top:@grid_square * 2px;
+            }
+            
+            .bg-color-title-bloc;
+        }
+    }   
+}
+    

@@ -9,17 +9,47 @@ class M_contact extends M_{
      *
      * @var TextField The name of the contact.
      */
-    public $title;        
+    public $name;                
     /**
      *
-     * @var TextField The post of the contact
+     * @var TextField The function of the contact
      */
-    public $post;        
+    public $function;        
     /**
      *
-     * @var TextField The description of the contact.
+     * @var TextField The society of the contact.
      */
-    public $description;    
+    public $society;                
+    /**
+     *
+     * @var TextField The street of the contact.
+     */
+    public $street;    
+    /**
+     *
+     * @var TextField The zip of the contact.
+     */
+    public $zip;        
+    /**
+     *
+     * @var TextField The city of the contact.
+     */
+    public $city;    
+    /**
+     *
+     * @var TextField The country of the contact.
+     */
+    public $country;    
+    /**
+     *
+     * @var TextField The number of the contact.
+     */
+    public $number;    
+    /**
+     *
+     * @var TextField The email of the contact.
+     */
+    public $email;    
     /**
      *
      * @var FileField The file that the final user will be able to download 
@@ -49,20 +79,50 @@ class M_contact extends M_{
      */
     public function getAdminConfig() {
         $conf=parent::getAdminConfig();
-        
-        $conf["default"]["fields"]["title"]=array(
+                
+        $conf["default"]["fields"]["name"]=array(
             "visible"=>true,
-            "label"=>"Title"
+            "label"=>"Name"
         );
         
-        $conf["default"]["fields"]["post"]=array(
+        $conf["default"]["fields"]["function"]=array(
             "visible"=>true,
-            "label"=>"Post"
+            "label"=>"Function"
         );
         
-        $conf["default"]["fields"]["description"]=array(
+        $conf["default"]["fields"]["society"]=array(
             "visible"=>true,
-            "label"=>"Description"
+            "label"=>"Society"
+        );
+        
+        $conf["default"]["fields"]["street"]=array(
+            "visible"=>true,
+            "label"=>"Street"
+        );
+        
+        $conf["default"]["fields"]["zip"]=array(
+            "visible"=>true,
+            "label"=>"Zip"
+        );
+        
+        $conf["default"]["fields"]["city"]=array(
+            "visible"=>true,
+            "label"=>"City"
+        );
+        
+        $conf["default"]["fields"]["country"]=array(
+            "visible"=>true,
+            "label"=>"Country"
+        );
+        
+        $conf["default"]["fields"]["number"]=array(
+            "visible"=>true,
+            "label"=>"Number"
+        );
+        
+        $conf["default"]["fields"]["email"]=array(
+            "visible"=>true,
+            "label"=>"Email"
         );
         
         $conf["default"]["fields"]["break"]=array(

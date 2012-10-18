@@ -33,7 +33,7 @@ class M_media extends M_{
     
     /**
      *
-     * @var M_category_media The category where it will be possible to find the download.
+     * @var M_subcategory_media The subcategory where it will be possible to find the media.
      */
     public $category;
     
