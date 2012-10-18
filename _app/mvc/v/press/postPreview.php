@@ -1,6 +1,6 @@
 <? 
     /* @var $post M_post */
-    $post = $_vars;
+    $post = $_vars;        
 ?>
 
 
@@ -8,7 +8,7 @@
     <div class="postPreviewComponent">
         <div class="item-content">
             <div class="span2 item-thumbnail">
-                <img src="http://actu.orangecaraibe.com/images1/zoom/1349434730877714817.jpg" alt="img tmp" />
+                <img src="http://francois.de.shic.cc/havana_pressroom/pub/app/press/img/recipes.png" alt="img tmp" />
             </div>
             <div class="span5 item-text">        
                 <div class="item-title">

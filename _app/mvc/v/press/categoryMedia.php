@@ -8,9 +8,16 @@
 
 
 <!-- Affichage de chaque preview -->
-<? foreach ($vv->categoryMedia->getSubCategoryMediaForPage($vv->page) as $subcategory): ?>
-    <?=$vv->categoryMedia->title . " - " . $subcategory->title . "<br/>"?>
-<?endforeach;?>
+<div class="posts">
+    <!-- Affichage de chaque preview -->
+    <? foreach ($vv->categoryMedia->getSubCategoryMediaForPage($vv->page) as $subcategory): ?>
+    <br/>
+    <?=$this->render("press/mediaPreview", $subcategory)?>
+    <br/>
+    <div class="separatorBloc">&nbsp;</div>    
+    <?endforeach;?>
+</div>
+
 
 <!-- Affichage de la pagination si > a 1 page -->
 <?if($vv->categoryMedia->getNbPage() > 1):?>

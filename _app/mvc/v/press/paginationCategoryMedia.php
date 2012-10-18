@@ -20,7 +20,7 @@
             <div class="item-content">        
                 <div class="item-pagination">
                     <div class="row">
-                    <?for($p = 1; $p < $vv->categoryPost->getNbPage() + 1; $p++):?>                
+                    <?for($p = 1; $p < $vv->categoryMedia->getNbPage() + 1; $p++):?>                
                         <div class="span1 item-pagination-number <?=($p == $vv->page)?("active"):("")?>">
                             <a href="<?=C_press::categoryMedia($vv->categoryMedia->id, $p)->url()?>"><?=$p?></a>
                         </div>
