@@ -1,20 +1,34 @@
 <?php
 class JS{
+        
+    private static $uniqueJS;
     
     /**
      * Will add the specified js file to the file list to include in the header
      * @param string $jsFileUrl a js file <b>RELATIVE</b> url
      */
     public static function addToHeader($jsFileUrl){
-        self::$headerFiles[]=$jsFileUrl;
+        if(self::$uniqueJS[$jsFileUrl]) {
+            return;
+        }
+        
+        self::$uniqueJS[$jsFileUrl] = true;
+        self::$headerFiles[]=$jsFileUrl;        
     }
     /**
      * Will add the specified js file to the file list to include after body
      * @param string $jsFileUrl a js file <b>RELATIVE</b> url
      */
     public static function addAfterBody($jsFileUrl){
+        
+        if(self::$uniqueJS[$jsFileUrl]) {
+            return;
+        }
+        
+        self::$uniqueJS[$jsFileUrl] = true;
         self::$afterBodyFiles[]=$jsFileUrl;
     }
+    
     /**
      *
      * @var array The js file list to include in the header 

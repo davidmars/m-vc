@@ -1,11 +1,17 @@
 <?php
 class CSS{
-    
+    private static $uniqueCSS;
     /**
      * Will add the specified css file to the file list to include
      * @param string $file a css file url
      */
     public static function addToHeader($cssFileUrl){
+        
+        if (self::$uniqueCSS[$cssFileUrl]) {
+            return;
+        }
+        
+        self::$uniqueCSS[$cssFileUrl] = true;
         $file=  GiveMe::url($cssFileUrl,true);
         self::$headerFiles[]=$file;
     }
