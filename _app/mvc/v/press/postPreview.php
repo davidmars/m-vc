@@ -8,11 +8,11 @@
     <div class="postPreviewComponent">
         <div class="item-content">
             <div class="span2 item-thumbnail">
-                <img src="http://francois.de.shic.cc/havana_pressroom/pub/app/press/img/recipes.png" alt="img tmp" />
+                <a href="<?=C_press::post($post->id)->url()?>"><img src="http://francois.de.shic.cc/havana_pressroom/pub/app/press/img/recipes.png" alt="<?=$post->title?>"></a>
             </div>
             <div class="span5 item-text">        
                 <div class="item-title">
-                    <?=$post->title?>
+                    <a href="<?=C_press::post($post->id)->url()?>"><?=$post->title?></a>
                 </div>
                 <br/>
                 <div class="item-description">
@@ -20,7 +20,7 @@
                 </div>
                 <br/>
                 <div class="item-link-readMore">
-                    <a href="<?=C_press::post($post->id)->url()?>">Read More...</a>
+                    <a href="<?=C_press::post($post->id)->url()?>" rel="nofollow">Read More...</a>
                 </div>                
             </div>
         </div>
