@@ -30,11 +30,34 @@
 /* Load fonts */
 @font-face {
     font-family:'FuturaStdMediumCondensed';
-    src:url('/havana_pressroom/pub/app/press/font/futura-regular/futurastd-condensed-webfont.eot');
-    src:url('/havana_pressroom/pub/app/press/font/futura-regular/futurastd-condensed-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/havana_pressroom/pub/app/press/font/futura-regular/futurastd-condensed-webfont.woff') format('woff'),
-         url('/havana_pressroom/pub/app/press/font/futura-regular/futurastd-condensed-webfont.ttf') format('truetype'),
-         url('/havana_pressroom/pub/app/press/font/futura-regular/futurastd-condensed-webfont.svgz#FuturaStdMediumCondensed') format('svg');
+    src:url('@{path}/font/futura-regular/futurastd-condensed-webfont.eot');
+    src:url('@{path}/font/futura-regular/futurastd-condensed-webfont.eot?#iefix') format('embedded-opentype'),
+        url('@{path}/font/futura-regular/futurastd-condensed-webfont.woff') format('woff'),
+        url('@{path}/font/futura-regular/futurastd-condensed-webfont.ttf') format('truetype'),
+        url('@{path}/font/futura-regular/futurastd-condensed-webfont.svgz#FuturaStdMediumCondensed') format('svg');
+}
+@font-face {
+    font-family:'Banhart';
+    src:url('@{path}/font/banhart/hcbanhart-webfont.eot');
+    src:url('@{path}/font/banhart/hcbanhart-webfont.eot?#iefix') format('embedded-opentype'),
+        url('@{path}/font/banhart/hcbanhart-webfont.woff') format('woff'),
+        url('@{path}/font/banhart/hcbanhart-webfont.ttf') format('truetype'),
+        url('@{path}/font/banhart/hcbanhart-webfont.svgz#FuturaStdMediumCondensed') format('svg');
+}
+
+a{
+    color:@color2;
+    text-decoration:none;
+}
+a:hover{
+    text-decoration:none;
+}
+
+.font-title {
+    .add-font(@ff0, @fs6, @color3, normal, normal, uppercase, normal);
+    &:hover{           
+        color:@color3;
+    } 
 }
 
 .font-nav-tab-title {
@@ -140,6 +163,5 @@
 }
 
 .font-banner-content {
-
     .add-font(@ff1, @fs4, @color1, normal, normal, none, 1px);    
 }

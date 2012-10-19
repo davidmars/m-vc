@@ -4,13 +4,12 @@
 ?>
 
 <!-- Havana cultura press room link -->
-<div class="pressRoomComponent">
+<a href="" class="pressRoomComponent">
     <div class="item-content">
-        <div class="item-subtitle">Go to press room</div>
+        <div class="item-subtitle">Go to the press room of</div>
         <div class="item-title">Havana Cultura</div>
-    </div>
-    
-</div>
+    </div>    
+</a>
 
 <!-- Download -->
 <div class="downloadComponent">
