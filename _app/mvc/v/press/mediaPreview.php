@@ -1,6 +1,10 @@
 <? 
-    /* @var $post M_post */
+    /* @var $media M_subcategory_media */
     $media = $_vars;
+    
+    $medias = $media->getMediaForPage(1);     
+    
+    $subPagination = $media->getNbPage();   
 ?>
 
 <div class="row">
@@ -10,15 +14,21 @@
         </div>
         <div class="item-media-content">       
             <!-- récupération de tous les médias -->
-            <?  for ($i=1; $i < 5; $i++):?>
+            <?  foreach ($medias as $m):?>
             <div class="span2 item-media-data">
-                <img src="http://francois.de.shic.cc/havana_pressroom/pub/app/press/img/media.png" alt="img tmp" />
+                <img src="<?=GiveMe::url("pub/app/press/img/media.png")?>" alt="img tmp" />
                 <br/>
                 <div class="item-media-name">
-                    Lorem impsum
+                    <?=$m->title?>
                 </div>
-            </div>
-            <?  endfor;?>            
-        </div>
+            </div>         
+            <? endforeach;?>
+        </div>                
+    </div>
+</div>
+
+<div class="row">
+    <div class="pagination">
+              Pagination => <?=$subPagination?>
     </div>
 </div>

@@ -96,7 +96,7 @@ class M_ extends Model{
      * Create the fields relationship with database. 
      */
     private function createFields(){
-            Human::log("------------- Create fields model ".$this->modelName);
+            //Human::log("------------- Create fields model ".$this->modelName);
             self::$yetInit[get_class($this)]=true;
             //let's init database.
             $modelName=get_class($this);
@@ -140,7 +140,7 @@ class M_ extends Model{
 	    foreach ($fields as $f){
 		$f["options"][Field::COMMENTS]=$f["comments"];
                 Field::create($modelName.".".$f["name"],$f["type"],$f["options"]);
-                Human::log($this->modelName." Create field ".$f["name"]);
+                //Human::log($this->modelName." Create field ".$f["name"]);
                 
 	    }
             

@@ -122,14 +122,14 @@ class Model implements IteratorAggregate
 */
             
 		$field = Field::getField( $this, $fieldName );
-                Human::log("heuuuuuuuuuuuuuuuuuuuuuu ");
+                //Human::log("heuuuuuuuuuuuuuuuuuuuuuu ");
 
 
                 
                 
 		if( $field )
 		{
-                    Human::log("aaaaaaaaaaaaaaaaa ".$fieldName);
+                    //Human::log("aaaaaaaaaaaaaaaaa ".$fieldName);
                     if( false && array_key_exists( $fieldName, $this->__fields__ ) )
                     {
                         return $this->__fields__[$fieldName]->setter( $value );
@@ -137,12 +137,12 @@ class Model implements IteratorAggregate
                         $newField = $field->attach( $this );
                         $newField->setter( $value );
                         $this->__fields__[$fieldName] = $newField;
-                        Human::log("toto ".$this->field($fieldName)->insideValue);
+                        //Human::log("toto ".$this->field($fieldName)->insideValue);
                         
                     }
 
 		}else{
-                    Human::log("bbbbbbbbbbbbbbbbbbbbb ".$fieldName);
+                    //Human::log("bbbbbbbbbbbbbbbbbbbbb ".$fieldName);
                     //var_dump($value);
                     //die($fieldName);
                     if($value && (gettype($value)=="object" || gettype($value)=="array")){
@@ -349,7 +349,7 @@ class Model implements IteratorAggregate
 	 **/
 	public static function generate( $model, $manager = Manager, $superClass = Model , $hasOwnManager = true )
 	{
-            Human::log("-----generate ".$model);
+            //Human::log("-----generate ".$model);
 		$staticProxies = "";
 		$validClass = "`^([a-zA-Z0-9_]+)$`si";
 		$classes = array_slice( func_get_args() , 0 , 3 );

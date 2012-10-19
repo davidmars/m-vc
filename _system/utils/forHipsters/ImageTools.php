@@ -29,7 +29,7 @@ class ImageTools{
         $params[]=$fileName;
         $url=Site::$mediaFolder."/cache/img/".$fnName."/".implode("/",$params);
         
-        Human::log("url=".$url,"Image tools contoller",Human::TYPE_WARN);
+        //Human::log("url=".$url,"Image tools contoller",Human::TYPE_WARN);
         FileTools::mkDirOfFile($url);
         return $url;
     }
@@ -204,7 +204,7 @@ class ImageTools{
 	 */
 	static function sized($imgUrl,$width,$height,$scaleMode,$mime,$background,$padding=0){
                 $params=func_get_args();
-                Human::log($params);
+                //Human::log($params);
 		$newImgUrl=self::getUrl("sized", $params);
                 if(!self::$doTheJob){
                     return $newImgUrl;
@@ -224,7 +224,7 @@ class ImageTools{
 				try{
 					$resized->writeImage(realpath($newImgUrl));
 				}catch(Exception $e){
-                                        Human::log($e);
+                                        //Human::log($e);
 				}
 			}
 		}

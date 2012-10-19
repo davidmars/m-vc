@@ -11,7 +11,7 @@ class M_category_media extends M_{
      */
     public $title;
     
-        /**
+    /**
      *
      * @param int $page It's the current page
      * @return Array<M_subcategory_media> Return all subcategory media of the current blog for the given page

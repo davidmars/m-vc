@@ -215,7 +215,7 @@ class JS{
                 $goodFiles[]=$f;
             }else{
                 $message="File ".$f." not found";
-                Human::log($message, "JS combine error", Human::TYPE_ERROR);
+                //Human::log($message, "JS combine error", Human::TYPE_ERROR);
                 $err[]=$message;
             }
            

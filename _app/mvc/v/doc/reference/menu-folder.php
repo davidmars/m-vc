@@ -24,7 +24,7 @@
         <?elseif($item["type"]=="folder"):?>
             <li>
                 <i class="icon-folder-open"></i> <?=$item["name"]?>
-		<?  Human::log($item["content"],"temp")?>
+		<?  //Human::log($item["content"],"temp")?>
                 <?=$this->render("doc/reference/menu-folder",$item["content"])?>
             </li>
             

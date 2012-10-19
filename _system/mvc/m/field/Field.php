@@ -233,7 +233,7 @@ class Field {
       */
     function set( $value ) {
         $this->insideValue = $value;
-        Human::log("set field value ".$this->name." = ".$value);
+        //Human::log("set field value ".$this->name." = ".$value);
 	if( $this->options[self::PASS_THROUGH]){
 	    $this->model->{$this->name} = $value;
 	}else{

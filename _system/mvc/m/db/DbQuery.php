@@ -952,10 +952,10 @@ class DbQuery implements IteratorAggregate
 		if( $this->source == null && $this->source = DbConnection::getInstance())
 		{
 			throw new Exception( "No valid DB connection found" );
-			Human::log( "No valid DB connection found","POV DbQuery",Human::TYPE_ERROR );
+			//Human::log( "No valid DB connection found","POV DbQuery",Human::TYPE_ERROR );
 		}
 		//trace($query);
-                Human::log( $query );
+                //Human::log( $query );
 		$q = $this->__toString();
 
 		return $this->source->query( $q );

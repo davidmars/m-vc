@@ -48,11 +48,11 @@ class UrlControler {
 
 	 */
         foreach(self::$allRoutes as $k=>$v){
-            Human::log($k."---->".$v, "Test route");
+            //Human::log($k."---->".$v, "Test route");
             // Convert wild-cards to RegEx
             $k = str_replace(':any', '.+', str_replace(':num', '[0-9]+', $k));
             if(preg_match('#^'.$k.'$#', $url)){
-                Human::log("route match! ".$v, "Rouuuuuuuuuuuuute found");
+                //Human::log("route match! ".$v, "Rouuuuuuuuuuuuute found");
                 $route=preg_replace('#^'.$k.'$#', $v, $url);
                 return $route;
             }

@@ -8,7 +8,7 @@
     <div class="postPreviewComponent">
         <div class="item-content">
             <div class="span2 item-thumbnail">
-                <img src="http://francois.de.shic.cc/havana_pressroom/pub/app/press/img/recipes.png" alt="img tmp" />
+                <img src="<?=GiveMe::url("pub/app/press/img/recipes.png")?>" alt="img tmp" />
             </div>
             <div class="span5 item-text">        
                 <div class="item-title">

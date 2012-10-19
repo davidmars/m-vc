@@ -70,7 +70,7 @@ class Less {
             
             $folderTest=FileTools::mkDirOfFile($outputFile);
             if(!$folderTest){
-                Human::log("Impossible to create the folder for".$outputFile,"Less compile error",  Human::TYPE_ERROR) ; 
+                //Human::log("Impossible to create the folder for".$outputFile,"Less compile error",  Human::TYPE_ERROR) ; 
                 return false;
             }
             // load the cache
@@ -86,7 +86,7 @@ class Less {
             $newCache = $less->cachedCompile($cache);
             if (!is_array($cache) || $newCache["updated"] > $cache["updated"]) {
                 //the cache is out of date
-                Human::log(Site::url($outputFile, true),"Less new style sheet");
+                //Human::log(Site::url($outputFile, true),"Less new style sheet");
                 file_put_contents($cacheFile, serialize($newCache));
                 file_put_contents($outputFile, $newCache['compiled']);
             }else{
@@ -96,7 +96,7 @@ class Less {
             if(file_exists($outputFile)){
                 return $outputFile;
             }else{
-                Human::log("Impossible to create the file ".$outputFile,"Less compile error",  Human::TYPE_ERROR) ; 
+                //Human::log("Impossible to create the file ".$outputFile,"Less compile error",  Human::TYPE_ERROR) ; 
                 return false; 
             }
             
