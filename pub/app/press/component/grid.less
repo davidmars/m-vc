@@ -2,7 +2,7 @@
     .spanNoGutter (@index) when (@index > 0) {
       (~".span@{index}>.noGutter") { 
             margin-left:-@gutterW/2px;
-            width:(@columnW*@index)+(@gutterW*2);
+            width:(@columnW*@index)+(@gutterW*@index);
          }
       .spanNoGutter(@index - 1);
     }

@@ -5,17 +5,17 @@
 
 
 <div class="row">
-    <div class="span8 noGutter">
+    <div class="span8">
         <div class="noGutter">
             <div class="postPreviewComponent">
                 <div class="item-content">
-                    <div class="span2 noGutter item-thumbnail">
-                        <div class="noGutter">
+                    <div class="span2  item-thumbnail">
+                        <div class="">
                             <a href="<?=C_press::post($post->id)->url()?>"><img src="http://francois.de.shic.cc/havana_pressroom/pub/app/press/img/recipes.png" alt="<?=$post->title?>"></a>
                         </div>
                     </div>
-                    <div class="span6 noGutter item-text">
-                        <div class="noGutter">
+                    <div class="span6  item-text">
+                        <div class="">
                             <div class="item-title">
                                 <a href="<?=C_press::post($post->id)->url()?>"><?=$post->title?></a>
                             </div>
