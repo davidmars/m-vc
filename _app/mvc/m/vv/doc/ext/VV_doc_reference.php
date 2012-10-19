@@ -6,7 +6,7 @@ class VV_doc_reference extends VV_doc_page{
      */
     public function run(){
         $this->appControllers=self::browseFolder(Site::$appControllersFolder);
-	Human::log($this->appControllers,"ici");
+	//Human::log($this->appControllers,"ici");
 	//var_dump($this->appControllers);
 	//die();
         $this->appModels=self::browseFolder(Site::$appModelsFolder);

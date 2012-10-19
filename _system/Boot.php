@@ -50,7 +50,7 @@ class Boot {
         self::bootModels();
 
         //search for the correct controller, function and params
-        Human::log($_REQUEST["route"],"POV Boot - At the begining it was the route param");
+        //Human::log($_REQUEST["route"],"POV Boot - At the begining it was the route param");
         
         $infos=new UrlInfos($_REQUEST["route"]);
         UrlInfos::$current=$infos;
@@ -68,13 +68,13 @@ class Boot {
 	}else {
 	    //okay we loose...
             $msg="There is no controller for this route : ".$route;
-            Human::log($msg, "POV Boot Route error", Human::TYPE_ERROR);
+            //Human::log($msg, "POV Boot Route error", Human::TYPE_ERROR);
             die($msg); 
         }
         
         $view=$controller->run();
         
-        Human::log(DbConnection::$numberOfRequest,"POV Boot Number of requests");
+        //Human::log(DbConnection::$numberOfRequest,"POV Boot Number of requests");
         
         if($view){
 

@@ -82,7 +82,7 @@ class View {
 		$scriptPath = self::getRealPath($this->path);
 		
 		if(!$scriptPath){
-                    Human::log("Can't find the view :".$this->path, "VIEW ERROR", Human::TYPE_ERROR);
+                    //Human::log("Can't find the view :".$this->path, "VIEW ERROR", Human::TYPE_ERROR);
 		    return("<div style='font-size:12px;color:#f00;'>Can't find the template :".$this->path."</div>");
 		}
 
