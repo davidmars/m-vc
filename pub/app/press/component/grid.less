@@ -1,0 +1,36 @@
+.CustomGutter(@gutterW,@columnW){
+    .spanNoGutter (@index) when (@index > 0) {
+      (~".span@{index}>.noGutter") { 
+            margin-left:-@gutterW/2px;
+            width:(@columnW*@index)+(@gutterW*2);
+         }
+      .spanNoGutter(@index - 1);
+    }
+    //.spanNoGutter (0) {}
+    .spanNoGutter(@gridColumns);
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {    
+    .CustomGutter(@gridGutterWidth1200,@gridColumnWidth1200);
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+    .CustomGutter(@gridGutterWidth768,@gridColumnWidth768);
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    .CustomGutter(@gridGutterWidth,@gridColumnWidth);
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    .CustomGutter(@gridGutterWidth,@gridColumnWidth);
+}
+
+
+
+
+

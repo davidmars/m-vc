@@ -8,17 +8,19 @@
 <div class="container">
     
     <div class="row">        
-        <div class="span12 logo-title">
-            
-            <a class="logo" href="<?=C_press::categoryPost(1)->url() ?>">
-                <img alt="Havana Club" src="<?=GiveMe::url("pub/app/press/img/logo-havana-club.png")?>">
-            </a>
-            <h1 class="title">
-                <a class="font-title" href="<?=C_press::categoryPost(1)->url() ?>">
-                    Havana Club Press Room
-                </a>
-            </h1>
-            
+        <div class="span12 noGutter">
+            <div class="noGutter">
+                <div class="logo-title">
+                    <a class="logo" href="<?=C_press::categoryPost(1)->url() ?>">
+                        <img alt="Havana Club" src="<?=GiveMe::url("pub/app/press/img/logo-havana-club.png")?>">
+                    </a>
+                    <h1 class="title">
+                        <a class="font-title" href="<?=C_press::categoryPost(1)->url() ?>">
+                            Havana Club Press Room
+                        </a>
+                    </h1>
+                </div>
+            </div>
         </div>        
     </div>
     
@@ -27,26 +29,37 @@
             
             <!-- Menu vers chaque category -->
             <div class="navBarComponent">  
-                <div class="row">                
+                <div class="row">           
                     <!-- Pour chaque category post -->
                     <? foreach ($vv->getAllCategoriesPost() as $category): ?>
                     <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
-                        <a href="<?=C_press::categoryPost($category->id)->url()?>"><?=$category->title?></a>
-                        <span class="arrow"></span>
+                        <div class="noGutter">
+                            <a href="<?=C_press::categoryPost($category->id)->url()?>"><?=$category->title?></a>
+                            <span class="arrow"></span>
+                        </div>                        
                     </div>                    
                     <?endforeach;?>                    
                     
                     <? foreach ($vv->getAllCategoriesMedia() as $category): ?>                                
                     <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
-                        <a href="<?=C_press::categoryMedia($category->id)->url()?>"><?=$category->title?></a>
-                        <span class="arrow"></span>
+                        <div class="noGutter">
+                            <a href="<?=C_press::categoryMedia($category->id)->url()?>"><?=$category->title?></a>
+                            <span class="arrow"></span>
+                        </div>                        
                     </div>  
                     <?endforeach;?>     
                 </div>
             </div>
             
             <!-- seperator bloc -->
-            <div class="separatorBloc">&nbsp;</div>
+            <div class="row">
+                <div class="span8">
+                    <div class="noGutter">
+                        <div class="separatorBloc"></div>
+                    </div>                
+                </div>
+            </div>
+            
             
             <!-- main content -->
             <div id="mainContent">
