@@ -47,7 +47,7 @@
                             <span class="arrow"></span>
                         </div>                        
                     </div>  
-                    <?endforeach;?>     
+                    <?endforeach;?>
                 </div>
             </div>
             
