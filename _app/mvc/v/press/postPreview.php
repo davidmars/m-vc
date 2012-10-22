@@ -11,13 +11,15 @@
                 <div class="item-content">
                     <div class="span2  item-thumbnail">
                         <div class="">
-                            <a href="<?=C_press::post($post->id)->url()?>"><img src="http://francois.de.shic.cc/havana_pressroom/pub/app/press/img/recipes.png" alt="<?=$post->title?>"></a>
+                            <a href="<?=C_press::post($post->id,true)?>">
+				<img src="http://francois.de.shic.cc/havana_pressroom/pub/app/press/img/recipes.png" alt="<?=$post->title?>">
+			    </a>
                         </div>
                     </div>
                     <div class="span6  item-text">
                         <div class="">
                             <div class="item-title">
-                                <a href="<?=C_press::post($post->id)->url()?>"><?=$post->title?></a>
+                                <a href="<?=C_press::post($post->id,true)?>"><?=$post->title?></a>
                             </div>
                             <br/>
                             <div class="item-description">
@@ -25,7 +27,7 @@
                             </div>
                             <br/>
                             <div class="item-link-readMore">
-                                <a href="<?=C_press::post($post->id)->url()?>" rel="nofollow">Read More...</a>
+                                <a href="<?=C_press::post($post->id,true)?>" rel="nofollow">Read More...</a>
                             </div>                
                         </div>                
                     </div>

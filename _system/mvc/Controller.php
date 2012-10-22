@@ -137,7 +137,10 @@ class Controller {
    public function __construct() {
 	$this->route=$this->guessRoute();
    }
-   
+   /**
+    *
+    * @return string return the well formated route to a controller 
+    */
    public function url(){
        return GiveMe::url($this->route);
    }
@@ -152,24 +155,30 @@ class Controller {
 	//die();
 	$path=$back[1]["file"];
 	$function =$back[2]["function"];
-	$path=  Controller::findControllerPath(get_class($this));
-	$args =implode("/",$back[2]["args"]);
-	return $path."/".$function."/".$args;
-	/*
-	$className=get_class($this);
-	$c=new C_admin_model();
-        $view=$c->editModel($modelType, $modelId);
-        $path="admin/admin_model/";
-        //---- we need to find....
-        //the url of the current controller by its classNme
-        //the current function name
-        //the vurrent function params
-	$args=func_get_args();
-        $c->route=$path.__FUNCTION__."/".implode("/",$args);
-        
-        return $c;
-	 * 
-	 */
+	$path= Controller::findControllerPath(get_class($this));
+	$args =$back[2]["args"];
+	
+	//browse the parameters names...the goal is to find the returnUrl to remove it.
+	$rf=new ReflectionMethod(get_class($this),$function);
+	$parameters=$rf->getParameters();
+	$lastParameter=$parameters[count($parameters)-1];
+	$ps="";
+	if($lastParameter->name=="returnUrl"){
+	   $args[count($parameters)-1] ="";
+	}
+	
+	//remove empty parameters
+	$cleanArgs=array();
+	for($i=0;i<count($args);$i++){
+	    if($args[$i]==""){
+		break;
+	    }
+	    $cleanArgs[]=$args[$i];
+	}
+	$cleanArgs =implode("/",$cleanArgs);
+	
+	return $path."/".$function."/".$cleanArgs;
+
     }
 
         

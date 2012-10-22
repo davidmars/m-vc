@@ -23,7 +23,7 @@
                     <div class="row">
                     <?for($p = 1; $p < $vv->categoryPost->getNbPage() + 1; $p++):?>                
                         <div class="span1 item-pagination-number <?=($p == $vv->page)?("active"):("")?>">
-                            <a href="<?=C_press::categoryPost($vv->categoryPost->id, $p)->url()?>"><?=$p?></a>
+                            <a href="<?=C_press::categoryPost($vv->categoryPost->id, $p,true)?>"><?=$p?></a>
                         </div>
                         <?/* if($p != $vv->page):?>                        
                             <div class="span1 item-separator">&nbsp;</div>                

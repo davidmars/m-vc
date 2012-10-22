@@ -10,7 +10,12 @@ Class C_press extends Controller{
      * @param int $category is the id of current category
      * @param int $pagination is the index number of the pagination
      */
-    public static function categoryPost($category, $pagination = "") {
+    public static function categoryPost($category, $pagination = "",$returnUrl=false) {
+	if($returnUrl){
+	   $c = new C_press();
+	   return $c->url(); 
+	}
+	
         // set the css and the js 
         self::setCssAndJs();
         
@@ -36,8 +41,13 @@ Class C_press extends Controller{
     /**
      *
      * @param int $post is the id of the post
+     * @param bool $returnUrl If set to true, the controller will not be run and will return its url.
      */
-    public static function post($post) {  
+    public static function post($post,$returnUrl=false) {  
+	if($returnUrl){
+	   $c = new C_press();
+	   return $c->url(); 
+	}
         self::setCssAndJs();
         
         $c = new C_press();
@@ -55,7 +65,11 @@ Class C_press extends Controller{
      * @param int $category is the media category
      * @param int $pagination is the index number of the pagination
      */
-    public static function categoryMedia($category, $pagination = "") {
+    public static function categoryMedia($category, $pagination = "",$returnUrl=false) {  
+	if($returnUrl){
+	   $c = new C_press();
+	   return $c->url(); 
+	}
         // set the css and the js 
         self::setCssAndJs();
         $c = new C_press();
@@ -78,15 +92,22 @@ Class C_press extends Controller{
      * @param int $subCat is the current subCatMedia id
      * @param int $pagination is the index number of the pagination
      */
-    public function subCatMedia($subCat, $pagination = "") {
-        
+    public function subCatMedia($subCat, $pagination = "",$returnUrl=false) {
+	if($returnUrl){
+	   $c = new C_press();
+	   return $c->url(); 
+	} 
     }
     
     /**
      *
      * 
      */
-    public function styleGuide() {
+    public function styleGuide($returnUrl=false) {  
+	if($returnUrl){
+	   $c = new C_press();
+	   return $c->url(); 
+	}
         // set the css and the js 
         self::setCssAndJs();
         $c = new C_press();
