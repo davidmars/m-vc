@@ -1,6 +1,6 @@
 <?php
-    /* @var $vv VV_layout */
-    $vv = $_vars;      
+/* @var $vv VV_layout */
+$vv = $_vars;
 ?>
 
 <!-- Havana cultura press room link -->
@@ -14,7 +14,11 @@
 <!-- Download -->
 <div class="downloadComponent">
     <div class="item-title">
-        <div>Download</div>
+        <div class="span4">
+            <div class="noGutter">
+                Download
+            </div>
+        </div>
     </div>    
     <div class="item-content">
         <br/>
@@ -22,4 +26,5 @@
 </div>
 
 <!-- Contacts -->
-<?=$this->render("press/contact", $vv)?>
+<?=
+$this->render("press/contact", $vv)?>

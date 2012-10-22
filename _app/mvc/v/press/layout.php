@@ -8,7 +8,7 @@
 <div class="container">
     
     <div class="row">        
-        <div class="span12 noGutter">
+        <div class="span12">
             <div class="noGutter">
                 <div class="logo-title">
                     <a class="logo" href="<?=C_press::categoryPost(1)->url() ?>">
@@ -70,7 +70,9 @@
         
         <!-- sideBar -->
         <div class="span4 sidebar">
-            <?=$this->render("press/sideBar", $vv)?>
+            <div class="noGutter">
+                <?=$this->render("press/sideBar", $vv)?>
+            </div>
         </div>
         
    </div>
