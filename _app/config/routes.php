@@ -17,6 +17,7 @@ UrlControler::$routes=array(
 	
 	"pressroom/category/post/(:any)"=>"press/categoryPost/$1",
 	"pressroom/downloads/(:any)"=>"press/categoryMedia/$1",
+	"pressroom/post/(:any)"=>"press/post/$1",
     
         //home
         "page/(:any)/(:any)"=>"home/index/$1/$2",

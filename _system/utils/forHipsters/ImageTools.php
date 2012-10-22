@@ -20,7 +20,7 @@ class ImageTools{
      */
     public static function getUrl($fnName,$params){
         for($i=0;$i<count($params);$i++){
-            //$params[$i]= str_replace(".", "--dot--", $params[$i]);
+            $params[$i]= str_replace(".", "--dot--", $params[$i]);
             $params[$i]= str_replace("/", "-_", $params[$i]); 
         }
         //file name at the end
@@ -41,7 +41,7 @@ class ImageTools{
     public static function processUrl($fnName,$params){
         
         for($i=0;$i<count($params);$i++){
-            //$params[$i]= str_replace("--dot--",".", $params[$i]);
+            $params[$i]= str_replace("--dot--",".", $params[$i]);
             $params[$i]= str_replace("-_", "/", $params[$i]);
             
         }

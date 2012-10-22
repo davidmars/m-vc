@@ -32,11 +32,12 @@ $field=$vv->field;
         <span class="help-block"><?=$field->fileSize()?></span>
 	<span class="help-block"><?=$vv->comments?></span>
 	
-	<?=  get_class($field)?>
 	
 	<?if(get_class($field)=="ImageField" && $field->exists()):?>
-	<img src="<?=GiveMe::imageSized($field, "300", "300")?>"></img>
-	<img src="<?=GiveMe::url($field)?>"></img>
+	<?
+	    /* @var $field ImageField */
+	?>
+	<img src="<?=$field->sizedWithoutCrop(300, 300, "ffff00", "jpg")?>"></img>
 	<?endif?>
     </div>
 </div>

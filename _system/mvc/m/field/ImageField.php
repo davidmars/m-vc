@@ -13,32 +13,8 @@ class ImageField extends FileField {
         return $this;
     }
     
-    /**
-     * Return the mime type of the file
-     * @return string The mime type of the file 
-     */
-    public function mime(){
-        
-        //return "mime=".$this->insideValue;
-        if($this->exists()){
-           return FileTools::mime($this->value);
-        }else{
-            return "-";
-        }
-    }
-    /**
-     * Return the file size of the file in a readable format (mo, ko etc...)
-     * @return string the file size of the file in a readable format (mo, ko etc...)
-     */
-    public function fileSize(){
-        if($this->exists()){
-           return FileTools::size($this->value, true); 
-        }else{
-            return "-";
-        }
-        
-        //return "mime=".$this->insideValue;
-    }
+
+
 
     /**
      * Check if the file exists
@@ -48,9 +24,14 @@ class ImageField extends FileField {
         return file_exists($this->value);
     }
     
+    public function sized($width, $height, $backgroundColor, $format){
+	return GiveMe::imageSized($this->value,$width, $height, $backgroundColor, $format);
+    }
     
-    
-
+    public function sizedWithoutCrop($width, $height, $backgroundColor, $format){
+	return GiveMe::imageSizedWithoutCrop($this->value,$width, $height, $backgroundColor, $format);
+    }
+       
 }
 
 ?>
