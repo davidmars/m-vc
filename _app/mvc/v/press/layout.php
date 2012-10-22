@@ -11,11 +11,11 @@
         <div class="span12">
             <div class="noGutter">
                 <div class="logo-title">
-                    <a class="logo" href="<?=C_press::categoryPost(1)->url() ?>">
+                    <a class="logo" href="<?=C_press::categoryPost(1,null,true) ?>">
                         <img alt="Havana Club" src="<?=GiveMe::url("pub/app/press/img/logo-havana-club.png")?>">
                     </a>
                     <h1 class="title">
-                        <a class="font-title" href="<?=C_press::categoryPost(1)->url() ?>">
+                        <a class="font-title" href="<?=C_press::categoryPost(1,null,true) ?>">
                             Havana Club Press Room
                         </a>
                     </h1>
@@ -34,7 +34,7 @@
                     <? foreach ($vv->getAllCategoriesPost() as $category): ?>
                     <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
                         <div class="noGutter">
-                            <a href="<?=C_press::categoryPost($category->id)->url()?>"><?=$category->title?></a>
+                            <a href="<?=C_press::categoryPost($category->id,null,true)?>"><?=$category->title?></a>
                             <span class="arrow"></span>
                         </div>                        
                     </div>                    
@@ -43,7 +43,7 @@
                     <? foreach ($vv->getAllCategoriesMedia() as $category): ?>                                
                     <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
                         <div class="noGutter">
-                            <a href="<?=C_press::categoryMedia($category->id)->url()?>"><?=$category->title?></a>
+                            <a href="<?=C_press::categoryMedia($category->id,null,true)?>"><?=$category->title?></a>
                             <span class="arrow"></span>
                         </div>                        
                     </div>  
