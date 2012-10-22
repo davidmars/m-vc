@@ -14,7 +14,11 @@
     <br/>
     <?=$this->render("press/mediaPreview", $subcategory)?>
     <br/>
-    <div class="separatorBloc">&nbsp;</div>    
+    <div class="row">
+        <div class="span8">
+            <div class="noGutter separatorBloc"></div>
+        </div>
+    </div>    
     <?endforeach;?>
 </div>
 

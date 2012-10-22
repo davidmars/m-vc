@@ -12,7 +12,11 @@
     <br/>
     <?=$this->render("press/postPreview", $post)?>
     <br/>
-    <div class="separatorTextBloc">&nbsp;</div>    
+    <div class="row">
+        <div class="span8">
+            <div class="noGutter separatorTextBloc"></div>
+        </div>
+    </div>  
     <?endforeach;?>
 </div>
 

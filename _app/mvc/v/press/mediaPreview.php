@@ -16,10 +16,12 @@
             <!-- récupération de tous les médias -->
             <?  foreach ($medias as $m):?>
             <div class="span2 item-media-data">
-                <img src="<?=GiveMe::url("pub/app/press/img/media.png")?>" alt="img tmp" />
-                <br/>
-                <div class="item-media-name">
-                    <?=$m->title?>
+                <div class="noGutter">
+                    <img src="<?=GiveMe::url("pub/app/press/img/media.png")?>" alt="<?=$m->title?>" />
+                    <br/>
+                    <div class="item-media-name">
+                        <?=$m->title?>
+                    </div>
                 </div>
             </div>         
             <? endforeach;?>
