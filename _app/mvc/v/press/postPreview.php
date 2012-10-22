@@ -12,7 +12,8 @@
                     <div class="span2  item-thumbnail">
                         <div class="">
                             <a href="<?=C_press::post($post->id,true)?>">
-				<img src="http://francois.de.shic.cc/havana_pressroom/pub/app/press/img/recipes.png" alt="<?=$post->title?>">
+                                
+                                <img src="<?=$post->thumb->sizedWithoutCrop(171, 180, "000000", "jpg")?>" alt="<?=$post->title?>">
 			    </a>
                         </div>
                     </div>

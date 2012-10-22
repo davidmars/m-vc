@@ -29,6 +29,15 @@ $field=$vv->field;
             
 	</div>
 	<span class="help-block"><?=$field->mime()?></span>
+        <?
+            switch ($field->mime()) {
+                case "image/png":
+                    $imgUrm = GiveMe::imageSizedWithoutCrop("", 50, 50);
+                break;
+            }
+        ?>
+        <img src="" alt="mime"></img>
+        
         <span class="help-block"><?=$field->fileSize()?></span>
 	<span class="help-block"><?=$vv->comments?></span>
 	
