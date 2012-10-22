@@ -48,6 +48,13 @@ class FileField extends Field {
         return file_exists($this->value);
     }
     
+    /**
+     * Return an URl where the file is downloaded.
+     */
+    public function download(){
+	//encode the file name to avoid /
+    }
+    
     
     
 

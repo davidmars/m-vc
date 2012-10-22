@@ -31,5 +31,13 @@ $field=$vv->field;
 	<span class="help-block"><?=$field->mime()?></span>
         <span class="help-block"><?=$field->fileSize()?></span>
 	<span class="help-block"><?=$vv->comments?></span>
+	
+	
+	<?if(get_class($field)=="ImageField" && $field->exists()):?>
+	<?
+	    /* @var $field ImageField */
+	?>
+	<img src="<?=$field->sizedWithoutCrop(300, 300, "ffff00", "jpg")?>"></img>
+	<?endif?>
     </div>
 </div>

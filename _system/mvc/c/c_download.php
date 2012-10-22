@@ -8,21 +8,20 @@
  *
  * @author david marsalone
  */
-class C_Img extends Controller {
+class C_Download extends Controller {
         /**
          * This contoller function refers to ImageTools::sized function
          */
-    	public static function sized()
+    	public static function download($file,$returnUrl=false)
 	{
-            
-            ImageTools::$doTheJob=true;
-            $params=func_get_args();
-            
-            $img=ImageTools::processUrl("sized", $params);
-
-             ImageTools::output($img);
-            //die("toto".$img);
-	}
+	    if($returnUrl){
+	       $c = new C_Download();
+	       return $c->url(); 
+	    }
+	    //replace zzzzz by / to get file name
+	    //headerblabla....
+		    
+	    }
     	
 }
 
