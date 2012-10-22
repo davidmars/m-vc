@@ -53,6 +53,7 @@ class FileField extends Field {
      */
     public function download(){
 	//encode the file name to avoid /
+        
     }
     
     

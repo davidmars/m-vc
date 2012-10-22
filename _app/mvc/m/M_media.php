@@ -22,11 +22,6 @@ class M_media extends M_{
     public $theFile;
     /**
      *
-     * @var PhotoRectangle The thumbnail for this download.
-     */
-    public $thumb;
-    /**
-     *
      * @var BoolField Is the file downloadable without authorisation?
      */
     public $restricted=false;
@@ -43,6 +38,12 @@ class M_media extends M_{
      */
     //public $modifiedInExtend;
     
+        
+    /**
+     *
+     * @var ImageField Thumbnail representation of the media 
+     */
+    public $thumb;    
 
     /**
      *
@@ -55,9 +56,15 @@ class M_media extends M_{
             "visible"=>true,
             "label"=>"Title"
         );
+        
         $conf["default"]["fields"]["category"]=array(
             "visible"=>true,
             "label"=>"Category"
+        );
+        
+        $conf["default"]["fields"]["thumb"]=array(
+            "visible"=>true,
+            "label"=>"Thumbnail"
         );
 
         
