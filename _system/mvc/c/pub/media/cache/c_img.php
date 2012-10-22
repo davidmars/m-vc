@@ -18,8 +18,8 @@ class C_Img extends Controller {
             ImageTools::$doTheJob=true;
             $params=func_get_args();
             
-            $img=ImageTools::processUrl("sized", $params,"png");
-            
+            $img=ImageTools::processUrl("sized", $params);
+
              ImageTools::output($img);
             //die("toto".$img);
 	}

@@ -19,7 +19,6 @@ class ImageTools{
      * @return string the cached file url
      */
     public static function getUrl($fnName,$params){
-        
         for($i=0;$i<count($params);$i++){
             //$params[$i]= str_replace(".", "--dot--", $params[$i]);
             $params[$i]= str_replace("/", "-_", $params[$i]); 
@@ -39,7 +38,7 @@ class ImageTools{
      * @param type $params the params used by the method
      * @return string the url of the image
      */
-    public static function processUrl($fnName,$params,$extension){
+    public static function processUrl($fnName,$params){
         
         for($i=0;$i<count($params);$i++){
             //$params[$i]= str_replace("--dot--",".", $params[$i]);
@@ -48,15 +47,17 @@ class ImageTools{
         }
         //file at the begining
         $fileName=array_pop($params);
-        $fileName=$fileName.".$extension";
-        
+        $fileName=$fileName;
+	$fileName=str_replace("---", ".", $fileName);
         array_unshift($params, $fileName);
         //$url=Site::$mediaFolder."/cache/img/".$fnName."/".implode("/",$params);
-        
         return call_user_func_array(array(self,$fnName), $params);
         
     }
     public static function output($imgUrl){
+	if(!is_file($imgUrl)){
+	    die("$imgUrl existe pas");
+	}
         $img = new Imagick( $imgUrl );
         header('Content-Type: '.FileTools::mime($imgUrl));
         echo $img;
@@ -209,9 +210,9 @@ class ImageTools{
                 if(!self::$doTheJob){
                     return $newImgUrl;
                 }
-                $imgUrl=realpath($imgUrl);
-		if(!is_file($newImgUrl)){
-                    
+
+		if(true || !is_file($newImgUrl)){
+                    //Human::log("cree le fichier");
 			ImageTools::mkDirOfFile($newImgUrl);
 			$resized=ImageTools::sizedImagick($imgUrl,$width,$height,$scaleMode,$mime,$background,$padding);
                         
@@ -222,7 +223,8 @@ class ImageTools{
 			if($resized){
                                 
 				try{
-					$resized->writeImage(realpath($newImgUrl));
+				    //Human::log("ecrire l'image dans ".$newImgUrl);
+					$resized->writeImage($newImgUrl);
 				}catch(Exception $e){
                                         //Human::log($e);
 				}
@@ -243,6 +245,7 @@ class ImageTools{
 	 *
 	 */
 	static function sizedImagick($imgUrl,$width,$height,$scaleMode,$mime,$background,$padding=4){
+	    
 		$opacity=1.0;
 		if($background=="transparent") {
 			$opacity=0.0;
@@ -263,12 +266,11 @@ class ImageTools{
 		}else{
 			$mime = "png";
 		}
-
-		if(!is_file($imgUrl) || ! preg_match("/image/i", FileTools::mime($imgUrl))   ){
+		if(!file_exists($imgUrl)){
+		    die("fichier $imgUrl existe pas");
+		}
+		if(!file_exists($imgUrl) || ! preg_match("/image/i", FileTools::mime($imgUrl))   ){
 			$resized = new Imagick();
-                       
-
-
 			if(!is_numeric($width)){
 				$width=10;
 				$height=10;
@@ -280,22 +282,22 @@ class ImageTools{
 			$resized->setImageFormat($mime);
 			$resized->newImage($width, $height, new ImagickPixel('black'));
 			$resized->colorizeImage('#'.$background,$opacity);
+			
 			return $resized;
 		}
 		  
 		$img = new Imagick( $imgUrl );
 
                 $s=$img->getImageGeometry();
-               $imgHeight = $s["height"];
-               $imgWidth = $s["width"];
+		$imgHeight = $s["height"];
+		$imgWidth = $s["width"];
                 //print_r($s);
                 //echo $imgWidth;
-                //die();
 
 		
 		
 		//$imgWidth = $img->getImageWidth();
-                die($imgHeight);
+
                 if($height=="auto"){
                     //pas testé encore mais doit marcher pour déduire une hauteur ou une largeur automatiquement
                     $ratio=$width/$imgWidth;
@@ -340,13 +342,13 @@ class ImageTools{
 
 		$resized = new Imagick();
 		if($background=="empty"){
-            $resized->newImage(floor($nw) , floor($nh) , "none");
-            $width=floor($nw);
-            $height=floor($nh);
-            $background="ff0000";
-        }else{
-            $resized->newImage( $width , $height , "none");
-        }
+		    $resized->newImage(floor($nw) , floor($nh) , "none");
+		    $width=floor($nw);
+		    $height=floor($nh);
+		    $background="ff0000";
+		}else{
+		    $resized->newImage( $width , $height , "none");
+		}
 
 		$resized->setImageFormat($mime);
 

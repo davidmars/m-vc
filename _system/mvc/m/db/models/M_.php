@@ -193,6 +193,7 @@ class M_ extends Model{
             "EnumField",
             "HtmlField",
             "FileField",
+            "ImageField",
         );
 
         if(in_array($className,$areFields)){

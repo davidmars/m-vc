@@ -36,7 +36,13 @@ class M_post extends M_{
      *
      * @var M_category_post The category where it will be possible to find the post.
      */
-    public $category;          
+    public $category;   
+    
+    /**
+     *
+     * @var ImageField Thumbnail representation of the post 
+     */
+    public $thumb;
 }
 
 

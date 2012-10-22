@@ -26,6 +26,7 @@ $vv=$_vars;
     <?break;?>
 
     <?case "FileField":?>
+    <?case "ImageField":?>
 	<?=$this->render("admin/fields/FileField",$vv)?>
     <?break;?>
 

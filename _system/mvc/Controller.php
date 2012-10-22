@@ -159,12 +159,14 @@ class Controller {
 	$args =$back[2]["args"];
 	
 	//browse the parameters names...the goal is to find the returnUrl to remove it.
-	$rf=new ReflectionMethod(get_class($this),$function);
-	$parameters=$rf->getParameters();
-	$lastParameter=$parameters[count($parameters)-1];
-	$ps="";
-	if($lastParameter->name=="returnUrl"){
-	   $args[count($parameters)-1] ="";
+	if(function_exists(get_class($this)."::".$function)){
+	    $rf=new ReflectionMethod(get_class($this),$function);
+	    $parameters=$rf->getParameters();
+	    $lastParameter=$parameters[count($parameters)-1];
+	    $ps="";
+	    if($lastParameter->name=="returnUrl"){
+	       $args[count($parameters)-1] ="";
+	    }
 	}
 	
 	//remove empty parameters
