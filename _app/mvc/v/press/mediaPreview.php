@@ -7,11 +7,13 @@
     $subPagination = $media->getNbPage();   
 ?>
 
+<div class="mediaPreviewComponent">
+    <div class="item-media-section">            
+        <?=$media->title?>
+    </div>
+</div>
 <div class="row">
     <div class="mediaPreviewComponent">
-        <div class="item-media-section">            
-            <?=$media->title?>
-        </div>
         <div class="item-media-content">       
             <!-- récupération de tous les médias -->
             <?  foreach ($medias as $m):?>

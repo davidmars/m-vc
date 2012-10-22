@@ -59,10 +59,10 @@ $vv = $_vars;
                         <br/>
 
                         <!-- The file of the Contact-->
-                        <div class="item-contact-file">
-                            <i class="icon-download">I</i>
+                        <a class="item-contact-file">
+                            <i class="icon-download"></i>
                             Télécharger le contact
-                        </div>
+                        </a>
                         <br/>
                         <br/>
 

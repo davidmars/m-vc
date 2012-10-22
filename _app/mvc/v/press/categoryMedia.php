@@ -11,9 +11,7 @@
 <div class="posts">
     <!-- Affichage de chaque preview -->
     <? foreach ($vv->categoryMedia->getSubCategoryMediaForPage($vv->page) as $subcategory): ?>
-    <br/>
     <?=$this->render("press/mediaPreview", $subcategory)?>
-    <br/>
     <div class="row">
         <div class="span8">
             <div class="noGutter separatorBloc"></div>
