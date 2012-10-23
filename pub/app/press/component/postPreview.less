@@ -4,8 +4,10 @@
         }
         
         &.item-thumbnail {
+            .thumbnail;
             img {                
-                .picture-article-thumb;
+                //.picture-article-thumb;
+                
             }
         }
 
@@ -14,8 +16,7 @@
            color:@color2;
         }
         
-        &.item-text {
-         
+        &.item-text {         
         }
                
         &.item-description {
@@ -35,9 +36,7 @@
             width: 100%;
             height: 100%;
         }
-        
-        
-        
+
         &.item-link-readMore {
             a {
                 .font-text-content-category-post;
@@ -45,6 +44,12 @@
             }            
         }
         
-        //.bg-color-content-bloc;
+    }
+    .thumbnail{
+        .box-shadow(none);
+        .border-radius(0);
+        padding:0;
+        border:0;
     }
 }
+
