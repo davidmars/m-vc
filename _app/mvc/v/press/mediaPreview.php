@@ -17,14 +17,17 @@
         <div class="item-media-content">       
             <!-- récupération de tous les médias -->
             <?  foreach ($medias as $m):?>
+            <?
+                /* @var $m M_media */
+            ?>
             <div class="span2 item-media-data">
                 <div class="noGutter">
                     <img src="<?=GiveMe::url("pub/app/press/img/media.png")?>" alt="<?=$m->title?>" />
                     <br/>
                     <div class="item-media-name">
                         <a href=""><?=$m->title?></a>
-                    </div>
-                    <a class="button">
+                    </div>                    
+                    <a class="button" href="<?=$m->theFile->download()?>">
                         <i class="icon-download"></i>
                         Télécharger
                     </a>
@@ -37,5 +40,5 @@
 </div>
 
 <div class="pagination">
-    Pagination => <?=$subPagination?>
+          Pagination => <?=$subPagination?>
 </div>

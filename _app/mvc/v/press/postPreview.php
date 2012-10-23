@@ -6,7 +6,7 @@ $post = $_vars;
     <div class="postPreviewComponent">
         <div class="item-content">
             <div class="span2 item-thumbnail">
-                <a href="<?= C_press::post($post->id)->url() ?>"><img src="http://francois.de.shic.cc/havana_pressroom/pub/app/press/img/recipes.png" alt="<?= $post->title ?>"></a>
+                <a href="<?= C_press::post($post->id)->url() ?>"><img src="<?=$post->thumb->sizedWithoutCrop(171, 180, "000000", "jpg")?>" alt="<?= $post->title ?>"></a>
             </div>
             <div class="span6 item-text">
                     <div class="item-title">

@@ -9,8 +9,12 @@
  * @author david marsalone
  */
 class C_Download extends Controller {
+        
         /**
-         * This contoller function refers to ImageTools::sized function
+         *
+         * @param FileField $file
+         * @param bool $returnUrl
+         * @return mixed
          */
     	public static function download($file,$returnUrl=false)
 	{
@@ -18,10 +22,29 @@ class C_Download extends Controller {
 	       $c = new C_Download();
 	       return $c->url(); 
 	    }
-	    //replace zzzzz by / to get file name
-	    //headerblabla....
-		    
-	    }
+            
+	    //header to download
+            $name = basename($file->fileName());            
+            if($file)
+            {
+                $filePath = $file->val();
+
+                if (file_exists($filePath))
+                {
+                    $size = filesize($filePath);
+                    header("Content-Type: application/force-download; name=\"" . $name . "\"");
+                    header("Content-Transfer-Encoding: binary");
+                    header("Content-Length: $size");
+                    header("Content-Disposition: attachment; filename=\"" . $name . "\"");
+                    header("Expires: 0");
+                    header("Cache-Control: no-cache, must-revalidate");
+                    header("Pragma: no-cache");
+                    readfile($filePath);
+                    exit();
+                }
+            }
+            die();		    
+        }
     	
 }
 
