@@ -8,13 +8,12 @@
     <br/>
     <div class="row">
         <div class="postPreviewComponent">
-            <div class="item-content">
-                
+            <div class="item-content">                                                              
                 <? // POST COMPONENT ?>
                 <div class="span8">
                     <div class="row">
                         <div class="span2 item-thumbnail">
-                            <img src="http://actu.orangecaraibe.com/images1/zoom/1349434730877714817.jpg" alt="<?=$vv->post->title?>" />
+                            <img src="<?=$vv->post->thumb->sizedWithoutCrop(171, 180, "000000", "jpg")?>" alt="<?=$vv->post->title?>" />
                         </div>
                         <div class="span6 item-text">        
                             <div class="item-title">
@@ -28,21 +27,13 @@
                     </div>
                 </div>
                 
-                <div class="clearfix"></div>
-                <br/>
                 
-                <? // VIDEO COMPONENT ?>
-                <div class="span8">
-                    <div class="noGutter">
-                        <div class="item-video">
-                            <iframe width="640" height="395" src="http://www.youtube.com/embed/OsHGFNWVWcA?autoplay=0&amp;rel=0&amp;theme=light&amp;showinfo=0&amp;modestbranding=0&amp;autohide=0&amp;wmode=opaque" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
+                <!-- Start the block switcher -->
+                <?  foreach ($vv->blocks as $block):?>
+                    <?=$this->render("press/blocks/" . $block["modelType"], $block)?>
+                <?  endforeach; ?>
                 
-                <div class="clearfix"></div>
-                <br/>
-                
+                                
                 <? // DOWNLOAD FILE COMPONENT ?>
                 <div class="downloadFileComponent">
                     <div class="span8">
@@ -79,7 +70,6 @@
                 
                 <div class="clearfix"></div>
                 <br/>
-                
             </div>
         </div>
     </div>
