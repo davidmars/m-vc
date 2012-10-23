@@ -39,6 +39,21 @@ class FileField extends Field {
         
         //return "mime=".$this->insideValue;
     }
+    
+    /**
+     * Return the name of the file 
+     * @return string that's the name of the upload file 
+     */
+    public function fileName() {
+        if($this->exists()){
+            $values = explode('/', $this->value);
+            $name = $values[sizeof($values)- 1];
+            
+            return $name;
+        }else{
+            return "";
+        }
+    }
 
     /**
      * Check if the file exists
@@ -52,8 +67,13 @@ class FileField extends Field {
      * Return an URl where the file is downloaded.
      */
     public function download(){
-	//encode the file name to avoid /
-        
+	//encode the file name to avoid /        
+        if ($this->exists()) {
+            return C_Download::download($this, true);
+        }
+
+       // no file
+        return "";
     }
     
     

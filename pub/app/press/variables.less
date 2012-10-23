@@ -59,3 +59,33 @@
 
 /* Nav item Height values */
 @grid_square = 16; 
+
+/* Gutter Width */
+/* Large desktop */
+@media (min-width: 1200px) {
+    .backgroundPink{
+background:yellow;
+}
+.padding-gutter {
+        padding: @gridGutterWidth1200/2;
+         
+    }
+}
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+    .padding-gutter {
+        padding: @gridGutterWidth768/2px;
+    }
+}
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    .padding-gutter {
+        padding: @gridGutterWidth/2px;
+    }
+}
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    .padding-gutter {
+        padding: @gridGutterWidth/2px;
+    }
+}
