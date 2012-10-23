@@ -71,9 +71,17 @@
                 <br/>
                 
                 <? // SHARE COMPONENT ?>
-                <div class="span8">
-                    <div class="item-share">
-                        share links
+                <div class="shareComponent">
+                    <?php $id = uniqid(); ?>
+                    <div class="span8">
+                        <div class="item-share" id="<?= $id ?>">
+
+                            <a class="item-email" data-page=""></a>
+                            <div class="item-google"><g:plusone href="" size="medium" count="false"></g:plusone></div>
+                            <a class="item-twitter" href="http://twitter.com/share" data-url="" data-count="none" data-lang="en">Tweet</a>
+                            <fb:like href="" send="true" layout="button_count" show_faces="false" width="200" font=""></fb:like>      
+
+                        </div>
                     </div>
                 </div>
                 

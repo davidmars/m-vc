@@ -15,9 +15,12 @@
                 color:@color3;
                 &:hover{
                     .bg-image-active;
-                }                            
+                }
+                .sprite-item-nav{
+                    .sprite-item-nav_active;                    
+                }                
             }            
-            span.arrow {
+            span.item-nav-arrow {
                 display:block;
             }            
         }        
@@ -31,13 +34,12 @@
                 text-decoration:none;
             }            
             .separator-nav-tab;
-            .bg-color-title-bloc;            
+            .bg-color-title-bloc;
+
         }
         
-        span.arrow {
-            background: url(@{path}/img/nav_tab_arrow.gif);    
-            width:17px;
-            height:9px;
+        span.item-nav-arrow {
+            .sprite-item-nav-arrow;
             position:absolute;
             z-index:1;
             left:50%;

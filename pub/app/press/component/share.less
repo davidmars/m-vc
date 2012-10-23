@@ -1,0 +1,29 @@
+// SHARE COMPONENT
+.shareComponent{
+    .item-email { // popinEmailButton
+        background: url(@{path}/img/sendtofriend.png) no-repeat;
+        cursor: pointer;
+        .pull-left;
+        display: block;
+        width: 32px;
+        height: 20px;
+        overflow: hidden;
+        margin-right: 13px !important;  
+    }
+    .item-google { // plusone
+        display: block;
+        .pull-left;
+        margin-right: 11px !important;
+    }
+    .item-twitter { // twitter-share-button
+        display: block;
+        .pull-left;
+        height: 20px;
+        margin-right: 11px !important;
+    }
+    
+}
+
+.ie6 .shareComponent .item-google, .ie7 .shareComponent .item-google {
+    display:none; /* not supported */
+}

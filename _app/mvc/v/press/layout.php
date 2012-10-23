@@ -35,7 +35,7 @@
                     <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
                         <div class="noGutter">
                             <a href="<?=C_press::categoryPost($category->id,null,true)?>"><?=$category->title?></a>
-                            <span class="arrow"></span>
+                            <span class="item-nav-arrow"></span>
                         </div>                        
                     </div>                    
                     <?endforeach;?>                    
@@ -43,8 +43,8 @@
                     <? foreach ($vv->getAllCategoriesMedia() as $category): ?>                                
                     <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
                         <div class="noGutter">
-                            <a href="<?=C_press::categoryMedia($category->id,null,true)?>"><?=$category->title?></a>
-                            <span class="arrow"></span>
+                            <a href="<?=C_press::categoryMedia($category->id,null,true)?>"><i class="sprite-item-nav"></i> <?=$category->title?></a>
+                            <span class="item-nav-arrow"></span>
                         </div>                        
                     </div>  
                     <?endforeach;?>
