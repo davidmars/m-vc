@@ -129,7 +129,7 @@ class M_contact extends M_{
             "notAField"=>true,
             "visible"=>true,
             "template"=>"admin/fields/xtra/section",
-            "label"=>"Download details"
+            "label"=>"Contact file"
         );        
         $conf["default"]["fields"]["theFile"]=array(
             "visible"=>true,
@@ -138,7 +138,7 @@ class M_contact extends M_{
             
         );
         $conf["default"]["fields"]["restricted"]=array(
-            "visible"=>true,
+            "visible"=>false,
             "label"=>"Private file?",
             "help"=>"Does the user need to to be logged to downlaod this file?"
         );

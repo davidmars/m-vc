@@ -47,6 +47,15 @@ class VV_post extends VV_layout {
         
         return $model;        
     }
+    
+        
+    /**
+     *
+     * @return Array<M_download> Return all download of the current post
+     */
+    public function getAllDownload() {
+        return M_download::$manager->select()->where("post", $this->post->id)->all();
+    }
 }
 
 ?>

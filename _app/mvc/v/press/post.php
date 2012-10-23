@@ -1,6 +1,7 @@
 <? 
     /* @var $vv VV_post */
     $vv = $_vars;
+    
     /* @var $this View */
     $this->inside("press/layout", $vv);
 ?>
@@ -33,7 +34,12 @@
                     <?=$this->render("press/blocks/" . $block["modelType"], $block)?>
                 <?  endforeach; ?>
                 
+                <!-- get all download for the post -->
+                <?foreach ($vv->getAllDownload() as $download):?>
+                    <?=$this->render("press/download", $download)?>
+                <?endforeach;?>
                                 
+                <? /*
                 <? // DOWNLOAD FILE COMPONENT ?>
                 <div class="downloadFileComponent">
                     <div class="span8">
@@ -60,6 +66,7 @@
                 
                 <div class="clearfix"></div>
                 <br/>
+                */?>
                 
                 <? // SHARE COMPONENT ?>
                 <div class="span8">
