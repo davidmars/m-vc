@@ -66,7 +66,7 @@ class POV_CssAndJs {
 	JS::addAfterBody("pub/app/admin/lib/jquery.history.js");
 	JS::addAfterBody("pub/app/admin/JQ.js");
 	
-        JS::addAfterBody("pub/app/admin/utils/Utils.js");
+    JS::addAfterBody("pub/app/admin/utils/Utils.js");
         
         
         
@@ -76,7 +76,8 @@ class POV_CssAndJs {
 	JS::addAfterBody("pub/app/admin/lib/jquery.datePicker.js");
 	CSS::addToHeader("pub/app/admin/lib/jquery.datePicker.css");
 	JS::addAfterBody("pub/app/admin/api/Fields/Fields.Date.js");
-        
+	JS::addAfterBody("pub/app/admin/api/Fields/Fields.Assoc.js");
+
 	JS::addAfterBody("pub/app/admin/api/Fields/Fields.Text.js");
         
 	JS::addAfterBody("pub/app/admin/api/Fields/Fields.File.js");

@@ -144,6 +144,7 @@ var Fields={
                 break;                
               
             case "Assoc":
+            case "Models":
                 //console.log("field ASSSSSOC");
                 var selecteur="["+ Model.CTRL.DATA_MODEL_TYPE + "='"+jq.attr(Model.CTRL.DATA_CHILDS_TYPES)+"']"
                 //console.log(selecteur);

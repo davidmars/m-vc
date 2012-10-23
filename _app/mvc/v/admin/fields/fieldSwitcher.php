@@ -34,6 +34,10 @@ $vv=$_vars;
 	<?=$this->render("admin/fields/ModelField",$vv)?>
     <?break;?>
 
+    <?case "NtoNAssoc":?>
+	<?=$this->render("admin/fields/ModelVectorField",$vv)?>
+    <?break;?>
+
     <?case "TextField":?>
     <?default:?>
         <?if($vv->template && View::isValid($vv->template)):?>

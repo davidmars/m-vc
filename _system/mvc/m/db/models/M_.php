@@ -108,31 +108,34 @@ class M_ extends Model{
             $rc->setStaticPropertyValue("manager", new $modelNameManager(  $modelName ));
             
             //browse the class propeties to find db fields and then store it in a good order (keys first, associations later)
-	    $fields=array();
+	        $fields=array();
             foreach ($rc->getProperties() as $field){
                 //get the type from the @var type $field name comment...yes, I'm sure.
-		$comments=$field->getDocComment();
+		        $comments=$field->getDocComment();
                 $details=CodeComments::getVariable($comments);
 		
                 $type=$details["type"];
+                $isVector=$details["isVector"];
                 $description=$details["description"];
                 $fieldName=$field->name;
 		
-		$fieldObject=$this->getDbField($fieldName,$type);
+		        $fieldObject=$this->getDbField($fieldName,$type,$isVector);
+
                 if($fieldObject){
-		    $fieldObject["comments"]=$description;
-		    switch($fieldObject["type"]){
-			
-			case "OneToOneAssoc":
-			    //associations at the end
-			    array_push($fields, $fieldObject);
-			break;
-		    
-			default :
-			    //classic fields at the begining
-			    array_unshift($fields, $fieldObject);
-			
-		    }
+                    $fieldObject["comments"]=$description;
+                    switch($fieldObject["type"]){
+
+                        case "OneToOneAssoc":
+                        case "NToNAssoc":
+                            //associations at the end
+                            array_push($fields, $fieldObject);
+                        break;
+
+                        default :
+                            //classic fields at the beginning
+                            array_unshift($fields, $fieldObject);
+
+                    }
   
                 }
             }
@@ -152,7 +155,8 @@ class M_ extends Model{
      * Remove the original properties from the model that are related to database fields.
      * <b>WARNING :</b> launch it once, no more!
      * Why?
-     * Because public properties in the models are not real Field objects and are not declared as Fields, only the comments in the code does matter in fact. 
+     * Because public properties in the models are not real Field objects and are not declared as Fields,
+     * only the comments in the code does matter in fact.
      * So, the properties declared in a model are used as config and for autocompletion in your code.
      * And so, we need to unset this properties because they hidde the real Fields setters ans getters.
      * After that, the setters in Model will take effect...not before.
@@ -176,14 +180,16 @@ class M_ extends Model{
     }
     /**
      * Checks if the $className given as parameter is a valid field class or not.
-     * @param string $className 
+     * @param string $fieldName
+     * @param string $className
+     * @param bool $isVector
      * @return bool true if the className is a Field
      */
-    public function getDbField($fieldName,$className){
-	$r=array(
-	    "name"=>$fieldName
-	);
-	
+    public function getDbField($fieldName,$className,$isVector=false){
+        $r=array(
+            "name"=>$fieldName
+        );
+
         $areFields=array(
             "IdField",
             "CreatedField",
@@ -197,24 +203,33 @@ class M_ extends Model{
         );
 
         if(in_array($className,$areFields)){
-	    //standard field
-	    $options=array();
-	    switch($className){
-	      case "EnumField":
-	      $states=$fieldName."States";
-	      $options[EnumField::STATES]=$this->$states;
-	      $options[Field::DEFAULT_VALUE]=$this->$fieldName;
-	      break;
-	    }
-	    $r["options"]=$options;
-	    $r["type"]=$className;
-	    return $r;
+            //standard field
+            $options=array();
+            switch($className){
+                  case "EnumField":
+                  $states=$fieldName."States";
+                  $options[EnumField::STATES]=$this->$states;
+                  $options[Field::DEFAULT_VALUE]=$this->$fieldName;
+            break;
+	        }
+            $r["options"]=$options;
+            $r["type"]=$className;
+            return $r;
 	    
-	}else if(class_exists ($className) && is_subclass_of($className,"M_")){
-	    //an association
-	    $r["options"]=array( Assoc::TO => $className );
-	    $r["type"]="OneToOneAssoc";
-	    return $r;
+	    }else if(class_exists ($className) && is_subclass_of($className,"M_")){
+            //an association
+            if($isVector){
+                //N to N assoc
+                $r["options"]=array( Assoc::TO => $className,NtoNAssoc::LINK_MODEL=>$this->modelName."_".$className );
+                //Field::create("Product.countries" , NtoNAssoc , array(Assoc::TO => Country, NtoNAssoc::LINK_MODEL => Product_Country ));
+                $r["type"]="NtoNAssoc";
+            }else{
+                //one to One
+                $r["options"]=array( Assoc::TO => $className );
+                $r["type"]="OneToOneAssoc";
+            }
+
+            return $r;
         }else{
 	    // $className is not a field...so false.
             return false;
