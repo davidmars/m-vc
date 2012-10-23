@@ -92,6 +92,18 @@ class CodeComments {
         }
         return self::getTypeAndDescription($type, $description); 
     }
+
+    /**
+     * @param string $type Type of the variable. Can be something like MyObject or MyObject[].
+     * In the first case will return false, in the second case will return MyObject and so you'll know it's a collection of MyObject.
+     */
+    public static function isAnArray($type){
+        if(preg_match("#(.*)\[\]#",$type)){
+            return str_replace("[]","",$type);
+        }else{
+            return false;
+        }
+    }
     /**
      *
      * @param type $comments
@@ -111,7 +123,8 @@ class CodeComments {
         return self::getTypeAndDescription($type, $description);
     }
     /**
-     * Return an array with keys $type & $description. The two parameters are managed to support exceptions messages like "missing documentation" when something is not defined.
+     * Return an array with keys $type, $isVector & $description.
+     * The parameters are managed to support exceptions messages like "missing documentation" when something is not defined.
      * @param string $type 
      * @param string $description 
      */
@@ -119,6 +132,12 @@ class CodeComments {
             $type=  trim($type);
             $type=  trim($type);
             $type=  trim($type);
+            if(self::isAnArray($type)){
+                $isVector=true;
+                $type=self::isAnArray($type);
+            }else{
+                $isVector=false;
+            }
             switch($type){
                 case null;
                 case "type":
@@ -133,7 +152,7 @@ class CodeComments {
                    $description="Missing documentation";
                    break;
             }
-            return array("type"=>$type,"description"=>$description);
+            return array("type"=>$type,"description"=>$description,"isVector"=>$isVector);
     }
     /**
      * Will return a quick overview of parameters.

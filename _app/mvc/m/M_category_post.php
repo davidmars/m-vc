@@ -10,7 +10,12 @@ class M_category_post extends M_{
      * @var TextField The name of the category post
      */
     public $title;
-    
+
+    /**
+     * @var M_post[] The associated posts to this category
+     */
+    public $posts;
+
     /*     
      * @return Array<M_post> Return all the post of the current category
      */
