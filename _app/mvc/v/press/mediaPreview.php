@@ -22,8 +22,13 @@
                     <img src="<?=GiveMe::url("pub/app/press/img/media.png")?>" alt="<?=$m->title?>" />
                     <br/>
                     <div class="item-media-name">
-                        <?=$m->title?>
+                        <a href=""><?=$m->title?></a>
                     </div>
+                    <a class="button">
+                        <i class="icon-download"></i>
+                        Télécharger
+                    </a>
+                    <div class="clearfix"></div>
                 </div>
             </div>         
             <? endforeach;?>
@@ -31,8 +36,6 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="pagination">
-              Pagination => <?=$subPagination?>
-    </div>
+<div class="pagination">
+    Pagination => <?=$subPagination?>
 </div>

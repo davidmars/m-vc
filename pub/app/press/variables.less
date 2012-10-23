@@ -49,6 +49,7 @@
 @pw2 = 180px;
 @pw3 = 608px;
 @pw4 = 171px;
+@pw5 = 56px;
 
 /* All pictures height values */
 @ph1 = 160px;
@@ -59,3 +60,49 @@
 
 /* Nav item Height values */
 @grid_square = 16; 
+
+/* Gutter Padding */
+.padding-gutter{
+    @media (min-width: 1200px) {
+        padding: @gridGutterWidth1200/2px;
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        padding:@gridGutterWidth768/2px;
+    }
+    @media (max-width: 767px) {
+        padding:@gridGutterWidth/2px;
+    }
+    @media (max-width: 480px) {
+        padding:@gridGutterWidth/2px;
+    }
+}
+/* Gutter Padding Left */
+.paddingLeft-gutter{
+    @media (min-width: 1200px) {
+        padding-left: @gridGutterWidth1200/2px;
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        padding-left:@gridGutterWidth768/2px;
+    }
+    @media (max-width: 767px) {
+        padding-left:@gridGutterWidth/2px;
+    }
+    @media (max-width: 480px) {
+        padding-left:@gridGutterWidth/2px;
+    }
+}
+/* Gutter Padding Right */
+.paddingRight-gutter{
+    @media (min-width: 1200px) {
+        padding-right: @gridGutterWidth1200/2px;
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        padding-right:@gridGutterWidth768/2px;
+    }
+    @media (max-width: 767px) {
+        padding-right:@gridGutterWidth/2px;
+    }
+    @media (max-width: 480px) {
+        padding-right:@gridGutterWidth/2px;
+    }
+}
