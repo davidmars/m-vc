@@ -1,11 +1,11 @@
 <?
+    /* @var $vv M_embed */
     $vv = $_vars;
     
-    $id = $vv["id"];
-    $modelType = $vv["modelType"];
-    $span = $vv["span"];
-    $offset = $vv["offset"];
-    $content = $vv["content"];       
+    $id = $vv->id;    
+    $span = 8;
+    $offset = 0;
+    $content = $vv->code;       
 ?>
 
 <? // EMBED COMPONENT ?>

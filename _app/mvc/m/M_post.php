@@ -49,6 +49,12 @@ class M_post extends M_{
     
     /**
      *
+     * @var M_block[] the content of the post  
+     */
+    public $blocks;
+    
+    /**
+     *
      * @return array The admin config object for M_download model
      */
     public function getAdminConfig() {
