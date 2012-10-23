@@ -14,15 +14,13 @@ $vv = $_vars;
 <!-- Download -->
 <div class="downloadComponent">
     <div class="item-title">
-        <div class="span4">
-            <div class="noGutter">
-                Download
-            </div>
-        </div>
-    </div>    
-    <div class="item-content">
-        <br/>
+        Download
     </div>
+    <a href="" class="item-content">
+        <img src="<?= GiveMe::url("pub/app/press/img/media.png") ?>" alt="<?= $m->title ?>"  />
+        <span class="item-titleIcon">Download</span>
+        <span class="item-subtitle">Press pack</span>
+    </a>        
 </div>
 
 <!-- Contacts -->

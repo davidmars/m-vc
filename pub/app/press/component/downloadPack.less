@@ -1,20 +1,27 @@
-/* COMPOSENT DOWNLOAD */ 
+/* DOWNLOAD COMPONENT */ 
 .downloadComponent {
-    div {
-        &.item-title {
-            height:@grid_square * 3px;    
-            .font-bloc-title-caps;
-            .bg-image-ban-grey;
-            &:first-child {
-                div {                   
-                    line-height:@grid_square * 3px;
-                }
-            }
-        }      
-        
-        &.item-content {
-            .bg-color-download-bloc;
-            //height:@grid_square * 7px;    
-        }
+
+    .bg-color-download-bloc;
+
+    .item-title {   
+        .font-bloc-title-caps;
+        .bg-image-ban-grey;
+        .padding-gutter;
     }
+
+    .item-content{
+        .padding-gutter;
+        display:block;
+    }
+
+    .item-titleIcon {   
+        .font-bloc-title-caps;
+    }
+
+    .item-subtitle {   
+        .font-nav-tab-title;
+    }    
+
 }
+
+

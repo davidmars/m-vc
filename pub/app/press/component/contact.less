@@ -1,53 +1,45 @@
-/* COMPOSENT CONTACT */ 
+/* CONTACT COMPONENT */
+
 .contactComponent {
+
+    .bg-color-download-bloc;
     
-    div{
-        &.item-title{      
-            height:@grid_square * 3px;    
-            .font-bloc-title-caps;
-            .bg-image-ban-grey;         
-            &:first-child {
-                div {
-                    line-height:@grid_square * 3px;
-                }
-            }
-        }   
-        
-        &.item-content .span4{
-            .bg-color-contact-bloc;
-        }
-        
-        &.item-contact {            
-        }
-        
-        &.item-contact-name {        
-            .font-contact-name;
-        }
-        
-        &.item-contact-function {    
-            .font-contact-function;
-        }
-        
-        &.item-contact-society {    
-            .font-contact-society;
-        }
-        
-        &.item-contact-address {    
-            .font-contact-address;
-        }
-        
-        &.item-contact-email {
-            .font-contact-email;
-        }
-        
-        &.item-separator{
-            .separator-contact-bloc;
-        }
-      
+    .item-title{  
+        .font-bloc-title-caps;
+        .bg-image-ban-grey;
+        .padding-gutter;                        
     }
+
+    .item-contact{
+        .padding-gutter;
+    }
+
+    .item-contact-name {        
+        .font-contact-name;
+    }
+
+    .item-contact-function {    
+        .font-contact-function;
+    }
+
+    .item-contact-society {    
+        .font-contact-society;
+    }
+
+    .item-contact-address {    
+        .font-contact-address;
+    }
+
+    .item-contact-email {
+        .font-contact-email;
+    }
+
+    .item-separator{
+        .separator-contact-bloc;
+    }
+
     .item-contact-file{
         .button;
         .pull-right;
-        margin-right:@grid_square * 1px;
     }
 }  

@@ -28,16 +28,49 @@ $field=$vv->field;
             </div>
             
 	</div>
-	<span class="help-block"><?=$field->mime()?></span>
-        <?
-            switch ($field->mime()) {
-                case "image/png":
-                    $imgUrm = GiveMe::imageSizedWithoutCrop("", 50, 50);
+	
+        <?        
+            $mime = $field->mime();
+                        
+            if (preg_match("/image/", $mime, $matches)) {
+                $typeFile = $matches[0];
+            }
+            else if (preg_match("/pdf/", $mime, $matches)) {
+                $typeFile = $matches[0];
+            }
+            else if (preg_match("/illustrator/", $mime, $matches)) {
+                $typeFile = $matches[0];
+            }
+            else if (preg_match("/text/", $mime, $matches)) {
+                $typeFile = $matches[0];
+            }
+            else {
+                $typeFile = "other";
+            }           
+        
+            switch ($typeFile) {
+                case "image":
+                    $imgUrl = GiveMe::imageSizedWithoutCrop($field->get(), 55, 54);
+                break;
+            
+                case "pdf":
+                    $imgUrl = GiveMe::url("/pub/app/admin/img/icon_pdf.jpg");
+                break;
+            
+                case "illustator":
+                    $imgUrl = GiveMe::url("/pub/app/admin/img/icon_illustrator.jpg");
+                break;
+                
+                case "text":
+                    $imgUrl = GiveMe::url("/pub/app/admin/img/icon_font.jpg");
                 break;
             }
         ?>
-        <img src="" alt="mime"></img>
+        <?if(get_class($field)=="FileField" && $field->exists()):?>
+            <img src="<?=$imgUrl?>" alt="mime"></img>
+        <?endif?>
         
+        <span class="help-block"><?=$field->mime()?></span>
         <span class="help-block"><?=$field->fileSize()?></span>
 	<span class="help-block"><?=$vv->comments?></span>
 	
