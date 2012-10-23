@@ -22,6 +22,11 @@ class M_download extends M_{
     public $theFile;
     /**
      *
+     * @var M_post The post where it will be possible to find the download.
+     */
+    public $post;
+    /**
+     *
      * @var PhotoRectangle The thumbnail for this download.
      */
     public $thumb;
@@ -30,13 +35,7 @@ class M_download extends M_{
      * @var BoolField Is the file downloadable without authorisation?
      */
     public $restricted=false;
-    
-    /**
-     *
-     * @var M_category The category where it will be possible to find the download.
-     */
-    public $category;
-    
+        
     /**
      *
      * @var ModifiedField Test sur un champ dans le modele étendu 
@@ -55,9 +54,9 @@ class M_download extends M_{
             "visible"=>true,
             "label"=>"Title"
         );
-        $conf["default"]["fields"]["category"]=array(
+        $conf["default"]["fields"]["post"]=array(
             "visible"=>true,
-            "label"=>"Category"
+            "label"=>"Related Post"
         );
 
         
@@ -78,7 +77,7 @@ class M_download extends M_{
             
         );
         $conf["default"]["fields"]["restricted"]=array(
-            "visible"=>true,
+            "visible"=>false,
             "label"=>"Private file?",
             "help"=>"Does the user need to to be logged to downlaod this file?"
         );

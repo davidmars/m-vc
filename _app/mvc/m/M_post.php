@@ -10,27 +10,30 @@ class M_post extends M_{
      * @var TextField The name of the poste like it is displayed
      */
     public $title;
+    
     /**
      *
      * @var BoolField If positive, the post will be displayed in variaous important places.
      */
-    public $sticky=true;
+     public $activate=true;
+    
     /**
      * 
-     * @var TextField The content of the post
+     * @var TextField The description of the post
      */
-    public $content;
+    public $description;
     
     /**
      *
      * @var EnumField Options for displaying the post.
      */
-    public $template="big";
+    //public $template="big";
+    
     /**
      *
      * @var array The possibles values for the field $template 
      */
-    public $templateStates=array("small","medium","big");
+    //public $templateStates=array("small","medium","big");
     
     /**
      *
@@ -43,6 +46,48 @@ class M_post extends M_{
      * @var ImageField Thumbnail representation of the post 
      */
     public $thumb;
+    
+    /**
+     *
+     * @var M_block[] the content of the post  
+     */
+    public $blocks;
+    
+    /**
+     *
+     * @return array The admin config object for M_download model
+     */
+    public function getAdminConfig() {
+        $conf=parent::getAdminConfig();
+        
+        $conf["default"]["fields"]["title"]=array(
+            "visible"=>true,
+            "label"=>"Title"
+        );
+                
+        
+        $conf["default"]["fields"]["thumb"]=array(
+            "visible"=>true,
+            "label"=>"Thumbnail"
+        );
+        
+        $conf["default"]["fields"]["description"]=array(
+            "visible"=>true,
+            "label"=>"Description"
+        );
+        
+        $conf["default"]["fields"]["category"]=array(
+            "visible"=>true,
+            "label"=>"Category"
+        );
+        
+        $conf["default"]["fields"]["activate"]=array(
+            "visible"=>true,
+            "label"=>"Activation"
+        );
+                   
+        return $conf;
+    }
 }
 
 

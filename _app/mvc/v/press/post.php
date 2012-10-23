@@ -1,6 +1,7 @@
 <? 
     /* @var $vv VV_post */
     $vv = $_vars;
+    
     /* @var $this View */
     $this->inside("press/layout", $vv);
 ?>
@@ -8,13 +9,12 @@
     <br/>
     <div class="row">
         <div class="postPreviewComponent">
-            <div class="item-content">
-                
+            <div class="item-content">                                                              
                 <? // POST COMPONENT ?>
                 <div class="span8">
                     <div class="row">
                         <div class="span2 item-thumbnail">
-                            <img src="http://actu.orangecaraibe.com/images1/zoom/1349434730877714817.jpg" alt="<?=$vv->post->title?>" />
+                            <img src="<?=$vv->post->thumb->sizedWithoutCrop(171, 180, "000000", "jpg")?>" alt="<?=$vv->post->title?>" />
                         </div>
                         <div class="span6 item-text">        
                             <div class="item-title">
@@ -28,47 +28,28 @@
                     </div>
                 </div>
                 
+                
+                <!-- Start the block switcher -->
+                <?  foreach ($vv->post->blocks as $b):?>
+                    <? /* @var $b M_block */ ?>
+                                    
+                    <? if ($b->getContent()):?>
+                        <?=$this->render("press/blocks/" . $b->modelType, $b->getContent())?>
+                    <? endif;?>
+                <?  endforeach; ?>
+                
+                <!-- get all download for the post -->
+                <? /*
+                <?foreach ($vv->getAllDownload() as $download):?>
+                    <?=$this->render("press/download", $download)?>
+                <?endforeach;?>
+                 * 
+                 */?>
+                                
+                <? /*                
                 <div class="clearfix"></div>
                 <br/>
-                
-                <? // VIDEO COMPONENT ?>
-                <div class="span8">
-                    <div class="noGutter">
-                        <div class="item-video">
-                            <iframe width="640" height="395" src="http://www.youtube.com/embed/OsHGFNWVWcA?autoplay=0&amp;rel=0&amp;theme=light&amp;showinfo=0&amp;modestbranding=0&amp;autohide=0&amp;wmode=opaque" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="clearfix"></div>
-                <br/>
-                
-                <? // DOWNLOAD FILE COMPONENT ?>
-                <div class="downloadFileComponent">
-                    <div class="span8">
-                        <div class="noGutter">
-                            <div class="item-file">                                
-                                <img src="<?= GiveMe::url("pub/app/press/img/icon_pdf.jpg") ?>" alt="" />                                
-                                <div class="item-file-content">
-                                    <div class="item-file-name">
-                                        FileName (FileSize Ko)
-                                    </div>
-                                    <div class="item-file-download">
-                                        <a href="">
-                                            <i class="icon-download"></i>
-                                            Télécharger
-                                        </a>
-                                    </div> 
-                                </div>                                
-                                <div class="clearfix"></div>                                
-                            </div>
-                            <div class="separatorTextBloc"></div>
-                        </div>
-                    </div>                    
-                </div>
-                
-                <div class="clearfix"></div>
-                <br/>
+                */?>
                 
                 <? // SHARE COMPONENT ?>
                 <div class="shareComponent">
@@ -87,7 +68,6 @@
                 
                 <div class="clearfix"></div>
                 <br/>
-                
             </div>
         </div>
     </div>

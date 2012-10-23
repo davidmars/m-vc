@@ -68,12 +68,13 @@ class FileField extends Field {
      */
     public function download(){
 	//encode the file name to avoid /        
+        /*
         if ($this->exists()) {
-            return C_Download::download($this, true);
-        }
+            return C_Download::download($this, true);           
+        }*/
 
        // no file
-        return "";
+        return GiveMe::url("download/download") . "?file=" . $this->value;
     }
     
     
