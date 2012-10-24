@@ -2,9 +2,6 @@
 /* @var $this View */
 
 /* @var $vv VV_admin_model_list */
-
-
-
 /* @var $m VV_admin_model */
 $vv=$_vars;
 ?>
@@ -35,44 +32,33 @@ $vv=$_vars;
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <?
-                        $m=$vv->emptyModel;
-                        ?>
+                    <?
+                    $m=$vv->emptyModel;
+                    ?>
+                    <tr data-model-type="<?=$m->modelType?>" data-model-id="new">
                         <td><b>New <?=$m->model->humanName()?></b></td>
                         <td><?=$m->model->created->val()?></td>
                         <td><?=$m->model->modified->val()?></td>
                         <td><a class="btn btn-small btn-success" href="<?=GiveMe::url("admin/admin_model/editModel/".$m->modelType."/".$m->model->id)?>">Add</a></td>
                     </tr>  
                     <?foreach($vv->models as $m):?>
-                    <tr>
+                    <tr data-model-type="<?=$m->modelType?>" data-model-id="<?=$m->model->id?>">
                         <td><b><?=$m->model->humanName()?></b></td>
                         <td><?=$m->model->created->val()?></td>
                         <td><?=$m->model->modified->val()?></td>
                         <?/*<td><a class="btn btn-small" href="<?=GiveMe::url("admin/admin_model/editModel/".$m->modelType."/".$m->model->id)?>">Edit</a></td>*/?>
-                        <td><a class="btn btn-small" href="<?=C_admin_model::editModel($m->modelType, $m->model->id)->url()?>">Edit</a></td>
+                        <td>
+                            <a class="btn btn-small"
+                               data-model-btn-select="true"
+                               href="<?=C_admin_model::editModel($m->modelType, $m->model->id)->url()?>">
+                                Edit
+                            </a>
+                        </td>
                         
                     </tr>       
                     <?endforeach?>
                 </tbody>
             </table>
 
-	    
-	    <?/*
-	    <h2>New <?=$vv->modelType?></h2>
-	    <?=$this->render("admin/model-form",$vv->emptyModel)?>
-	    
-            <div class="well">
-                <h1>This is a list of : <?=$vv->modelType?></h1>
-            </div>
-            
-            <?foreach($vv->models as $m):?>
-                <?=$this->render("admin/model-form", $m)?>
-            <?endforeach?>
-             * 
-             */?>
-        </div>
 
-    </div>
-</div>
    

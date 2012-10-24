@@ -12,29 +12,35 @@ $manager=  Manager::getManager($associatedModelClass);
 $total=$manager->select()->count();
 
 ?>
-<div class="span4">
+<div class="span8">
     <div class="control-group" 
          data-field="root[<?=$field->name?>]" 
          data-field-type="Assoc"
          data-childs-types="<?=$field->options[NtoNAssoc::TO]?>"
          >
-	<label class="control-label"><?=$vv->label?></label>
+	<label class="control-label">
+        <?=$vv->label?>
+    </label>
 	<div class="controlzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz">
         <table class="table">
-            <?foreach($field as $m):?>
-                <tr data-model-type="<?=$m->modelName?>"
-                     data-model-id="<?=$m->id?>">
+            <thead>
+            <tr>
 
-                     <td><i class="icon-file"></i></td>
-                     <td><?=$m->id?>/<?=$m->humanName()?></td>
+                <td colspan="5" style="text-align: right;">
+                    <a class="btn btn-small"
+                       href="#Fields.Assoc.addItem">
+                        <i class="icon-plus-sign"></i> Add a <?=$associatedModelClass?>
+                    </a>
+                </td>
+            </tr>
+            </thead>
+            <tbody data-assoc-children-container="true">
+                <?foreach($field as $m):?>
+                <?=$this->render("admin/models/tr-sortable",$m);?>
+                <?endforeach?>
+            </tbody>
 
-                     <td><a href="#Assoc.move" data-move="before"><i class="icon-arrow-up"></i></a></td>
-                     <td><a href="#Assoc.move" data-move="after"><i class="icon-arrow-down"></i></a></td>
 
-                    <td><a href="#Model.removeDOM"><i class="icon-remove"></i></a></td>
-
-                </tr>
-            <?endforeach?>
         </table>
 
 

@@ -2,7 +2,8 @@
  * a field that works with jqery ui date picker
  */
 Fields.File=function(jq){
-    var jq=this.jq=$(jq);
+
+    var jq = this.jq = $(jq);
     var me=this;
     this.textField=$(this.jq.find("input[type='text']")[0]);
     this.model=Model.getParent(jq);
