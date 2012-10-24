@@ -39,7 +39,7 @@ class M_post extends M_{
      *
      * @var M_category_post The category where it will be possible to find the post.
      */
-    public $category;   
+    //public $category;   
     
     /**
      *
@@ -74,12 +74,7 @@ class M_post extends M_{
         $conf["default"]["fields"]["description"]=array(
             "visible"=>true,
             "label"=>"Description"
-        );
-        
-        $conf["default"]["fields"]["category"]=array(
-            "visible"=>true,
-            "label"=>"Category"
-        );
+        );      
         
         $conf["default"]["fields"]["activate"]=array(
             "visible"=>true,

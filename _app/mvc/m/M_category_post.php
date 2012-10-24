@@ -15,7 +15,7 @@ class M_category_post extends M_{
      * @var M_post[] The associated posts to this category
      */
     public $posts;
-
+    
     /*     
      * @return Array<M_post> Return all the post of the current category
      */

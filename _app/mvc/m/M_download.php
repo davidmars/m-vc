@@ -24,7 +24,7 @@ class M_download extends M_{
      *
      * @var M_post The post where it will be possible to find the download.
      */
-    public $post;
+    //public $post;
     /**
      *
      * @var PhotoRectangle The thumbnail for this download.
@@ -54,11 +54,6 @@ class M_download extends M_{
             "visible"=>true,
             "label"=>"Title"
         );
-        $conf["default"]["fields"]["post"]=array(
-            "visible"=>true,
-            "label"=>"Related Post"
-        );
-
         
         $conf["default"]["fields"]["break"]=array(
             "notAField"=>true,

@@ -29,7 +29,7 @@ class VV_post extends VV_layout {
      */
     public function init($post) {
         $this->post = $post;        
-        $this->currentCategoryId = $post->category->getCategoryId();
+       // $this->currentCategoryId = $post->category->getCategoryId();
         
         $this->blocks = array();
         $this->blocks[] = $this->getExample("Photo", "2", 0, "16", "pub/app/press/img/media.png");

@@ -1,15 +1,17 @@
 <?
-    $vv = $_vars;
+    /* @var $vv M_text */
+    $vv = $_vars;        
     
-    $id = $vv["id"];
-    $modelType = $vv["modelType"];
-    $span = $vv["span"];
-    $offset = $vv["offset"];
-    $content = $vv["content"];       
+    $id = 0;
+    $span = 8;
+    $offset = 0;    
 ?>
 
-<div class="span<?=$span?> offset<?=$offset?>" data-model-type="Text" data-model-id="<?=$id?>">
+<div class="span<?=$span?> offset<?=$offset?>" data-model-type="Text" data-model-id="<?=$vv->id?>">
+    <div class="item-title">
+        <?=$vv->title?>
+    </div>
     <div class="item-text">
-        <?=$content?>
+        <?=$vv->text?>
     </div>
 </div>

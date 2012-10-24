@@ -12,6 +12,11 @@ class M_category_media extends M_{
     public $title;
     
     /**
+     * @var M_subcategory_media[] The associated subcategory to this category
+     */
+    public $subcategory;
+    
+    /**
      *
      * @param int $page It's the current page
      * @return Array<M_subcategory_media> Return all subcategory media of the current blog for the given page

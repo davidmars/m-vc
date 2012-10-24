@@ -1,6 +1,8 @@
 <?php
 /* @var $vv VV_layout */
 $vv = $_vars;
+
+$contactList = $vv->getContact(1);
 ?>
 
 <!-- Contact  -->
@@ -9,8 +11,7 @@ $vv = $_vars;
         Contact
     </div>  
     <div class="item-content">
-
-        <? foreach ($vv->getAllContact() as $contact): ?>    
+        <?foreach ($contactList->contacts as $contact): ?>    
             <div class="item-contact">
                 <!-- The name of the Contact-->
                 <div class="item-contact-name">
@@ -60,7 +61,7 @@ $vv = $_vars;
             </div>
 
             <div class="item-separator">&nbsp;</div>
-        <? endforeach; ?>
+        <? endforeach;?>
 
         <div class="clearfix"></div>
     </div>
