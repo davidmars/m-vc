@@ -27,7 +27,7 @@ class M_download extends M_{
     //public $post;
     /**
      *
-     * @var PhotoRectangle The thumbnail for this download.
+     * @var ImageField The thumbnail for this download.
      */
     public $thumb;
     /**
@@ -54,7 +54,12 @@ class M_download extends M_{
             "visible"=>true,
             "label"=>"Title"
         );
-        
+
+        $conf["default"]["fields"]["thumb"]=array(
+            "visible"=>true,
+            "label"=>"Thumbnail to represent the download"
+        );
+
         $conf["default"]["fields"]["break"]=array(
             "notAField"=>true,
             "visible"=>true,

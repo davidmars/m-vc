@@ -128,14 +128,21 @@ Class C_press extends Controller{
         
         //jquery
         JS::addAfterBody("pub/libs/jquery-1.7.2.js");
-        JS::addAfterBody("pub/app/admin/lib/jquery.history.js");
+        JS::addAfterBody("pub/libs/jquery.history.js");
 
 	
         JS::addAfterBody("pub/app/admin/utils/Utils.js");
-        
-        
+
         //bootstrap
         JS::addAfterBody("pub/libs/bootstrap/js/bootstrap.js");
+
+        JS::addAfterBody("pub/libs/greensock/TweenMax.min.js");
+
+        // Press
+        JS::addAfterBody("pub/app/press/js/Dom.js");
+        JS::addAfterBody("pub/app/press/js/Nav.js");
+        JS::addAfterBody("pub/tools/EventDispatcher.js");
+        JS::addAfterBody("pub/app/press/js/Press.js");
         
         //compile and integrate less files
         $lessVariables=array(

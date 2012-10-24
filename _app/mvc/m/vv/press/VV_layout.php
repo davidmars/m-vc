@@ -48,5 +48,15 @@ class VV_layout extends ViewVariables {
     public function getAllSubCategoriesMedia() {
         return M_subcategory_media::$manager->select()->all();
     }
+
+    /**
+     * @return M_download Return the url for the download pack link
+     */
+
+    public  function getPressPackDownload() {
+        $download = M_download::$manager->get(2);
+        /* @var $download M_download */
+        return  $download;
+    }
 }
 ?>

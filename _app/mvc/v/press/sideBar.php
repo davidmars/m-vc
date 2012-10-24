@@ -1,6 +1,8 @@
 <?php
 /* @var $vv VV_layout */
 $vv = $_vars;
+
+$mainDownload = $vv->getPressPackDownload();
 ?>
 
 <? // PRESS ROOM COMPONENT ?>
@@ -16,8 +18,8 @@ $vv = $_vars;
     <div class="item-title">
         Download
     </div>
-    <a href="" class="item-content">
-        <img src="<?= GiveMe::url("pub/app/press/img/media.png") ?>" alt="<?= $m->title ?>"  />        
+    <a href="<?=$mainDownload->theFile->download()?>" class="item-content">
+        <img src="<?= GiveMe::url($mainDownload->thumb)?>" alt="<?= $m->title ?>"  />
         <i class="sprite-item-titleIcon"></i><span class="item-titleIcon">Download</span>
         <span class="item-subtitle">Press pack</span>        
     </a>    

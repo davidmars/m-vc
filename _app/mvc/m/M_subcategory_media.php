@@ -9,7 +9,12 @@ class M_subcategory_media extends M_{
      *
      * @var TextField The name of the subcategory
      */
-    public $title;    
+    public $title;
+
+    /**
+     * @var M_media[] the media of the subcategory media
+     */
+    public $medias;
     
     /**
      *

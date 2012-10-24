@@ -16,13 +16,13 @@
     <div class="mediaPreviewComponent">
         <div class="item-media-content">       
             <!-- récupération de tous les médias -->
-            <?  foreach ($medias as $m):?>
+            <?  foreach ($media->medias as $m):?>
             <?
                 /* @var $m M_media */
             ?>
             <div class="span2 item-media-data">
                 <div class="noGutter">
-                    <img src="<?=GiveMe::url("pub/app/press/img/media.png")?>" alt="<?=$m->title?>" />
+                    <img src="<?=GiveMe::url($m->thumb)?>" alt="<?=$m->title?>" />
                     <br/>
                     <div class="item-media-name">
                         <a href=""><?=$m->title?></a>
@@ -39,6 +39,12 @@
     </div>
 </div>
 
+    <? /*
 <div class="pagination">
           Pagination => <?=$subPagination?>
+</div>
+    */?>
+
+<div class="pull-right">
+    View all
 </div>
