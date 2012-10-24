@@ -140,7 +140,28 @@ var Api={
             context:context
         },onComplete
         )
-    }    
+    },
+    /**
+     *
+     * @param controller The controller to use to load the view
+     * @param onComplete The callback function to perform when the view is loaded.
+     * @param datas object to send with the request
+     */
+    getView:function(controller,datas,onComplete){
+        $.ajax({
+            type: "POST",
+            url: Config.rootUrl +"/"+ controller,
+            data: datas,
+            /*dataType: 'json',*/
+            success:
+                function (ajaxReturn){
+                    console.log("Api.getView call success");
+                    if(typeof(onComplete) == 'function') {
+                        onComplete(ajaxReturn);
+                    }
+                }
+        });
+    }
 }
 /**
  * An api upload object call the upload service.

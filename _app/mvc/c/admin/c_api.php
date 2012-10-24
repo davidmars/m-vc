@@ -1,6 +1,9 @@
 <?
 class C_api extends Controller{
-
+    /**
+     * Record the model. Datas are passed via $_REQUEST[root] object.
+     * @param $modelType
+     */
     public static function record($modelType){
 	
 	$modelType=$_REQUEST["type"];
@@ -47,6 +50,20 @@ class C_api extends Controller{
     }
 
     /**
+     * Display a template according to the $_REQUEST[template] param and the models params.
+     * @param $modelType
+     * @param $modelId
+     * @return C_api
+     */
+    public static function modelTemplate($modelType,$modelId){
+        $template=$_REQUEST["template"];
+        $model=self::getModel($modelType,$modelId);
+        $c=new C_api();
+        $c->resultView=new View($template,$model);
+        return $c;
+    }
+
+    /**
      * Will empty the links for $model->$varName et will re-attribute the given models.
      * @param $model Model the target model where to link the others models
      * @param $varName NtoNAssoc The name of the field association
@@ -76,7 +93,7 @@ class C_api extends Controller{
      * @param $modelId id of the model to find or "new" to get a new one that will be created.
      * @return M_|null The found model, or a created one, on new
      */
-    private function getModel($modelType,$modelId){
+    private static function getModel($modelType,$modelId){
         $manager=Manager::getManager($modelType);
         if(!$manager){
             return null;
