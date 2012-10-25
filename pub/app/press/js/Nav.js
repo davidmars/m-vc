@@ -61,6 +61,7 @@ Nav.initHistory = function(){
 
         loader.events.addEventListener("loaded", function() {
             loading.setNormal();
+            Press.initAfterAjax();
         })
 
         loading.setLoading();
@@ -88,10 +89,43 @@ Nav.Loader = function(url, target) {
     }
 }
 
+Nav.autoLoads = function() {
+    var all =  $("[" + Nav.CTRL.AJAX_AUTOLOAD + "]");
+
+    var elem;
+
+    for(var i = 0; i < all.size(); i++) {
+        elem = $(all[i]);
+
+        Nav.navAutoLoadOne(elem);
+    }
+}
+
+Nav.navAutoLoadOne = function(elem) {
+    var loader;
+    var url;
+
+    url = elem.attr(Nav.CTRL.AJAX_AUTOLOAD);
+    loader = new Nav.Loader(url, elem);
+    loader.start();
+
+    elem.attr(Nav.CTRL.AJAX_AUTOLOAD + "Loaded", url);
+    //elem.removeAttr(Nav.CTRL.AJAX_AUTOLOAD);
+
+    var loading = new Press.Loading(elem);
+
+    loading.setLoading();
+
+    loader.events.addEventListener("loaded", function() {
+        loading.setNormal();
+    });
+}
+
 Nav.CTRL =  {
     AJAX_LINK : "[data-nav-is-ajax]",
     AJAX_TARGET : "data-nav-is-ajax-target",
     AJAX_RECEIVER : "[data-nav-ajax-receiver]",
+    AJAX_AUTOLOAD : "data-nav-ajax-autoload",
     ITEM_NAV : "[data-is-item-nav]"
 }
 

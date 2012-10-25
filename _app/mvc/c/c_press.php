@@ -25,7 +25,7 @@ Class C_press extends Controller{
         // get the current category post       
         $currentCategory = M_category_post::$manager->get($category);        
         // get the current page index
-        $pagination = (!empty($pagination))?($pagination):(1);
+        $pagination = $pagination;
                                               
         // create the good view variable for our view 
         $vv = new VV_categoryPost();                
@@ -77,7 +77,7 @@ Class C_press extends Controller{
         // get the current category media
         $currentCategory = M_category_media::$manager->get($category);        
         // get the current page index
-        $pagination = (!empty($pagination))?($pagination):(1);
+        $pagination = $pagination;
                                               
         // create the good view variable for our view 
         $vv = new VV_categoryMedia();                
@@ -92,11 +92,13 @@ Class C_press extends Controller{
      * @param int $subCat is the current subCatMedia id
      * @param int $pagination is the index number of the pagination
      */
-    public function subCatMedia($subCat, $pagination = "",$returnUrl=false) {
-	if($returnUrl){
-	   $c = new C_press();
-	   return $c->url(); 
-	} 
+    public static function subCatMedia($subCat, $pagination = "",$returnUrl=false) {
+        if($returnUrl){
+           $c = new C_press();
+           return $c->url();
+        }
+
+        die("toto");
     }
     
     /**

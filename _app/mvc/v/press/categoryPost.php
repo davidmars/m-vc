@@ -8,10 +8,10 @@
 
 <div class="posts">
     <!-- Affichage de chaque preview réordonné -->
-    <?foreach ($vv->categoryPost->posts as $p):?>
+    <?foreach ($vv->posts as $post):?>
         <?/* @var $p M_post */?>
         <br/>
-        <?=$this->render("press/postPreview", $p)?>
+        <?=$this->render("press/postPreview", $post)?>
         <br/>
         <div class="row">
             <div class="span8">
@@ -22,11 +22,4 @@
 </div>
 
 <!-- Affichage de la pagination si > a 1 page -->
-<?
-// Need to be change to works with block of post 
-/*
-<?if($vv->categoryPost->getNbPage() > 1):?>
 <?=$this->render("press/paginationCategoryPost", $vv)?>
-<?endif?> 
- * 
- */?>

@@ -37,7 +37,7 @@
                     <div class="row">
                         <!-- Pour chaque category post -->
                         <? foreach ($vv->getAllCategoriesPost() as $category): ?>
-                        <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
+                        <div class="span2 item-nav <?=($vv->currentCategoryIdName == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
                             <div class="noGutter">
                                 <a href="<?=C_press::categoryPost($category->id,null,true)?>"
                                    data-nav-is-ajax="true"
@@ -51,7 +51,7 @@
                         <?endforeach;?>
 
                         <? foreach ($vv->getAllCategoriesMedia() as $category): ?>
-                        <div class="span2 item-nav <?=($vv->currentCategoryId == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
+                        <div class="span2 item-nav <?=($vv->currentCategoryIdName == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
                             <div class="noGutter">
                                 <a href="<?=C_press::categoryMedia($category->id,null,true)?>"
                                    data-nav-is-ajax="true"
@@ -74,16 +74,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- the loader -->
-                <div class="posts">
-                    <div class="row">
-                        <div class="span8">
-                            <div id="canvasloader-container" class="wrapper noGutter"></div>
-                        </div>
-                    </div>
-                </div>
-
 
                 <!-- main content -->
                 <div id="mainContent" data-nav-ajax-receiver="mainContent">

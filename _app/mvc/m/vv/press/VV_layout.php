@@ -6,7 +6,11 @@ class VV_layout extends ViewVariables {
      * @var string It's the current category ID
      */
     public $currentCategoryId;
-    
+
+    /**
+     * @var string the category id + name
+     */
+    public $currentCategoryIdName;
                     
     /**
      *

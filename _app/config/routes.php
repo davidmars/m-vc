@@ -8,15 +8,15 @@ UrlControler::$routes=array(
        
         "documentation"=>"doc/doc/index/overview",
         "documentation/"=>"doc/doc/index/overview",
-	"documentation/class/(:any)"=>"doc/doc/classDefinition/$1",
+	    "documentation/class/(:any)"=>"doc/doc/classDefinition/$1",
         "documentation/(:any)"=>"doc/doc/index/$1",
         
     //"car/[[:alnum:]/]*/(.*)"=>"lolo/index/$1",
          
 	
 	
-	"pressroom/category/post/(:any)"=>"press/categoryPost/$1",
-	"pressroom/downloads/(:any)"=>"press/categoryMedia/$1",
+	"pressroom/category/post/(:num)/(:num)"=>"press/categoryPost/$1/$2",
+	"pressroom/downloads/(:num)/(:num)"=>"press/categoryMedia/$1/$2",
 	"pressroom/post/(:any)"=>"press/post/$1",
     
         //home
