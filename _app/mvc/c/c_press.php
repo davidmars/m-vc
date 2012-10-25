@@ -138,6 +138,8 @@ Class C_press extends Controller{
 
         JS::addAfterBody("pub/libs/greensock/TweenMax.min.js");
 
+        JS::addAfterBody("pub/libs/heartcode-canvasloader-min.js");
+
         // Press
         JS::addAfterBody("pub/app/press/js/Dom.js");
         JS::addAfterBody("pub/app/press/js/Nav.js");

@@ -6,7 +6,7 @@
     $this->inside("press/layout", $vv);       
 ?>
 
-<div class="posts">    
+<div class="posts">
     <!-- Affichage de chaque preview réordonné -->
     <?foreach ($vv->categoryPost->posts as $p):?>
         <?/* @var $p M_post */?>

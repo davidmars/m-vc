@@ -73,6 +73,15 @@
                     </div>
                 </div>
 
+                <!-- the loader -->
+                <div class="posts">
+                    <div class="row">
+                        <div class="span8">
+                            <div id="canvasloader-container" class="wrapper noGutter"></div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- main content -->
                 <div id="mainContent" data-nav-ajax-receiver="mainContent">

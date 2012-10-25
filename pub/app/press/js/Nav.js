@@ -50,7 +50,7 @@ Nav.initHistory = function(){
             target = Dom.main;
         }
 
-        console.log(target);
+        //console.log(target);
 
         var loader = new Nav.Loader(Nav.currentState.url, target);
         var loading = new Press.Loading(target);
@@ -60,7 +60,6 @@ Nav.initHistory = function(){
         });
 
         loader.events.addEventListener("loaded", function() {
-            console.log("loaded");
             loading.setNormal();
         })
 
@@ -75,7 +74,7 @@ Nav.Loader = function(url, target) {
     var me = this;
 
     this.start=function(){
-        me.events.dispatchEvent("startLoading");
+        //me.events.dispatchEvent("startLoading");
         $.ajax({
             type: "POST",
             url: url,
@@ -98,6 +97,6 @@ Nav.CTRL =  {
 Dom.body.on("click", Nav.CTRL.AJAX_LINK, function(ev) {
     ev.preventDefault();
     var target = $(this).attr(Nav.CTRL.AJAX_TARGET);
-    console.log(target);
+    //console.log(target);
     Nav.goToUrl($(this).attr("href"), target);
 })
