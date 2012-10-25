@@ -142,10 +142,14 @@ Class C_press extends Controller{
 
         JS::addAfterBody("pub/libs/heartcode-canvasloader-min.js");
 
+        // FB
+        JS::addAfterBody("http://connect.facebook.net/en_US/all.js");
+
         // Press
         JS::addAfterBody("pub/app/press/js/Dom.js");
         JS::addAfterBody("pub/app/press/js/Nav.js");
         JS::addAfterBody("pub/tools/EventDispatcher.js");
+        JS::addAfterBody("pub/app/press/js/Share.js");
         JS::addAfterBody("pub/app/press/js/Press.js");
         
         //compile and integrate less files

@@ -39,7 +39,7 @@
                         <? foreach ($vv->getAllCategoriesPost() as $category): ?>
                         <div class="span2 item-nav <?=($vv->currentCategoryIdName == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
                             <div class="noGutter">
-                                <a href="<?=C_press::categoryPost($category->id,null,true)?>"
+                                <a href="<?=C_press::categoryPost($category->id, 0,true)?>"
                                    data-nav-is-ajax="true"
                                    data-nav-is-ajax-target="mainContent"
                                    data-is-item-nav="true">
@@ -53,7 +53,7 @@
                         <? foreach ($vv->getAllCategoriesMedia() as $category): ?>
                         <div class="span2 item-nav <?=($vv->currentCategoryIdName == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
                             <div class="noGutter">
-                                <a href="<?=C_press::categoryMedia($category->id,null,true)?>"
+                                <a href="<?=C_press::categoryMedia($category->id, 0,true)?>"
                                    data-nav-is-ajax="true"
                                    data-nav-is-ajax-target="mainContent"
                                    data-is-item-nav="true">
