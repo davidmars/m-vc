@@ -14,7 +14,7 @@ class M_category_media extends M_{
     /**
      * @var M_subcategory_media[] The associated subcategory to this category
      */
-    public $subcategory;
+    public $subcategories;
     
     /**
      *

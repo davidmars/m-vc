@@ -23,7 +23,21 @@ body {
     }
 }
 
-.wrapper {
-  position:relative;
-  left: 50%;
+.loading-box {
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-box-inside {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("@{path}/img/loader.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #ff0000;
 }

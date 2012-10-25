@@ -14,11 +14,14 @@
 </div>
 <div class="row">
     <div class="mediaPreviewComponent">
-        <div class="item-media-content">       
+        <div class="item-media-content" data-nav-ajax-autoload="<?=C_press::subCatMedia($media->id, 0, true)?>">
+            <?/*
+
+
             <!-- récupération de tous les médias -->
             <?  foreach ($media->medias as $m):?>
             <?
-                /* @var $m M_media */
+                /* @var $m M_media /
             ?>
             <div class="span2 item-media-data">
                 <div class="noGutter">
@@ -35,6 +38,7 @@
                 </div>
             </div>         
             <? endforeach;?>
+            */?>
         </div>                
     </div>
 </div>

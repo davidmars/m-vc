@@ -13,7 +13,6 @@ $vv = $_vars;
 
     <!-- Insertion d'un composant de titre -->
     <div class="item-title">
-
         <div class="span8">
             <div class="noGutter">More <?= $vv->categoryPost->title ?></div>
         </div>
@@ -23,14 +22,17 @@ $vv = $_vars;
     <div class="item-content">        
         <div class="item-pagination">
             <div class="row">
-                <? for ($p = 1; $p < $vv->categoryPost->getNbPage() + 1; $p++): ?>                
-                    <div class="span1 item-pagination-number <?= ($p == $vv->page) ? ("active") : ("") ?>">
-                        <a href="<?= C_press::categoryPost($vv->categoryPost->id, $p, true) ?>"><?= $p ?></a>
+                <?foreach($vv->pages as $page):?>
+                    <div class="span1 item-pagination-number <?= ($page->isCurrent) ? ("active") : ("") ?>">
+                        <a
+                            href="<?=$page->href?>"
+                            data-nav-is-ajax="true"
+                            data-nav-is-ajax-target="mainContent">
+                                <?= $page->name ?>
+                        </a>
                     </div>
-                    <? /* if($p != $vv->page):?>                        
-                      <div class="span1 item-separator">&nbsp;</div>
-                      <?endif; */ ?>
-                <? endfor; ?>
+                <?endforeach;?>
+
             </div>
         </div>
     </div>

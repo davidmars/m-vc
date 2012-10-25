@@ -12,17 +12,20 @@ var Press = {
         target = $(target);
         this.events=new EventDispatcher();
         var me = this;
+        var inside = $("<div/>");
+        inside.addClass("loading-box-inside");
 
         this.setLoading=function(){
-            Loader.show();
+            target.addClass("loading-box");
+            target.append(inside);
 
             TweenLite.to(
                 target,
                 1,
                 {
-                    css:{opacity:"0"},
-                    y:0,
-                    //alpha:0,
+                    css:{
+                        height:"400px"
+                    },
                     ease:Linear.easeNone,
                     onComplete:function(){
                         me.events.dispatchEvent("onStateLoading");
@@ -34,16 +37,19 @@ var Press = {
 
 
         this.setNormal=function(){
-
-            Loader.hide();
+            target.removeClass("loading-box");
 
             TweenLite.to(
                 target,
                 1,
                 {
-                    css:{opacity:"1"},
-                    //alpha:0,
-                    ease:Linear.easeNone
+                    css:{
+                        height:"auto"
+                    },
+                    ease:Linear.easeNone,
+                    onComplete:function(){
+                        inside.remove();
+                    }
                 }
             );
         }
@@ -51,37 +57,14 @@ var Press = {
     }
 }
 
-var Loader =  {
-    cl:null,
-
-    init:function(){
-
-        this.cl = new CanvasLoader('canvasloader-container');
-
-        this.cl.setDiameter(20); // default is 40
-        this.cl.setDensity(20); // default is 40
-        this.cl.setRange(1); // default is 1.3
-        this.cl.setSpeed(1); // default is 2
-        this.cl.setFPS(20); // default is 24
-
-    },
-
-    show:function() {
-        this.cl.show();
-    },
-
-    hide:function(){
-        this.cl.hide();
-    }
-}
 
 Press.init = function() {
     Nav.init();
-    Loader.init();
+    Press.initAfterAjax();
 }
 
 Press.initAfterAjax = function() {
-
+    Nav.autoLoads();
 }
 
 Press.init();
