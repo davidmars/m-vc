@@ -50,7 +50,7 @@ Nav.initHistory = function(){
             target = Dom.main;
         }
 
-        console.log(target);
+        //console.log(target);
 
         var loader = new Nav.Loader(Nav.currentState.url, target);
         var loading = new Press.Loading(target);
@@ -60,7 +60,6 @@ Nav.initHistory = function(){
         });
 
         loader.events.addEventListener("loaded", function() {
-            console.log("loaded");
             loading.setNormal();
         })
 
@@ -75,7 +74,7 @@ Nav.Loader = function(url, target) {
     var me = this;
 
     this.start=function(){
-        me.events.dispatchEvent("startLoading");
+        //me.events.dispatchEvent("startLoading");
         $.ajax({
             type: "POST",
             url: url,
@@ -92,12 +91,22 @@ Nav.Loader = function(url, target) {
 Nav.CTRL =  {
     AJAX_LINK : "[data-nav-is-ajax]",
     AJAX_TARGET : "data-nav-is-ajax-target",
-    AJAX_RECEIVER : "[data-nav-ajax-receiver]"
+    AJAX_RECEIVER : "[data-nav-ajax-receiver]",
+    ITEM_NAV : "[data-is-item-nav]"
 }
 
 Dom.body.on("click", Nav.CTRL.AJAX_LINK, function(ev) {
     ev.preventDefault();
     var target = $(this).attr(Nav.CTRL.AJAX_TARGET);
-    console.log(target);
+    //console.log(target);
     Nav.goToUrl($(this).attr("href"), target);
+})
+
+Dom.body.on("click", Nav.CTRL.ITEM_NAV, function(ev) {
+    ev.preventDefault();
+    $(".navBarComponent").find(".item-nav").each(function(){
+        $(this).removeClass("active");
+    });
+
+    $(this).closest("div.item-nav").addClass("active");
 })

@@ -41,7 +41,8 @@
                             <div class="noGutter">
                                 <a href="<?=C_press::categoryPost($category->id,null,true)?>"
                                    data-nav-is-ajax="true"
-                                   data-nav-is-ajax-target="mainContent">
+                                   data-nav-is-ajax-target="mainContent"
+                                   data-is-item-nav="true">
                                     <?=$category->title?>
                                 </a>
                                 <span class="item-nav-arrow"></span>
@@ -54,7 +55,8 @@
                             <div class="noGutter">
                                 <a href="<?=C_press::categoryMedia($category->id,null,true)?>"
                                    data-nav-is-ajax="true"
-                                   data-nav-is-ajax-target="mainContent">
+                                   data-nav-is-ajax-target="mainContent"
+                                   data-is-item-nav="true">
                                     <i class="sprite-item-nav"></i> <?=$category->title?>
                                 </a>
                                 <span class="item-nav-arrow"></span>
@@ -69,6 +71,15 @@
                     <div class="span8">
                         <div class="noGutter">
                             <div class="separatorBloc"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- the loader -->
+                <div class="posts">
+                    <div class="row">
+                        <div class="span8">
+                            <div id="canvasloader-container" class="wrapper noGutter"></div>
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 var Press = {
+
     Loading:function(target) {
 
         target = $(target);
@@ -13,14 +14,16 @@ var Press = {
         var me = this;
 
         this.setLoading=function(){
-            //target.addClass("isLoading");
+            Loader.show();
+
             TweenLite.to(
                 target,
                 1,
-                {css:{
-                    rotation:"45",
-                    backgroundColor:"#FFFF00"
-                }, ease:Power2.easeOut,
+                {
+                    css:{opacity:"0"},
+                    y:0,
+                    //alpha:0,
+                    ease:Linear.easeNone,
                     onComplete:function(){
                         me.events.dispatchEvent("onStateLoading");
                     }
@@ -31,16 +34,16 @@ var Press = {
 
 
         this.setNormal=function(){
+
+            Loader.hide();
+
             TweenLite.to(
                 target,
                 1,
-                {css:{
-                    rotation:"0",
-                    backgroundColor:"#FF00FF"
-                }, ease:Power2.easeOut,
-                    onComplete:function(){
-                        me.events.dispatchEvent("onStateNormal");
-                    }
+                {
+                    css:{opacity:"1"},
+                    //alpha:0,
+                    ease:Linear.easeNone
                 }
             );
         }
@@ -48,8 +51,33 @@ var Press = {
     }
 }
 
+var Loader =  {
+    cl:null,
+
+    init:function(){
+
+        this.cl = new CanvasLoader('canvasloader-container');
+
+        this.cl.setDiameter(20); // default is 40
+        this.cl.setDensity(20); // default is 40
+        this.cl.setRange(1); // default is 1.3
+        this.cl.setSpeed(1); // default is 2
+        this.cl.setFPS(20); // default is 24
+
+    },
+
+    show:function() {
+        this.cl.show();
+    },
+
+    hide:function(){
+        this.cl.hide();
+    }
+}
+
 Press.init = function() {
     Nav.init();
+    Loader.init();
 }
 
 Press.initAfterAjax = function() {
