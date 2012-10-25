@@ -3,10 +3,9 @@
     /* @var $vv VV_categoryMedia */
     $vv = $_vars;   
 ?>
-
+<? /*
 <br/>
 <br/>
-
 
 <!-- Insertion d'un composant de pagination -->
 <div class="paginationComponent">
@@ -36,4 +35,5 @@
             </div>
         </div>
     </div>
-</div>    
+</div> 
+*/ ?>

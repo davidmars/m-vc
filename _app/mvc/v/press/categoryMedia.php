@@ -8,9 +8,8 @@
 
 <div class="posts">
     <!-- Affichage de chaque preview réordonné -->
-    <?foreach ($vv->subCatMedias as $subMedia):?>
+    <? foreach ($vv->subCatMedias as $subMedia):?>
         <?/* @var $subMedia M_subcategory_media */?>
-        <br/>
         <?=$this->render("press/mediaPreview", $subMedia)?>
         <br/>
         <div class="row">
@@ -18,7 +17,7 @@
                 <div class="noGutter separatorTextBloc"></div>
             </div>
         </div>
-    <?endforeach;?>
+    <? endforeach;?>
 </div>
 
 <!-- Affichage de la pagination si > a 1 page -->
