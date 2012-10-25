@@ -6,26 +6,32 @@
             height:@grid_square * 3px;
             line-height:@grid_square * 3px;
         }
+		
+		&.noGutter{
+			background: @color5;
+		}
+		
+		&.item-media-data {
+			.bg-color-download-bloc;
+			img {
+				width:100%;						                 
+			}
+		} 
         
-        &.item-media-content {
-            div {
-                &.item-media-data {
-                    .bg-color-download-bloc;
-                    img {
-                        .picture-download-thumb;
-                        width:100%;                        
-                    }                    
-                    div.item-media-name {
-                        //position:relative;
-                        //top:@grid_square * 1px;
-                        //left:@grid_square * 1px;
-                        
-                    }
-                }
-                &.noGutter{
-                    background: @color5;
-                }
-            }
+        &.item-media-content {		
+			
+			.separator-media;		
+							   
+				div.item-media-name {
+					.padding-gutter;						                      
+				}
+				div.item-media-link {
+					.padding-gutter;
+					.button{
+						.pull-right;
+					} 
+				}        
+            
         }
     }
 }
