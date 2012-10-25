@@ -25,11 +25,11 @@ class View {
 	 */
 	public $path;
         
-        /**
-         *
-         * @var bool Will be true if the view is loaded via an ajax request. 
-         */
-        public $isAjax=false;
+    /**
+     *
+     * @var bool Will be true if the view is loaded via an ajax request.
+     */
+    public $isAjax=false;
 
 
         /**

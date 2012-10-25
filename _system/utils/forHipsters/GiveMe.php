@@ -56,4 +56,24 @@ class GiveMe {
         return self::url(ImageTools::sized($url, $width, $height, "showAll", $format, $backgroundColor));
     }
 
+    /**
+     * @return string Will call the function to add a facebook like button on your blog
+     */
+    public static function socialFB(){
+        return "<fb:like href='' send='true' layout='button_count' show_faces='false' width='200' font=''></fb:like>";
+    }
+
+    /**
+     * @return string Will call the function to add a google plus button on your blog
+     */
+    public static function socialGoogle(){
+        return '<div class="item-google"><g:plusone href="" size="medium" count="false"></g:plusone></div>';
+    }
+
+    /**
+     * @return string Will call the function to add a twitter share button on your blog
+     */
+    public static function socialTwitter(){
+        return '<a class="twitter-share-button" href="http://twitter.com/share" data-url="" data-count="none" data-lang="en">Tweet</a>';
+    }
 }

@@ -16,7 +16,7 @@ Class C_press extends Controller{
 	   return $c->url(); 
 	}
 	
-        // set the css and the js 
+        // set the css and the js
         self::setCssAndJs();
         
         // create a variable for our controller
@@ -124,7 +124,6 @@ Class C_press extends Controller{
      * @param bool $final si true, incluera les fichiers de base
      */
     private static function setCssAndJs($final=true){
-
         //modernizer
         JS::addToHeader("pub/libs/modernizr-2.5.3-respond-1.1.0.min.js");
         
@@ -142,10 +141,16 @@ Class C_press extends Controller{
 
         JS::addAfterBody("pub/libs/heartcode-canvasloader-min.js");
 
+        // social share
+        JS::addAfterBody("https://apis.google.com/js/plusone.js");
+        JS::addAfterBody("http://platform.twitter.com/widgets.js");
+        JS::addAfterBody("http://connect.facebook.net/en_US/all.js");
+
         // Press
         JS::addAfterBody("pub/app/press/js/Dom.js");
         JS::addAfterBody("pub/app/press/js/Nav.js");
         JS::addAfterBody("pub/tools/EventDispatcher.js");
+        JS::addAfterBody("pub/app/press/js/Share.js");
         JS::addAfterBody("pub/app/press/js/Press.js");
         
         //compile and integrate less files

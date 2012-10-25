@@ -57,7 +57,6 @@ var Press = {
     }
 }
 
-
 Press.init = function() {
     Nav.init();
     Press.initAfterAjax();
@@ -65,6 +64,7 @@ Press.init = function() {
 
 Press.initAfterAjax = function() {
     Nav.autoLoads();
+    Share.init();
 }
 
 Press.init();
