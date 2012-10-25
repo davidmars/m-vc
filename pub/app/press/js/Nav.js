@@ -91,7 +91,8 @@ Nav.Loader = function(url, target) {
 Nav.CTRL =  {
     AJAX_LINK : "[data-nav-is-ajax]",
     AJAX_TARGET : "data-nav-is-ajax-target",
-    AJAX_RECEIVER : "[data-nav-ajax-receiver]"
+    AJAX_RECEIVER : "[data-nav-ajax-receiver]",
+    ITEM_NAV : "[data-is-item-nav]"
 }
 
 Dom.body.on("click", Nav.CTRL.AJAX_LINK, function(ev) {
@@ -99,4 +100,13 @@ Dom.body.on("click", Nav.CTRL.AJAX_LINK, function(ev) {
     var target = $(this).attr(Nav.CTRL.AJAX_TARGET);
     //console.log(target);
     Nav.goToUrl($(this).attr("href"), target);
+})
+
+Dom.body.on("click", Nav.CTRL.ITEM_NAV, function(ev) {
+    ev.preventDefault();
+    $(".navBarComponent").find(".item-nav").each(function(){
+        $(this).removeClass("active");
+    });
+
+    $(this).closest("div.item-nav").addClass("active");
 })
