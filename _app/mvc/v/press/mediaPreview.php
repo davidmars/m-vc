@@ -40,6 +40,6 @@
 </div>
     */?>
   <div class="span8">
-    <div class="pull-right"> <a href="" data-nav-is-ajax-target="mainContent" data-nav-is-ajax="true" rel="nofollow">View all</a> </div>
+    <div class="pull-right"> <a href="" data-nav-is-ajax-target="mainContent" data-nav-is-ajax="true" rel="nofollow" class="font-media-link">View all</a> </div>
   </div>
 </div>
