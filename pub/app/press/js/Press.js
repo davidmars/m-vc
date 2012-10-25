@@ -59,12 +59,12 @@ var Press = {
 
 Press.init = function() {
     Nav.init();
-    Share.init();
     Press.initAfterAjax();
 }
 
 Press.initAfterAjax = function() {
     Nav.autoLoads();
+    Share.init();
 }
 
 Press.init();
