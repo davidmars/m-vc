@@ -6,6 +6,15 @@
  * @author David Marsalone
  */
 class C_admin_model extends Controller{
+
+
+    public static function login(){
+        $c=new C_admin_model();
+        POV_CssAndJs::adminSettings();
+        $c->resultView=new View("admin/login");
+        return $c;
+    }
+
     /**
      * Will display a list of models of the given type.
      * @param string $modelType the model 
@@ -13,7 +22,7 @@ class C_admin_model extends Controller{
      */
     public static function listModels($modelType){
 	
-	$c=new C_admin_model();
+	    $c=new C_admin_model();
         POV_CssAndJs::adminSettings();
         //unexisting model
         if(!class_exists($modelType)){

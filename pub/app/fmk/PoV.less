@@ -20,6 +20,26 @@ This file has to be imported after bootstrap
     }
 }
 
+//---------margins------------------
+
+.generateMargins (@index) when (@index > 0) {
+  (~".mt@{index}") {
+    margin-top:@index*20px;
+  }
+  (~".mb@{index}") {
+    margin-bottom:@index*20px;
+  }
+  (~".pt@{index}") {
+    padding-top:@index*20px;
+  }
+  (~".pb@{index}") {
+    padding-bottom:@index*20px;
+  }
+  .generateMargins(@index - 1);
+}
+.generateMargins(10);
+
+
 //----------utils-----------------------------
 
 

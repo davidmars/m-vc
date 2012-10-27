@@ -10,6 +10,10 @@ UrlControler::$routes=array(
         "documentation/"=>"doc/doc/index/overview",
 	    "documentation/class/(:any)"=>"doc/doc/classDefinition/$1",
         "documentation/(:any)"=>"doc/doc/index/$1",
+
+
+        //generic admin
+        "admin"=>"admin/admin_model/listModels/M_post",
         
     //"car/[[:alnum:]/]*/(.*)"=>"lolo/index/$1",
          

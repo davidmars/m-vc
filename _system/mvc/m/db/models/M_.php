@@ -207,9 +207,12 @@ class M_ extends Model{
             $options=array();
             switch($className){
                   case "EnumField":
-                  $states=$fieldName."States";
+                  $options[EnumField::STATES]=self::getStates(get_class($this),$fieldName);
+                  $options[Field::DEFAULT_VALUE]=$options[EnumField::STATES][0];
+                  /*$states=$fieldName."States";
                   $options[EnumField::STATES]=$this->$states;
-                  $options[Field::DEFAULT_VALUE]=$this->$fieldName;
+
+                  */
             break;
 	        }
             $r["options"]=$options;
@@ -234,6 +237,24 @@ class M_ extends Model{
 	    // $className is not a field...so false.
             return false;
         }
+    }
+
+    /**
+     * Return an array with several states possibilities. To do it we parse the model constants.
+     * A field named $toto will be in relationship with const TOTO_MY_STATE for example
+     * @param string $className Name of the target class.
+     * @param string $fieldName Name of the field which we want to guess the several states possibilities.
+     */
+    private static function getStates($className,$fieldName){
+        $states=array();
+        $rc=new ReflectionClass($className);
+        $consts=$rc->getConstants();
+        foreach($consts as $k=>$v){
+            if(preg_match("#^".strtoupper($fieldName)."_#",$k)){
+                $states[]=$v;
+            }
+        }
+        return $states;
     }
     
     //--------------------admin preferences--------------------------------

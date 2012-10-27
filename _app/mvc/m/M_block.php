@@ -6,7 +6,10 @@
  * They are used in general to do associations between a model and various other models.
  */
 class M_block extends M_ {
-
+    /**
+     * @var Manager the dedicated manager to this object.
+     */
+    public static $manager;
     /**
      *
      * @var TextField the model type named  
