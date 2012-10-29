@@ -12,52 +12,167 @@ $contactList = $vv->getContact("Havana PressRoom");
     <?//the current model id?>
      data-model-id="<?=$contactList->id?>"
     <?//the controller url to use to refresh after actions?>
-     data-model-refresh-controller="<?=C_press::categoryPost($vv->categoryPost->id,"0",true)?>"
+     data-model-refresh-controller="<?=C_press::sideBar(true)?>"
     <?//a jquery selector that define where to inject the data-model-refresh-controller html result?>
-     data-model-refresh-target-selector="#mainContent"
+     data-model-refresh-target-selector="#sideBar"
     >
+
     <div class="item-title">
         Contact
-    </div>  
+        <?if($vv->isAdmin()):?>
+            <span class="pull-right">
+                <?// create and add a contact to the contacts?>
+                <a class="pull-right btn btn-success"
+                    <?//the action to do?>
+                   href="#Model.addNewChild()"
+                    <?//the new model type to create?>
+                   data-new-type="M_contact"
+                    <?//the field where to add the new post?>
+                   data-new-field-target="contacts">
+                    Add a contact
+                </a>
+            </span>
+        <?endif?>
+    </div>
+
     <div class="item-content">
         <?foreach ($contactList->contacts as $contact): ?>    
-            <div class="item-contact">
+            <div class="item-contact"data-model-type="M_contact"
+                 data-model-id="<?=$contact->id?>"
+                 data-model-refresh-controller="<?=C_press::sideBar(true)?>"
+            >
+
+                <!-- Save of the Contact-->
+                <a class="pull-right btn btn-success" href="#Model.save"><i class="icon-ok"></i></a>
+
                 <!-- The name of the Contact-->
-                <div class="item-contact-name">
-                    <?= $contact->name ?>        
+                <div data-field="root[name]"
+                    data-field-type="Text">
+                    <div class="item-contact-name">
+                        <span
+                            <?//editable ?>
+                            <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                            <?// no text formatting allowed here */?>
+                                data-remove-format="true">
+                                 <?= $contact->name ?>
+                        </span>
+                    </div>
                 </div>
 
                 <!-- The function of the Contact-->
-                <div class="item-contact-function">
-                    <?= $contact->function ?>        
+
+                <div data-field="root[role]"
+                     data-field-type="Text">
+                    <div class="item-contact-function">
+                        <span
+                            <?//editable ?>
+                            <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                            <?// no text formatting allowed here */?>
+                                data-remove-format="true">
+                                 <?= $contact->role ?>
+                        </span>
+                    </div>
                 </div>
                 <br/>
 
                 <!-- The society of the Contact-->
                 <? if ($contact->society): ?>
-                    <div class="item-contact-society">
-                        <?= $contact->society ?>        
+                    <div data-field="root[society]"
+                         data-field-type="Text">
+                        <div class="item-contact-society">
+                            <span
+                                <?//editable ?>
+                                <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                                <?// no text formatting allowed here */?>
+                                    data-remove-format="true">
+                                 <?= $contact->society ?>
+                            </span>
+                        </div>
                     </div>
                 <? endif; ?>
 
                 <!-- The address of the Contact-->
                 <? if ($contact->street): ?>
                     <div class="item-contact-address">
-                        <?= $contact->street ?>        
-                        <br/>
-                        <?= $contact->zip ?> <?= $contact->city ?> - <?= $contact->country ?>
-                        <br/>
-                        Tel: <?= $contact->number ?>
-                        <br/>
+                        <!-- The street of the Contact-->
+                        <div data-field="root[street]"
+                             data-field-type="Text">
+                            <span
+                                <?//editable ?>
+                                <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                                <?// no text formatting allowed here */?>
+                                    data-remove-format="true">
+                                 <?= $contact->street ?>
+                            </span>
+                        </div>
+
+                        <!-- The zip of the Contact-->
+                        <span data-field="root[zip]"
+                             data-field-type="Text">
+                            <span
+                                <?//editable ?>
+                                <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                                <?// no text formatting allowed here */?>
+                                    data-remove-format="true">
+                                    <?= $contact->zip ?>
+                            </span>
+                        </span>
+
+                        <!-- The city of the Contact-->
+                        <span data-field="root[city]"
+                              data-field-type="Text">
+                            <span
+                                <?//editable ?>
+                                <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                                <?// no text formatting allowed here */?>
+                                    data-remove-format="true">
+                                    <?= $contact->city ?>
+                            </span>
+                        </span>
+
+                        <!-- The country of the Contact-->
+                        <span data-field="root[country]"
+                              data-field-type="Text">
+                            -
+                            <span
+                                <?//editable ?>
+                                <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                                <?// no text formatting allowed here */?>
+                                    data-remove-format="true">
+                                    <?= $contact->country ?>
+                            </span>
+                        </span>
+
+                        <!-- The number of the Contact-->
+                        <div data-field="root[number]"
+                             data-field-type="Text">
+                            Tel:
+                            <span
+                                <?//editable ?>
+                                <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                                <?// no text formatting allowed here */?>
+                                    data-remove-format="true">
+                                 <?= $contact->number ?>
+                            </span>
+                        </div>
                     </div>
-                    <br/>
                 <? endif; ?>
 
                 <!-- The email of the Contact-->
-                <div class="item-contact-email">
-                    <a href="mailto:<?= $contact->email ?>"><?= $contact->email ?></a>
+                <div data-field="root[email]"
+                    data-field-type="Text">
+                    <div class="item-contact-email">
+                        <a href="<?=!$vv->isAdmin()?"mailto:".$contact->email:"#"?>">
+                            <span
+                                <?//editable ?>
+                                <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                                <?// no text formatting allowed here */?>
+                                    data-remove-format="true">
+                                 <?= $contact->email ?>
+                            </span>
+                        </a>
+                    </div>
                 </div>
-                <br/>
 
                 <!-- The file of the Contact-->
                 <a class="item-contact-file">
@@ -66,7 +181,6 @@ $contactList = $vv->getContact("Havana PressRoom");
                 </a>
                 
                 <div class="clearfix"></div>
-
             </div>
 
             <div class="item-separator">&nbsp;</div>
