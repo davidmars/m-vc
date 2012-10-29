@@ -20,9 +20,13 @@
     <?if($vv->isAdmin()):?>
     <div class="row">
         <div class="span8 mb1 mt1">
+            <?// create and add a post to the category?>
             <a class="pull-right btn btn-success"
+               <?//the action to do?>
                href="#Model.addNewChild()"
+               <?//the new model type to create?>
                data-new-type="M_post"
+               <?//the field where to add the new post?>
                data-new-field-target="posts">Add a post</a>
         </div>
     </div>

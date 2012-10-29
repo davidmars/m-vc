@@ -7,8 +7,18 @@
  */
 class C_admin_model extends Controller{
 
+    /**
+     * Display the login page.
+     * @param bool $returnUrl
+     * @return C_admin_model
+     */
+    public static function login($returnUrl=false){
 
-    public static function login(){
+        if($returnUrl){
+            $c = new C_admin_model();
+            return $c->url();
+        }
+
         $c=new C_admin_model();
         POV_CssAndJs::adminSettings();
         $c->resultView=new View("admin/login");
@@ -20,8 +30,17 @@ class C_admin_model extends Controller{
      * @param string $modelType the model 
      * @return C_admin_model
      */
-    public static function listModels($modelType){
-	
+    public static function listModels($modelType,$returnUrl=false){
+
+        if($returnUrl){
+            $c = new C_admin_model();
+            return $c->url();
+        }
+        //check if the user is logged in and is an admin
+        if(!M_user::currentUser()->canWrite()){
+            return self::login();
+        }
+
 	    $c=new C_admin_model();
         POV_CssAndJs::adminSettings();
         //unexisting model
@@ -40,8 +59,19 @@ class C_admin_model extends Controller{
      * @param string $modelType The type of the target model
      * @param string $modelId The id of the target model, if null an emty form of the requested model will be returned. 
      */
-    public static function editModel($modelType,$modelId=null){
-	$c=new C_admin_model();
+    public static function editModel($modelType,$modelId=null,$returnUrl=false){
+
+        if($returnUrl){
+            $c = new C_admin_model();
+            return $c->url();
+        }
+
+        //check if the user is logged in and is an admin
+        if(!M_user::currentUser()->canWrite()){
+            return self::login();
+        }
+        
+	    $c=new C_admin_model();
         POV_CssAndJs::adminSettings();
         //unexisting model
         if(!class_exists($modelType)){
