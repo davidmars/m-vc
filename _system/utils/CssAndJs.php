@@ -16,8 +16,11 @@ class POV_CssAndJs {
         JS::addToHeader("pub/libs/modernizr-2.5.3-respond-1.1.0.min.js");
         //jquery
         JS::addAfterBody("pub/libs/jquery-1.7.2.js");
+        JS::addAfterBody("pub/libs/jquery.history.js");
         //bootstrap
         JS::addAfterBody("pub/libs/bootstrap/js/bootstrap.js");
+
+        JS::addAfterBody("pub/tools/EventDispatcher.js");
 
     }
     /**
@@ -63,7 +66,7 @@ class POV_CssAndJs {
 
 	JS::addToHeader("pub/app/admin/api/Config.js");
 	
-	JS::addAfterBody("pub/app/admin/lib/jquery.history.js");
+
 	JS::addAfterBody("pub/app/admin/JQ.js");
 	
     JS::addAfterBody("pub/app/admin/utils/Utils.js");
@@ -71,15 +74,16 @@ class POV_CssAndJs {
         
         
 	JS::addAfterBody("pub/app/admin/api/Fields.js");
-	
+
+    //dates
 	JS::addAfterBody("pub/app/admin/lib/date.js");
 	JS::addAfterBody("pub/app/admin/lib/jquery.datePicker.js");
 	CSS::addToHeader("pub/app/admin/lib/jquery.datePicker.css");
 	JS::addAfterBody("pub/app/admin/api/Fields/Fields.Date.js");
 	JS::addAfterBody("pub/app/admin/api/Fields/Fields.Assoc.js");
+	JS::addAfterBody("pub/app/admin/api/LoginForm.js");
 
 	JS::addAfterBody("pub/app/admin/api/Fields/Fields.Text.js");
-        
 	JS::addAfterBody("pub/app/admin/api/Fields/Fields.File.js");
 	
 	JS::addAfterBody("pub/app/admin/api/Api.js");

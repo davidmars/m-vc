@@ -110,33 +110,37 @@ class M_ extends Model{
             //browse the class propeties to find db fields and then store it in a good order (keys first, associations later)
 	        $fields=array();
             foreach ($rc->getProperties() as $field){
-                //get the type from the @var type $field name comment...yes, I'm sure.
-		        $comments=$field->getDocComment();
-                $details=CodeComments::getVariable($comments);
-		
-                $type=$details["type"];
-                $isVector=$details["isVector"];
-                $description=$details["description"];
-                $fieldName=$field->name;
-		
-		        $fieldObject=$this->getDbField($fieldName,$type,$isVector);
+                if($field->isPublic()){
 
-                if($fieldObject){
-                    $fieldObject["comments"]=$description;
-                    switch($fieldObject["type"]){
 
-                        case "OneToOneAssoc":
-                        case "NToNAssoc":
-                            //associations at the end
-                            array_push($fields, $fieldObject);
-                        break;
+                    //get the type from the @var type $field name comment...yes, I'm sure.
+                    $comments=$field->getDocComment();
+                    $details=CodeComments::getVariable($comments);
 
-                        default :
-                            //classic fields at the beginning
-                            array_unshift($fields, $fieldObject);
+                    $type=$details["type"];
+                    $isVector=$details["isVector"];
+                    $description=$details["description"];
+                    $fieldName=$field->name;
+
+                    $fieldObject=$this->getDbField($fieldName,$type,$isVector);
+
+                    if($fieldObject){
+                        $fieldObject["comments"]=$description;
+                        switch($fieldObject["type"]){
+
+                            case "OneToOneAssoc":
+                            case "NToNAssoc":
+                                //associations at the end
+                                array_push($fields, $fieldObject);
+                            break;
+
+                            default :
+                                //classic fields at the beginning
+                                array_unshift($fields, $fieldObject);
+
+                        }
 
                     }
-  
                 }
             }
 	    //create the fields
@@ -207,9 +211,12 @@ class M_ extends Model{
             $options=array();
             switch($className){
                   case "EnumField":
-                  $states=$fieldName."States";
+                  $options[EnumField::STATES]=self::getStates(get_class($this),$fieldName);
+                  $options[Field::DEFAULT_VALUE]=$options[EnumField::STATES][0];
+                  /*$states=$fieldName."States";
                   $options[EnumField::STATES]=$this->$states;
-                  $options[Field::DEFAULT_VALUE]=$this->$fieldName;
+
+                  */
             break;
 	        }
             $r["options"]=$options;
@@ -234,6 +241,24 @@ class M_ extends Model{
 	    // $className is not a field...so false.
             return false;
         }
+    }
+
+    /**
+     * Return an array with several states possibilities. To do it we parse the model constants.
+     * A field named $toto will be in relationship with const TOTO_MY_STATE for example
+     * @param string $className Name of the target class.
+     * @param string $fieldName Name of the field which we want to guess the several states possibilities.
+     */
+    private static function getStates($className,$fieldName){
+        $states=array();
+        $rc=new ReflectionClass($className);
+        $consts=$rc->getConstants();
+        foreach($consts as $k=>$v){
+            if(preg_match("#^".strtoupper($fieldName)."_#",$k)){
+                $states[]=$v;
+            }
+        }
+        return $states;
     }
     
     //--------------------admin preferences--------------------------------

@@ -101,14 +101,18 @@ var Fields={
             case "SlideShow":
                 //console.log("slideShow");
             break;
+
             case "PhotoRectangle":
                 return jq.attr( Model.CTRL.DATA_MODEL_ID );            
+
             case "Tags":
                 return Fields.getModelsValues( jq.find("["+ Model.CTRL.DATA_MODEL_TYPE + "='Tag']") );
                 break;                
+
             case "Posts":
                 return Fields.getModelsValues( jq.find("["+ Model.CTRL.DATA_MODEL_TYPE + "='Post']") );
                 break;                
+
             case "Domains":
                 
                 return Fields.getModelsRadioValues( jq.find("["+ Model.CTRL.DATA_MODEL_TYPE + "='Domain']") );
@@ -152,12 +156,13 @@ var Fields={
                 //console.log(jq.find(selecteur));
                 return Fields.getModelsValues( jq.find("["+ Model.CTRL.DATA_MODEL_TYPE + "='"+jq.attr(Model.CTRL.DATA_CHILDS_TYPES)+"']") );
                 break;                
+
             case "PhotoRectangle":
-	    case "ModelSelect":
+	        case "ModelSelect":
             case "SelectBox":
-	    case "BoolField":
-		return $(jq.find("select")[0]).val();
-		break;
+	        case "BoolField":
+		        return $(jq.find("select")[0]).val();
+		        break;
                                           
             case "PageUrls":
                 var arr = [];
@@ -167,6 +172,7 @@ var Fields={
                 })                
                 return arr;
                 break;
+
             case "Blocks":
                 var fieldBlock=new Fields.Blocks(jq);
                 return fieldBlock.getValue();
@@ -181,6 +187,9 @@ var Fields={
             case "Text":
             case "FileField":
                 var value = jq.find("textarea, input[type='text']").val();
+                if(!value){
+                    value=jq.find("[contenteditable='true']").html()
+                }
                 if (jq.attr("data-prefix") !== undefined){
                     return jq.attr("data-prefix") + "." + value;
                 }

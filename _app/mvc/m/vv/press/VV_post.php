@@ -34,6 +34,16 @@ class VV_post extends VV_layout {
        // $this->currentCategoryId = $post->category->getCategoryId();
     }
 
+    /**
+     * This function is an easy way to get an admin field for the post->thumb field.
+     * @return VV_admin_field
+     */
+    public function thumbAdminField(){
+        $editableField=new VV_admin_field();
+        $editableField->init($this->post,"thumb");
+        return $editableField;
+    }
+
 
     public function getCategory(){
         return "toto";

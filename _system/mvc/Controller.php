@@ -103,7 +103,7 @@ class Controller {
        //Human::log("findControllerPath ".$controllerClass. " ".$dir);
        
        if ($handle = opendir($dir)) {
-	   
+
 	    /* Ceci est la façon correcte de traverser un dossier. */
 	    while (false !== ($entry = readdir($handle))) {
 		if( $entry!="." && $entry!=".."){
@@ -212,7 +212,7 @@ class Controller {
         //search the controller php file
         for($i=0;$i<count($parts);$i++){
             $path="/".implode("/",array_slice($parts, 0, $i+1));
-            $fileName= preg_replace("/^(.*)\/(.*)$/", "$1/c_$2.php", $path);
+            $fileName= preg_replace("/^(.*)\/(.*)$/", "$1/C_$2.php", $path);
             $file = Site::$appControllersFolder.$fileName;
             
             if(file_exists($file)){

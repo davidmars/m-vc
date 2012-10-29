@@ -52,7 +52,20 @@ class M_post extends M_{
      * @var M_block[] the content of the post  
      */
     public $blocks;
-    
+
+    /**
+     * Create a new M_post with default values, save it and return it.
+     * @return M_post The new post.
+     */
+    public static function getNew(){
+        $newPost=new M_post();
+        $newPost->title="This is a new post";
+        $newPost->description="This is the description of this new post";
+        $newPost->thumb="pub/app/press/img/logo-havana-club.png";
+        $newPost->save();
+        return $newPost;
+    }
+
     /**
      *
      * @return array The admin config object for M_download model

@@ -1,14 +1,12 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- * 
- * 
+/**
+ * A model dedicated to images
  */
-
 class M_photo extends M_ {
-    
+    /**
+     * @var Manager the dedicated manager to this object.
+     */
+    public static $manager;
     /**
      *
      * @var ImageField photo for the post content 

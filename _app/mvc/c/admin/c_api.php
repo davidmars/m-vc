@@ -1,7 +1,25 @@
 <?
+/**
+ * The Api controller allows the user to manage datas
+ */
 class C_api extends Controller{
+
+    public static function login(){
+        $log=M_user::login($_REQUEST["email"],$_REQUEST["password"]);
+        //return in all cases will be here
+        $json=new VV_apiReturn();
+        if($log){
+            $json->success=true;
+            $json->messages[]="Welcome ".M_user::$current->humanName();
+        }else{
+            $json->success=false;
+            $json->errors=[]="Sorry but the email and password d'on't match";
+        }
+        die($json->json());
+    }
+
     /**
-     * Record the model. Datas are passed via $_REQUEST[root] object.
+     * Record the model. Data are passed via $_REQUEST[root] object.
      * @param $modelType
      */
     public static function record($modelType){
@@ -10,7 +28,7 @@ class C_api extends Controller{
 	$modelId=$_REQUEST["id"];
 	$templatePath=$_REQUEST["template"];
 	//return in all cases will be here
-        $json=new VV_apiReturn();
+    $json=new VV_apiReturn();
         
 	if($modelId && $modelType){
 	    $manager = Manager::getManager($modelType);
@@ -144,7 +162,7 @@ class C_api extends Controller{
      * @param string $fieldName
      * @return bool true if the field can be updated.  
      */
-    public static function isRecordableField($fieldName){
+    private static function isRecordableField($fieldName){
 	switch ($fieldName){
 	    case "id":
 	    case "created":

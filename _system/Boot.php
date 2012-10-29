@@ -43,8 +43,8 @@ class Boot {
     /**
      * It boots...the system. 
      */
-    public static function theSystem(){  
-        
+    public static function theSystem(){
+        session_start();
         //includes
         self::includeFiles();
         self::bootModels();
@@ -288,7 +288,8 @@ function __autoload($class_name) {
 
 	$class_name = trim($class_name);
         $includePaths=array();
-	$includePaths = Boot::getAllIncludePaths(Site::$systemMVC."/m");
+	    $includePaths = Boot::getAllIncludePaths(Site::$systemMVC."/m");
+	    $includePaths = Boot::getAllIncludePaths(Site::$appControllersFolder);
         //$includePaths=array_merge($includePaths, Boot::getAllIncludePaths(Site::$appModelsFolder));
         $includePaths=array_merge($includePaths, Boot::getAllIncludePaths(Site::$systemFolder));
 	
