@@ -151,6 +151,20 @@ Class C_press extends Controller{
         $c->resultView = new View("press/sideBar", $vv);
         return $c;
     }
+
+    public static function contacts($returnUrl=false) {
+        if($returnUrl){
+            $c = new C_press();
+            return $c->url();
+        }
+
+        $c = new C_press();
+
+        $vv = new VV_layout();
+
+        $c->resultView = new View("press/contacts", $vv);
+        return $c;
+    }
     
     /**
      *

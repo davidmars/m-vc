@@ -40,10 +40,14 @@ $contactList = $vv->getContact("Havana PressRoom");
             <div class="item-contact"data-model-type="M_contact"
                  data-model-id="<?=$contact->id?>"
                  data-model-refresh-controller="<?=C_press::sideBar(true)?>"
+                 data-model-refresh-target-selector="#sideBar"
             >
 
                 <!-- Save of the Contact-->
-                <a class="pull-right btn btn-success" href="#Model.save"><i class="icon-ok"></i></a>
+                <?if($vv->isAdmin()):?>
+                <a class="pull-right btn btn-danger btn-small" href="#Model.delete"><i class="icon-remove icon-white"></i></a>
+                <a class="pull-right btn btn-success btn-small" href="#Model.save"><i class="icon-ok icon-white"></i></a>
+                <?endif?>
 
                 <!-- The name of the Contact-->
                 <div data-field="root[name]"
@@ -179,7 +183,7 @@ $contactList = $vv->getContact("Havana PressRoom");
                     <i class="icon-download"></i>
                     Télécharger le contact
                 </a>
-                
+
                 <div class="clearfix"></div>
             </div>
 

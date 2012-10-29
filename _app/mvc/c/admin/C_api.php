@@ -82,6 +82,19 @@ class C_api extends Controller{
 
     }
 
+    public static function delete() {
+
+        $modelType=$_REQUEST["type"];
+        $modelId=$_REQUEST["id"];
+        //return in all cases will be here
+        $json=new VV_apiReturn();
+
+        $m = self::getModel($modelType, $modelId);
+        $m->delete();
+        $json->success=true;
+        die($json->json());
+    }
+
     /**
      * Create a new model and associate it to an existing model via an association
      * @param $newModelType string
