@@ -2,11 +2,20 @@
 /* @var $vv VV_layout */
 $vv = $_vars;
 
-$contactList = $vv->getContact(1);
+$contactList = $vv->getContact("Havana PressRoom");
 ?>
 
 <!-- Contact  -->
-<div class="contactComponent">
+<div class="contactComponent"
+    <?//the current model type?>
+     data-model-type="M_contacts"
+    <?//the current model id?>
+     data-model-id="<?=$contactList->id?>"
+    <?//the controller url to use to refresh after actions?>
+     data-model-refresh-controller="<?=C_press::categoryPost($vv->categoryPost->id,"0",true)?>"
+    <?//a jquery selector that define where to inject the data-model-refresh-controller html result?>
+     data-model-refresh-target-selector="#mainContent"
+    >
     <div class="item-title">
         Contact
     </div>  

@@ -136,7 +136,20 @@ Class C_press extends Controller{
 
         $c->resultView = new View("press/mediaAll", $vv);
         return $c;
+    }
 
+    public static function sideBar($returnUrl=false) {
+        if($returnUrl){
+            $c = new C_press();
+            return $c->url();
+        }
+
+        $c = new C_press();
+
+        $vv = new VV_layout();
+
+        $c->resultView = new View("press/sideBar", $vv);
+        return $c;
     }
     
     /**
@@ -190,6 +203,12 @@ Class C_press extends Controller{
         JS::addAfterBody("pub/tools/EventDispatcher.js");
         JS::addAfterBody("pub/app/press/js/Share.js");
         JS::addAfterBody("pub/app/press/js/Press.js");
+
+
+        //admin?
+        if(M_user::currentUser()->canWrite()){
+            POV_CssAndJs::adminSettings(false);
+        }
         
         //compile and integrate less files
         $lessVariables=array(

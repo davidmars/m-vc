@@ -83,10 +83,8 @@
             </div>
 
             <!-- sideBar -->
-            <div class="span4 sidebar" data-nav-ajax-receiver="sideBar">
-                <div class="noGutter">
+            <div class="span4 sidebar" data-nav-ajax-receiver="sideBar" id="sideBar">
                     <?=$this->render("press/sideBar", $vv)?>
-                </div>
             </div>
 
        </div>
