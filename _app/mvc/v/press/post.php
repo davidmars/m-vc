@@ -5,25 +5,59 @@
     /* @var $this View */
     $this->inside("press/layout", $vv);
 ?>
-<div class="post">
+<div class="post"
+     data-model-type="M_post"
+     data-model-id="<?=$vv->post->id?>"
+     data-model-refresh-controller="<?=C_press::post($vv->post->id,true)?>"
+     >
     <br/>
     <div class="row">
         <div class="postPreviewComponent">
             <div class="item-content">                                                              
                 <? // POST COMPONENT ?>
+
                 <div class="span8">
+
+
+
                     <div class="row">
-                        <div class="span2 item-thumbnail">
-                            <img src="<?=$vv->post->thumb->sizedWithoutCrop(171, 180, "000000", "jpg")?>" alt="<?=$vv->post->title?>" />
-                        </div>
-                        <div class="span6 item-text">        
-                            <div class="item-title">
-                                <?=$vv->post->title?>
+
+                        <?if($vv->isAdmin()):?>
+                            <div class="span8 mb1">
+                            <a class="pull-right btn btn-success" href="#Model.save">Save</a>
                             </div>
+                        <?endif?>
+
+                        <?=$this->render("press/fields/post-image",$vv->thumbAdminField())?>
+
+                        <div class="span6 item-text">
+                            <?//title ?>
+                            <div data-field="root[title]"
+                                 data-field-type="Text">
+                                <div class="item-title">
+                                    <span
+                                        <?//editable ?>
+                                        <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                                        <?// no text formatting allowed here */?>
+                                            data-remove-format="true">
+                                         <?=$vv->post->title?>
+                                    </span>
+                                </div>
+                            </div>
+
                             <br/>
-                            <div class="item-description">
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim
-                            </div>                          
+                            <?//description ?>
+                            <div data-field="root[description]" data-field-type="Text">
+                                <div class="item-description">
+                                    <span
+                                           <?//editable ?>
+                                           <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                                           <?// no text formatting allowed here */?>
+                                           data-remove-format="true">
+                                        <?=$vv->post->description?>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -56,7 +56,7 @@ var ModalsManager={
         })
 
         //loads the list
-        Api.getView("admin/admin_model/listModels/"+modelName,
+        Api.getView(Config.rootUrl +"/admin/admin_model/listModels/"+modelName,
             null,
             function(ajaxReturn){
                 console.log("now we can inject in the modal");

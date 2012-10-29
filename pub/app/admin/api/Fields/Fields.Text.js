@@ -43,14 +43,26 @@ Fields.Text.autoHeightTextarea=function(textareaDom){
     el.attr("rows",j++);
 }
 
-Fields.Text.cleanUp=function(domEl){
+Fields.Text.cleanUp=function(domEl,removeTags){
     domEl.find("script,noscript,style").remove();
     domEl.attr("style","");
     domEl.attr("class","");
-    var childs=domEl.find("*");
+    var childs=domEl.find("*:not(br)");
+
+    if(childs.length>0 && removeTags){
+        //replace all tags by <br> works but...
+        var text =domEl.html();
+        text = text.replace("<br>", 'thisisanewline');
+        text = text.replace("<br/>", 'thisisanewline');
+        text = text.replace(/<[^>]*>/g, 'thisisanewline');
+        text = text.replace(/thisisanewline/g, "<br>");
+        domEl.html(text);
+        return;
+    }
     for(var i=0;i<childs.length;i++){
         Fields.Text.cleanUp($(childs[i]));
     }
+
     
 }
 
@@ -64,7 +76,7 @@ Fields.Text.CTRL={
      */
     TEXT_AREA_AUTO_HEIGHT:"[data-auto-height-textareas='true']",
     
-    RICH_TEXT:"[contenteditable='true'][data-field]",    
+    RICH_TEXT:"[data-field-type='Text'] [contenteditable='true'],[contenteditable='true'][data-field]",
     /*
      *  Open text edit modal box
      */
@@ -86,6 +98,9 @@ JQ.bo.on("keyup paste change",Fields.Text.CTRL.POOR_TEXT,function(e) {
     /*if($(this).attr("contenteditable")=="true"){
         Fields.Text.cleanUp($(this));
     }*/
+
+
+
     Fields.validate(closestDataField);
     
     //on change handler
@@ -94,6 +109,9 @@ JQ.bo.on("keyup paste change",Fields.Text.CTRL.POOR_TEXT,function(e) {
 })
 
 JQ.bo.on("keyup paste change",Fields.Text.CTRL.RICH_TEXT,function(e) {
+    if($(this).attr("data-remove-format")=="true"){
+        Fields.Text.cleanUp($(this),true);
+    }
     var mainModel=Model.getParent($(this));
     mainModel.needToBeRecorded(true);
 })

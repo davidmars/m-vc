@@ -110,33 +110,37 @@ class M_ extends Model{
             //browse the class propeties to find db fields and then store it in a good order (keys first, associations later)
 	        $fields=array();
             foreach ($rc->getProperties() as $field){
-                //get the type from the @var type $field name comment...yes, I'm sure.
-		        $comments=$field->getDocComment();
-                $details=CodeComments::getVariable($comments);
-		
-                $type=$details["type"];
-                $isVector=$details["isVector"];
-                $description=$details["description"];
-                $fieldName=$field->name;
-		
-		        $fieldObject=$this->getDbField($fieldName,$type,$isVector);
+                if($field->isPublic()){
 
-                if($fieldObject){
-                    $fieldObject["comments"]=$description;
-                    switch($fieldObject["type"]){
 
-                        case "OneToOneAssoc":
-                        case "NToNAssoc":
-                            //associations at the end
-                            array_push($fields, $fieldObject);
-                        break;
+                    //get the type from the @var type $field name comment...yes, I'm sure.
+                    $comments=$field->getDocComment();
+                    $details=CodeComments::getVariable($comments);
 
-                        default :
-                            //classic fields at the beginning
-                            array_unshift($fields, $fieldObject);
+                    $type=$details["type"];
+                    $isVector=$details["isVector"];
+                    $description=$details["description"];
+                    $fieldName=$field->name;
+
+                    $fieldObject=$this->getDbField($fieldName,$type,$isVector);
+
+                    if($fieldObject){
+                        $fieldObject["comments"]=$description;
+                        switch($fieldObject["type"]){
+
+                            case "OneToOneAssoc":
+                            case "NToNAssoc":
+                                //associations at the end
+                                array_push($fields, $fieldObject);
+                            break;
+
+                            default :
+                                //classic fields at the beginning
+                                array_unshift($fields, $fieldObject);
+
+                        }
 
                     }
-  
                 }
             }
 	    //create the fields

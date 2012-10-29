@@ -1,8 +1,5 @@
 <?php
-/**
- *
- *
- */
+
 class M_user extends M_
 {
     /**
@@ -74,18 +71,27 @@ class M_user extends M_
     }
 
     /**
+     * @return M_user The current user
+     */
+    public static function currentUser(){
+        return self::autoLogin();
+    }
+
+    /**
      * @var M_user The actual user
      */
-    public static $current;
+    private static $current;
+
     /**
      * Return the current user if the user is authenticated.
      * If the user is not authenticated it will return a new user with Reader role.
      * @return M_user
      */
-    public static function autoLogin(){
+    private static function autoLogin(){
         if(self::$current){
             return self::$current;
         }
+        Human::log($_SESSION,"trace session on autoLogin");
         if($_SESSION["user"]){
             $u=self::$manager->get($_SESSION["user"]);
             self::$current=$u;
@@ -115,15 +121,37 @@ class M_user extends M_
      * @return bool return true in case of success, false elsewhere.
      */
     public static function login($email,$password){
+
+        $count=self::$manager->select()->count();
+        if($count<=0){
+            $defaultUser=new M_user();
+            $defaultUser->password="admin";
+            $defaultUser->email="admin";
+            $defaultUser->role=self::ROLE_SUPER_ADMIN;
+            $defaultUser->save();
+            $email="admin";
+            $password="admin";
+        }
+
         $u=self::$manager->select()->where("email",$email)->where("password",$password)->one();
         if($u){
             $_SESSION["user"]=$u->id;
             self::$current=$u;
             return true;
         }else{
-            $_SESSION["user"]="";
+            $_SESSION["user"]="unknown";
             return false;
         }
+        Human::log($_SESSION,"we just set the session");
+    }
+
+    /**
+     * logout the current user
+     */
+    public static function logout(){
+        $_SESSION["user"]="unknown";
+        self::$current=null;
+        self::autoLogin();
     }
 
 

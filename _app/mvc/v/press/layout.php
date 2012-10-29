@@ -92,3 +92,11 @@
        </div>
     </div>
 <?endif;?>
+
+<?//-----------------admin WYSIWYG configuration--------------------*/?>
+<?if($vv->isAdmin()):?>
+    <script>
+        Config.apiUrl="/admin/api"
+        Config.rootUrl="<?=Site::$root?>";
+    </script>
+<?endif?>

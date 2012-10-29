@@ -39,27 +39,6 @@ var Api={
             "handler" : "ExtranetHandler"
         }, onSave);
     },
-    updateOrder : function (m, onComplete) {
-        var datas={};
-        //console.log("updateOrder");
-        
-        m.save();
-        
-    /*datas = Fields.getModelsValues( m.jq.find("[data-model-type]") )
-        console.log(datas)
-        console.log(m.getFieldsData())
-    
-    
-        //var data = $(this).sortable("serialize");        
-        
-        $.ajax({   
-            type: "POST",
-            //url: Config.rootUrl + Config.apiUrl + m.jq.attr( Model.CTRL.DATA_UPDATE_URL ),
-            url: Config.rootUrl + Config.apiUrl ,
-            data: datas,
-            success:onComplete
-        });*/
-    },
     processMessage:function(json,model) {
         console.log("processMessage");
         console.log(model);
@@ -75,13 +54,13 @@ var Api={
             model.isLoading(false);
             return;
         }
-	console.log("a");
+
 
         if(ModalsManager && ModalsManager.activeModel) {
             ModalsManager.activeModel.refresh();
             ModalsManager.activeModel = null;
         }
-        console.log("b");
+
         // if model has attribute DATA_CLOSE_MODAL_AFTER_SAVE == true close this model modal box
         if(model.jq.attr(Model.CTRL.DATA_CLOSE_MODAL_AFTER_SAVE) == "true" ) {
             model.jq.modal("hide");
@@ -150,19 +129,168 @@ var Api={
     getView:function(controller,datas,onComplete){
         $.ajax({
             type: "POST",
-            url: Config.rootUrl +"/"+ controller,
+            url:  controller,
             data: datas,
             /*dataType: 'json',*/
             success:
                 function (ajaxReturn){
-                    console.log("Api.getView call success");
                     if(typeof(onComplete) == 'function') {
                         onComplete(ajaxReturn);
                     }
                 }
         });
     }
+
+
 }
+/**
+ *
+ * @param json a json object return given by the Api
+ * @return {Api.JsonReturn}
+ * @constructor
+ */
+Api.JsonReturn=function(json){
+    if(json.isYetAnObject){
+        return json;
+    }
+    this.isYetAnObject=true;
+    this.success=false;
+    this.messages=new Array();
+    this.errors=new Array();
+    this.redirect="";
+
+    this.success=json.success;
+    this.messages=json.messages;
+    this.errors=json.errors;
+    this.redirect=json.redirect;
+
+}
+/**
+ *
+ * @param json a json object that match with a
+ * @param messageContainer
+ * @constructor
+ */
+Api.displayMessages=function(json,messageContainer){
+    var me=this;
+    var ret=new Api.JsonReturn(json);
+    var container=$(messageContainer);
+    container.find("*").slideUp(500,function(){$(this).remove()});
+    /**
+     * return a jquery bootstrap alert component.
+     * @param messageType Can be "error" or "success"
+     * @param message
+     * @return {*|jQuery|HTMLElement}
+     */
+    var getDisplay=function(messageType,message){
+        var type="";
+        if(messageType=="error"){
+            type="alert-error";
+        }else{
+            type="alert-success";
+        }
+        var html="<div class='alert "+type+"'>";
+        html+="<button type='button' class='close' data-dismiss='alert'>×</button>";
+        html+=message;
+        html+="</div>";
+        return $(html);
+    }
+
+    var i=0;
+
+    for(i=0;i<ret.messages.length;i++){
+    container.append(
+        getDisplay("success",ret.messages[i])
+    );
+    }
+    for(i=0;i<ret.errors.length;i++){
+    container.append(
+        getDisplay("error",ret.errors[i])
+    );
+    }
+    container.find("*").slideUp(0);
+    container.find("*").slideDown();
+
+}
+/**
+ *
+ * @param newModelType The type of the model to create
+ * @param containerModelType The type of the model that will receive the new model
+ * @param containerModelId The id of the model that will receive the new model
+ * @param containerFieldName  The field name of the model that will receive the new model
+ * @constructor
+ */
+Api.NewChildIn=function(newModelType,containerModelType,containerModelId,containerFieldName){
+    var me=this;
+    this.events=new EventDispatcher();
+    $.ajax({
+        type: "POST",
+        url: Config.rootUrl +"/admin/api/addNewChild/"+newModelType+"/"+containerModelType+"/"+containerModelId+"/"+containerFieldName,
+        data: {},
+        dataType: 'json',
+        success:
+            function (ajaxReturn){
+                console.log("Api.Login call success");
+                me.events.dispatchEvent("COMPLETE",function(ajaxReturn){
+                    console.log(ajaxReturn);
+                });
+            }
+    });
+}
+/**
+ * The Api.Login object send login request, then dispatch events.COMPLETE event.
+ * @param email The email used for login.
+ * @param password The password used for login.
+ * @constructor
+ */
+Api.Login=function(email,password){
+    var me=this;
+    this.events=new EventDispatcher();
+    $.ajax({
+        type: "POST",
+        url: Config.rootUrl +"/admin/api/login",
+        data: {
+            email:email,
+            password:password
+        },
+        dataType: 'json',
+        success:
+            function (ajaxReturn){
+                console.log("Api.Login call success");
+                me.events.dispatchEvent("COMPLETE",ajaxReturn);
+            }
+    });
+}
+/**
+ *
+ * @constructor
+ */
+Api.Logout=function(){
+    var me=this;
+    this.events=new EventDispatcher();
+    $.ajax({
+        type: "POST",
+        url: Config.rootUrl +"/admin/api/logout",
+        data: {},
+        dataType: 'json',
+        success:
+            function (ajaxReturn){
+                console.log("Api.Logout call finished");
+                me.events.dispatchEvent("COMPLETE",ajaxReturn);
+            }
+    });
+}
+
+JQ.bo.on("click","a[href='#Api.logout()']",function(e){
+    e.preventDefault();
+    var req=new Api.Logout();
+    req.events.addEventListener("COMPLETE",function(){
+        document.location=Config.rootUrl+"/admin/admin_model/login";
+    })
+})
+
+
+
 /**
  * An api upload object call the upload service.
  * Its goal is to upload a file to the server and return a field template.

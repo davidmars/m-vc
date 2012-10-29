@@ -1,0 +1,35 @@
+.item-thumbnail{
+  position: relative;
+  &:hover{
+    .wysiwyg{
+    }
+  }
+  img{
+    min-width: 100%;
+  }
+  .wysiwyg{
+    top:0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    position: absolute;
+    input[type='text']{
+      display: none;
+    }
+    .btn-input-file{
+      position: absolute;
+      right:5px;
+      top:5px;
+    }
+    .progress{
+      height: 100%;
+      background: transparent;
+      background-color: transparent;
+      background-image: none;
+      .border-radius(0);
+      .bar{
+        opacity: 0.5;
+      }
+    }
+  }
+}

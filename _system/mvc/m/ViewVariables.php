@@ -7,9 +7,9 @@ class ViewVariables{
      * 
      */
     public function __construct($_vars=null) {
-	if($_vars){
-	    $this->feedMe($_vars);
-	}
+        if($_vars){
+            $this->feedMe($_vars);
+        }
     }
     
     public function json(){
@@ -18,7 +18,15 @@ class ViewVariables{
     public function xml(){
         return StuffToXml::getCompleteXml($this);
     }
-    
+
+    /**
+     * Let know you if we need to display admin functionality or not.
+     * @return bool will be true if the current user can administrate the website.
+     */
+    public function isAdmin(){
+        return M_user::currentUser()->canWrite();
+    }
+
     /**
      * A place to put messy variables... very, very bad practice.
      * If you are writting templates and a php developer use this, tell it to your boss...the developer sould be fired.

@@ -26,6 +26,29 @@ var Model=function(jq){
     this.template=function(){
         return me.jq.attr(Model.CTRL.TEMPLATE);
     }
+    /**
+     *
+     * @return {string} the url of the controller to use to access this model template.
+     */
+    this.refreshController=function(){
+        return me.jq.attr("data-model-refresh-controller");
+    }
+    /**
+     *
+     * @return {jquery} the jquery dom element where to load the model
+     */
+    this.refreshTarget=function(){
+        var selector=me.jq.attr("data-model-refresh-target-selector");
+        if(!selector){
+            return null;
+        }
+        var target=$(selector);
+        if(target.length==1){
+            return target;
+        }else{
+            return null;
+        }
+    }
     
     /**
      * to define that the model has changed and it needs to be recorded. If the model has a  data-live-save="true" markup, it will be recorded
@@ -511,12 +534,50 @@ Model.CTRL={
     DATA_CLOSE_MODAL_AFTER_SAVE : "data-close-modal-after-save"
 }
 
+
+JQ.bo.on("click","a[href='#Model.addNewChild()']",function(e){
+    e.preventDefault();
+    var elem = $(this)
+    var m = Model.getParent( elem );
+    var newModelType=elem.attr("data-new-type");
+    var fieldTarget=elem.attr("data-new-field-target");
+    console.log("we will create a new "+newModelType+" in "+m.type()+" "+m.id()+" in the field: "+fieldTarget);
+    var apiCall=new Api.NewChildIn(newModelType, m.type(), m.id(),fieldTarget);
+    if(m.refreshController()){
+        Utils.blink(m.jq, true, 1000);
+    }
+    apiCall.events.addEventListener("COMPLETE",function(){
+        if(m.refreshController()){
+            Api.getView(m.refreshController(),{},function(response){
+                m.needToBeRecorded(false);
+                if(m.refreshTarget()){
+                    m.refreshTarget().empty()
+                    m.refreshTarget().append(response);
+                }else{
+                    m.jq.replaceWith(response);
+                }
+
+            })
+        }
+    })
+})
+
 JQ.bo.on("click",Model.CTRL.SAVE,function(e){
     e.preventDefault();
     var elem = $(this)
     var m = Model.getParent( elem );
     Application.currentModel = m;
-    m.save(Application.postSaveOnSuccess);
+    if(m.refreshController()){
+        Utils.blink(m.jq, true, 500);
+        m.save(function(){
+            Api.getView(m.refreshController(),{},function(response){
+                m.needToBeRecorded(false);
+                m.jq.replaceWith(response);
+            })
+        })
+    }else{
+        m.save(Application.postSaveOnSuccess);
+    }
 })
 
 JQ.bo.on("click",Model.CTRL.DELETE,function(e){
