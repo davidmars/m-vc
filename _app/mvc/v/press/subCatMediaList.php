@@ -1,30 +1,20 @@
 <?php
-    /* @var $subCatMedia VV_subCatMedia */
-    $subCatMedia = $_vars;
-
-    /* @var $vv VV_layout */
-    $vv = new VV_layout();
-
-
-    $isAll = false;
-
-    // if it's all media to show
-    if (!$subCatMedia->currentIndex) {
-        $isAll = true;
-    }
+    /* @var $vv VV_subCatMedia */
+    $vv = $_vars;
 ?>
 
 <!-- récupération de tous les médias -->
-<?foreach ($subCatMedia->subCategoryMedia->medias as $m):?>
+<?foreach ($vv->medias as $m):?>
+<div class="mediaPreviewComponent">
     <div class="span2 item-media-data"
          data-model-type="M_media"
          data-model-id="<?=$m->id?>"
-         data-model-refresh-controller="<?=C_press::mediaAll($subCatMedia->currentCategoryId, true)?>"
+         data-model-refresh-controller="<?=C_press::subCatMedia($vv->subCategoryMedia, $vv->template, $vv->start, $vv->nbItem, true)?>"
          data-model-refresh-target-selector="#mainContent"
     >
         <div class="noGutter">
             <!-- Save of the Contact-->
-            <?if($vv->isAdmin() && $isAll):?>
+            <?if($vv->isAdmin()):?>
                 <div class="manageData">
                     <a class="pull-right btn btn-danger btn-small" href="#Model.delete"><i class="icon-remove icon-white"></i></a>
                     <a class="pull-right btn btn-success btn-small" href="#Model.save"><i class="icon-ok icon-white"></i></a>
@@ -60,7 +50,7 @@
                      data-field-type="Text">
                     <span
                         <?//editable ?>
-                        <?=$vv->isAdmin()&& $isAll?"contenteditable='true' ":""?>
+                        <?=$vv->isAdmin()?"contenteditable='true' ":""?>
                         <?// no text formatting allowed here */?>
                             data-remove-format="true">
                              <?=$m->title?>
@@ -75,4 +65,5 @@
             </div>
         </div>
     </div>
+</div>
 <?endforeach;?>
