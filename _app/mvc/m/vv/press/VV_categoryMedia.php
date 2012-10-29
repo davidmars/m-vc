@@ -48,7 +48,7 @@ class VV_categoryMedia extends VV_layout {
         $subCatMedias = $this->categoryMedia->subcategories->select()->limit($limitX, $this->subCatMediaByPage)->all();
         foreach ($subCatMedias as $subCat) {
             $s = new VV_subCatMedia();
-            $s->init($subCat, 0, 4, "List");
+            $s->init($subCat, 1, 4, "List");
             $this->subCatMedias[] = $s;
         }
         $this->setPages();

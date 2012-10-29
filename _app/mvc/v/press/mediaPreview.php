@@ -1,9 +1,6 @@
 <? 
-    /* @var $media VV_subCatMedia */
-    $media = $_vars;
-
-    /* @var $vv VV_layout */
-    $vv = new VV_layout();
+    /* @var $vv VV_subCatMedia */
+    $vv = $_vars;
 ?>
 
 
@@ -18,19 +15,19 @@
     <?endif?>
 
     <div class="item-media-section">
-        <?=$media->subCategoryMedia->title?>
+        <?=$vv->subCategoryMedia->title?>
     </div>
 </div>
 
 
 <div class="row">
 
-    <?=$this->render("press/media", $media)?>
+    <?=$this->render("press/media", $vv)?>
 
     <div class="span8">
         <div class="pull-right">
             <a
-                href=""
+                href="<?=C_press::subCatMedia($vv->subCategoryMedia->id, "Page", 1, "all", true)?>"
                 data-nav-is-ajax-target="mainContent"
                 data-nav-is-ajax="true"
                 rel="nofollow"

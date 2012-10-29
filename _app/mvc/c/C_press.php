@@ -98,6 +98,9 @@ Class C_press extends Controller{
            return $c->url();
         }
 
+        // set the css and the js
+        self::setCssAndJs();
+
         $c = new C_press();
 
         // get the current sub category media
