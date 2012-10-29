@@ -1,6 +1,6 @@
 <? 
     /* @var $vv VV_categoryPost */
-    $vv = $_vars;            
+    $vv = $_vars;
     
     /* @var $this View */
     $this->inside("press/layout", $vv);       
@@ -27,7 +27,14 @@
                <?//the new model type to create?>
                data-new-type="M_post"
                <?//the field where to add the new post?>
-               data-new-field-target="posts">Add a post</a>
+               data-new-field-target="posts">
+                Add a post
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span8">
+            <div class="noGutter separatorTextBloc mb1"></div>
         </div>
     </div>
     <?endif?>
@@ -43,7 +50,7 @@
             <div class="span8">
                 <div class="noGutter separatorTextBloc"></div>
             </div>
-        </div>  
+        </div>
     <?endforeach;?>            
 </div>
 

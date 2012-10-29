@@ -37,7 +37,8 @@ $contactList = $vv->getContact("Havana PressRoom");
 
     <div class="item-content">
         <?foreach ($contactList->contacts as $contact): ?>    
-            <div class="item-contact"data-model-type="M_contact"
+            <div class="item-contact"
+                 data-model-type="M_contact"
                  data-model-id="<?=$contact->id?>"
                  data-model-refresh-controller="<?=C_press::sideBar(true)?>"
                  data-model-refresh-target-selector="#sideBar"
