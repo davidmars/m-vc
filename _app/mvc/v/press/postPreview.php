@@ -23,7 +23,7 @@ $refresh = C_press::post($post->getParentCategoryId(),true);
     <div class="row">
         <div class="postPreviewComponent">
             <div class="item-content">
-                <div class="span2 item-thumbnail">
+                <div class="span2 item-thumbnail ppreview">
                     <a
                         href="<?= C_press::post($post->id)->url() ?>"
                         data-nav-is-ajax="true"

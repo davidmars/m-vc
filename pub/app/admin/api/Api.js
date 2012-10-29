@@ -1,4 +1,6 @@
 var Api={
+    events:new EventDispatcher(),
+
     call:function(id,type,datas,onComplete){ 
         console.log("api call");
         datas.theme = "extranet";        
@@ -137,6 +139,7 @@ var Api={
                     if(typeof(onComplete) == 'function') {
                         onComplete(ajaxReturn);
                     }
+                    Api.events.dispatchEvent("onChange");
                 }
         });
     }

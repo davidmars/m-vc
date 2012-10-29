@@ -19,6 +19,9 @@ var Nav = {
 
     init: function() {
         Nav.initHistory();
+        Api.events.addEventListener("onChange", function() {
+            Press.initAfterAjax();
+        });
     }
 }
 

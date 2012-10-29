@@ -31,6 +31,18 @@ class M_subcategory_media extends M_{
                              
         return $medias;
     }
+
+    /**
+     * Create a new M_subcategory_media with default values, save it and return it.
+     * @return M_subcategory_media The new subcategory_Media.
+     */
+    public static function getNew(){
+        $newItem=new M_subcategory_media();
+        $newItem->title="Title";
+
+        $newItem->save();
+        return $newItem;
+    }
     
     /**
      *

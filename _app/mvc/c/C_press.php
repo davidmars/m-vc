@@ -92,7 +92,7 @@ Class C_press extends Controller{
      * @param int $subCat is the current subCatMedia id
      * @param int $pagination is the index number of the pagination
      */
-    public static function subCatMedia($subCat, $pagination = "",$returnUrl=false) {
+    public static function subCatMedia($subCat, $template, $start, $nbItem,$returnUrl=false) {
         if($returnUrl){
            $c = new C_press();
            return $c->url();
@@ -102,39 +102,19 @@ Class C_press extends Controller{
 
         // get the current sub category media
         $currentSubCategory = M_subcategory_media::$manager->get($subCat);
-        // get the current page index
-        $pagination = $pagination;
 
         // create the good view variable for our view
         $vv = new VV_subCatMedia();
-        $vv->init($currentSubCategory, $pagination);
+        $vv->init($currentSubCategory, $start, $nbItem, $template);
 
-        $c->resultView = new View("press/subCatMedia", $vv);
-        return $c;
-    }
-
-    /**
-     *
-     * @param int $subCat is the current subCatMedia id
-     */
-    public static function mediaAll($subCat, $returnUrl=false) {
-        if($returnUrl){
-            $c = new C_press();
-            return $c->url();
+        if ($template == "Page") {
+            $template = "press/subCatMediaPage";
         }
-        // set the css and the js
-        self::setCssAndJs();
+        else {
+            $template = "press/subCatMediaList";
+        }
 
-        $c = new C_press();
-
-        // get the current sub category media
-        $currentSubCategory = M_subcategory_media::$manager->get($subCat);
-
-        // create the good view variable for our view
-        $vv = new VV_media();
-        $vv->init($currentSubCategory);
-
-        $c->resultView = new View("press/mediaAll", $vv);
+        $c->resultView = new View($template, $vv);
         return $c;
     }
 
@@ -149,20 +129,6 @@ Class C_press extends Controller{
         $vv = new VV_layout();
 
         $c->resultView = new View("press/sideBar", $vv);
-        return $c;
-    }
-
-    public static function contacts($returnUrl=false) {
-        if($returnUrl){
-            $c = new C_press();
-            return $c->url();
-        }
-
-        $c = new C_press();
-
-        $vv = new VV_layout();
-
-        $c->resultView = new View("press/contacts", $vv);
         return $c;
     }
     
@@ -216,14 +182,16 @@ Class C_press extends Controller{
         JS::addAfterBody("pub/app/press/js/Nav.js");
         JS::addAfterBody("pub/tools/EventDispatcher.js");
         JS::addAfterBody("pub/app/press/js/Share.js");
-        JS::addAfterBody("pub/app/press/js/Press.js");
-
 
         //admin?
         if(M_user::currentUser()->canWrite()){
             POV_CssAndJs::adminSettings(false);
         }
-        
+
+        JS::addAfterBody("pub/app/press/js/Press.js");
+
+
+
         //compile and integrate less files
         $lessVariables=array(
             "phpAppFolder"=>"'".Site::url("pub")."'"

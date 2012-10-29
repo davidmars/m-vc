@@ -19,11 +19,23 @@ class VV_subCatMedia extends VV_layout {
      */
     public $currentIndex;
 
+    public $template;
 
-    public function init($currentSubCategory, $pagination) {
-        $this->currentCategoryId = $currentSubCategory->id;
-        $this->currentCategoryIdName = $currentSubCategory->getCategoryId();
+    public $start;
+
+    public $nbItem;
+
+    /**
+     * @var M_media[] all medias
+     */
+    public $medias;
+
+    public function init($currentSubCategory, $start, $nbItem, $template) {
         $this->subCategoryMedia = $currentSubCategory;
-        $this->currentIndex = $pagination;
+        $this->currentIndex = $start;
+        $this->medias = $currentSubCategory->medias->select()->limit($start, $nbItem)->all();
+        $this->template = $template;
+        $this->start = $start;
+        $this->nbItem = $nbItem;
     }
 }
