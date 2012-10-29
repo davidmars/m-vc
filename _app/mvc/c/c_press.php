@@ -98,7 +98,45 @@ Class C_press extends Controller{
            return $c->url();
         }
 
-        die("toto");
+        $c = new C_press();
+
+        // get the current sub category media
+        $currentSubCategory = M_subcategory_media::$manager->get($subCat);
+        // get the current page index
+        $pagination = $pagination;
+
+        // create the good view variable for our view
+        $vv = new VV_subCatMedia();
+        $vv->init($currentSubCategory, $pagination);
+
+        $c->resultView = new View("press/subCatMedia", $vv);
+        return $c;
+    }
+
+    /**
+     *
+     * @param int $subCat is the current subCatMedia id
+     */
+    public static function mediaAll($subCat, $returnUrl=false) {
+        if($returnUrl){
+            $c = new C_press();
+            return $c->url();
+        }
+        // set the css and the js
+        self::setCssAndJs();
+
+        $c = new C_press();
+
+        // get the current sub category media
+        $currentSubCategory = M_subcategory_media::$manager->get($subCat);
+
+        // create the good view variable for our view
+        $vv = new VV_media();
+        $vv->init($currentSubCategory);
+
+        $c->resultView = new View("press/mediaAll", $vv);
+        return $c;
+
     }
     
     /**

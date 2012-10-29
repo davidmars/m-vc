@@ -14,7 +14,7 @@
                 <div class="span8">
                     <div class="row">
                         <div class="span2 item-thumbnail">
-                            <img src="<?=$vv->post->thumb->sizedWithoutCrop(171, 180, "000000", "jpg")?>" alt="<?=$vv->post->title?>" />
+                            <img src="<?=$vv->post->thumb->sizedWithoutCrop(171, 180, "000000", "jpg")?>" alt="<?=$vv->post->title?>">
                         </div>
                         <div class="span6 item-text">        
                             <div class="item-title">
@@ -22,7 +22,7 @@
                             </div>
                             <br/>
                             <div class="item-description">
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim
+                                <?=$vv->post->description?>
                             </div>                          
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                         <div class="item-share" id="<?= $id ?>">
 
                             <a class="item-email" data-page=""></a>
-                            <?=GiveMe::socialGoogle()?>
+                            <?=GiveMe::socialGoogle($mapage)?>
                             <?=GiveMe::socialTwitter()?>
                             <?=GiveMe::socialFB()?>
                         </div>

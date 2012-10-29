@@ -16,7 +16,8 @@ var Press = {
         inside.addClass("loading-box-inside");
 
         this.setLoading=function(){
-            target.addClass("loading-box");
+            console.log(target);
+            target.addClass("loading-box posts");
             target.append(inside);
 
             TweenLite.to(
@@ -38,6 +39,7 @@ var Press = {
 
         this.setNormal=function(){
             target.removeClass("loading-box");
+            target.removeClass("posts");
 
             TweenLite.to(
                 target,
