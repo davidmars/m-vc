@@ -13,15 +13,6 @@
          data-model-refresh-target-selector="#mainContent"
     >
         <div class="noGutter">
-            <!-- Save of the Contact-->
-            <?if($vv->isAdmin()):?>
-                <div class="manageData">
-                    <a class="pull-right btn btn-danger btn-small" href="#Model.delete"><i class="icon-remove icon-white"></i></a>
-                    <a class="pull-right btn btn-success btn-small" href="#Model.save"><i class="icon-ok icon-white"></i></a>
-                </div>
-            <?endif?>
-
-
             <a
                 href=""
                 data-nav-is-ajax-target="mainContent"
