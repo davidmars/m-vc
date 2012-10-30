@@ -115,6 +115,14 @@
             </div>
 
        </div>
+
+        <div class="row top_submenu">
+            <div class="span12">
+                <div class="row">
+                    <?/*<script src="http://havanaclub.shic.cc/embedFooter"></script>*/?>
+                </div>
+            </div>
+        </div>
     </div>
 <?endif;?>
 
