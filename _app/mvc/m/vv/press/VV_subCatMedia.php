@@ -30,7 +30,7 @@ class VV_subCatMedia extends VV_layout {
     public $currentCategory;
 
     /**
-     * @var M_media[] all medias
+     * @var VV_media[] all medias
      */
     public $medias;
 
@@ -46,11 +46,22 @@ class VV_subCatMedia extends VV_layout {
         $this->currentIndex = $start;
 
         if ($nbItem == 'all')  {
-            $this->medias = $currentSubCategory->medias;
+            $medias = $currentSubCategory->medias;
         }
         else {
-            $this->medias = $currentSubCategory->medias->select()->limit(($start - 1), $nbItem)->all();
+            $medias = $currentSubCategory->medias->select()->limit(($start - 1), $nbItem)->all();
         }
+
+        foreach($medias as $m){
+            $vvm=new VV_media();
+            $vvm->init($m);
+            //admin functionnalities for download will be available on the page only !
+            if($template!="Page"){
+                $vvm->disableLocalAdmin=true;
+            }
+            $this->medias[]=$vvm;
+        }
+
         $this->template = $template;
         $this->start = $start;
         $this->nbItem = $nbItem;

@@ -1,4 +1,5 @@
 <?php
+    /* @var $this View */
     /* @var $vv VV_subCatMedia */
     $vv = $_vars;
 ?>
@@ -8,39 +9,39 @@
 
         <?/*-------------------one media box--------------------*/?>
 
-        <div class="span2 item-media-data downloadBox"
+        <div class="span2 item-media-data downloadBox <?=$vv->isAdmin()?"is-admin":""?>"
              data-model-type="M_media"
-             data-model-id="<?=$m->id?>"
+             data-model-id="<?=$m->media->id?>"
         >
 
             <!-- Save of the download-->
-            <?if($vv->isAdmin()):?>
+            <?if($m->isAdmin()):?>
             <div class="wysiwyg-menu ">
                 <div class="top-right">
 
-                    <a class="btn btn-danger btn-small"
+                    <a class=""
                        href="#Model.delete">
                         <i class="icon-remove icon-white"></i>
                     </a>
-                    <a class="btn btn-success btn-small"
+                    <a class=""
                        href="#Model.save">
                         <i class="icon-ok icon-white"></i>
                     </a>
 
-                    <a class=" btn btn-small"
+                    <a class=""
                        href="#Model.previousPosition()"
                        data-model-target-type="M_subcategory_media"
                        data-model-target-id="<?=$vv->subCategoryMedia->id?>"
                        data-model-target-field="medias">
-                        <i class="icon-arrow-left"></i>
+                        <i class="icon-circle-arrow-left icon-white"></i>
                     </a>
 
-                    <a class=" btn btn-small"
+                    <a class=""
                        href="#Model.nextPosition()"
                        data-model-target-type="M_subcategory_media"
                        data-model-target-id="<?=$vv->subCategoryMedia->id?>"
                        data-model-target-field="medias">
-                        <i class="icon-arrow-right"></i>
+                        <i class="icon-circle-arrow-right icon-white"></i>
                     </a>
 
 
@@ -57,7 +58,8 @@
                     data-nav-is-ajax-target="mainContent"
                     data-nav-is-ajax="true"
                     class="thumbnail">
-                        <img src="<?=$m->thumb->sizedWithoutCrop(200,200,"000000","jpg")?>" alt="<?=$m->title?>" />
+                        <img src="<?=$m->media->thumb->sizedWithoutCrop(200,200,"000000","jpg")?>"
+                             alt="<?=$m->media->title?>" />
                 </a>
 
 
@@ -69,18 +71,28 @@
                          data-field-type="Text">
                         <span
                             <?//editable ?>
-                            <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                            <?=$m->isAdmin()?"contenteditable='true' ":""?>
                             <?// no text formatting allowed here */?>
                                 data-remove-format="true">
-                                 <?=$m->title?>
+                                 <?=$m->media->title?>
                         </span>
                     </div>
-
+                    <?if($m->media->theFile->exists() || $m->media->theFileHd->exists()):?>
                     <div class="item-media-link">
-                        <a class="button" href="<?=$m->theFile->download()?>">
-                            <i class="icon-download"></i> Télécharger
+                        <a class="button" href="<?=$m->media->theFile->download()?>">
+                            <i class="icon-download"></i> Download
                         </a>
                     </div>
+                    <?endif?>
+
+                    <?/*-----------------upload btn-------------------*/?>
+
+                    <?if($m->isAdmin()):?>
+
+                    <?=$this->render("press/fields/file",$m->theFileAdminField())?>
+                    <?=$this->render("press/fields/file",$m->theFileHdAdminField())?>
+
+                    <?endif?>
 
                 </div>
 

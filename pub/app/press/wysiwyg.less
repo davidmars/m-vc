@@ -34,12 +34,27 @@
   }
 }
 
+//the little everywhere menu...
 .wysiwyg-menu{
   position:relative;
-  >div.top-right{
-    position: absolute;
-    right:0px;
-    top:0px;
-  }
+  height:0px;
 
+  >div.top-right{
+    padding-right: 4px;
+    padding-left: 4px;
+    position: absolute;
+    right:5px;
+    bottom:0px;
+
+
+    background-color:#f00;
+
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-topright: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+
+  }
 }

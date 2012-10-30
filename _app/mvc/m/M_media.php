@@ -22,6 +22,11 @@ class M_media extends M_{
     public $theFile;
     /**
      *
+     * @var FileField The file that the high definition final user will be able to download
+     */
+    public $theFileHd;
+    /**
+     *
      * @var BoolField Is the file downloadable without authorisation?
      */
     public $restricted=false;

@@ -8,15 +8,34 @@
  */
 class VV_media extends VV_layout {
 
+    /**
+     * @var M_media
+     */
+    public $media;
 
     /**
-     * @var M_subcategoryMedia the current sub category
+     * This function is an easy way to get an admin field for the media->theFile field.
+     * @return VV_admin_field
      */
-    public $subCategoryMedia;
+    public function theFileAdminField(){
+        $editableField=new VV_admin_field();
+        $editableField->init($this->media,"theFile");
+        $editableField->label="Download";
+        return $editableField;
+    }
+    /**
+     * This function is an easy way to get an admin field for the media->theFileHd field.
+     * @return VV_admin_field
+     */
+    public function theFileHdAdminField(){
 
-    public function init($currentSubCategory) {
-        $this->currentCategoryId = $currentSubCategory->id;
-        $this->currentCategoryIdName = $currentSubCategory->getCategoryId();
-        $this->subCategoryMedia = $currentSubCategory;
+        $editableField=new VV_admin_field();
+        $editableField->init($this->media,"theFileHd");
+        $editableField->label="Download HD";
+        return $editableField;
+    }
+
+    public function init($media) {
+        $this->media=$media;
     }
 }

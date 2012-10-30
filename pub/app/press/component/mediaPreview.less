@@ -58,3 +58,49 @@
         }
     }
 }
+
+.downloadBox.is-admin{
+  height:600px;
+  margin-top:40px;
+
+  [data-field-type="File"]
+  {
+    input[type='text']{
+    display:none;
+    }
+  }
+
+  .item-media-link{
+    padding:0px;
+
+    .progressContainer{
+      float:right;
+      width:110px;
+      height:30px;
+      position:relative;
+
+      .button{
+        position: absolute;
+        right:0px;
+        top:0px;
+        width:100px;
+      }
+
+      .progress{
+        position: absolute;
+        right:0px;
+        top:0px;
+        left:0px;
+        right:0px;
+        width:100px;
+        opacity:0.2;
+      }
+
+      .btn-input-file{
+        position:absolute;
+        left:-20px;
+      }
+    }
+  }
+
+}

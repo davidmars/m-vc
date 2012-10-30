@@ -24,8 +24,16 @@ class ViewVariables{
      * @return bool will be true if the current user can administrate the website.
      */
     public function isAdmin(){
+        if($this->disableLocalAdmin){
+            return false;
+        }
         return M_user::currentUser()->canWrite();
     }
+
+    /**
+     * @var bool if set to true, the isAdminFunction will return false
+     */
+    public $disableLocalAdmin=false;
 
     /**
      * A place to put messy variables... very, very bad practice.
