@@ -22,13 +22,19 @@ class VV_post extends VV_layout {
      * @var array contain all the post content 
      */
     public $blocks;
+
+    /**
+     * @var M_category_post
+     */
+    public $parentCategory;
     
     /**
      *
      * @param M_post $post 
      */
-    public function init($post) {
+    public function init($post,$category=null) {
         $this->post = $post;
+        $this->parentCategory=$category;
 
         Human::Log($this->post->title, "POST CONTENT");
        // $this->currentCategoryId = $post->category->getCategoryId();

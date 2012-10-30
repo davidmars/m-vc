@@ -574,6 +574,45 @@ JQ.bo.on("click","a[href='#Model.addNewChild()']",function(e){
         }
     })
 })
+JQ.bo.on("click","a[href='#Model.previousPosition()'],a[href='#Model.nextPosition()'],",function(e){
+    e.preventDefault();
+    var elem = $(this);
+    var m = Model.getParent( elem );
+    var modelContainer= Model.getParent(m.jq);
+
+    //$modelId,$modelType,$containerModelType,$containerModelId,$containerFieldName
+
+    var where;
+    if(elem.attr("href")=="#Model.previousPosition()"){
+        where="before";
+    }else{
+        where="after";
+    }
+    var containerModelType=elem.attr("data-model-target-type");
+    var containerModelId=elem.attr("data-model-target-id");
+    var containerFieldName=elem.attr("data-model-target-field");
+
+    console.log("we will move "+ m.type()+"/"+ m.id()+" "+where+" in the field: "+containerModelType+"/"+containerModelId+"->"+containerFieldName);
+
+    var apiCall=new Api.AssociationMove(where, m.id(), m.type(), containerModelType,containerModelId,containerFieldName);
+    if(modelContainer.refreshController()){
+        Utils.blink(modelContainer.jq, true, 1000);
+    }
+    apiCall.events.addEventListener("COMPLETE",function(){
+        if(modelContainer.refreshController()){
+            Api.getView(modelContainer.refreshController(),{},function(response){
+                modelContainer.needToBeRecorded(false);
+                if(modelContainer.refreshTarget()){
+                    modelContainer.refreshTarget().empty()
+                    modelContainer.refreshTarget().append(response);
+                }else{
+                    modelContainer.jq.replaceWith(response);
+                }
+
+            })
+        }
+    })
+})
 
 JQ.bo.on("click",Model.CTRL.SAVE,function(e){
     e.preventDefault();

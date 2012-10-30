@@ -95,6 +95,6 @@
 <?if($vv->isAdmin()):?>
     <script>
         Config.apiUrl="/admin/api"
-        Config.rootUrl="<?=Site::$root?>";
+        Config.rootUrl="<?=Site::url("",true)?>";
     </script>
 <?endif?>

@@ -42,7 +42,6 @@
     <!-- Affichage de chaque preview réordonné -->
 
     <?foreach ($vv->posts as $post):?>
-        <?/* @var $p M_post */?>
         <br/>
         <?=$this->render("press/postPreview", $post)?>
         <br/>

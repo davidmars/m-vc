@@ -139,12 +139,16 @@ var Api={
                     if(typeof(onComplete) == 'function') {
                         onComplete(ajaxReturn);
                     }
-                    Api.events.dispatchEvent("onChange");
+                    Api.events.dispatchEvent("onChange",new Api.EventOnChange(controller,"getView"));
                 }
         });
     }
 
 
+}
+Api.EventOnChange=function(controllerUrl,performedAction){
+    this.controllerUrl=controllerUrl;
+    this.preformedAction=performedAction;
 }
 /**
  *
@@ -234,6 +238,24 @@ Api.NewChildIn=function(newModelType,containerModelType,containerModelId,contain
         success:
             function (ajaxReturn){
                 console.log("Api.Login call success");
+                me.events.dispatchEvent("COMPLETE",function(ajaxReturn){
+                    console.log(ajaxReturn);
+                });
+            }
+    });
+}
+
+Api.AssociationMove=function(where,modelId,modelType,containerModelType,$containerModelId,containerFieldName){
+    var me=this;
+    this.events=new EventDispatcher();
+    $.ajax({
+        type: "POST",
+        url: Config.rootUrl +"/admin/api/moveAssociation"+"/"+where+"/"+modelId+"/"+modelType+"/"+containerModelType+"/"+$containerModelId+"/"+containerFieldName,
+        data: {},
+        dataType: 'json',
+        success:
+            function (ajaxReturn){
+                console.log("Api.associationMove");
                 me.events.dispatchEvent("COMPLETE",function(ajaxReturn){
                     console.log(ajaxReturn);
                 });

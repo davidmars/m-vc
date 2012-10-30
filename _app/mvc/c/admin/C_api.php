@@ -36,7 +36,7 @@ class C_api extends Controller{
 
     /**
      * Record the model. Data are passed via $_REQUEST[root] object.
-     * @param $modelType
+     * @param $modelType  string
      */
     public static function record($modelType){
 
@@ -82,6 +82,9 @@ class C_api extends Controller{
 
     }
 
+    /**
+     * Delete the model designed by $_REQUEST["type"] and $_REQUEST["id"]
+     */
     public static function delete() {
 
         $modelType=$_REQUEST["type"];
@@ -93,6 +96,52 @@ class C_api extends Controller{
         $m->delete();
         $json->success=true;
         die($json->json());
+    }
+
+    /**
+     * @param $where string can be "before" or "after"
+     * @param $modelId string The model to move
+     * @param $modelType string The model to move
+     * @param $containerModelType string The model that get the association
+     * @param $containerModelId string The model that get the association
+     * @param $containerFieldName string The field that describe the association
+     */
+    public static function moveAssociation($where,$modelId,$modelType,$containerModelType,$containerModelId,$containerFieldName){
+        $json=new VV_apiReturn();
+
+        if($where != "before" && $where != "after"){
+            $json->success=false;
+            $json->errors[]="where should be before or after. '$where' value is not recognized";
+            die($json->json());
+        }
+        //the model container
+        $container=self::getModel($containerModelType,$containerModelId);
+        if(!$container){
+            $json->success=false;
+            $json->errors[]="The container model cannot be found";
+            die($json->json());
+        }
+
+        $previousOrder=array();
+        foreach($container->{$containerFieldName} as $model){
+            $previousOrder[]=$model->id;
+        }
+        for($i=0;i<count($previousOrder);$i++){
+            if($modelId == $previousOrder[$i]){
+                array_splice($previousOrder,$i,1);
+                if($where=="before"){
+                    array_splice($previousOrder,($i-1),0,$modelId);
+                }else{
+                    array_splice($previousOrder,($i+1),0,$modelId);
+                }
+                break;
+            }
+        }
+        $container->{$containerFieldName}->reorder( $previousOrder );
+        $json->success=true;
+        $json->messages[]="reorder success ".implode(",",$previousOrder);
+        die($json->json());
+
     }
 
     /**
