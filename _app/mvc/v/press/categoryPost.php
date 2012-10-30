@@ -12,7 +12,7 @@
     <?//the current model id?>
     data-model-id="<?=$vv->categoryPost->id?>"
     <?//the controller url to use to refresh after actions?>
-    data-model-refresh-controller="<?=C_press::categoryPost($vv->categoryPost->id,"0",true)?>"
+    data-model-refresh-controller="<?=C_press::categoryPost($vv->categoryPost->id,$vv->currentPagination,true)?>"
     <?//a jquery selector that define where to inject the data-model-refresh-controller html result?>
     data-model-refresh-target-selector="#mainContent"
     >
@@ -27,7 +27,9 @@
                <?//the new model type to create?>
                data-new-type="M_post"
                <?//the field where to add the new post?>
-               data-new-field-target="posts">
+               data-new-field-target="posts"
+                <?//where to go after the post creation?>
+               data-redirect-controller-after-action="<?=C_press::categoryPost($vv->categoryPost->id,0,true)?>">
                 Add a post
             </a>
         </div>
@@ -40,17 +42,11 @@
     <?endif?>
 
     <!-- Affichage de chaque preview réordonné -->
-
+    <div class="row">
     <?foreach ($vv->posts as $post):?>
-        <br/>
         <?=$this->render("press/postPreview", $post)?>
-        <br/>
-        <div class="row">
-            <div class="span8">
-                <div class="noGutter separatorTextBloc"></div>
-            </div>
-        </div>
-    <?endforeach;?>            
+    <?endforeach;?>
+    </div>
 </div>
 
 <!-- Affichage de la pagination si > a 1 page -->

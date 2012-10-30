@@ -312,16 +312,22 @@ var Model=function(jq){
      * delete the model via the Api
      */
     this.deleteModel = function (){
+        console.log("delete model");
         var req = new Api.Delete(me.type(), me.id());
         me.removeDOM();
         Utils.blink(me.jq, true, 1000);
         req.events.addEventListener("COMPLETE", function(json) {
+            console.log("delete model complete");
+            alert("to do, refresh the main template");
+            return;
             Api.getView(me.refreshController(),{},function(response){
                 me.needToBeRecorded(false);
                 if(me.refreshTarget()){
+                    console.log("a");
                     me.refreshTarget().empty()
                     me.refreshTarget().append(response);
                 }else{
+                    console.log("b");
                     me.jq.replaceWith(response);
                 }
             })
@@ -560,8 +566,14 @@ JQ.bo.on("click","a[href='#Model.addNewChild()']",function(e){
         Utils.blink(m.jq, true, 1000);
     }
     apiCall.events.addEventListener("COMPLETE",function(){
-        if(m.refreshController()){
-            Api.getView(m.refreshController(),{},function(response){
+        var urlController;
+        if(elem.attr("data-redirect-controller-after-action")){
+            urlController=elem.attr("data-redirect-controller-after-action");
+        }else if(m.refreshController()){
+            urlController=m.refreshController();
+        }
+        if(urlController){
+            Api.getView(urlController,{},function(response){
                 m.needToBeRecorded(false);
                 if(m.refreshTarget()){
                     m.refreshTarget().empty()
@@ -569,7 +581,6 @@ JQ.bo.on("click","a[href='#Model.addNewChild()']",function(e){
                 }else{
                     m.jq.replaceWith(response);
                 }
-
             })
         }
     })
@@ -599,7 +610,24 @@ JQ.bo.on("click","a[href='#Model.previousPosition()'],a[href='#Model.nextPositio
         Utils.blink(modelContainer.jq, true, 1000);
     }
     apiCall.events.addEventListener("COMPLETE",function(){
-        if(modelContainer.refreshController()){
+
+
+        modelContainer.refreshController()
+        if(m.refreshController()){
+            Utils.blink(m.jq, true, 500);
+            m.save(function(){
+                Api.getView(m.refreshController(),{},function(response){
+                    m.needToBeRecorded(false);
+                    if(m.refreshTarget()){
+                        m.refreshTarget().empty()
+                        m.refreshTarget().append(response);
+                    }else{
+                        m.jq.replaceWith(response);
+                    }
+                })
+            })
+        }else if(modelContainer.refreshController()){
+
             Api.getView(modelContainer.refreshController(),{},function(response){
                 modelContainer.needToBeRecorded(false);
                 if(modelContainer.refreshTarget()){

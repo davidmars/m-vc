@@ -33,8 +33,14 @@ class VV_categoryMedia extends VV_layout {
      */
     public $pages;
 
+    /**
+     * @var int pagination ne cours
+     */
+    public $currentPagination;
+
     public function init($currentCategory, $pagination) {
         $this->currentCategoryId = $currentCategory->id;
+        $this->currentPagination=$pagination;
         if ($currentCategory) {
             $this->currentCategoryIdName = $currentCategory->getCategoryId();
         }
@@ -46,9 +52,11 @@ class VV_categoryMedia extends VV_layout {
 
 
         $subCatMedias = $this->categoryMedia->subcategories->select()->limit($limitX, $this->subCatMediaByPage)->all();
+
         foreach ($subCatMedias as $subCat) {
             $s = new VV_subCatMedia();
             $s->init($subCat, 1, 4, "List");
+            $s->currentCategory=$this;
             $this->subCatMedias[] = $s;
         }
         $this->setPages();

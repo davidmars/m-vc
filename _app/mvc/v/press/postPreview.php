@@ -8,17 +8,18 @@ $vv = new VV_layout();
 $refresh = C_press::post($post->post->getParentCategoryId(),true);
 ?>
 
-<span data-model-type="M_post"
-      data-model-id="<?=$post->post->id?>"
-      data-model-refresh-controller="<?=$refresh?>"
+<div class="span8"
+     data-model-type="M_post"
+     data-model-id="<?=$post->post->id?>"
+     <?/*data-model-refresh-controller="<?=$refresh?>">*/?>
     >
-    <? if ($vv->isAdmin()):?>
-            <div style="position:absolute; right:15px;"> <?//TODO:remove this shit?>
 
-                <a class=" btn btn-danger btn-small"
-                   href="#Model.delete">
-                    <i class="icon-remove icon-white"></i>
-                </a>
+
+    <div class="row postPreviewComponent">
+
+        <? if ($vv->isAdmin()):?>
+        <div class="wysiwyg-menu">
+            <div class="top-right">
 
                 <a class=" btn btn-small"
                    href="#Model.previousPosition()"
@@ -27,6 +28,7 @@ $refresh = C_press::post($post->post->getParentCategoryId(),true);
                    data-model-target-field="posts">
                     <i class="icon-arrow-up"></i>
                 </a>
+
                 <a class=" btn btn-small"
                    href="#Model.nextPosition()"
                    data-model-target-type="M_category_post"
@@ -34,12 +36,18 @@ $refresh = C_press::post($post->post->getParentCategoryId(),true);
                    data-model-target-field="posts">
                     <i class="icon-arrow-down"></i>
                 </a>
-            </div>
-    <?endif?>
 
-    <div class="row">
-        <div class="postPreviewComponent">
-            <div class="item-content">
+                <a class=" btn btn-danger btn-small"
+                   href="#Model.delete">
+                    <i class="icon-remove icon-white"></i>
+                </a>
+            </div>
+        </div>
+        <?endif?>
+
+
+        <?/*<div class="postPreviewComponent">
+            <?/*<div class="item-content">*/?>
                 <div class="span2 item-thumbnail ppreview">
                     <a
                         href="<?= C_press::post($post->post->id)->url() ?>"
@@ -71,7 +79,13 @@ $refresh = C_press::post($post->post->getParentCategoryId(),true);
                             </a>
                         </div>
                 </div>
-            </div>
+           <?/* </div>
+        </div>*/?>
+        <div class=span8>
+            <div class="noGutter separatorTextBloc"></div>
         </div>
     </div>
-</span>
+
+
+
+</div>

@@ -12,7 +12,7 @@
     <?//the current model id?>
     data-model-id="<?=$vv->categoryMedia->id?>"
     <?//the controller url to use to refresh after actions?>
-    data-model-refresh-controller="<?=C_press::categoryMedia($vv->categoryMedia->id,"0",true)?>"
+    data-model-refresh-controller="<?=C_press::categoryMedia($vv->categoryMedia->id,$vv->currentPagination,true)?>"
     <?//a jquery selector that define where to inject the data-model-refresh-controller html result?>
     data-model-refresh-target-selector="#mainContent"
     >
@@ -26,31 +26,28 @@
                href="#Model.addNewChild()"
                 <?//the new model type to create?>
                data-new-type="M_subcategory_media"
+                <?//where to go after the post creation?>
+               data-redirect-controller-after-action="<?=C_press::categoryMedia($vv->categoryMedia->id,"0",true)?>"
                 <?//the field where to add the new category_media?>
                data-new-field-target="subcategories">
                 Add a category
             </a>
         </div>
     </div>
-    <div class="row">
-        <div class="span8">
-            <div class="noGutter separatorTextBloc"></div>
-        </div>
-    </div>
+
+
+
     <?endif?>
 
 
-    <!-- Affichage de chaque preview réordonné -->
-    <? foreach ($vv->subCatMedias as $subMedia):?>
-        <?/* @var $subMedia VV_subCatMedia */?>
-        <?=$this->render("press/mediaPreview", $subMedia)?>
-        <br/>
-        <div class="row">
-            <div class="span8">
-                <div class="noGutter separatorTextBloc"></div>
-            </div>
-        </div>
-    <? endforeach;?>
+    <!-- list all subCats -->
+    <div class="row">
+        <? foreach ($vv->subCatMedias as $subCat):?>
+
+            <?=$this->render("press/subCatMedia", $subCat)?>
+
+        <? endforeach;?>
+    </div>
 </div>
 
 <!-- Affichage de la pagination si > a 1 page -->

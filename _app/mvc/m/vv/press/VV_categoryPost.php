@@ -32,8 +32,13 @@ class VV_categoryPost extends VV_layout {
      * @var VV_categoryPostPagination[] all links
      */
     public $pages;
+    /**
+     * @var int The ciurrent pagination index
+     */
+    public $currentPagination;
     
     public function init($currentCategory, $pagination) {
+        $this->currentPagination=$pagination;
         $this->currentCategoryId = $currentCategory->id;
         $this->currentCategoryIdName = $currentCategory->getCategoryId();
         $this->categoryPost = $currentCategory;                        
