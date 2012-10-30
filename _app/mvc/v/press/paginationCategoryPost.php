@@ -6,6 +6,7 @@ $vv = $_vars;
 
 <br/>
 <br/>
+    <?/*
 <!-- Insertion d'un composant de pagination -->
 <div class="paginationComponent">
   <div class="row">
@@ -37,4 +38,38 @@ $vv = $_vars;
       </div>
     </div>
   </div>
+</div>
+
+    */?>
+
+<div class="paginationComponent">
+    <div class="row">
+        <div class="span8">
+            <div class="noGutter">
+                <!-- Insertion d'un composant de titre -->
+                <div class="item-title">More Recipes</div>
+            </div>
+        </div>
+
+        <!-- Insertion d'un composant de contenu -->
+        <div class="span8 item-content">
+            <div class="item-pagination">
+                <div class="row">
+                    <? foreach($vv->pages as $page):?>
+                        <div class="span1 item-pagination-number">
+                            <div class="noGutter">
+                                <a class="<?= ($page->isCurrent) ? ("active") : ("") ?>"
+                                        href="<?=$page->href?>"
+                                        data-nav-is-ajax="true"
+                                        data-nav-is-ajax-target="mainContent">
+                                    <?= $page->name ?>
+
+                                </a>
+                            </div>
+                        </div>
+                    <? endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -20,21 +20,23 @@
                         }
                         
                         .item-pagination-number {
-                            &.active {
-                                .bg-image-active;
-                                a {
-                                    color:@color3;
-                                }
-                            }
-                                            
                             a {
-                                position:relative; 
-                                top:@grid_square * 0.5px;; 
+                                display: block;
+                                height:@grid_square * 2.5px;
+                                line-height:@grid_square * 2.5px;
+                            //position:relative;
+                                //top:@grid_square * 0.5px;;
                                 /*left:@grid_square * 1px; */
                                 color:@color2;
+
+                              &.active {
+                                .bg-image-active;
+                                color:@color3;
+
+                              }
                             }
                         
-                            height:@grid_square * 2.5px;     
+                            height:@grid_square * 2.5px;
                             .separator-nav-tab;                            
                         }
                         
