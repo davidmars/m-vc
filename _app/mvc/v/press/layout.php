@@ -10,7 +10,34 @@
     <?
         $this->inside("press/html5bp");
     ?>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <div class="noGutter">
+                            <div class="nav-collapse collapse">
+                                <script src="http://havanaclub.shic.cc/embedMenu"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="container">
+
+        <div class="row top_submenu">
+            <div class="span12">
+                <div class="row">
+                    <script src="http://havanaclub.shic.cc/embedSubMenu"></script>
+                </div>
+            </div>
+        </div>
+
 
         <div class="row">
             <div class="span12">

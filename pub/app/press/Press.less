@@ -16,6 +16,7 @@
 
 body {
     .bg-image-press-room;
+    margin-top: 50px;
 }
 
 #mainContent {
@@ -48,4 +49,47 @@ body {
 .manageData {
   position: relative;
   .top-gutter;
+}
+
+
+/* Menu */
+#havana-main-menu {
+  ul {
+    li {
+      .font-nav-tab-title;
+      a {
+        color: @color3;
+      }
+    }
+  }
+}
+
+.top_submenu {
+  padding-top: 8px;
+}
+
+#havana-main-submenu {
+  div {
+    border-right:1px solid @color4;
+    margin-left: 15px;
+    padding-right: 15px;
+
+    &:first-child {
+      margin-left: 30px;
+    }
+  }
+
+  ul {
+    li {
+      a {
+          line-height: 15px;
+          margin-bottom: 3px;
+          .font-submenu;
+
+          &:hover {
+            color:@color3;
+          }
+        }
+    }
+  }
 }
