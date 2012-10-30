@@ -1,4 +1,6 @@
 var Api={
+    events:new EventDispatcher(),
+
     call:function(id,type,datas,onComplete){ 
         console.log("api call");
         datas.theme = "extranet";        
@@ -137,6 +139,7 @@ var Api={
                     if(typeof(onComplete) == 'function') {
                         onComplete(ajaxReturn);
                     }
+                    Api.events.dispatchEvent("onChange");
                 }
         });
     }
@@ -237,6 +240,30 @@ Api.NewChildIn=function(newModelType,containerModelType,containerModelId,contain
             }
     });
 }
+
+/**
+ *
+ * @param modelType
+ * @param modelId
+ * @constructor
+ */
+Api.Delete=function(modelType,modelId){
+    var me=this;
+    this.events=new EventDispatcher();
+    $.ajax({
+        type: "POST",
+        url: Config.rootUrl +"/admin/api/delete",
+        data: {type:modelType,
+               id:modelId },
+        dataType: 'json',
+        success:
+            function (ajaxReturn){
+                console.log("Api.Login call success");
+                me.events.dispatchEvent("COMPLETE", ajaxReturn);
+            }
+    });
+}
+
 /**
  * The Api.Login object send login request, then dispatch events.COMPLETE event.
  * @param email The email used for login.

@@ -96,6 +96,12 @@ class M_post extends M_{
                    
         return $conf;
     }
+
+    public function getParentCategoryId() {
+        $cat = M_category_post_M_post::$manager->select()->where("M_post", $this->id)->one();
+
+        return $cat->M_category_post->id;
+    }
 }
 
 

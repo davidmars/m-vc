@@ -1,18 +1,23 @@
-<? 
-    /* @var $vv VV_categoryMedia */
-    $vv = $_vars;            
-    
+<?
+    /* @var $vv VV_media */
+    $vv = $_vars;
+
     /* @var $this View */
-    $this->inside("press/layout", $vv);    
+    $this->inside("press/layout", $vv);
+
+    /* @var $media M_subcategory_media */
+    $media = $vv->subCategoryMedia;
+
+    $refresh = C_press::mediaAll($media->id, true);
 ?>
 
 <div class="posts"
     <?//the current model type?>
-    data-model-type="M_category_media"
+    data-model-type="M_subcategory_media"
     <?//the current model id?>
-    data-model-id="<?=$vv->categoryMedia->id?>"
+    data-model-id="<?=$media->id?>"
     <?//the controller url to use to refresh after actions?>
-    data-model-refresh-controller="<?=C_press::categoryMedia($vv->categoryMedia->id,"0",true)?>"
+    data-model-refresh-controller="<?=$refresh?>"
     <?//a jquery selector that define where to inject the data-model-refresh-controller html result?>
     data-model-refresh-target-selector="#mainContent"
     >
@@ -25,10 +30,10 @@
                 <?//the action to do?>
                href="#Model.addNewChild()"
                 <?//the new model type to create?>
-               data-new-type="M_subcategory_media"
+               data-new-type="M_media"
                 <?//the field where to add the new category_media?>
-               data-new-field-target="subcategories">
-                Add a category
+               data-new-field-target="posts">
+                Add a media
             </a>
         </div>
     </div>
@@ -39,19 +44,21 @@
     </div>
     <?endif?>
 
-
     <!-- Affichage de chaque preview réordonné -->
-    <? foreach ($vv->subCatMedias as $subMedia):?>
-        <?/* @var $subMedia VV_subCatMedia */?>
-        <?=$this->render("press/mediaPreview", $subMedia)?>
-        <br/>
-        <div class="row">
-            <div class="span8">
-                <div class="noGutter separatorTextBloc"></div>
+    <br/>
+    <div class="row">
+        <div class="span8">
+            <!-- sub category media -->
+            <div class="mediaPreviewComponent">
+                <div class="item-media-section">
+                    <?=$media->title?>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mediaPreviewComponent" data-nav-ajax-autoload="<?=C_press::subCatMedia($media->id, "", true)?>"></div>
+
             </div>
         </div>
-    <? endforeach;?>
+    </div>
 </div>
-
-<!-- Affichage de la pagination si > a 1 page -->
-<?=$this->render("press/paginationCategoryMedia", $vv)?>

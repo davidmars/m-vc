@@ -24,7 +24,7 @@ class VV_categoryMedia extends VV_layout {
     private $subCatMediaByPage = 4;
 
     /**
-     * @var M_subcategory_media[] all subMedia of the category Media
+     * @var VV_subCatMedia[] all subMedia of the category Media
      */
     public $subCatMedias;
 
@@ -35,13 +35,22 @@ class VV_categoryMedia extends VV_layout {
 
     public function init($currentCategory, $pagination) {
         $this->currentCategoryId = $currentCategory->id;
-        $this->currentCategoryIdName = $currentCategory->getCategoryId();
+        if ($currentCategory) {
+            $this->currentCategoryIdName = $currentCategory->getCategoryId();
+        }
+
         $this->categoryMedia = $currentCategory;
         $this->currentIndex = $pagination;
 
         $limitX = $pagination * $this->subCatMediaByPage;
 
-        $this->subCatMedias = $this->categoryMedia->subcategories->select()->limit($limitX, $this->subCatMediaByPage)->all();
+
+        $subCatMedias = $this->categoryMedia->subcategories->select()->limit($limitX, $this->subCatMediaByPage)->all();
+        foreach ($subCatMedias as $subCat) {
+            $s = new VV_subCatMedia();
+            $s->init($subCat, 1, 4, "List");
+            $this->subCatMedias[] = $s;
+        }
         $this->setPages();
     }
 

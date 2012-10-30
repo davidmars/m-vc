@@ -14,7 +14,7 @@ class M_contact extends M_{
      *
      * @var TextField The function of the contact
      */
-    public $function;        
+    public $role;
     /**
      *
      * @var TextField The society of the contact.
@@ -71,7 +71,31 @@ class M_contact extends M_{
      * @var ModifiedField Test sur un champ dans le modele étendu 
      */
     //public $modifiedInExtend;
-    
+
+
+
+    /**
+     * Create a new M_contact with default values, save it and return it.
+     * @return M_contact The new contact.
+     */
+    public static function getNew(){
+        $newItem=new M_contact();
+        $newItem->name="name";
+        $newItem->role="role";
+        $newItem->society="society";
+        $newItem->street="street";
+        $newItem->zip="zip";
+        $newItem->city="city";
+        $newItem->country="country";
+        $newItem->number="number";
+        $newItem->email="email";
+        $newItem->theFile="theFile";
+        $newItem->thumb="thumb";
+
+        $newItem->save();
+        return $newItem;
+    }
+
 
     /**
      *
@@ -85,7 +109,7 @@ class M_contact extends M_{
             "label"=>"Name"
         );
         
-        $conf["default"]["fields"]["function"]=array(
+        $conf["default"]["fields"]["role"]=array(
             "visible"=>true,
             "label"=>"Function"
         );

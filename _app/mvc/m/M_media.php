@@ -30,7 +30,7 @@ class M_media extends M_{
      *
      * @var M_subcategory_media The subcategory where it will be possible to find the media.
      */
-    public $category;
+    //public $category;
     
     /**
      *
@@ -55,11 +55,6 @@ class M_media extends M_{
         $conf["default"]["fields"]["title"]=array(
             "visible"=>true,
             "label"=>"Title"
-        );
-        
-        $conf["default"]["fields"]["category"]=array(
-            "visible"=>true,
-            "label"=>"Category"
         );
         
         $conf["default"]["fields"]["thumb"]=array(

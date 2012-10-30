@@ -1,45 +1,39 @@
 <? 
-    /* @var $media M_subcategory_media */
-    $media = $_vars;
-    
-    $medias = $media->getMediaForPage(1);     
-    
-    $subPagination = $media->getNbPage();   
+    /* @var $vv VV_subCatMedia */
+    $vv = $_vars;
 ?>
 
+
+<!-- sub category media -->
 <div class="mediaPreviewComponent">
-  <div class="item-media-section">
-    <?=$media->title?>
-  </div>
-</div>
-<div class="row">
-  <div class="mediaPreviewComponent" data-nav-ajax-autoload="<?=C_press::subCatMedia($media->id, 0, true)?>">>
-    <!-- récupération de tous les médias -->
-    <?  foreach ($media->medias as $m):?>
-    <?
-                /* @var $m M_media */
-            ?>
-    <div class="span2 item-media-data">
-      <div class="noGutter">
-      	<a href="" data-nav-is-ajax-target="mainContent" data-nav-is-ajax="true" class="thumbnail"><img src="<?=GiveMe::url($m->thumb)?>" alt="<?=$m->title?>" /></a>
-        <div class="item-media-content">
-          <div class="item-media-name"> <a href="" data-nav-is-ajax-target="mainContent" data-nav-is-ajax="true">
-            <?=$m->title?>
-            </a> </div>
-          <div class="item-media-link"> <a class="button" href="<?=$m->theFile->download()?>"> <i class="icon-download"></i> Télécharger</a>
-            <div class="clearfix"></div>
-          </div>
-        </div>
-      </div>
+    <!-- Save of the Contact-->
+    <?if($vv->isAdmin()):?>
+    <div>
+        <a class="pull-right btn btn-danger btn-small" href="#Model.delete"><i class="icon-remove icon-white"></i></a>
+        <a class="pull-right btn btn-success btn-small" href="#Model.save"><i class="icon-ok icon-white"></i></a>
     </div>
-    <? endforeach;?>
-  </div>
-  <? /*
-<div class="pagination">
-          Pagination => <?=$subPagination?>
+    <?endif?>
+
+    <div class="item-media-section">
+        <?=$vv->subCategoryMedia->title?>
+    </div>
 </div>
-    */?>
-  <div class="span8">
-    <div class="pull-right"> <a href="" data-nav-is-ajax-target="mainContent" data-nav-is-ajax="true" rel="nofollow" class="font-media-link">View all</a> </div>
-  </div>
+
+
+<div class="row">
+
+    <?=$this->render("press/media", $vv)?>
+
+    <div class="span8">
+        <div class="pull-right">
+            <a
+                href="<?=C_press::subCatMedia($vv->subCategoryMedia->id, "Page", 1, "all", true)?>"
+                data-nav-is-ajax-target="mainContent"
+                data-nav-is-ajax="true"
+                rel="nofollow"
+                class="font-media-link">
+                    View all
+            </a>
+        </div>
+    </div>
 </div>

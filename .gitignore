@@ -3,10 +3,8 @@
 /nbproject/private/private.xml
 /nbproject/project.properties
 /nbproject/project.xml
-
 /.idea/.name
 /.idea/encodings.xml
-/.idea/jsLinters/jshint.xml
 /.idea/jsLinters/jslint.xml
 /.idea/libraries/sass_stdlib.xml
 /.idea/m-vc.iml
@@ -15,3 +13,11 @@
 /.idea/scopes/scope_settings.xml
 /.idea/vcs.xml
 /.idea/workspace.xml
+/havana-pressroom/.idea/.name
+/havana-pressroom/.idea/encodings.xml
+/havana-pressroom/.idea/havana-pressroom.iml
+/havana-pressroom/.idea/misc.xml
+/havana-pressroom/.idea/modules.xml
+/havana-pressroom/.idea/scopes/scope_settings.xml
+/havana-pressroom/.idea/vcs.xml
+/havana-pressroom/.idea/workspace.xml

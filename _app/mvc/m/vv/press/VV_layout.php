@@ -43,8 +43,8 @@ class VV_layout extends ViewVariables {
      * @param int $id the id of the contact list
      * @return M_contacts Return a contact block
      */
-    public function getContact($id) {
-        return M_contacts::$manager->get($id);
+    public function getContact($title) {
+        return M_contacts::$manager->select()->where("title", $title)->one();
     }
     
     /**

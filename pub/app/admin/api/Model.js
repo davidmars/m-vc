@@ -311,9 +311,22 @@ var Model=function(jq){
     /**
      * delete the model via the Api
      */
-    this.deleteModel = function ( onComplete ){
-        Api.deleteModel(me, onComplete);
-        me.afterDelete();
+    this.deleteModel = function (){
+        var req = new Api.Delete(me.type(), me.id());
+        me.removeDOM();
+        Utils.blink(me.jq, true, 1000);
+        req.events.addEventListener("COMPLETE", function(json) {
+            Api.getView(me.refreshController(),{},function(response){
+                me.needToBeRecorded(false);
+                if(me.refreshTarget()){
+                    me.refreshTarget().empty()
+                    me.refreshTarget().append(response);
+                }else{
+                    me.jq.replaceWith(response);
+                }
+            })
+        });
+
     }
     
     this.afterDelete = function ( ) {
@@ -572,7 +585,12 @@ JQ.bo.on("click",Model.CTRL.SAVE,function(e){
         m.save(function(){
             Api.getView(m.refreshController(),{},function(response){
                 m.needToBeRecorded(false);
-                m.jq.replaceWith(response);
+                if(m.refreshTarget()){
+                    m.refreshTarget().empty()
+                    m.refreshTarget().append(response);
+                }else{
+                    m.jq.replaceWith(response);
+                }
             })
         })
     }else{
@@ -583,22 +601,10 @@ JQ.bo.on("click",Model.CTRL.SAVE,function(e){
 JQ.bo.on("click",Model.CTRL.DELETE,function(e){
     e.preventDefault();
     var deleteButton = $(this);
-    $( "#dialog-delete-confirm" ).dialog({
-        resizable: false,
-        height:160,
-        modal: true,
-        zIndex: ModalsManager.getNextDepth(),
-        buttons: {
-            "Delete item": function() {
-                $( this ).dialog( "close" );
-                var m=Model.getParent(deleteButton);
-                m.deleteModel();
-            },
-            Cancel: function() {
-                $( this ).dialog( "close" );
-            }
-        }
-    });
+    if (confirm("Are you want to delete this element ?")) {
+        var m=Model.getParent(deleteButton);
+        m.deleteModel();
+    }
 })
 
 JQ.bo.on("click",Model.CTRL.SET_LANGUAGE,function(e){
