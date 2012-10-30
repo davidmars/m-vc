@@ -65,7 +65,7 @@
 
                 <?if($vv->isAdmin()):?>
                 <div class="span8 mt1">
-                    <a class=" btn btn-success" data-block-type="" href="#Model.addBlock">
+                    <a class=" btn btn-success" data-block-type="M_text" href="#Model.addBlock">
                         <i class="icon-white icon-plus-sign"></i>
                         Add a text
                     </a>
