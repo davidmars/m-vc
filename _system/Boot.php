@@ -6,10 +6,14 @@
  * @author david marsalone
  */
 class Boot {
-    
+
+    /**
+     * @var array Here we list the route and controller information.
+     */
+    public static $routingLogs=array();
     /**
      *
-     * @var array Lis of yet included files. 
+     * @var array List of yet included files.
      */
     private static $yetIncluded=array();
     
@@ -32,9 +36,7 @@ class Boot {
         $protocol = substr(strtolower($_SERVER["SERVER_PROTOCOL"]), 0, strpos(strtolower($_SERVER["SERVER_PROTOCOL"]), "/")) . $s;
         $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":".$_SERVER["SERVER_PORT"]);
         Site::$host= $protocol . "://" . $_SERVER['SERVER_NAME'] . $port;
-        
-        
-        
+
     }
     
     
@@ -51,7 +53,7 @@ class Boot {
 
         //search for the correct controller, function and params
         //Human::log($_REQUEST["route"],"POV Boot - At the begining it was the route param");
-        
+        self::$routingLogs[]="htaccess give us a route \"".$_REQUEST["route"]."\".";
         $infos=new UrlInfos($_REQUEST["route"]);
         UrlInfos::$current=$infos;
         $controller=$infos->controller;
@@ -67,9 +69,12 @@ class Boot {
 	    }
 	}else {
 	    //okay we loose...
-            $msg="There is no controller for this route : ".$route;
+            $msg="There is no controller for this route : ".UrlInfos::$current->route."<br>";
+            echo "<hr>";
+            echo(implode("<br/>",self::$routingLogs));
+            echo "<hr>";
             //Human::log($msg, "POV Boot Route error", Human::TYPE_ERROR);
-            die($msg); 
+            die($msg);
         }
         
         $view=$controller->run();
@@ -199,7 +204,7 @@ class Boot {
         //try to create the cache directory
         $created= FileTools::mkDirOfFile(Site::$cacheFolder."/test.txt");
         
-        
+        $l="";
         if($created){
             //$l.=self::logLine("Site::\$cacheFolder exists","green");
         }else{

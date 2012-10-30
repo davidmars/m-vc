@@ -16,12 +16,34 @@ var Nav = {
         }, url, url);
 
     },
-
+    /**
+     * flag, if set to true the url can change, but no ajax will be performed
+     */
+    disableLoadOnStateChange:false,
+    /**
+     * initialize the stuff
+     */
     init: function() {
         Nav.initHistory();
-        Api.events.addEventListener("onChange", function() {
-            Press.initAfterAjax();
-        });
+        if(Api){
+            Api.events.addEventListener("onChange", Nav.onApiChange);
+        }
+    },
+    /**
+     * Launched when the API (admin) do something in dom. When it happen maybe the url should change (cause it's not managed in the api).
+     * @param {Api.EventOnChange} apiEvent
+     */
+    onApiChange:function(apiEvent){
+        if(apiEvent.controllerUrl){
+            //if the api Event provide an url it means that we used an url to display stuff in dom.
+            //so we will change the url (in the browser bar) but we will prevent the ajax call cause the api did it before.
+            Nav.disableLoadOnStateChange=true;
+            Nav.goToUrl(apiEvent.controllerUrl,null,true);
+            Nav.disableLoadOnStateChange=false;
+
+        }
+        //in all cases, we need to re-init the dom objects
+        Press.initAfterAjax();
     }
 }
 
@@ -41,6 +63,10 @@ Nav.initHistory = function(){
 
     // Bind to State Change
     History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+        if(Nav.disableLoadOnStateChange){
+            console.log("url changed but no ajax loading where performed");
+            return;
+        }
         // Log the State
         Nav.currentState = History.getState(); // Note: We are using History.getState() instead of event.state
         //console.log("statechange "+Application.currentState.title+"----->"+Application.currentState.data.url);

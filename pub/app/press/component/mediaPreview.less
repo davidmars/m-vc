@@ -1,14 +1,36 @@
-.mediaPreviewComponent {    
-    div {        
-        &.item-media-section {
-            text-align:center;
-            .font-download-page;  
-            height:@grid_square * 3px;
-            line-height:@grid_square * 3px;
-        }
+
+.subcatMedia{
+  background: white;
+  padding-bottom:15px;
+
+  .item-media-section {
+    text-align:center;
+    .font-download-page;
+    height:@grid_square * 3px;
+    line-height:@grid_square * 3px;
+  }
+}
+
+.subcatMediaPreview{
+
+  .subcatMediaList{
+    height:305px; //5px for debug
+    background-color: #ffe45c; //for debug
+  }
+
+}
+.downloadBox {
+    //padding-top:15px;
+    height:300px;
+    .wysiwyg-menu{
+      /*padding-top: 15px;;*/
+    }
+    div {
+
 		
 		&.noGutter{
-			background: @color5;
+          height:300px;
+		  background: @color5;
 		}
 		
 		&.item-media-data {

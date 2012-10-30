@@ -61,8 +61,18 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
+                <?if($vv->isAdmin()):?>
+                <div class="span8 mt1">
+                    <a class=" btn btn-success" data-block-type="M_text" href="#Model.addBlock">
+                        <i class="icon-white icon-plus-sign"></i>
+                        Add a text
+                    </a>
+                </div>
+                <?endif?>
+
+
                 <!-- Start the block switcher -->
                 <?  foreach ($vv->post->blocks as $b):?>
                     <? /* @var $b M_block */ ?>

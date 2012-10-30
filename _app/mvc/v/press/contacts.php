@@ -46,8 +46,12 @@ $contactList = $vv->getContact("Havana PressRoom");
 
                 <!-- Save of the Contact-->
                 <?if($vv->isAdmin()):?>
-                <a class="pull-right btn btn-danger btn-small" href="#Model.delete"><i class="icon-remove icon-white"></i></a>
-                <a class="pull-right btn btn-success btn-small" href="#Model.save"><i class="icon-ok icon-white"></i></a>
+                    <div class="wysiwyg-menu ">
+                        <div class="top-right">
+                        <a class="btn btn-danger btn-small" href="#Model.delete"><i class="icon-remove icon-white"></i></a>
+                        <a class="btn btn-success btn-small" href="#Model.save"><i class="icon-ok icon-white"></i></a>
+                        </div>
+                    </div>
                 <?endif?>
 
                 <!-- The name of the Contact-->

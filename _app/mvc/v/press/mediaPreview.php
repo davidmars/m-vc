@@ -6,34 +6,42 @@
 
 <!-- sub category media -->
 <div class="mediaPreviewComponent">
-    <!-- Save of the Contact-->
-    <?if($vv->isAdmin()):?>
-    <div>
-        <a class="pull-right btn btn-danger btn-small" href="#Model.delete"><i class="icon-remove icon-white"></i></a>
-        <a class="pull-right btn btn-success btn-small" href="#Model.save"><i class="icon-ok icon-white"></i></a>
-    </div>
-    <?endif?>
 
-    <div class="item-media-section">
-        <?=$vv->subCategoryMedia->title?>
-    </div>
-</div>
+    <div class="row">
+            <div class=span8>
+
+                <?if($vv->isAdmin()):?>
+                    <div class=wysiwyg-menu>
+                        <div class="top-right">
+                            <a class="btn btn-danger btn-small" href="#Model.delete"><i class="icon-remove icon-white"></i></a>
+                            <a class="btn btn-success btn-small" href="#Model.save"><i class="icon-ok icon-white"></i></a>
+                        </div>
+                    </div>
+                <?endif?>
+
+                <div class="item-media-section">
+                    <div class="row">
+                        <?=$vv->subCategoryMedia->title?>
+                    </div>
+                </div>
 
 
-<div class="row">
 
-    <?=$this->render("press/media", $vv)?>
+                <?=$this->render("press/media", $vv)?>
 
-    <div class="span8">
-        <div class="pull-right">
-            <a
-                href="<?=C_press::subCatMedia($vv->subCategoryMedia->id, "Page", 1, "all", true)?>"
-                data-nav-is-ajax-target="mainContent"
-                data-nav-is-ajax="true"
-                rel="nofollow"
-                class="font-media-link">
-                    View all
-            </a>
-        </div>
+
+                <div class="pull-right">
+                    <a
+                        href="<?=C_press::subCatMedia($vv->subCategoryMedia->id, "Page", 1, "all", true)?>"
+                        data-nav-is-ajax-target="mainContent"
+                        data-nav-is-ajax="true"
+                        rel="nofollow"
+                        class="font-media-link">
+                            View all
+                    </a>
+                </div>
+
+
+            </div>
     </div>
 </div>

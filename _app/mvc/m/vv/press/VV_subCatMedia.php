@@ -10,7 +10,7 @@ class VV_subCatMedia extends VV_layout {
 
 
     /**
-     * @var M_subcategoryMedia the current sub category
+     * @var M_subcategory_media the current sub category
      */
     public $subCategoryMedia;
 
@@ -24,13 +24,24 @@ class VV_subCatMedia extends VV_layout {
     public $start;
 
     public $nbItem;
+    /**
+     * @var VV_categoryMedia the parent category
+     */
+    public $currentCategory;
 
     /**
      * @var M_media[] all medias
      */
     public $medias;
 
+    /**
+     * @param $currentSubCategory M_subcategory_media
+     * @param $start
+     * @param $nbItem
+     * @param $template
+     */
     public function init($currentSubCategory, $start, $nbItem, $template) {
+
         $this->subCategoryMedia = $currentSubCategory;
         $this->currentIndex = $start;
 

@@ -24,7 +24,7 @@ class VV_categoryPost extends VV_layout {
     private $postByPage = 4;
 
     /**
-     * @var M_post[] all posts of the category
+     * @var VV_post[] all posts of the category
      */
     public $posts;
 
@@ -32,8 +32,13 @@ class VV_categoryPost extends VV_layout {
      * @var VV_categoryPostPagination[] all links
      */
     public $pages;
+    /**
+     * @var int The ciurrent pagination index
+     */
+    public $currentPagination;
     
     public function init($currentCategory, $pagination) {
+        $this->currentPagination=$pagination;
         $this->currentCategoryId = $currentCategory->id;
         $this->currentCategoryIdName = $currentCategory->getCategoryId();
         $this->categoryPost = $currentCategory;                        
@@ -41,7 +46,12 @@ class VV_categoryPost extends VV_layout {
 
         $limitX = $pagination * $this->postByPage;
 
-        $this->posts = $this->categoryPost->posts->select()->limit($limitX, $this->postByPage)->all();
+        $posts = $this->categoryPost->posts->select()->limit($limitX, $this->postByPage)->all();
+        foreach($posts as $p){
+            $vvp=new VV_post();
+            $vvp->init($p,$currentCategory);
+            $this->posts[]=$vvp;
+        }
         $this->setPages();
     }
 
