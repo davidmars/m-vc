@@ -11,8 +11,6 @@
         <div class="span2 item-media-data downloadBox"
              data-model-type="M_media"
              data-model-id="<?=$m->id?>"
-             data-model-refresh-controller="<?=C_press::categoryMedia($vv->currentCategory->categoryMedia->id,$vv->currentCategory->currentPagination,true)?>"
-             data-model-refresh-target-selector="#mainContent"
         >
 
             <!-- Save of the download-->
@@ -61,7 +59,7 @@
                     class="thumbnail">
                         <img src="<?=$m->thumb->sizedWithoutCrop(200,200,"000000","jpg")?>" alt="<?=$m->title?>" />
                 </a>
-                <p><?=C_press::categoryMedia($vv->currentCategory->categoryMedia->id,$vv->currentCategory->currentPagination,true)?></p>
+
 
 
                 <div class="item-media-content">

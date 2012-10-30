@@ -5,19 +5,33 @@
     /* @var $this View */
     $this->inside("press/layout", $vv);
 ?>
-<div class="posts">
+<div class="posts"
+     data-model-id="<?=$vv->subCategoryMedia->id?>"
+     data-model-type="M_subcategory_media"
+     data-model-refresh-controller="<?=C_press::subCatMedia($vv->subCategoryMedia->id,"Page","0","all",true);?>"
+     >
     <div class="row">
-    <div class="subcatMedia span8"
-         data-model-id="<?=$vv->subCategoryMedia->id?>"
-         data-model-type="M_subcategory_media"
-         data-model-refresh-controller="<?=C_press::categoryMedia($vv->currentCategory->categoryMedia->id,0,true);?>"
-            >
+    <div class="subcatMedia span8">
 
         <?if($vv->isAdmin()):?>
-            save | add new  ?
+            <div class="">
+                <div class="pull-right">
+                        <?// create and add a contact to the contacts?>
+                    <a class="pull-right btn btn-success"
+                        <?//the action to do?>
+                       href="#Model.addNewChild()"
+                        <?//the new model type to create?>
+                       data-new-type="M_media"
+                        <?//the field where to add the new item?>
+                       data-new-field-target="medias">
+                        Add a download
+                    </a>
+                </div>
+            </div>
         <?endif?>
 
-        <h1 class="item-media-section"><?=$vv->subCategoryMedia->title?></h1>
+
+        <div class="item-media-section"><?=$vv->subCategoryMedia->title?></div>
 
         <?=$this->render("press/subCatMediaList",$vv)?>
 

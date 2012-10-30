@@ -317,20 +317,8 @@ var Model=function(jq){
         me.removeDOM();
         Utils.blink(me.jq, true, 1000);
         req.events.addEventListener("COMPLETE", function(json) {
-            console.log("delete model complete");
-            alert("to do, refresh the main template");
-            return;
-            Api.getView(me.refreshController(),{},function(response){
-                me.needToBeRecorded(false);
-                if(me.refreshTarget()){
-                    console.log("a");
-                    me.refreshTarget().empty()
-                    me.refreshTarget().append(response);
-                }else{
-                    console.log("b");
-                    me.jq.replaceWith(response);
-                }
-            })
+            //console.log("delete model complete");
+            me.refreshByController(me.jq);
         });
 
     }
@@ -477,6 +465,45 @@ var Model=function(jq){
         })
         return isValid;
     }
+
+    this.refreshByController=function(jq){
+        var jq=$(jq)
+        var urlController;
+
+        var refreshedModel;
+        if(jq.attr("data-redirect-controller-after-action")){
+            refreshedModel=me;
+            urlController=jq.attr("data-redirect-controller-after-action");
+        }else if(me.refreshController()){
+            urlController=me.refreshController();
+            refreshedModel=me;
+        }else{
+            var somewhereElse=jq.closest("[data-model-refresh-controller]");
+            refreshedModel=new Model(somewhereElse);
+            urlController=refreshedModel.refreshController();
+        }
+        if(!urlController){
+            alert("no url controller found for the refresh");
+        }else{
+            //alert(urlController);
+        }
+        if(urlController){
+            Utils.blink(refreshedModel.jq,true,500);
+
+            Api.getView(urlController,{},function(response){
+                me.needToBeRecorded(false);
+                refreshedModel.needToBeRecorded(false);
+                if(refreshedModel.refreshTarget()){
+                    refreshedModel.refreshTarget().empty()
+                    refreshedModel.refreshTarget().append(response);
+                }else{
+                    refreshedModel.jq.replaceWith(response);
+                }
+            })
+        }
+    }
+
+
 }
 
 Model.CTRL={
@@ -554,6 +581,10 @@ Model.CTRL={
 }
 
 
+var refreshTemplate=function(controller){
+
+}
+
 JQ.bo.on("click","a[href='#Model.addNewChild()']",function(e){
     e.preventDefault();
     var elem = $(this)
@@ -562,27 +593,9 @@ JQ.bo.on("click","a[href='#Model.addNewChild()']",function(e){
     var fieldTarget=elem.attr("data-new-field-target");
     console.log("we will create a new "+newModelType+" in "+m.type()+" "+m.id()+" in the field: "+fieldTarget);
     var apiCall=new Api.NewChildIn(newModelType, m.type(), m.id(),fieldTarget);
-    if(m.refreshController()){
-        Utils.blink(m.jq, true, 1000);
-    }
+
     apiCall.events.addEventListener("COMPLETE",function(){
-        var urlController;
-        if(elem.attr("data-redirect-controller-after-action")){
-            urlController=elem.attr("data-redirect-controller-after-action");
-        }else if(m.refreshController()){
-            urlController=m.refreshController();
-        }
-        if(urlController){
-            Api.getView(urlController,{},function(response){
-                m.needToBeRecorded(false);
-                if(m.refreshTarget()){
-                    m.refreshTarget().empty()
-                    m.refreshTarget().append(response);
-                }else{
-                    m.jq.replaceWith(response);
-                }
-            })
-        }
+        m.refreshByController(elem);
     })
 })
 JQ.bo.on("click","a[href='#Model.previousPosition()'],a[href='#Model.nextPosition()'],",function(e){
@@ -606,63 +619,20 @@ JQ.bo.on("click","a[href='#Model.previousPosition()'],a[href='#Model.nextPositio
     console.log("we will move "+ m.type()+"/"+ m.id()+" "+where+" in the field: "+containerModelType+"/"+containerModelId+"->"+containerFieldName);
 
     var apiCall=new Api.AssociationMove(where, m.id(), m.type(), containerModelType,containerModelId,containerFieldName);
-    if(modelContainer.refreshController()){
-        Utils.blink(modelContainer.jq, true, 1000);
-    }
     apiCall.events.addEventListener("COMPLETE",function(){
-
-
-        modelContainer.refreshController()
-        if(m.refreshController()){
-            Utils.blink(m.jq, true, 500);
-            m.save(function(){
-                Api.getView(m.refreshController(),{},function(response){
-                    m.needToBeRecorded(false);
-                    if(m.refreshTarget()){
-                        m.refreshTarget().empty()
-                        m.refreshTarget().append(response);
-                    }else{
-                        m.jq.replaceWith(response);
-                    }
-                })
-            })
-        }else if(modelContainer.refreshController()){
-
-            Api.getView(modelContainer.refreshController(),{},function(response){
-                modelContainer.needToBeRecorded(false);
-                if(modelContainer.refreshTarget()){
-                    modelContainer.refreshTarget().empty()
-                    modelContainer.refreshTarget().append(response);
-                }else{
-                    modelContainer.jq.replaceWith(response);
-                }
-
-            })
-        }
+        m.refreshByController(elem);
     })
-})
+});
 
 JQ.bo.on("click",Model.CTRL.SAVE,function(e){
     e.preventDefault();
     var elem = $(this)
     var m = Model.getParent( elem );
-    Application.currentModel = m;
-    if(m.refreshController()){
-        Utils.blink(m.jq, true, 500);
-        m.save(function(){
-            Api.getView(m.refreshController(),{},function(response){
-                m.needToBeRecorded(false);
-                if(m.refreshTarget()){
-                    m.refreshTarget().empty()
-                    m.refreshTarget().append(response);
-                }else{
-                    m.jq.replaceWith(response);
-                }
-            })
-        })
-    }else{
-        m.save(Application.postSaveOnSuccess);
-    }
+
+    m.save(function(){
+            m.refreshByController(elem);
+    })
+
 })
 
 JQ.bo.on("click",Model.CTRL.DELETE,function(e){
@@ -694,32 +664,7 @@ JQ.bo.on("click",Model.CTRL.REMOVE_DATAS,function(e){
     m.removeDatas();   
 })
 
-JQ.bo.on("click",Model.CTRL.PREVIEW,function(e){
-    e.preventDefault();
-    alert("to do preview !");
-})
 
-JQ.bo.on("click",Model.CTRL.DUPLICATE_DATA,function(e){
-    e.preventDefault();
-    var link = $(this);
-    $( "#dialog-duplicate-confirm" ).dialog({
-        resizable: false,
-        height:190,
-        modal: true,
-        zIndex: ModalsManager.getNextDepth(),
-        buttons: {
-            "Duplicate": function() {
-                $( this ).dialog( "close" );
-                var m = Model.getParent( link );
-                Application.currentModel = m;
-                m.duplicateData(Application.postSaveOnSuccess);
-            },
-            Cancel: function() {
-                $( this ).dialog( "close" );
-            }
-        }
-    });
-})
 
 /**
  * returns a parent Model object relative to the jqery object passed as argument

@@ -7,7 +7,7 @@ $vv = $_vars;
 <div class="span8 subcatMedia subcatMediaPreview"
         data-model-id="<?=$vv->subCategoryMedia->id?>"
         data-model-type="M_subcategory_media"
-        data-model-refresh-controller="<?=C_press::categoryMedia($vv->currentCategory->categoryMedia->id,0,true);?>"
+        zzzzzzzdata-model-refresh-controller="<?=C_press::categoryMedia($vv->currentCategory->categoryMedia->id,0,true);?>"
         >
 
             <?if($vv->isAdmin()):?>
