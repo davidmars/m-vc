@@ -172,22 +172,26 @@ class UrlInfos{
      * @return type 
      */
     public function run(){
-        
+        Boot::$routingLogs[]="UrlInfos->run()...";
         switch (true){
             case (preg_match('%^(https?://)%i',$this->url)): //absolute path...let's move we know all we have to know
+                Boot::$routingLogs[]="UrlInfos->run()...case outside project";
                 $this->isOutsideTheProject=true;
                 $this->urlOptimized=$this->urlAbsolute=$this->urlAbsoluteOptimized=$this->route=$this->url;
                 return $this;
                 break;
             case file_exists($this->url): //file exists
+                Boot::$routingLogs[]="UrlInfos->run()...case file exists";
                 $this->isRealFile=true;
                 $this->urlOptimized=$this->route=$this->url;
                 break;
-            case file_exists(Site::$publicFolder."/".$this->url): //file exists...in public folder
+            case file_exists(Site::$publicFolder."/".$this->url) && is_file(Site::$publicFolder."/".$this->url): //file exists...in public folder
+                Boot::$routingLogs[]="UrlInfos->run()...case file exists in public folder (".Site::$publicFolder."/".$this->url.")";
                 $this->isRealFile=true;
                 $this->url=$this->urlOptimized=$this->url=$this->route=Site::$publicFolder."/".$this->url;
                 break;
             default: //let's start to search for a route, here is the serious buisiness.
+                Boot::$routingLogs[]="UrlInfos->run()...case lets start to find a controller...";
                 $this->route=$this->url;
                 $controller=Controller::getByRoute($this->route); //classic controller 
                 if(!$controller){

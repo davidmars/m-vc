@@ -14,21 +14,15 @@ UrlControler::$routes=array(
 
         //generic admin
         "admin"=>"admin/admin_model/listModels/M_post",
-        
-    //"car/[[:alnum:]/]*/(.*)"=>"lolo/index/$1",
-         
-	
-	
-	"pressroom/category/post/(:num)/(:num)"=>"press/categoryPost/$1/$2",
-	"pressroom/downloads/(:num)/(:num)"=>"press/categoryMedia/$1/$2",
-	"pressroom/post/(:any)"=>"press/post/$1",
-    "pressroom/media/(:any)/(:any)/(:any)/(:any)"=>"press/mediaAll/$1/$2/$3/$4",
 
-        //home
-        "page/(:any)/(:any)"=>"home/index/$1/$2",
-        "page/(:any)"=>"home/index/$1",
+        "pressroom/category/post/(:num)/(:num)"=>"press/categoryPost/$1/$2",
+        "pressroom/downloads/(:num)/(:num)"=>"press/categoryMedia/$1/$2",
+        "pressroom/post/(:any)"=>"press/post/$1",
+        "pressroom/media/(:any)/(:any)/(:any)/(:any)"=>"press/mediaAll/$1/$2/$3/$4",
+
+        ""=>"press/categoryPost/1",
          
-        ""=>"home/index",
+
         "(.*)"=>"err404/index/$1"
         
         

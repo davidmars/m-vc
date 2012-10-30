@@ -197,7 +197,7 @@ class Controller {
      * @return Controller The related controller
      */
     public static function getByRoute($route){
-        
+        Boot::$routingLogs[]="Controller getByroute($route)";
         $savedRoute=$route;
         
         //find and remove extension from route
@@ -207,7 +207,7 @@ class Controller {
             $ext=$out[2][0];
         }
 
-	$parts=explode("/",$route);
+	    $parts=explode("/",$route);
 
         //search the controller php file
         for($i=0;$i<count($parts);$i++){
@@ -217,11 +217,13 @@ class Controller {
             
             if(file_exists($file)){
                 $phpFile=$file;
+                Boot::$routingLogs[]="Controller getByroute($route) php file where found in app: $phpFile";
                 break;
             }else{
                 $file = Site::$systemControllersFolder.$fileName; 
                 if(file_exists($file)){
                     $phpFile=$file;
+                    Boot::$routingLogs[]="Controller getByroute($route) php file where found in system: $phpFile";
                     break;
                 }  
             }
@@ -233,6 +235,7 @@ class Controller {
 
         // file not found
         if(!$phpFile){
+            Boot::$routingLogs[]="Controller getByroute($route) no php file where found";
             return false;
         }
 
