@@ -227,6 +227,24 @@
     }
 }
 
+.marginMaxLeft-gutter{
+    @media (min-width: 1200px) {
+        margin-left: @gridGutterWidth1200  + (@gridGutterWidth1200 / 2);
+    }
+    @media (min-width: 979px) and (max-width: 1200px) {
+        margin-left:@gridGutterWidth + (@gridGutterWidth / 2);
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        maring-left:@gridGutterWidth768 + (@gridGutterWidth768 / 2);
+    }
+    @media (max-width: 767px) {
+        margin-left:@gridGutterWidth + (@gridGutterWidth / 2);
+    }
+    @media (max-width: 480px) {
+        margin-left:@gridGutterWidth + (@gridGutterWidth / 2);
+    }
+}
+
 /* Gutter Margin Right */
 .marginRight-gutter{
     @media (min-width: 1200px) {
@@ -299,3 +317,4 @@
         padding-bottom:@gridGutterWidth;
     }
 }
+
