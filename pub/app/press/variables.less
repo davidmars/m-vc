@@ -191,6 +191,24 @@
     }
 }
 
+.marginNBigLeft-gutter{
+    @media (min-width: 1200px) {
+        margin-left: - @gridGutterWidth1200;
+    }
+    @media (min-width: 979px) and (max-width: 1200px) {
+        margin-left: - @gridGutterWidth;
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        maring-left: - @gridGutterWidth768;
+    }
+    @media (max-width: 767px) {
+        margin-left: - @gridGutterWidth;
+    }
+    @media (max-width: 480px) {
+        margin-left: - @gridGutterWidth;
+    }
+}
+
 .marginBigLeft-gutter{
     @media (min-width: 1200px) {
         margin-left: @gridGutterWidth1200;
