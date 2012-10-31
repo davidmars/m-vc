@@ -72,13 +72,13 @@ body {
 }
 
 #havana-main-submenu {
-  div {
-    //border-right:1px solid @color4;
+  div[class~=span*] {
+    border-right:1px solid @color4;
     .marginLeft-gutter;
-    .paddingRight-gutter;
+    .paddingBigRight-gutter;
 
     &:first-child {
-      .marginBigLeft-gutter;
+      .marginLeft-gutter;
     }
   }
 
@@ -123,6 +123,10 @@ body {
                 &.item-subcat {
                     padding-top:15px;
                     ul {
+                      &.pull-right {
+                        .marginBigRight-gutter;
+                      }
+
                       li {
                         a {
                             line-height: 15px;

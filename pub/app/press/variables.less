@@ -118,6 +118,24 @@
         padding-right:@gridGutterWidth/2px;
     }
 }
+
+.paddingBigRight-gutter{
+    @media (min-width: 1200px) {
+        padding-right: @gridGutterWidth1200;
+    }
+    @media (min-width: 979px) and (max-width: 1200px) {  
+        padding-right:@gridGutterWidth;
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        padding-right:@gridGutterWidth768;
+    }
+    @media (max-width: 767px) {
+        padding-right:@gridGutterWidth;
+    }
+    @media (max-width: 480px) {
+        padding-right:@gridGutterWidth;
+    }
+}
 /* Gutter Top */
 .top-gutter{
   @media (min-width: 1200px) {
@@ -188,5 +206,42 @@
     }
     @media (max-width: 480px) {
         margin-left:@gridGutterWidth;
+    }
+}
+
+/* Gutter Margin Right */
+.marginRight-gutter{
+    @media (min-width: 1200px) {
+        margin-right: @gridGutterWidth1200/2px;
+    }
+    @media (min-width: 979px) and (max-width: 1200px) {  
+        margin-right:@gridGutterWidth/2px;
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        maring-right:@gridGutterWidth768/2px;
+    }
+    @media (max-width: 767px) {
+        margin-right:@gridGutterWidth/2px;
+    }
+    @media (max-width: 480px) {
+        margin-right:@gridGutterWidth/2px;
+    }
+}
+
+.marginBigRight-gutter{
+    @media (min-width: 1200px) {
+        margin-right: @gridGutterWidth1200;
+    }
+    @media (min-width: 979px) and (max-width: 1200px) {  
+        margin-right:@gridGutterWidth;
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        maring-right:@gridGutterWidth768;
+    }
+    @media (max-width: 767px) {
+        margin-right:@gridGutterWidth;
+    }
+    @media (max-width: 480px) {
+        margin-right:@gridGutterWidth;
     }
 }
