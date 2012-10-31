@@ -98,17 +98,51 @@ body {
 }
 
 #havana-main-footer {
-  ul {
-    li {
-      a {
-        line-height: 15px;
-        margin-bottom: 3px;
-        .font-submenu;
+    div { 
+        &.item-title {
+            border-right:3px solid rgba(0, 0, 0, 0.3);
+            margin-left: 15px;
+            padding-right: 0px;
 
-        &:hover {
-          color:@color3;
+            &:first-child {
+              margin-left: 30px;
+            }                  
+
+            &:last-child {
+              border-right:none;
+            }                        
+            
+            .font-nav-tab-title;
+
+            padding-top:10px;
+            a {
+              color: @color3;
+            }
+
+            div {
+                &.item-subcat {
+                    padding-top:15px;
+                    ul {
+                      li {
+                        a {
+                            line-height: 15px;
+                            margin-bottom: 3px;
+                            .font-submenu;
+
+                            &:hover {
+                              color:@color3;
+                            }
+                          }
+                      }
+                    }
+                }
+            }
         }
-      }
+        
     }
-  }
+}
+
+#press_footer {
+    .bg-image-active;
+    margin-top:200px;
 }
