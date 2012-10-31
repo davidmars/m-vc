@@ -11,7 +11,7 @@ $field=$vv->field;
      data-template="press/fields/post-image">
 
     <?//thumb ?>
-    <img src="<?=$field->sizedWithoutCrop(171, 180, "000000", "jpg")?>" alt="<?/*=$vv->post->title*/?>" />
+    <img src="<?=$field->sized(180, 180, "000000", "jpg")?>" alt="<?/*=$vv->post->title*/?>" />
 
     <?if($vv->isAdmin()):?>
         <div class="wysiwyg">

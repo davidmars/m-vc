@@ -42,6 +42,8 @@ class C_api extends Controller{
 
         $modelType=$_REQUEST["type"];
         $modelId=$_REQUEST["id"];
+
+
         $templatePath=$_REQUEST["template"];
         //return in all cases will be here
         $json=new VV_apiReturn();
@@ -51,6 +53,10 @@ class C_api extends Controller{
             $m=$manager->get($modelId);
         }else if(isset ($modelType) && class_exists($modelType) && in_array ("Model", class_parents($modelType))){
             $m=new $modelType();
+        }
+
+        if($modelType=="M_block"){
+            $m=$m->getContent();
         }
 
         if($m){

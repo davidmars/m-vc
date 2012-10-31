@@ -53,7 +53,7 @@ $refresh = C_press::post($post->post->getParentCategoryId(),true);
                         href="<?= C_press::post($post->post->id)->url() ?>"
                         data-nav-is-ajax="true"
                         data-nav-is-ajax-target="mainContent">
-                            <img src="<?=$post->post->thumb->sizedWithoutCrop(171, 180, "000000", "jpg")?>" alt="<?= $post->post->title ?>">
+                            <img src="<?=$post->post->thumb->sized(180, 180, "000000", "jpg")?>" alt="<?= $post->post->title ?>">
                     </a>
                 </div>
                 <div class="span6 item-text">

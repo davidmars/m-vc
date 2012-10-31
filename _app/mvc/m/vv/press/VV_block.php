@@ -14,6 +14,11 @@ class VV_block extends ViewVariables
     public $block;
 
     /**
+     * @var M_ the model that conatain this block
+     */
+    public $parentModel;
+
+    /**
      * @param $block M_block
      */
     public function init($block){

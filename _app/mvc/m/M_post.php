@@ -61,7 +61,7 @@ class M_post extends M_{
         $newPost=new M_post();
         $newPost->title="This is a new post";
         $newPost->description="This is the description of this new post";
-        $newPost->thumb="pub/app/press/img/logo-havana-club.png";
+        $newPost->thumb="pub/app/press/img/default-image-square.jpg";
         $newPost->save();
         return $newPost;
     }
