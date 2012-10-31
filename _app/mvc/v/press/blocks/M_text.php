@@ -5,7 +5,7 @@
 $text=$vv->block->getContent();
 ?>
 
-<div class="span8"
+<div class="span8  block-post text"
      data-model-type="M_block"
      data-model-id="<?=$vv->block->id?>">
 

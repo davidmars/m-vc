@@ -4,10 +4,10 @@ $vv = $_vars;
 /* @var $media M_media */
 $media=$vv->block->getContent();
 ?>
- <div class="downloadFileComponent"
+ <div class="downloadFileComponent "
          data-model-type="M_block"
          data-model-id="<?=$vv->block->id?>">
-    <div class="span8">
+    <div class="span8 block-post">
 
         <?if($vv->isAdmin()):?>
         <div class="wysiwyg-menu ">

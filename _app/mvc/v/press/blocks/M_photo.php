@@ -1,4 +1,5 @@
 <?
+/* @var $this View */
 /* @var $vv VV_block */
 $vv = $_vars;
 /* @var $model M_photo */
@@ -7,7 +8,7 @@ $photo=$vv->block->getContent();
 
 ?>
 
-<div class="span8"
+<div class="span8  block-post"
      data-model-type="M_block"
      data-model-id="<?=$vv->block->id?>">
 
@@ -44,7 +45,8 @@ $photo=$vv->block->getContent();
     <?endif?>
 
     <div class="item-photo">
-        <img src="<?=$photo->photo->sized(800,"auto","ff0000","jpg")?>" alt="image-<?=$vv->id?>" />
+        <?/*<img src="<?=$photo->photo->sized(800,"auto","ff0000","jpg")?>" alt="image-<?=$vv->id?>" />*/?>
+        <?=$this->render("press/fields/block-photo",$vv->blockPhotoAdminField())?>
     </div>
 
 </div>

@@ -8,6 +8,9 @@ Fields.File=function(jq){
     this.textField=$(this.jq.find("input[type='text']")[0]);
     this.model=Model.getParent(jq);
     this.modelType=this.model.type();
+    if(jq.attr("data-uplad-model-type")){
+        this.modelType=jq.attr("data-uplad-model-type");
+    }
     this.fieldName=jq.attr("data-field");
     this.template=jq.attr("data-template");
     this.progress=jq.find(".progress");

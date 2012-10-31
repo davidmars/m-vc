@@ -315,6 +315,7 @@ class C_api extends Controller{
         //the template we will send via json
         $vv=new VV_admin_field();
         //create an empty model just to get the good field settings
+
         $m=new $modelType();
         $m->$fieldName=$newFile;
 

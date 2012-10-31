@@ -5,16 +5,13 @@ $vv = $_vars;
 /* @var $embed M_embed */
 $embed=$vv->block->getContent();
 
-$id = $vv->id;
-$span = 8;
-$offset = 0;
-$content = $vv->code;
+
+
 
 ?>
 
 <? // EMBED COMPONENT ?>
-<div class="span<?=$span?>
-      offset<?=$offset?>"
+<div class="span8 block-post"
      data-model-type="M_block"
      data-model-id="<?=$vv->block->id?>">
 

@@ -24,4 +24,14 @@ class VV_block extends ViewVariables
     public function init($block){
         $this->block=$block;
     }
+
+    /**
+     * This function is an easy way to get an admin field for the block->photo->photo field.
+     * @return VV_admin_field
+     */
+    public function blockPhotoAdminField(){
+        $editableField=new VV_admin_field();
+        $editableField->init($this->block->getContent(),"photo");
+        return $editableField;
+    }
 }
