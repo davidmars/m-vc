@@ -9,6 +9,7 @@ $vv = $_vars;
         data-model-type="M_subcategory_media"
         zzzzzzzdata-model-refresh-controller="<?=C_press::categoryMedia($vv->currentCategory->categoryMedia->id,0,true);?>"
         >
+    <div class="noGutter">
 
             <?if($vv->isAdmin()):?>
 
@@ -64,5 +65,5 @@ $vv = $_vars;
 
         <div class="clearfix"></div>
         <div class="noGutter separatorTextBloc"></div>
-
+    </div>
 </div>

@@ -5,6 +5,7 @@
 ?>
 <div class="row subcatMediaList">
     <!-- récupération de tous les médias -->
+    <? if($vv->medias):?>
     <?foreach ($vv->medias as $m):?>
 
         <?/*-------------------one media box--------------------*/?>
@@ -106,4 +107,5 @@
 
         </div>
     <?endforeach;?>
+    <?endif;?>
 </div>

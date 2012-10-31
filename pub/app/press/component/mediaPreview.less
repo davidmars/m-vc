@@ -1,7 +1,7 @@
 
 .subcatMedia{
   background: white;
-  padding-bottom:15px;
+  //padding-bottom:15px;
 
   .item-media-section {
     text-align:center;
@@ -18,14 +18,20 @@
         .font-media-name;
       }
 
-    }
+    }    
   }
-
+    div {
+        &.separatorTextBloc {
+            width:100%;
+            .marginLeft-gutter;
+        }
+    }
 }
 
 .subcatMediaPreview{
 
   .subcatMediaList{
+    margin-left:0px;
     //height:325px; //5px for debug
     //background-color: #ffe45c; //for debug
   }
@@ -33,7 +39,7 @@
 }
 .downloadBox {
     //padding-top:15px;
-    height:320px;
+    //height:320px;
     .wysiwyg-menu{
       /*padding-top: 15px;;*/
     }
@@ -41,7 +47,7 @@
 
 		
 		&.noGutter{
-          height:320px;
+          //height:320px;
 		  background: @color5;
 		}
 		
@@ -53,7 +59,7 @@
 		} 
         
         &.item-media-content {		
-			
+			.paddingBigBottom-gutter;
 			.separator-media;		
 							   
 				div.item-media-name {
