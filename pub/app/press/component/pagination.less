@@ -7,11 +7,11 @@
 			.padding-gutter;
         }
         
-        &.item-content {
-            .bg-color-pagination-bloc;
+        &.item-content {            
             div {
                 &.item-pagination {
-                    div {
+                    .bg-color-pagination-bloc;
+                    div {                        
                         /*margin:0;*/
                         text-align:center;
                         &.item-separator {
@@ -19,25 +19,28 @@
                             height:@grid_square * 2.5px;     
                         }
                         
-                        .item-pagination-number {
+                        .item-pagination-number {                            
+                            &:first-child {
+                                .paddingLeft-gutter;
+                            }
+
+                            &.active {
+                                .bg-image-active;
+                                a {
+                                    .bg-image-active;
+                                    color:@color3;
+                                }                                
+                            }
+                            
                             a {
+                                .separator-nav-tab;                            
                                 display: block;
                                 height:@grid_square * 2.5px;
-                                line-height:@grid_square * 2.5px;
-                            //position:relative;
-                                //top:@grid_square * 0.5px;;
-                                /*left:@grid_square * 1px; */
+                                line-height:@grid_square * 2.5px;                                
                                 color:@color2;
-
-                              &.active {
-                                .bg-image-active;
-                                color:@color3;
-
-                              }
                             }
                         
-                            height:@grid_square * 2.5px;
-                            .separator-nav-tab;                            
+                            height:@grid_square * 2.5px;            
                         }
                         
                     }                                                        
