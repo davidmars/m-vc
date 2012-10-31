@@ -12,9 +12,11 @@
 
                     div {
                         &.item-text {
-                            &>div {
+                            &>div.noGutter {
                                 .marginLeft-gutter;
-                                width:100%;
+                                div {
+                                    .marginBigRight-gutter;                                    
+                                }                                
                             }
                         }
                     }
