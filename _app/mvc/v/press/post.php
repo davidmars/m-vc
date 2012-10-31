@@ -65,20 +65,32 @@
 
                 <?if($vv->isAdmin()):?>
                 <div class="span8 mt1">
-                    <a class=" btn btn-success" data-block-type="M_text" href="#Model.addBlock">
+                    <a class=" btn btn-success" data-block-field-target="blocks" data-block-type="M_text" href="#Model.addBlock()">
                         <i class="icon-white icon-plus-sign"></i>
                         Add a text
+                    </a>
+
+                    <a class=" btn btn-success" data-block-field-target="blocks" data-block-type="M_embed" href="#Model.addBlock()">
+                        <i class="icon-white icon-plus-sign"></i>
+                        Add an embed
+                    </a>
+
+                    <a class=" btn btn-success" data-block-field-target="blocks" data-block-type="M_photo" href="#Model.addBlock()">
+                        <i class="icon-white icon-plus-sign"></i>
+                        Add an photo
+                    </a>
+                    <a class=" btn btn-success" data-block-field-target="blocks" data-block-type="M_media" href="#Model.addBlock()">
+                        <i class="icon-white icon-plus-sign"></i>
+                        Add a download
                     </a>
                 </div>
                 <?endif?>
 
 
                 <!-- Start the block switcher -->
-                <?  foreach ($vv->post->blocks as $b):?>
-                    <? /* @var $b M_block */ ?>
-                                    
-                    <? if ($b->getContent()):?>
-                        <?=$this->render("press/blocks/" . $b->modelType, $b->getContent())?>
+                <?  foreach ($vv->blocks as $bl):?>
+                    <? if ($bl->block->getContent()):?>
+                        <?=$this->render("press/blocks/" . $bl->block->modelType, $bl)?>
                     <? endif;?>
                 <?  endforeach; ?>
 

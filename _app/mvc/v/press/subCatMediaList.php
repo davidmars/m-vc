@@ -9,7 +9,7 @@
 
         <?/*-------------------one media box--------------------*/?>
 
-        <div class="span2 item-media-data downloadBox <?=$vv->isAdmin()?"is-admin":""?>"
+        <div class="span2 item-media-data downloadBox <?=$m->isAdmin()?"is-admin":""?>"
              data-model-type="M_media"
              data-model-id="<?=$m->media->id?>"
         >

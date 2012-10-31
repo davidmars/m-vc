@@ -47,13 +47,22 @@ $vv = $_vars;
 
 
         <?=$this->render("press/subCatMediaList",$vv)?>
-        <div>
-        <div class="">
-            <a href="<?=C_press::subCatMedia($vv->subCategoryMedia->id,"Page","0","all",true)?>">All</a>
-        </div>
+
+        <div class="footer-preview">
+            <div class="right">
+                <?if($vv->isAdmin()):?>
+                    <a class="btn btn-success btn-small" href="<?=C_press::subCatMedia($vv->subCategoryMedia->id,"Page","0","all",true)?>">
+                        <i class="icon-edit icon-white"></i>
+                        Edit this category
+                    </a>
+                <?else:?>
+                    <a class=view-all href="<?=C_press::subCatMedia($vv->subCategoryMedia->id,"Page","0","all",true)?>">View all</a>
+                <?endif?>
+
+            </div>
         </div>
 
-
+        <div class="clearfix"></div>
         <div class="noGutter separatorTextBloc"></div>
 
 </div>

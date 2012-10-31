@@ -16,17 +16,16 @@ class VV_post extends VV_layout {
      * @var M_post 
      */
     public $post;
-    
-    /**
-     *
-     * @var array contain all the post content 
-     */
-    public $blocks;
+
 
     /**
      * @var M_category_post
      */
     public $parentCategory;
+    /**
+     * @var VV_block[] contain all the post content
+     */
+    public $blocks=array();
     
     /**
      *
@@ -37,6 +36,13 @@ class VV_post extends VV_layout {
         $this->parentCategory=$category;
 
         Human::Log($this->post->title, "POST CONTENT");
+
+        foreach($this->post->blocks as $b){
+            $bl=new VV_block();
+            $bl->init($b);
+            $this->blocks[]=$bl;
+        }
+
        // $this->currentCategoryId = $post->category->getCategoryId();
     }
 

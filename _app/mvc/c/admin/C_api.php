@@ -184,6 +184,48 @@ class C_api extends Controller{
         die($json->json());
 
     }
+    public static function addNewBlock($newModelType,$containerModelType,$containerModelId,$containerFieldName){
+
+        $json=new VV_apiReturn();
+
+        //the model container
+        $container=self::getModel($containerModelType,$containerModelId);
+        if(!$container){
+            $json->success=false;
+            $json->errors[]="The container model cannot be found";
+            die($json->json());
+        }
+
+        //the new model
+        /** @var $newModel M_ */
+        $rc=new ReflectionClass($newModelType);
+        if($rc->hasMethod("getNew") && $rc->getMethod("getNew")->isStatic()){
+            $newModel=call_user_func_array(array($newModelType,"getNew"),array());
+        }else{
+            $newModel=new $newModelType();
+            $newModel->save();
+        }
+
+        //the new block
+        $block=new M_block();
+        $block->modelId=$newModel->id;
+        $block->modelType=$newModelType;
+        $block->save();
+
+
+
+
+
+        //performs the association
+        $container->{$containerFieldName}->link($block);
+        $container->{$containerFieldName}->ordre="0";
+        $container->{$containerFieldName}->insert();
+
+        $json->success=true;
+        $json->messages[]="New model created ".$newModel->humanName();
+        die($json->json());
+
+    }
 
 
     /**
