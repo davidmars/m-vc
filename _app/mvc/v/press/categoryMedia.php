@@ -42,11 +42,15 @@
 
     <!-- list all subCats -->
     <div class="row">
-        <? foreach ($vv->subCatMedias as $subCat):?>
+        <div class="span8">
+            <div class="noGutter" id="mainContentGutter">
+                <? foreach ($vv->subCatMedias as $subCat):?>
 
-            <?=$this->render("press/subCatMedia", $subCat)?>
+                    <?=$this->render("press/subCatMedia", $subCat)?>
 
-        <? endforeach;?>
+                <? endforeach;?>
+            </div>
+        </div>
     </div>
 </div>
 

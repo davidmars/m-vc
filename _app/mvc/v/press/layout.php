@@ -32,8 +32,10 @@
 
         <div class="row top_submenu">
             <div class="span12">
-                <div class="row">
-                    <script src="http://havanaclub.shic.cc/embedSubMenu"></script>
+                <div class="noGutter">
+                    <div class="row">
+                        <script src="http://havanaclub.shic.cc/embedSubMenu"></script>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,9 +127,22 @@
                         <script src="http://havanaclub.shic.cc/embedFooter"></script>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
     </footer>
+    <?/*
+    <footer id="press_subfooter" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="row">
+                        SMALL FOOTER
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </footer>
+     */ ?>
 <?endif;?>
 
 <?//-----------------admin WYSIWYG configuration--------------------*/?>

@@ -43,9 +43,13 @@
 
     <!-- Affichage de chaque preview réordonné -->
     <div class="row">
+        <div class="span8">
+            <div class="noGutter" id="mainContentGutter">
     <?foreach ($vv->posts as $post):?>
         <?=$this->render("press/postPreview", $post)?>
     <?endforeach;?>
+            </div>
+        </div>
     </div>
 </div>
 

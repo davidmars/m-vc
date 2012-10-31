@@ -69,6 +69,9 @@
     @media (min-width: 1200px) {
         padding: @gridGutterWidth1200/2px;
     }
+    @media (min-width: 979px) and (max-width: 1200px) {  
+        padding:@gridGutterWidth/2px;
+    }
     @media (min-width: 768px) and (max-width: 979px) {
         padding:@gridGutterWidth768/2px;
     }
@@ -83,6 +86,9 @@
 .paddingLeft-gutter{
     @media (min-width: 1200px) {
         padding-left: @gridGutterWidth1200/2px;
+    }
+    @media (min-width: 979px) and (max-width: 1200px) {  
+        padding-left:@gridGutterWidth/2px;
     }
     @media (min-width: 768px) and (max-width: 979px) {
         padding-left:@gridGutterWidth768/2px;
@@ -99,6 +105,9 @@
     @media (min-width: 1200px) {
         padding-right: @gridGutterWidth1200/2px;
     }
+    @media (min-width: 979px) and (max-width: 1200px) {  
+        padding-right:@gridGutterWidth/2px;
+    }
     @media (min-width: 768px) and (max-width: 979px) {
         padding-right:@gridGutterWidth768/2px;
     }
@@ -113,6 +122,9 @@
 .top-gutter{
   @media (min-width: 1200px) {
     top: @gridGutterWidth1200;
+  }
+  @media (min-width: 979px) and (max-width: 1200px) {  
+    top:@gridGutterWidth;
   }
   @media (min-width: 768px) and (max-width: 979px) {
     top:@gridGutterWidth768;
@@ -129,6 +141,9 @@
     @media (min-width: 1200px) {
         margin-left: @gridGutterWidth1200/2px;
     }
+    @media (min-width: 979px) and (max-width: 1200px) {  
+        margin-left:@gridGutterWidth/2px;
+    }
     @media (min-width: 768px) and (max-width: 979px) {
         maring-left:@gridGutterWidth768/2px;
     }
@@ -140,9 +155,30 @@
     }
 }
 
+.marginNLeft-gutter{
+    @media (min-width: 1200px) {
+        margin-left: - @gridGutterWidth1200/2px;
+    }
+    @media (min-width: 979px) and (max-width: 1200px) {
+        margin-left: - @gridGutterWidth/2px;
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        maring-left: - @gridGutterWidth768/2px;
+    }
+    @media (max-width: 767px) {
+        margin-left: - @gridGutterWidth/2px;
+    }
+    @media (max-width: 480px) {
+        margin-left: - @gridGutterWidth/2px;
+    }
+}
+
 .marginBigLeft-gutter{
     @media (min-width: 1200px) {
         margin-left: @gridGutterWidth1200;
+    }
+    @media (min-width: 979px) and (max-width: 1200px) {
+        margin-left:@gridGutterWidth;
     }
     @media (min-width: 768px) and (max-width: 979px) {
         maring-left:@gridGutterWidth768;
