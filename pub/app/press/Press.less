@@ -19,10 +19,8 @@ body {
     margin-top: 50px;
 }
 
-#mainContent {
-    .posts {
-        //.bg-color-content-bloc;
-    }
+.background-content {
+    .bg-color-content-bloc;
 }
 
 .loading-box {
@@ -72,13 +70,18 @@ body {
 }
 
 #havana-main-submenu {
-  div[class~=span*] {
+  div.item-subcat {
     border-right:1px solid @color4;
-    .marginLeft-gutter;
-    .paddingBigRight-gutter;
+    
+    //.marginLeft-gutter;
+    //.paddingBigRight-gutter;
 
     &:first-child {
-      .marginLeft-gutter;
+      //.marginLeft-gutter;
+    }
+
+    &>div.noGutter {
+        .marginLeft-gutter;
     }
   }
 
@@ -92,59 +95,99 @@ body {
           &:hover {
             color:@color3;
           }
-        }
+        }        
+    }
+
+    &.item-right {
+            .marginBigLeft-gutter;
     }
   }
-}
 
+
+}
 #havana-main-footer {
-    div { 
+    div {        
         &.item-title {
             border-right:3px solid rgba(0, 0, 0, 0.3);
-            margin-left: 15px;
-            padding-right: 0px;
+            
+            &:last-child {
+                border-right:none;
+            }
+            
+            &>div.noGutter {
+                .marginLeft-gutter;
+            }
+            padding-top:5px;
+            a {
+              .font-nav-tab-title;
+              color: @color3;
+            }
 
-            &:first-child {
-              margin-left: 30px;
-            }                  
+            div {
+                &.item-subcat {
+                    &>div.noGutter {
+                        .marginLeft-gutter;
+                    }
+                    a {
+                        .font-submenu;
 
+                        &:hover {
+                          color:@color3;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*
+#havana-main-footer {
+    div { 
+        &.item-title {  
+            &div.noGutter {
+                .marginNLeft-gutter;
+                background-color:pink;
+            }
+      
+            .font-nav-tab-title;
+            border-right:3px solid rgba(0, 0, 0, 0.3);
+            &>div { 
+                //.marginLeft-gutter;
+            }
+            
             &:last-child {
               border-right:none;
             }                        
-            
-            .font-nav-tab-title;
 
-            padding-top:10px;
             a {
               color: @color3;
             }
 
             div {
                 &.item-subcat {
-                    padding-top:15px;
+                    &div.noGutter {
+                        .marginLeft-gutter;
+                        background-color:pink;
+                    }
+                
                     ul {
-                      &.pull-right {
-                        .marginBigRight-gutter;
-                      }
+                        li {
+                            a {
+                                .font-submenu;
 
-                      li {
-                        a {
-                            line-height: 15px;
-                            margin-bottom: 3px;
-                            .font-submenu;
-
-                            &:hover {
-                              color:@color3;
+                                &:hover {
+                                  color:@color3;
+                                }
                             }
-                          }
-                      }
+                        }
                     }
                 }
             }
         }
-        
     }
 }
+*/
 
 #press_footer {
     .bg-image-active;
