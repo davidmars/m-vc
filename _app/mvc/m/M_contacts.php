@@ -4,6 +4,7 @@
  * This class is like a block but only for M_contact 
  */
 class M_contacts extends M_{
+    
     public static $manager;
     
     /**
