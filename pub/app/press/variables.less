@@ -136,6 +136,25 @@
         padding-right:@gridGutterWidth;
     }
 }
+
+.paddingTopMin-gutter{
+    @media (min-width: 1200px) {
+        padding-top: @gridGutterWidth1200/2 - 1;
+    }
+    @media (min-width: 979px) and (max-width: 1200px) {  
+        padding-top:@gridGutterWidth/2 - 1;
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        padding-top:@gridGutterWidth768/2 - 1;
+    }
+    @media (max-width: 767px) {
+        padding-top:@gridGutterWidth/2 - 1;
+    }
+    @media (max-width: 480px) {
+        padding-top:@gridGutterWidth/2 - 1;
+    }
+}
+
 /* Gutter Top */
 .top-gutter{
   @media (min-width: 1200px) {
