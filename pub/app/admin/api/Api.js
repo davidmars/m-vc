@@ -249,6 +249,23 @@ Api.NewChildIn=function(newModelType,containerModelType,containerModelId,contain
             }
     });
 }
+Api.NewBlockIn=function(newModelType,containerModelType,containerModelId,containerFieldName){
+    var me=this;
+    this.events=new EventDispatcher();
+    $.ajax({
+        type: "POST",
+        url: Config.rootUrl +"/admin/api/addNewBlock/"+newModelType+"/"+containerModelType+"/"+containerModelId+"/"+containerFieldName,
+        data: {},
+        dataType: 'json',
+        success:
+            function (ajaxReturn){
+                console.log("Api.Login call success");
+                me.events.dispatchEvent("COMPLETE",function(ajaxReturn){
+                    console.log(ajaxReturn);
+                });
+            }
+    });
+}
 
 Api.AssociationMove=function(where,modelId,modelType,containerModelType,$containerModelId,containerFieldName){
     var me=this;

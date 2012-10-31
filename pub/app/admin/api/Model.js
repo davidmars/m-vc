@@ -597,6 +597,19 @@ var refreshTemplate=function(controller){
 
 }
 
+JQ.bo.on("click","a[href='#Model.addBlock()']",function(e){
+    e.preventDefault();
+    var elem = $(this)
+    var m = Model.getParent( elem );
+    var blockType=elem.attr("data-block-type");
+    var fieldTarget=elem.attr("data-block-field-target");
+    console.log("we will create a new block "+blockType+" in "+m.type()+" "+m.id()+" in the field: "+fieldTarget);
+    var apiCall=new Api.NewBlockIn(blockType, m.type(), m.id(),fieldTarget);
+
+    apiCall.events.addEventListener("COMPLETE",function(){
+        m.refreshByController(elem);
+    })
+})
 JQ.bo.on("click","a[href='#Model.addNewChild()']",function(e){
     e.preventDefault();
     var elem = $(this)

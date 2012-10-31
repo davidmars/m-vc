@@ -107,7 +107,7 @@ class M_ extends Model{
             $rc=new ReflectionClass($modelName);
             $rc->setStaticPropertyValue("manager", new $modelNameManager(  $modelName ));
             
-            //browse the class propeties to find db fields and then store it in a good order (keys first, associations later)
+            //browse the class properties to find db fields and then store it in a good order (keys first, associations later)
 	        $fields=array();
             foreach ($rc->getProperties() as $field){
                 if($field->isPublic()){
