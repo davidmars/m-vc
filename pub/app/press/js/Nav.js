@@ -25,9 +25,10 @@ var Nav = {
      */
     init: function() {
         Nav.initHistory();
+        try{
         if(Api){
             Api.events.addEventListener("onChange", Nav.onApiChange);
-        }
+        }}catch(e){}
     },
     /**
      * Launched when the API (admin) do something in dom. When it happen maybe the url should change (cause it's not managed in the api).

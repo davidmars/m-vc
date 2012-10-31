@@ -14,6 +14,11 @@ class VV_media extends VV_layout {
     public $media;
 
     /**
+     * @var M_subcategory_media
+     */
+    public $subCategory;
+
+    /**
      * This function is an easy way to get an admin field for the media->theFile field.
      * @return VV_admin_field
      */
@@ -51,6 +56,17 @@ class VV_media extends VV_layout {
         $this->media=$media;
         if($this->media->title==""){
            $this->media->title="...";
+        }
+    }
+
+    /**
+     * @return bool true if the firs download is an image
+     */
+    public function isImage(){
+        if(preg_match("#image#",$this->media->theFile->mime())){
+            return true;
+        }else{
+            return false;
         }
     }
 }

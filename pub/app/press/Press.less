@@ -8,6 +8,7 @@
 @import "borders";
 @import "fonts";
 @import "sizes";
+@import "popinloader";
 @import "wysiwyg";
 
 /* HAVANA COMPONENTS */
@@ -33,13 +34,15 @@ body {
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: -15px;
+  /*width: 100%;*/
+  right:-15px;
   height: 100%;
   background-image: url("@{path}/img/loader.gif");
   background-repeat: no-repeat;
   background-position: center;
   background-color: #ffffff;
+
 }
 
 

@@ -70,3 +70,43 @@ Press.initAfterAjax = function() {
 }
 
 Press.init();
+
+
+var PopInLoader={
+    main:$("#popinloader"),
+    content:$("#popincontent"),
+    open:function(url){
+        PopInLoader.main.addClass("active");
+        $.ajax({
+            type: "POST",
+            url:  url,
+            data: {},
+            success:
+                function (ajaxReturn){
+                    var newDom=$(ajaxReturn);
+                    PopInLoader.content.append(newDom);
+
+                }
+        });
+    },
+    close:function(){
+        PopInLoader.content.empty();
+        PopInLoader.main.removeClass("active");
+    }
+
+
+}
+
+Dom.body.on("click","[data-popinloder]",function(e){
+    e.preventDefault();
+    el=$(this);
+    url=el.attr("data-popinloder");
+    if(url=="close"){
+        PopInLoader.close();
+    }else{
+        PopInLoader.open(url);
+    }
+
+
+})
+

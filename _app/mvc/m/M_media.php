@@ -105,6 +105,17 @@ class M_media extends M_{
         
         return $conf;
     }
+
+    /**
+     * @return bool true if the firs download is an image
+     */
+    public function isImage(){
+        if(preg_match("#image#",$this->theFile->mime())){
+            return true;
+        }else{
+            return false;
+        }
+    }
            
 
 }

@@ -59,6 +59,7 @@ class VV_subCatMedia extends VV_layout {
             if($template!="Page"){
                 $vvm->disableLocalAdmin=true;
             }
+            $vvm->subCategory=$currentSubCategory;
             $this->medias[]=$vvm;
         }
 

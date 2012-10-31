@@ -37,6 +37,36 @@ Class C_press extends Controller{
         // return the controller
         return $c;
     }
+
+    /**
+     * Return a preview page to display in the pop in.
+     * @param $mediaId The media
+     * @param bool $returnUrl
+     * @return C_press
+     */
+    public static function mediaPreview($mediaId,$returnUrl=false) {
+        if($returnUrl){
+           $c = new C_press();
+           return $c->url();
+        }
+
+        // create a variable for our controller
+        $c = new C_press();
+        /* @var $media M_media */
+        $media=M_media::$manager->get($mediaId);
+
+        $vv = new VV_media();
+        $vv->init($media);
+
+        if($media->isImage()){
+            $c->resultView = new View("press/popin/media-image", $vv);
+        }else{
+
+        }
+
+        // return the controller
+        return $c;
+    }
     
     /**
      *
@@ -165,6 +195,7 @@ Class C_press extends Controller{
         JS::addAfterBody("pub/libs/jquery-1.7.2.js");
         JS::addAfterBody("pub/libs/jquery.history.js");
 
+
 	
         JS::addAfterBody("pub/app/admin/utils/Utils.js");
 
@@ -174,6 +205,10 @@ Class C_press extends Controller{
         JS::addAfterBody("pub/libs/greensock/TweenMax.min.js");
 
         JS::addAfterBody("pub/libs/heartcode-canvasloader-min.js");
+
+        //fancy box (pop in)
+        JS::addAfterBody("pub/libs/fancy-box/jquery.fancybox.pack.js");
+        CSS::addToHeader("pub/libs/fancy-box/jquery.fancybox.css");
 
         // social share
         JS::addAfterBody("https://apis.google.com/js/plusone.js");
