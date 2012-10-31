@@ -8,6 +8,17 @@
             div {
                 &.item-component {
                     .marginLeft-gutter;
+
+
+                    div {
+                        &.item-text {
+                            &>div {
+                                .marginLeft-gutter;
+                                width:100%;
+                            }
+                        }
+                    }
+                    
                 }
             }
         }
@@ -24,10 +35,7 @@
         &.item-title {
            .font-bloc-title-caps;
            color:@color2;
-        }
-        
-        &.item-text {         
-        }
+        }                
                
         &.item-description {
            .font-text-content-category-post;
