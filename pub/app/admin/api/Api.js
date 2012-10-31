@@ -128,7 +128,7 @@ var Api={
      * @param onComplete The callback function to perform when the view is loaded.
      * @param datas object to send with the request
      */
-    getView:function(controller,datas,onComplete){
+    getView:function(controller,datas,changeBrowserUrl,onComplete){
         $.ajax({
             type: "POST",
             url:  controller,
@@ -139,7 +139,12 @@ var Api={
                     if(typeof(onComplete) == 'function') {
                         onComplete(ajaxReturn);
                     }
-                    Api.events.dispatchEvent("onChange",new Api.EventOnChange(controller,"getView"));
+                    if(changeBrowserUrl){
+                        Api.events.dispatchEvent("onChange",new Api.EventOnChange(controller,"getView"));
+                    }else{
+                        Api.events.dispatchEvent("onChange",new Api.EventOnChange(null,"getView"));
+                    }
+
                 }
         });
     }

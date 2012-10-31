@@ -15,24 +15,30 @@ $contactList = $vv->getContact("Havana PressRoom");
      data-model-refresh-controller="<?=C_press::sideBar(true)?>"
     <?//a jquery selector that define where to inject the data-model-refresh-controller html result?>
      data-model-refresh-target-selector="#sideBar"
+    <?//prevent for url browser address change?>
+     data-model-refresh-controller-not-an-url="true"
     >
 
     <div class="item-title">
         Contact
-        <?if($vv->isAdmin()):?>
+    </div>
+
+    <?if($vv->isAdmin()):?>
+    <div class="item-contact">
             <span class="pull-right">
                 <?// create and add a contact to the contacts?>
-                <a class="pull-right btn btn-success"
+                <a class="pull-right btn btn-success btn-small"
                     <?//the action to do?>
                    href="#Model.addNewChild()"
                     <?//the new model type to create?>
                    data-new-type="M_contact"
                     <?//the field where to add the new post?>
                    data-new-field-target="contacts">
+                    <i class="icon-plus-sign icon-white"></i>
                     Add a contact
                 </a>
-            </span>
-        <?endif?>
+                    </span>
+            <?endif?>
     </div>
 
     <div class="item-content">
@@ -40,16 +46,33 @@ $contactList = $vv->getContact("Havana PressRoom");
             <div class="item-contact"
                  data-model-type="M_contact"
                  data-model-id="<?=$contact->id?>"
-                 data-model-refresh-controller="<?=C_press::sideBar(true)?>"
-                 data-model-refresh-target-selector="#sideBar"
             >
 
                 <!-- Save of the Contact-->
                 <?if($vv->isAdmin()):?>
                     <div class="wysiwyg-menu ">
                         <div class="top-right">
-                        <a class="btn btn-danger btn-small" href="#Model.delete"><i class="icon-remove icon-white"></i></a>
-                        <a class="btn btn-success btn-small" href="#Model.save"><i class="icon-ok icon-white"></i></a>
+
+                            <a class=""
+                               href="#Model.previousPosition()"
+                               data-model-target-type="M_contacts"
+                               data-model-target-id="<?=$vv->getContact()->id?>"
+                               data-model-target-field="contacts">
+                                <i class="icon-circle-arrow-up icon-white"></i>
+                            </a>
+
+                            <a class=""
+                               href="#Model.nextPosition()"
+                               data-model-target-type="M_contacts"
+                               data-model-target-id="<?=$vv->getContact()->id?>"
+                               data-model-target-field="contacts">
+                                <i class="icon-circle-arrow-down icon-white"></i>
+                            </a>
+
+
+
+                            <a class="" href="#Model.delete"><i class="icon-remove icon-white"></i></a>
+                            <a class="" href="#Model.save"><i class="icon-ok icon-white"></i></a>
                         </div>
                     </div>
                 <?endif?>

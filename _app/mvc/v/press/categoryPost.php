@@ -21,7 +21,7 @@
     <div class="row">
         <div class="span8 mb1 mt1">
             <?// create and add a post to the category?>
-            <a class="pull-right btn btn-success"
+            <a class="pull-right btn btn-success btn-small"
                <?//the action to do?>
                href="#Model.addNewChild()"
                <?//the new model type to create?>
@@ -30,6 +30,7 @@
                data-new-field-target="posts"
                 <?//where to go after the post creation?>
                data-redirect-controller-after-action="<?=C_press::categoryPost($vv->categoryPost->id,0,true)?>">
+                <i class="icon-plus-sign icon-white"></i>
                 Add a post
             </a>
         </div>

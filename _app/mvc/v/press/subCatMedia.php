@@ -17,23 +17,23 @@ $vv = $_vars;
 
 
 
-                    <a class=" btn btn-small"
+                    <a class=""
                        href="#Model.previousPosition()"
                        data-model-target-type="M_category_media"
                        data-model-target-id="<?=$vv->currentCategory->categoryMedia->id?>"
                        data-model-target-field="subcategories">
-                        <i class="icon-arrow-up"></i>
+                        <i class="icon-circle-arrow-up icon-white"></i>
                     </a>
 
-                    <a class=" btn btn-small"
+                    <a class=""
                        href="#Model.nextPosition()"
                        data-model-target-type="M_category_media"
                        data-model-target-id="<?=$vv->currentCategory->categoryMedia->id?>"
                        data-model-target-field="subcategories">
-                        <i class="icon-arrow-down"></i>
+                        <i class="icon-circle-arrow-down icon-white"></i>
                     </a>
 
-                    <a class=" btn btn-danger btn-small"
+                    <a class=""
                        href="#Model.delete">
                         <i class="icon-remove icon-white"></i>
                     </a>

@@ -21,23 +21,23 @@ $refresh = C_press::post($post->post->getParentCategoryId(),true);
         <div class="wysiwyg-menu">
             <div class="top-right">
 
-                <a class=" btn btn-small"
+                <a class=""
                    href="#Model.previousPosition()"
                    data-model-target-type="M_category_post"
                    data-model-target-id="<?=$post->parentCategory->id?>"
                    data-model-target-field="posts">
-                    <i class="icon-arrow-up"></i>
+                    <i class="icon-circle-arrow-up icon-white"></i>
                 </a>
 
-                <a class=" btn btn-small"
+                <a class=""
                    href="#Model.nextPosition()"
                    data-model-target-type="M_category_post"
                    data-model-target-id="<?=$post->parentCategory->id?>"
                    data-model-target-field="posts">
-                    <i class="icon-arrow-down"></i>
+                    <i class="icon-circle-arrow-down icon-white"></i>
                 </a>
 
-                <a class=" btn btn-danger btn-small"
+                <a class=""
                    href="#Model.delete">
                     <i class="icon-remove icon-white"></i>
                 </a>
