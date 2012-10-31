@@ -124,3 +124,33 @@
     top:@gridGutterWidth;
   }
 }
+/* Gutter Margin Left */
+.marginLeft-gutter{
+    @media (min-width: 1200px) {
+        margin-left: @gridGutterWidth1200/2px;
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        maring-left:@gridGutterWidth768/2px;
+    }
+    @media (max-width: 767px) {
+        margin-left:@gridGutterWidth/2px;
+    }
+    @media (max-width: 480px) {
+        margin-left:@gridGutterWidth/2px;
+    }
+}
+
+.marginBigLeft-gutter{
+    @media (min-width: 1200px) {
+        margin-left: @gridGutterWidth1200;
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        maring-left:@gridGutterWidth768;
+    }
+    @media (max-width: 767px) {
+        margin-left:@gridGutterWidth;
+    }
+    @media (max-width: 480px) {
+        margin-left:@gridGutterWidth;
+    }
+}

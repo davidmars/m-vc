@@ -54,14 +54,17 @@ body {
 
 /* Menu */
 #havana-main-menu {
-  ul {
-    li {
+  div {    
       .font-nav-tab-title;
+      &:first-child {
+        .marginLeft-gutter;
+      }
+      .marginBigLeft-gutter;
+      padding-top:10px;
       a {
         color: @color3;
       }
     }
-  }
 }
 
 .top_submenu {
