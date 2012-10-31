@@ -15,6 +15,8 @@ $contactList = $vv->getContact("Havana PressRoom");
      data-model-refresh-controller="<?=C_press::sideBar(true)?>"
     <?//a jquery selector that define where to inject the data-model-refresh-controller html result?>
      data-model-refresh-target-selector="#sideBar"
+    <?//prevent for url browser address change?>
+     data-model-refresh-controller-not-an-url="true"
     >
 
     <div class="item-title">
@@ -44,8 +46,6 @@ $contactList = $vv->getContact("Havana PressRoom");
             <div class="item-contact"
                  data-model-type="M_contact"
                  data-model-id="<?=$contact->id?>"
-                 data-model-refresh-controller="<?=C_press::sideBar(true)?>"
-                 data-model-refresh-target-selector="#sideBar"
             >
 
                 <!-- Save of the Contact-->

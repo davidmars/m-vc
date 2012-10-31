@@ -34,6 +34,18 @@ var Model=function(jq){
         return me.jq.attr("data-model-refresh-controller");
     }
     /**
+     * Help you to know if the refresh actions sould manage an url adress change or not.
+     * @return {Boolean} do we need to change the browser url address after refresh?
+     */
+    this.refreshControllerChangeBrowserUrl=function(){
+        console.log("-----------------"+me.jq.attr("data-model-refresh-controller-not-an-url"));
+        if(me.jq.attr("data-model-refresh-controller-not-an-url")=="true"){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    /**
      *
      * @return {jquery} the jquery dom element where to load the model
      */
@@ -474,13 +486,18 @@ var Model=function(jq){
         if(jq.attr("data-redirect-controller-after-action")){
             refreshedModel=me;
             urlController=jq.attr("data-redirect-controller-after-action");
+            console.log("a");
         }else if(me.refreshController()){
             urlController=me.refreshController();
             refreshedModel=me;
+            console.log("b");
+            console.log(refreshedModel.type());
+            console.log("bbbbb "+refreshedModel.refreshControllerChangeBrowserUrl());
         }else{
             var somewhereElse=jq.closest("[data-model-refresh-controller]");
             refreshedModel=new Model(somewhereElse);
             urlController=refreshedModel.refreshController();
+            console.log("c");
         }
         if(!urlController){
             alert("no url controller found for the refresh");
@@ -490,7 +507,8 @@ var Model=function(jq){
         if(urlController){
             Utils.blink(refreshedModel.jq,true,500);
 
-            Api.getView(urlController,{},function(response){
+
+            Api.getView(urlController,{},refreshedModel.refreshControllerChangeBrowserUrl(),function(response){
                 me.needToBeRecorded(false);
                 refreshedModel.needToBeRecorded(false);
                 if(refreshedModel.refreshTarget()){
@@ -620,6 +638,7 @@ JQ.bo.on("click","a[href='#Model.previousPosition()'],a[href='#Model.nextPositio
 
     var apiCall=new Api.AssociationMove(where, m.id(), m.type(), containerModelType,containerModelId,containerFieldName);
     apiCall.events.addEventListener("COMPLETE",function(){
+        console.log("------api event after move----------");
         m.refreshByController(elem);
     })
 });
