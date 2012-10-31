@@ -246,6 +246,8 @@
     }
 }
 
+
+
 .marginMaxLeft-gutter{
     @media (min-width: 1200px) {
         margin-left: @gridGutterWidth1200  + (@gridGutterWidth1200 / 2);
@@ -334,6 +336,24 @@
     }
     @media (max-width: 480px) {
         padding-bottom:@gridGutterWidth;
+    }
+}
+
+.paddingMaxBottom-gutter{
+    @media (min-width: 1200px) {
+        padding-bottom: @gridGutterWidth1200 + (@gridGutterWidth1200 / 2);
+    }
+    @media (min-width: 979px) and (max-width: 1200px) {  
+        padding-bottom:@gridGutterWidth + (@gridGutterWidth / 2);
+    }
+    @media (min-width: 768px) and (max-width: 979px) {
+        padding-bottom:@gridGutterWidth768 + (@gridGutterWidth768 / 2 );
+    }
+    @media (max-width: 767px) {
+        padding-bottom:@gridGutterWidth + (@gridGutterWidth / 2) ;
+    }
+    @media (max-width: 480px) {
+        padding-bottom:@gridGutterWidth + (@gridGutterWidth / 2);
     }
 }
 
