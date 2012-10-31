@@ -80,15 +80,15 @@ class M_contact extends M_{
      */
     public static function getNew(){
         $newItem=new M_contact();
-        $newItem->name="name";
-        $newItem->role="role";
-        $newItem->society="society";
-        $newItem->street="street";
-        $newItem->zip="zip";
-        $newItem->city="city";
-        $newItem->country="country";
-        $newItem->number="number";
-        $newItem->email="email";
+        $newItem->name="First name / Name";
+        $newItem->role="Function / job name";
+        $newItem->society="Havana Club";
+        $newItem->street="Street, number - Street name <br/> floor...";
+        $newItem->zip="zip code";
+        $newItem->city="City";
+        $newItem->country="Country";
+        $newItem->number="Phone number one<br/>Phone number two...";
+        $newItem->email="your@email.com";
         $newItem->theFile="theFile";
         $newItem->thumb="thumb";
 

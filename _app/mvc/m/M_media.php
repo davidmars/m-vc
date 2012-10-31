@@ -48,7 +48,20 @@ class M_media extends M_{
      *
      * @var ImageField Thumbnail representation of the media 
      */
-    public $thumb;    
+    public $thumb;
+
+
+    /**
+     * Create a new M_media with default values, save it and return it.
+     * @return M_post The new post.
+     */
+    public static function getNew(){
+        $new=new M_media();
+        $new->title="This is a new download";
+        $new->thumb="pub/app/press/img/logo-havana-club.png";
+        $new->save();
+        return $new;
+    }
 
     /**
      *

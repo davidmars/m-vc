@@ -326,8 +326,7 @@ var Model=function(jq){
     this.deleteModel = function (){
         console.log("delete model");
         var req = new Api.Delete(me.type(), me.id());
-        me.removeDOM();
-        Utils.blink(me.jq, true, 1000);
+        me.jq.hide(500);
         req.events.addEventListener("COMPLETE", function(json) {
             //console.log("delete model complete");
             me.refreshByController(me.jq);
@@ -486,18 +485,13 @@ var Model=function(jq){
         if(jq.attr("data-redirect-controller-after-action")){
             refreshedModel=me;
             urlController=jq.attr("data-redirect-controller-after-action");
-            console.log("a");
         }else if(me.refreshController()){
             urlController=me.refreshController();
             refreshedModel=me;
-            console.log("b");
-            console.log(refreshedModel.type());
-            console.log("bbbbb "+refreshedModel.refreshControllerChangeBrowserUrl());
         }else{
             var somewhereElse=jq.closest("[data-model-refresh-controller]");
             refreshedModel=new Model(somewhereElse);
             urlController=refreshedModel.refreshController();
-            console.log("c");
         }
         if(!urlController){
             alert("no url controller found for the refresh");

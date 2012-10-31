@@ -53,15 +53,8 @@
 
             <div class="noGutter">
 
-                <a
-                    href=""
-                    data-nav-is-ajax-target="mainContent"
-                    data-nav-is-ajax="true"
-                    class="thumbnail">
-                        <img src="<?=$m->media->thumb->sizedWithoutCrop(200,200,"000000","jpg")?>"
-                             alt="<?=$m->media->title?>" />
-                </a>
 
+                <?=$this->render("press/fields/media-image",$m->thumbAdminField())?>
 
 
                 <div class="item-media-content">
@@ -73,24 +66,37 @@
                             <?//editable ?>
                             <?=$m->isAdmin()?"contenteditable='true' ":""?>
                             <?// no text formatting allowed here */?>
-                                data-remove-format="true">
-                                 <?=$m->media->title?>
-                        </span>
+                                data-remove-format="true"><?=$m->media->title?></span>
                     </div>
-                    <?if($m->media->theFile->exists() || $m->media->theFileHd->exists()):?>
-                    <div class="item-media-link">
-                        <a class="button" href="<?=$m->media->theFile->download()?>">
-                            <i class="icon-download"></i> Download
-                        </a>
-                    </div>
-                    <?endif?>
 
-                    <?/*-----------------upload btn-------------------*/?>
+
+
 
                     <?if($m->isAdmin()):?>
 
-                    <?=$this->render("press/fields/file",$m->theFileAdminField())?>
-                    <?=$this->render("press/fields/file",$m->theFileHdAdminField())?>
+                        <?/*-----------------upload btn-------------------*/?>
+                        <?=$this->render("press/fields/file",$m->theFileAdminField())?>
+                        <?=$this->render("press/fields/file",$m->theFileHdAdminField())?>
+                    <?else:?>
+
+                    <?/*-----------------downloads btn-------------------*/?>
+
+
+                        <div class="item-media-link">
+                            <?if($m->media->theFile->exists()):?>
+                            <a class="button" href="<?=$m->media->theFile->download()?>">
+                                <i class="icon-download"></i> Download
+                            </a>
+                            <?endif?>
+                            <?if($m->media->theFileHd->exists()):?>
+                            <a class="button" href="<?=$m->media->theFileHd->download()?>">
+                                <i class="icon-download"></i> Download HD
+                            </a>
+                            <?endif?>
+                        </div>
+
+
+
 
                     <?endif?>
 

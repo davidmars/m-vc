@@ -34,8 +34,23 @@ class VV_media extends VV_layout {
         $editableField->label="Download HD";
         return $editableField;
     }
+    /**
+     * This function is an easy way to get an admin field for the M_media->thumb field.
+     * @return VV_admin_field
+     */
+    public function thumbAdminField(){
+        $editableField=new VV_admin_field();
+        $editableField->init($this->media,"thumb");
+        return $editableField;
+    }
 
+    /**
+     * @param $media M_media
+     */
     public function init($media) {
         $this->media=$media;
+        if($this->media->title==""){
+           $this->media->title="...";
+        }
     }
 }

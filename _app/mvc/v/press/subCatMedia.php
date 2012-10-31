@@ -41,7 +41,7 @@ $vv = $_vars;
             </div>
             <?endif?>
 
-        <h1 class="item-media-section">Subcat media :<?=$vv->subCategoryMedia->title?></h1>
+        <h1 class="item-media-section"><?=$vv->subCategoryMedia->title?></h1>
 
 
 

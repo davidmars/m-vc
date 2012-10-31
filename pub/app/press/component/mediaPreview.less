@@ -14,14 +14,14 @@
 .subcatMediaPreview{
 
   .subcatMediaList{
-    height:305px; //5px for debug
+    height:325px; //5px for debug
     background-color: #ffe45c; //for debug
   }
 
 }
 .downloadBox {
     //padding-top:15px;
-    height:300px;
+    height:320px;
     .wysiwyg-menu{
       /*padding-top: 15px;;*/
     }
@@ -29,7 +29,7 @@
 
 		
 		&.noGutter{
-          height:300px;
+          height:320px;
 		  background: @color5;
 		}
 		
@@ -52,6 +52,8 @@
 					.padding-gutter;
 					.button{
 						.pull-right;
+                        margin-bottom: 4px;
+                        min-width:90px;
 					} 
 				}        
             
@@ -60,11 +62,17 @@
 }
 
 .downloadBox.is-admin{
-  height:600px;
+  height:400px;
   margin-top:40px;
+
+  .noGutter{
+    height:400px;
+  }
 
   [data-field-type="File"]
   {
+    //height:40px;
+
     input[type='text']{
     display:none;
     }
@@ -75,7 +83,7 @@
 
     .progressContainer{
       float:right;
-      width:110px;
+      width:120px;
       height:30px;
       position:relative;
 
@@ -83,7 +91,8 @@
         position: absolute;
         right:0px;
         top:0px;
-        width:100px;
+        width:120px;
+
       }
 
       .progress{
@@ -92,13 +101,13 @@
         top:0px;
         left:0px;
         right:0px;
-        width:100px;
+        width:120px;
         opacity:0.2;
       }
 
       .btn-input-file{
         position:absolute;
-        left:-20px;
+        left:-30px;
       }
     }
   }

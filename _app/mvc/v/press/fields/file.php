@@ -17,15 +17,47 @@ $field=$vv->field;
 
 
             <div class="progressContainer">
-                <a class="button" href="<?=$field->download()?>">
-                    <i class="icon-download"></i> <?=$vv->label?>
+                <a class="button"
+                   <?
+                    if($field->exists()){
+                       $help=$field->fileName()." / ".$field->fileSize();
+                    }else{
+                       $help="Click on the arrow icon to upload a file here";
+                    }
+                   ?>
+                   title="<?=$help?>"
+
+                   href="<?=$field->download()?>">
+                    <i class="icon-download"></i>
+                    <?
+                    switch($field->name){
+
+                        case "theFileHd":
+                            if(!$field->exists()){
+                                $label="Download HD empty";
+                            }else{
+                                $label="Download HD";
+                            }
+                            break;
+                        default:
+                            if(!$field->exists()){
+                                $label="Download empty";
+                            }else{
+                                $label="Download";
+                            }
+                    }
+
+                    ?>
+                    <?=$label?>
+                    <div class="progress progress-striped">
+                        <div class="bar" style="width: 50%;"></div>
+                    </div>
+
                 </a>
-                <div class="progress progress-striped">
-                    <div class="bar" style="width: 50%;"></div>
-                </div>
-                <span class="btn-input-file">
-                    <input type="file"/><i class="icon-upload"></i>
-                </span>
+                    <span class="btn-input-file">
+                        <input type="file"/><i class="icon-upload"></i>
+                    </span>
+
             </div>
 
 

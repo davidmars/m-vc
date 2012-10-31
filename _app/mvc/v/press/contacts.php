@@ -38,8 +38,9 @@ $contactList = $vv->getContact("Havana PressRoom");
                     Add a contact
                 </a>
                     </span>
-            <?endif?>
+
     </div>
+    <?endif?>
 
     <div class="item-content">
         <?foreach ($contactList->contacts as $contact): ?>    
@@ -68,11 +69,12 @@ $contactList = $vv->getContact("Havana PressRoom");
                                data-model-target-field="contacts">
                                 <i class="icon-circle-arrow-down icon-white"></i>
                             </a>
-
-
-
-                            <a class="" href="#Model.delete"><i class="icon-remove icon-white"></i></a>
-                            <a class="" href="#Model.save"><i class="icon-ok icon-white"></i></a>
+                            <a class="" href="#Model.delete">
+                                <i class="icon-remove icon-white"></i>
+                            </a>
+                            <a class="" href="#Model.save">
+                                <i class="icon-ok icon-white"></i>
+                            </a>
                         </div>
                     </div>
                 <?endif?>
