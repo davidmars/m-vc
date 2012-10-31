@@ -10,7 +10,7 @@
     <?
         $this->inside("press/html5bp");
     ?>
-
+  
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -114,16 +114,20 @@
                     <?=$this->render("press/sideBar", $vv)?>
             </div>
 
-       </div>
+       </div>        
+    </div>
 
-        <div class="row top_submenu">
-            <div class="span12">
-                <div class="row">
-                    <?/*<script src="http://havanaclub.shic.cc/embedFooter"></script>*/?>
+    <footer id="press_footer" class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="row">
+                        <script src="http://havanaclub.shic.cc/embedFooter"></script>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </footer>
 <?endif;?>
 
 <?//-----------------admin WYSIWYG configuration--------------------*/?>
