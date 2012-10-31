@@ -50,7 +50,7 @@ $field=$vv->field;
                     ?>
                     <?=$label?>
                     <div class="progress progress-striped">
-                        <div class="bar" style="width: 50%;"></div>
+                        <div class="bar" style="width: 0%;"></div>
                     </div>
 
                 </a>

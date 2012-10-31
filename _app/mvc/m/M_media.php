@@ -58,7 +58,7 @@ class M_media extends M_{
     public static function getNew(){
         $new=new M_media();
         $new->title="This is a new download";
-        $new->thumb="pub/app/press/img/logo-havana-club.png";
+        $new->thumb="pub/app/press/img/default-image-square.jpg";
         $new->save();
         return $new;
     }

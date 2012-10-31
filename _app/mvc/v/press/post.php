@@ -64,22 +64,22 @@
 
 
                 <?if($vv->isAdmin()):?>
-                <div class="span8 mt1">
-                    <a class=" btn btn-success" data-block-field-target="blocks" data-block-type="M_text" href="#Model.addBlock()">
+                <div class="offset2 span6 mt1">
+                    <a class=" btn btn-success btn-small" data-block-field-target="blocks" data-block-type="M_text" href="#Model.addBlock()">
                         <i class="icon-white icon-plus-sign"></i>
                         Add a text
                     </a>
 
-                    <a class=" btn btn-success" data-block-field-target="blocks" data-block-type="M_embed" href="#Model.addBlock()">
+                    <a class=" btn btn-success btn-small" data-block-field-target="blocks" data-block-type="M_embed" href="#Model.addBlock()">
                         <i class="icon-white icon-plus-sign"></i>
                         Add an embed
                     </a>
 
-                    <a class=" btn btn-success" data-block-field-target="blocks" data-block-type="M_photo" href="#Model.addBlock()">
+                    <a class=" btn btn-success btn-small" data-block-field-target="blocks" data-block-type="M_photo" href="#Model.addBlock()">
                         <i class="icon-white icon-plus-sign"></i>
-                        Add an photo
+                        Add a photo
                     </a>
-                    <a class=" btn btn-success" data-block-field-target="blocks" data-block-type="M_media" href="#Model.addBlock()">
+                    <a class=" btn btn-success btn-small" data-block-field-target="blocks" data-block-type="M_media" href="#Model.addBlock()">
                         <i class="icon-white icon-plus-sign"></i>
                         Add a download
                     </a>

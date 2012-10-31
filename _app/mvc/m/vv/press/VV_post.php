@@ -37,9 +37,10 @@ class VV_post extends VV_layout {
 
         Human::Log($this->post->title, "POST CONTENT");
 
-        foreach($this->post->blocks as $b){
+        foreach($this->post->blocks->select()->orderBy(array("ordre"=>"asc"))->all() as $b){
             $bl=new VV_block();
             $bl->init($b);
+            $bl->parentModel=$this->post;
             $this->blocks[]=$bl;
         }
 
