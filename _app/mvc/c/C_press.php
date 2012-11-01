@@ -179,7 +179,7 @@ Class C_press extends Controller{
         $c = new C_press();
         
         $vv = new VV_layout();
-        $c->resultView = new View("press/styleGuide", $vv);
+        $c->resultView = new View("press/style-guide/styleGuide", $vv);
         return $c;
     }
     

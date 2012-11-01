@@ -14,10 +14,12 @@ var Press = {
         var me = this;
         var inside = $("<div/>");
         inside.addClass("loading-box-inside");
+        //inside.addClass("padded");
 
         this.setLoading=function(){
             console.log(target);
-            target.addClass("loading-box posts");
+            target.addClass("loading-box");
+            //target.addClass("span8");
             target.append(inside);
 
             TweenLite.to(
