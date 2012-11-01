@@ -11,8 +11,10 @@ class VV_layout extends ViewVariables {
      * @var string the category id + name
      */
     public $currentCategoryIdName;
-
-
+    /**
+     * @var string The text identifier of the current active tab.
+     */
+    private $activeTab;
     /**
      * @return VV_mainTab[] list of tabs to display
      */
@@ -20,9 +22,7 @@ class VV_layout extends ViewVariables {
         $ret=array();
         foreach(DataBaseIndexes::getMainNavModels() as $model){
             $vv=new VV_mainTab();
-            if(M_::areSame(VV_mainTab::$activeModel,$model)){
-                $vv->active=true;
-            }
+            $vv->model=$model;
             switch($model->modelName){
                 case "M_category_post":
                     /** @var $model M_category_post  */
@@ -38,8 +38,16 @@ class VV_layout extends ViewVariables {
                     $ret[]=$vv;
                     break;
             }
+            if(M_::areSame(VV_mainTab::$activeModel,$model)){
+                $vv->active=true;
+                $this->activeTab=$vv->uid();
+            }
         }
         return $ret;
+    }
+    public function getActiveTab(){
+        $this->getMainTabs();
+        return $this->activeTab;
     }
 
 

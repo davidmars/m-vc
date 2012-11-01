@@ -6,6 +6,9 @@
 
 <?if ($this->isAjax):?>
     <?=$this->insideContent?>
+    <script>
+        Press.setActiveTab("<?=$vv->getActiveTab()?>");
+    </script>
 <?else:?>
     <?
         $this->inside("press/html5bp");

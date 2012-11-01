@@ -73,6 +73,11 @@ Press.initAfterAjax = function() {
     Share.init();
 }
 
+Press.setActiveTab=function(tab){
+    $("[data-main-tab]").removeClass("active");
+    $("[data-main-tab='"+tab+"']").addClass("active");
+}
+
 Press.init();
 
 

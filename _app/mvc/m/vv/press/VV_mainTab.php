@@ -43,10 +43,11 @@ class VV_mainTab extends VV_layout
         }
     }
 
+
     /**
      * @return string Something like "M_myModel_myId"
      */
     public function uid(){
-        return $this->model->modelName."_".$this->model->id;
+        return $this->model->modelName."_____".$this->model->id;
     }
 }
