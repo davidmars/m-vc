@@ -81,16 +81,8 @@ var Model=function(jq){
                 //console.log(Model.getParent(me.jq));
                 Model.getParent(me.jq).needToBeRecorded(true); 
             } 
-            
-            if (me.isInsideModal() == true){
-                //console.log("isInsideModel - yes");
-                //console.log(me.isInsideModal());                
-                var selector = ModelBrowser.getSelector (me.jq);
-                if(selector){
-                    setTimeout(selector.refreshMenu,800);
-                }
-            }
-            Utils.blink(me.jq.find(Model.CTRL.SAVE), true, 200);
+
+            Utils.blink(me.jq.find(Model.CTRL.SAVE+","+Model.CTRL.SAVE_ALL), true, 200);
             if(me.isLiveSave()){
                 setTimeout(me.save,500); //to give time to call function to do the job
             }
@@ -120,12 +112,12 @@ var Model=function(jq){
         return(me.jq.parents("body").length>0);
         
     }
-    
+    this.events=new EventDispatcher();
     /**
      * records the model (and submodels if there is in a Blocks field).
      * @param onComplete:Function the function to call after save. if not set, it will lauch the Api.processMessage function.
      */
-    this.save=function(onComplete){
+    this.save=function(){
         
         //mandatory fields first
         if(!me.validateFields()){
@@ -140,19 +132,15 @@ var Model=function(jq){
             if(datas=="error"){
                 me.isLoading(false);
             }
-            
-            if(!onComplete){
-                onComplete=me.onSave;  
-            }
+
             //if this model is also a field we will need to set the variable name of the field	
             datas.context = me.getContext(); 
             //console.log("datas")
             //console.log(datas)
-            Api.save(me, datas, onComplete);
-            
-            if( me.isAnAssoc() == false ) {
-                me.afterSave();
-            }
+            Api.save(me, datas, function(){
+                me.events.dispatchEvent("onSave",me);
+            });
+
         }
         if(me.hasMultipleSave()){
             //console.log("multiple saves")
@@ -162,31 +150,25 @@ var Model=function(jq){
             doTheSave();  
         }
     }
-    
-    this.duplicateData = function(onComplete){        
-        //mandatory fields first
-        if(!me.validateFields()){
-            alert("Please correct the errors before saving");
-            return; 
+    /**
+     * save all the children models one by one
+     */
+    this.saveAll=function(){
+        var childModels= me.jq.find("[data-model-type]");
+        var sm;
+        var count=childModels.length;
+        for(var i=0;i<childModels.length;i++){
+            sm=new Model(childModels[i]);
+            sm.save();
+            sm.events.addEventListener("onSave",function(){
+                count--;
+                if(count==0){
+                    me.events.dispatchEvent("onSaveAll",me);
+                }
+            })
         }
-        
-        me.isLoading(true);
-
-        var datas=me.getDuplicateFieldsData();
-        if(datas=="error"){
-            me.isLoading(false);
-        }
-        //console.log(datas);	
-        if(!onComplete){
-            onComplete=me.onSave;  
-        }
-        //if this model is also a field we will need to set the variable name of the field	
-        datas.context = me.getContext();   
-            
-        datas["modelAction"] = "duplicateData";
-        datas["langue"] = Application.langId;
-        Api.save(me, datas, onComplete);
     }
+
     
     /**
      * just refresh the template by calling the api
@@ -206,17 +188,14 @@ var Model=function(jq){
         var onComplete=onComplete;        
         var subModels=me.jq.find("["+Model.CTRL.DATA_FIELD_TYPE+"='Blocks'] [data-model-type]");
         var m;
-        var count=0;
-        var total=subModels.length;
-        
+        var count=subModels.length;
+
         if( subModels.length > 0) {
             for(var i=0;i<subModels.length;i++){
                 m=new Model(subModels[i]);
                                 
                 var doOnComplete=function(){                    
-                    count++;
-                    Application.loadingProgress(count, total)
-                    
+                    count--;
                     if(count>=total){
                         onComplete();
                     }                    
@@ -224,7 +203,8 @@ var Model=function(jq){
                 
                 //control sub model if it needs to be record then save
                 if( m.jq.attr(Model.CTRL.DATA_NEED_TO_RECORD) == "true" ) {
-                    m.save(doOnComplete);
+                    m.save();
+                    m.events.addEventListener("onSave",doOnComplete);
                 } else {
                     doOnComplete();
                 }
@@ -300,12 +280,7 @@ var Model=function(jq){
             return null;
         }
     }
-    /**
-     * Default save
-     */
-    this.onSave=function(json){
-        Api.processMessage(json, me)
-    }
+
     /**
      * show or hide a loading
      */
@@ -356,14 +331,7 @@ var Model=function(jq){
             me.jq.modal("hide");
         }
     }
-    
-    this.afterSave = function ( ) {
-        //Application.updateNav();
-        
-        if( me.jq.attr(Model.CTRL.DATA_NEED_TO_RECORD) == "true" ) {
-            me.jq.removeAttr(Model.CTRL.DATA_NEED_TO_RECORD);
-        }    
-    }
+
     
     /**
      * so...it removes the model from dom
@@ -523,6 +491,7 @@ Model.CTRL={
      * save button inside the model
      */
     SAVE:"a[href='#Model.save']",
+    SAVE_ALL:"a[href='#Model.saveAll()']",
     DUPLICATE_DATA:"a[href='#Model.duplicateData']",
     /**
      * delete button inside the model
@@ -654,10 +623,20 @@ JQ.bo.on("click",Model.CTRL.SAVE,function(e){
     e.preventDefault();
     var elem = $(this)
     var m = Model.getParent( elem );
-
-    m.save(function(){
-            m.refreshByController(elem);
+    m.save();
+    m.events.addEventListener("onSave",function(){
+    m.refreshByController(elem);
     })
+})
+JQ.bo.on("click",Model.CTRL.SAVE_ALL,function(e){
+    e.preventDefault();
+    var elem = $(this)
+    var m = Model.getParent( elem );
+    m.saveAll();
+    m.events.addEventListener("onSaveAll",function(){
+        m.refreshByController(elem);
+    })
+
 
 })
 

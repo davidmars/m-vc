@@ -6,10 +6,8 @@ class ViewVariables{
      * @param ViewVariables $_vars If defined if will work like a clone. 
      * 
      */
-    public function __construct($_vars=null) {
-        if($_vars){
-            $this->feedMe($_vars);
-        }
+    public function __construct() {
+
     }
     
     public function json(){

@@ -52,24 +52,15 @@ class VV_layout extends ViewVariables {
 
 
 
-
-
     
     /**
-     *
-     * @return M_contact[] Return all contact of the current blog
-     */
-    public function getAllContact() {
-        return M_contact::$manager->select()->all();
-    }
-    
-    /**
-     *
+     * Return the contact list to display in the sidebar.
      * @param int $id the id of the contact list
-     * @return M_contacts Return a contact block
+     * @return VV_contactList Return a contact block
      */
-    public function getContact($title="Havana PressRoom") {
-        return M_contacts::$manager->select()->where("title", $title)->one();
+    public function getContactList() {
+        $contacts=M_contacts::$manager->select()->where("title", DataBaseIndexes::$contactListTitle)->one();
+        return new VV_contactList($contacts);
     }
     
     /**

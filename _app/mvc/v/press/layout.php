@@ -86,7 +86,6 @@
 
 <?=$this->render("press/popin/popinloader")?>
 
-
 <?//-----------------admin WYSIWYG configuration--------------------*/?>
 <?if($vv->isAdmin()):?>
     <script>

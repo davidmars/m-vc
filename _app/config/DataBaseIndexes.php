@@ -19,4 +19,9 @@ class DataBaseIndexes
         $ret[]=M_category_media::$manager->get("downloads");
         return $ret;
     }
+
+    /**
+     * @var string the value of the title field that will help us to get the contact list for the side bar.
+     */
+    public static $contactListTitle="Havana PressRoom";
 }
