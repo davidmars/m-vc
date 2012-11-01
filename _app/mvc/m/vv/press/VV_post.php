@@ -35,7 +35,8 @@ class VV_post extends VV_layout {
         $this->post = $post;
         $this->parentCategory=$category;
 
-        Human::Log($this->post->title, "POST CONTENT");
+        $parent=$this->post->getParent();
+        VV_mainTab::$activeModel=$parent;
 
         foreach($this->post->blocks->select()->orderBy(array("ordre"=>"asc"))->all() as $b){
             $bl=new VV_block();

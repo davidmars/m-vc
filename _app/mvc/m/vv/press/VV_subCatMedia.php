@@ -45,6 +45,9 @@ class VV_subCatMedia extends VV_layout {
         $this->subCategoryMedia = $currentSubCategory;
         $this->currentIndex = $start;
 
+        $parent=$currentSubCategory->getParent();
+        VV_mainTab::$activeModel=$parent;
+
         if ($nbItem == 'all')  {
             $medias = $currentSubCategory->medias;
         }

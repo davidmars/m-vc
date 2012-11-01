@@ -10,7 +10,10 @@ class M_category_media extends M_{
      * @var TextField The name of the category media
      */
     public $title;
-    
+    /**
+     * @var CodeField the textual identifier to access the page.
+     */
+    public $code;
     /**
      * @var M_subcategory_media[] The associated subcategory to this category
      */

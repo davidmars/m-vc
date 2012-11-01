@@ -44,6 +44,8 @@ class VV_categoryPost extends VV_layout {
         $this->categoryPost = $currentCategory;                        
         $this->currentIndex = $pagination;
 
+        VV_mainTab::$activeModel=$currentCategory;
+
         $limitX = $pagination * $this->postByPage;
 
         $posts = $this->categoryPost->posts->select()->limit($limitX, $this->postByPage)->all();

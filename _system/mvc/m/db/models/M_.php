@@ -19,7 +19,20 @@ class M_ extends Model{
 
           
     }
-    
+
+    /**
+     * Test if two models are equals
+     * @param $model1 M_
+     * @param $model2 M_
+     * @return bool will be true if $model1 and $model2 have the same ids and modelType
+     */
+    public static function areSame($model1,$model2){
+        if($model1->modelName==$model2->modelName && $model1->id==$model2->id){
+            return true;
+        }
+        return false;
+    }
+
     //----------fields--------------------------------
     /**
      *

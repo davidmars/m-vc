@@ -43,6 +43,7 @@ class VV_categoryMedia extends VV_layout {
         $this->currentPagination=$pagination;
         if ($currentCategory) {
             $this->currentCategoryIdName = $currentCategory->getCategoryId();
+            VV_mainTab::$activeModel=$currentCategory;
         }
 
         $this->categoryMedia = $currentCategory;

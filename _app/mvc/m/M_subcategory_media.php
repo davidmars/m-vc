@@ -61,6 +61,15 @@ class M_subcategory_media extends M_{
     public function getCategoryId() {
         return $this->modelName . "_" . $this->id;
     }
+
+    /**
+     * Return the parent category
+     * @return M_category_media
+     */
+    public function getParent() {
+        $cat = M_category_media_M_subcategory_media::$manager->select()->where("M_subcategory_media", $this->id)->one();
+        return $cat->M_category_media;
+    }
 }
 
 
