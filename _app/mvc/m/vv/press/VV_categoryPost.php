@@ -51,6 +51,8 @@ class VV_categoryPost extends VV_layout {
         $posts = $this->categoryPost->posts->select()->limit($limitX, $this->postByPage)->all();
         foreach($posts as $p){
             $vvp=new VV_post();
+            $vvp->isPreview=true;
+            $vvp->disableLocalAdmin=true;
             $vvp->init($p,$currentCategory);
             $this->posts[]=$vvp;
         }

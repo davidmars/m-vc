@@ -161,9 +161,13 @@ Nav.CTRL =  {
 
 Dom.body.on("click", Nav.CTRL.AJAX_LINK, function(ev) {
     ev.preventDefault();
-    var target = $(this).attr(Nav.CTRL.AJAX_TARGET);
+    var elem=$(this);
+    if(!elem.attr("href")){
+        elem=$(elem.find("a")[0]);
+    }
+    var target = elem.attr(Nav.CTRL.AJAX_TARGET);
     //console.log(target);
-    Nav.goToUrl($(this).attr("href"), target);
+    Nav.goToUrl(elem.attr("href"), target);
 })
 
 Dom.body.on("click", Nav.CTRL.ITEM_NAV, function(ev) {
@@ -174,3 +178,4 @@ Dom.body.on("click", Nav.CTRL.ITEM_NAV, function(ev) {
 
     $(this).closest("div.item-nav").addClass("active");
 })
+

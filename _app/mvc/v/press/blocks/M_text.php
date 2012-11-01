@@ -19,10 +19,7 @@ $text=$vv->block->getContent();
                href="#Model.delete">
                 <i class="icon-remove icon-white"></i>
             </a>
-            <a class=""
-               href="#Model.save">
-                <i class="icon-ok icon-white"></i>
-            </a>
+
 
             <a class=""
                href="#Model.previousPosition()"

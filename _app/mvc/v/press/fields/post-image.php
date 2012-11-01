@@ -5,14 +5,14 @@ $vv = $_vars;
 /* @var $field ImageField */
 $field=$vv->field;
 ?>
-<div class="span2 item-thumbnail"
+<div class="item-thumbnail"
      data-field-type="File"
      data-field="root[thumb]"
      data-template="press/fields/post-image">
     <div class="noGutter">
 
         <?//thumb ?>
-        <img src="<?=$field->sized(180, 180, "000000", "jpg")?>" alt="<?/*=$vv->post->title*/?>" />
+        <img src="<?=$field->sized(200, 200, "000000", "jpg")?>" alt="<?/*=$vv->post->title*/?>" />
 
         <?if($vv->isAdmin()):?>
             <div class="wysiwyg">

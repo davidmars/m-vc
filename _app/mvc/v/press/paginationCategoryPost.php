@@ -4,10 +4,9 @@
 $vv = $_vars;
 ?>
 
-<br/>
-<br/>
 
-<div class="paginationComponent">
+
+<div class="paginationComponent mt1">
     <div class="row">
         <div class="span8">
             <div class="noGutter">

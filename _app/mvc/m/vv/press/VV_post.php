@@ -16,8 +16,10 @@ class VV_post extends VV_layout {
      * @var M_post 
      */
     public $post;
-
-
+    /**
+     * @var bool will be fal for the complete page
+     */
+    public $isPreview=false;
     /**
      * @var M_category_post
      */

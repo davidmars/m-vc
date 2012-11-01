@@ -79,6 +79,29 @@
 }
 
 
+//---------margins------------------
+
+.generateMargins (@index) when (@index > 0) {
+  (~".mt@{index}") {
+    margin-top:@index*15px;
+  }
+  (~".mb@{index}") {
+    margin-bottom:@index*15px;
+  }
+  (~".pt@{index}") {
+    padding-top:@index*15px;
+  }
+  (~".pb@{index}") {
+    padding-bottom:@index*15px;
+  }
+  .generateMargins(@index - 1);
+}
+  .generateMargins(10);
+
+
+
+
+
 
 
 

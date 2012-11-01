@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="span8">
-        <div class="posts noGutter background-content"
+        <div class="padded posts background-content"
             <?//the current model type?>
             data-model-type="M_category_post"
             <?//the current model id?>
@@ -18,9 +18,9 @@
             <?//a jquery selector that define where to inject the data-model-refresh-controller html result?>
             data-model-refresh-target-selector="#mainContent"
             >
-
-            <?if($vv->isAdmin()):?>
             <div class="row">
+            <?if($vv->isAdmin()):?>
+
                 <div class="span8 mb1 mt1">
                     <?// create and add a post to the category?>
                     <a class="pull-right btn btn-success btn-small"
@@ -36,23 +36,24 @@
                         Add a post
                     </a>
                 </div>
-            </div>
-            <div class="row">
+
+
                 <div class="span8">
-                    <div class="noGutter separatorTextBloc"></div>
+                    <div class="marged separatorTextBloc"></div>
                 </div>
-            </div>
+
             <?endif?>
 
-            <!-- Affichage de chaque preview réordonné -->
-            <div class="row">
+                <!-- Affichage de chaque preview réordonné -->
+
                 <div class="span8">
-                    <div class="noGutter" id="mainContentGutter">
-            <?foreach ($vv->posts as $post):?>
-                <?=$this->render("press/postPreview", $post)?>
-            <?endforeach;?>
+                    <div class="row">
+                        <?foreach ($vv->posts as $post):?>
+                            <?=$this->render("press/postPreview", $post)?>
+                        <?endforeach;?>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

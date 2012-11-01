@@ -156,12 +156,15 @@ var Model=function(jq){
     this.saveAll=function(){
         var childModels= me.jq.find("[data-model-type]");
         var sm;
+        childModels.push(me.jq);
         var count=childModels.length;
+        Utils.blink(me.jq,true,1000);
         for(var i=0;i<childModels.length;i++){
             sm=new Model(childModels[i]);
             sm.save();
             sm.events.addEventListener("onSave",function(){
                 count--;
+                console.log("count "+count);
                 if(count==0){
                     me.events.dispatchEvent("onSaveAll",me);
                 }
