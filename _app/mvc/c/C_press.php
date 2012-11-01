@@ -175,7 +175,7 @@ Class C_press extends Controller{
 
         $vv = new VV_layout();
 
-        $c->resultView = new View("press/sideBar", $vv);
+        $c->resultView = new View("press/sidebar/sideBar", $vv);
         return $c;
     }
     

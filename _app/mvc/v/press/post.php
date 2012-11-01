@@ -3,7 +3,7 @@
 /* @var $vv VV_post */
 $vv = $_vars;
     
-$this->inside("press/layout", $vv);
+$this->inside("press/layout/layout", $vv);
 ?>
 
 <div class="row"

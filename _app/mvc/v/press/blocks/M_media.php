@@ -39,7 +39,7 @@ $media=$vv->block->getContent();
         <?endif?>
 
 
-        <div class="noGutter">
+        <div class="padded">
             <div class="item-file">                                
                 <div class="icon-preview-mime" data-mime="<?=$media->theFile->mime()?>"></div>
                 <img src="<?= GiveMe::url("pub/app/press/img/icon_pdf.jpg") ?>" alt="" />                                

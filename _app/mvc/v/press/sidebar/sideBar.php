@@ -5,7 +5,7 @@ $vv = $_vars;
 $mainDownload = $vv->getPressPackDownload();
 ?>
 
-<div class="noGutter">
+<div class="marged">
     <? // PRESS ROOM COMPONENT ?>
     <a href="" class="pressRoomComponent">
         <div class="item-content">
@@ -27,5 +27,5 @@ $mainDownload = $vv->getPressPackDownload();
     </div>
 
     <? // CONTACT COMPONENT ?>
-    <?=$this->render("press/contacts", $vv)?>
+    <?=$this->render("press/sidebar/contacts", $vv)?>
 </div>

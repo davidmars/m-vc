@@ -4,19 +4,19 @@
 $vv = $_vars;
 
 ?>
+
 <div class="span8 subcatMedia subcatMediaPreview"
         data-model-id="<?=$vv->subCategoryMedia->id?>"
         data-model-type="M_subcategory_media"
-        zzzzzzzdata-model-refresh-controller="<?=C_press::categoryMedia($vv->currentCategory->categoryMedia->id,0,true);?>"
         >
-    <div class="noGutter">
+
 
             <?if($vv->isAdmin()):?>
 
+            <?/*-----------------up down delete--------------*/?>
+
             <div class="wysiwyg-menu">
                 <div class="top-right">
-
-
 
                     <a class=""
                        href="#Model.previousPosition()"
@@ -42,12 +42,18 @@ $vv = $_vars;
             </div>
             <?endif?>
 
+
+        <?/*--------------title---------------*/?>
+
         <h1 class="item-media-section"><?=$vv->subCategoryMedia->title?></h1>
 
 
+        <?/*------------the list--------------*/?>
+
+        <?=$this->render("press/media/subCatMediaList",$vv)?>
 
 
-        <?=$this->render("press/subCatMediaList",$vv)?>
+        <?/*-----------footer-------------*/?>
 
         <div class="footer-preview">
             <div class="right">
@@ -64,6 +70,8 @@ $vv = $_vars;
         </div>
 
         <div class="clearfix"></div>
-        <div class="noGutter separatorTextBloc"></div>
-    </div>
+        <div class="padded separatorTextBloc"></div>
+
+
 </div>
+

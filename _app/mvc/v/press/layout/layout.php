@@ -11,7 +11,7 @@
     </script>
 <?else:?>
     <?
-        $this->inside("press/html5bp");
+        $this->inside("press/layout/html5bp");
     ?>
     <?//TODO::rai::put this in a separated view ?>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="row">
                     <div class="span12">
-                        <div class="noGutter">
+                        <div class="padded">
                             <div class="nav-collapse collapse">
                                 <script src="http://havanaclub.shic.cc/embedMenu"></script>
                             </div>
@@ -36,7 +36,7 @@
         <div class="row top_submenu">
             <div class="span12">
                 <?//TODO::rai::put this in a separated view ?>
-                <div class="noGutter">
+                <div class="padded">
                     <div class="row">
                         <script src="http://havanaclub.shic.cc/embedSubMenu"></script>
                     </div>
@@ -74,7 +74,7 @@
 
             <!-- sideBar -->
             <div class="span4 sidebar" data-nav-ajax-receiver="sideBar" id="sideBar">
-                    <?=$this->render("press/sideBar", $vv)?>
+                    <?=$this->render("press/sidebar/sideBar", $vv)?>
             </div>
 
        </div>        

@@ -3,12 +3,12 @@
     $vv = $_vars;            
     
     /* @var $this View */
-    $this->inside("press/layout", $vv);    
+    $this->inside("press/layout/layout", $vv);
 ?>
 
 <div class="row">
     <div class="span8">
-        <div class="posts noGutter background-content"
+        <div class="posts padded background-content"
             <?//the current model type?>
             data-model-type="M_category_media"
             <?//the current model id?>
@@ -20,10 +20,10 @@
             >
 
             <?if($vv->isAdmin()):?>
-            <div class="row">
-                <div class="span8 mb1 mt1">
+
+                <div class="mb1 mt1 pull-right">
                     <?// create and add a post to the category?>
-                    <a class="pull-right btn btn-success btn-small"
+                    <a class="btn btn-success btn-small"
                         <?//the action to do?>
                        href="#Model.addNewChild()"
                         <?//the new model type to create?>
@@ -36,7 +36,6 @@
                         Add a category
                     </a>
                 </div>
-            </div>
 
 
 
@@ -47,7 +46,7 @@
             <div class="row">
                 <? foreach ($vv->subCatMedias as $subCat):?>
 
-                    <?=$this->render("press/subCatMedia", $subCat)?>
+                    <?=$this->render("press/media/subCatMedia", $subCat)?>
 
                 <? endforeach;?>
             </div>
@@ -55,4 +54,4 @@
     </div>
 </div>
 <!-- Affichage de la pagination si > a 1 page -->
-<?=$this->render("press/paginationCategoryMedia", $vv)?>
+<?=$this->render("press/media/paginationCategoryMedia", $vv)?>

@@ -9,7 +9,7 @@ $field=$vv->field;
      data-field-type="File"
      data-field="root[thumb]"
      data-template="press/fields/post-image">
-    <div class="noGutter">
+    <div class="padded">
 
         <?//thumb ?>
         <img src="<?=$field->sized(200, 200, "000000", "jpg")?>" alt="<?/*=$vv->post->title*/?>" />

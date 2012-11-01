@@ -3,7 +3,7 @@
     $vv = $_vars;            
     
     /* @var $this View */
-    $this->inside("press/layout", $vv); 
+    $this->inside("press/layout/layout", $vv);
     
     $backgrounds = array(
         "bg-color-title-bloc",

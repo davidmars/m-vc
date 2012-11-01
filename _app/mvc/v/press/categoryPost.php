@@ -3,7 +3,7 @@
     $vv = $_vars;
     
     /* @var $this View */
-    $this->inside("press/layout", $vv);       
+    $this->inside("press/layout/layout", $vv);
 ?>
 
 <div class="row">
@@ -49,7 +49,7 @@
                 <div class="span8">
                     <div class="row">
                         <?foreach ($vv->posts as $post):?>
-                            <?=$this->render("press/postPreview", $post)?>
+                            <?=$this->render("press/post/postPreview", $post)?>
                         <?endforeach;?>
                     </div>
                 </div>
@@ -60,4 +60,4 @@
 </div>
 
 <!-- Affichage de la pagination si > a 1 page -->
-<?=$this->render("press/paginationCategoryPost", $vv)?>
+<?=$this->render("press/post/paginationCategoryPost", $vv)?>
