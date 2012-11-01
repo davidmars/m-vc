@@ -17,6 +17,7 @@ class VV_layout extends ViewVariables {
      * @return M_category_post[] Return all categories post of the current blog
      */
     public function getAllCategoriesPost(){
+        //TODO::rai:: warning you can't manage orders like that...and what happend if there is more tan 3 in the database.
          return M_category_post::$manager->select()->all();
     }
 

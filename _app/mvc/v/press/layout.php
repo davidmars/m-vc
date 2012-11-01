@@ -43,64 +43,19 @@
 
         <div class="row">
             <div class="span12">
-                <div class="noGutter">
-                    <div class="logo-title">
-                        <a class="logo" href="<?=C_press::categoryPost(1,null,true) ?>">
-                            <img alt="Havana Club" src="<?=GiveMe::url("pub/app/press/img/logo-havana-club.png")?>">
-                        </a>
-                        <h1 class="title">
-                            <a class="font-title" href="<?=C_press::categoryPost(1,null,true) ?>">
-                                Havana Club Press Room
-                            </a>
-                        </h1>
-                    </div>
-                </div>
+                <?=$this->render("press/layout/header",$vv)?>
             </div>
         </div>
 
         <div class="row">
             <div class="span8">
 
-                <!-- Menu vers chaque category -->
-                <div class="navBarComponent">
-                    <div class="row">
-                        <!-- Pour chaque category post -->
-                        <? foreach ($vv->getAllCategoriesPost() as $category): ?>
-                        <div class="span2 item-nav <?=($vv->currentCategoryIdName == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
-                            <div class="noGutter">
-                                <a href="<?=C_press::categoryPost($category->id, 0,true)?>"
-                                   data-nav-is-ajax="true"
-                                   data-nav-is-ajax-target="mainContent"
-                                   data-is-item-nav="true">
-                                    <?=$category->title?>
-                                </a>
-                                <span class="item-nav-arrow"></span>
-                            </div>
-                        </div>
-                        <?endforeach;?>
-
-                        <? foreach ($vv->getAllCategoriesMedia() as $category): ?>
-                        <div class="span2 item-nav <?=($vv->currentCategoryIdName == $category->getCategoryId())?("active"):("")?>" data-main-tab="<?=$category->getCategoryId()?>">
-                            <div class="noGutter">
-                                <a href="<?=C_press::categoryMedia($category->id, 0,true)?>"
-                                   data-nav-is-ajax="true"
-                                   data-nav-is-ajax-target="mainContent"
-                                   data-is-item-nav="true">
-                                    <i class="sprite-item-nav"></i> <?=$category->title?>
-                                </a>
-                                <span class="item-nav-arrow"></span>
-                            </div>
-                        </div>
-                        <?endforeach;?>
-                    </div>
-                </div>
+                <?=$this->render("press/layout/main-menu",$vv)?>
 
                 <!-- seperator bloc -->
                 <div class="row">
                     <div class="span8">
-                        <div class="noGutter">
-                            <div class="separatorBloc"></div>
-                        </div>
+                        <div class="padded separatorBloc"></div>
                     </div>
                 </div>
 
@@ -119,19 +74,8 @@
        </div>        
     </div>
 
-    <footer id="press_footer" class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="span12">
-                    <div class="noGutter">
-                        <div class="row">
-                            <script src="http://havanaclub.shic.cc/embedFooter"></script>
-                        </div>
-                    </div>
-                </div>
-            </div>            
-        </div>
-    </footer>
+    <?=$this->render("press/layout/embed-footer",$vv)?>
+
 <?endif;?>
 
 <div id="popinloader">

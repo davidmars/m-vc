@@ -4,7 +4,20 @@
  * Here 
  */
 Class C_press extends Controller{
-    
+
+    /**
+     * Display the default page.
+     * @param bool $returnUrl
+     * @return C_press|string
+     */
+    public static function index($returnUrl=false){
+        if($returnUrl){
+            //managed by routes...
+            return GiveMe::url("");
+        }
+        //what is this page?
+        return self::categoryPost("press-release",0);
+    }
     /**
      * Display a page with many post from a category
      * @param int $category is the id of current category
@@ -22,8 +35,9 @@ Class C_press extends Controller{
         // create a variable for our controller
         $c = new C_press();
         
-        // get the current category post       
-        $currentCategory = M_category_post::$manager->get($category);        
+        // get the current category post
+        /** @var $currentCategory M_category_post */
+        $currentCategory = M_category_post::$manager->get($category);
         // get the current page index
         $pagination = $pagination;
                                               

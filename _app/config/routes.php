@@ -20,7 +20,7 @@ UrlControler::$routes=array(
         "pressroom/post/(:any)"=>"press/post/$1",
         "pressroom/media/(:any)/(:any)/(:any)/(:any)"=>"press/mediaAll/$1/$2/$3/$4",
 
-        ""=>"press/categoryPost/1",
+        ""=>"press/index",
          
 
         "(.*)"=>"err404/index/$1"

@@ -196,6 +196,7 @@ class M_ extends Model{
 
         $areFields=array(
             "IdField",
+            "CodeField",
             "CreatedField",
             "ModifiedField",
             "TextField",

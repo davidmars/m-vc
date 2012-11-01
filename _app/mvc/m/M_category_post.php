@@ -5,6 +5,12 @@
 class M_category_post extends M_{
 
     public static $manager;
+
+    /**
+     * @var CodeField This string is unique for M_category_post it is the correct way to access the page in controllers.
+     */
+    public $code;
+
     /**
      *
      * @var TextField The name of the category post
