@@ -10,7 +10,7 @@
     <?
         $this->inside("press/html5bp");
     ?>
-  
+    <?//TODO::rai::put this in a separated view ?>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -32,6 +32,7 @@
 
         <div class="row top_submenu">
             <div class="span12">
+                <?//TODO::rai::put this in a separated view ?>
                 <div class="noGutter">
                     <div class="row">
                         <script src="http://havanaclub.shic.cc/embedSubMenu"></script>
@@ -60,8 +61,10 @@
                 </div>
 
                 <!-- main content -->
-                <div id="mainContent" data-nav-ajax-receiver="mainContent">
-                    <?=$this->insideContent?>
+                <div class="row">
+                        <div id="mainContent" class="span8" data-nav-ajax-receiver="mainContent">
+                            <?=$this->insideContent?>
+                        </div>
                 </div>
 
             </div>
@@ -78,15 +81,7 @@
 
 <?endif;?>
 
-<div id="popinloader">
-       <div class="bg" data-popinloder="close"></div>
-        <a class="popincloser" data-popinloder="close" href="#">
-            <i class="icon-white icon-remove"></i>
-        </a>
-
-        <div id="popincontent"></div>
-
-</div>
+<?=$this->render("press/popin/popinloader")?>
 
 
 <?//-----------------admin WYSIWYG configuration--------------------*/?>

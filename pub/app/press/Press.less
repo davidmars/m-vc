@@ -26,21 +26,19 @@ body {
 
 .loading-box {
   min-height: 100%;
-  overflow: hidden;
   position: relative;
 }
 
 .loading-box-inside {
-  content: "";
+  content: "toto";
   position: absolute;
-  top: 0;
-  left: -15px;
-  /*width: 100%;*/
-  right:-15px;
+  top:0px;
+  z-index: 50000;
   height: 100%;
+  width: 100%;
   background-image: url("@{path}/img/loader.gif");
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: 50% 100px;
   background-color: #ffffff;
 
 }

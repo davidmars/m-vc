@@ -14,44 +14,46 @@ var Press = {
         var me = this;
         var inside = $("<div/>");
         inside.addClass("loading-box-inside");
-        //inside.addClass("padded");
+        inside.addClass("marged");
+
 
         this.setLoading=function(){
+
+            TweenMax.to(window, 1, {scrollTo:{y:0}, ease:Power2.easeOut});
+
             console.log(target);
             target.addClass("loading-box");
             //target.addClass("span8");
             target.append(inside);
-
-            TweenLite.to(
-                target,
-                1,
-                {
-                    css:{
-                        height:"400px"
-                    },
+            TweenLite.fromTo(
+                inside,
+                0.5,
+                {css:{opacity:0}},
+                {css:{opacity:"1"},
                     ease:Linear.easeNone,
                     onComplete:function(){
-                        me.events.dispatchEvent("onStateLoading");
+                            me.events.dispatchEvent("onStateLoading");
                     }
                 }
             );
+
         }
 
 
 
         this.setNormal=function(){
-            target.removeClass("loading-box");
-            target.removeClass("posts");
+            target.append(inside);
+            //
+
 
             TweenLite.to(
-                target,
-                1,
+                inside,
+                0.5,
                 {
-                    css:{
-                        height:"auto"
-                    },
+                    css:{opacity:0},
                     ease:Linear.easeNone,
                     onComplete:function(){
+                        target.removeClass("loading-box");
                         inside.remove();
                     }
                 }
