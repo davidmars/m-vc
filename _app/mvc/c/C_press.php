@@ -74,8 +74,10 @@ Class C_press extends Controller{
 
         if($media->isImage()){
             $c->resultView = new View("press/popin/media-image", $vv);
+        }else if($media->isVideo()){
+            $c->resultView = new View("press/popin/media-video", $vv);
         }else{
-
+            $c->resultView = new View("press/popin/media-other", $vv);
         }
 
         // return the controller

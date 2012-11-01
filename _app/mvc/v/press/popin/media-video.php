@@ -3,7 +3,7 @@
 /* @var $vv VV_media */
 $vv = $_vars;
 ?>
-    <div class="popinloaded photo middleabs"
+    <div class="popinloaded video middleabs"
         data-model-type="M_media"
         data-model-id="<?=$vv->media->id?>"
         data-model-refresh-controller="<?=C_press::mediaPreview($vv->media->id,true);?>"
@@ -11,14 +11,20 @@ $vv = $_vars;
         data-model-refresh-controller-not-an-url="true"
         >
     <div class="top">
-        <img height="600" src="<?=GiveMe::imageSizedWithoutCrop($vv->media->theFile,"auto",550,"000000","jpg")?>">
+        <?=$vv->media->embed?>
     </div>
 
     <div class="bottom">
         <div class="container">
             <div class="row">
                 <div class="span6">
-                    dwd1
+
+                    <?if($vv->isAdmin()):?>
+                        <div class="wysiwyg-embed" data-field="root[embed]" data-field-type="Text">
+                            <b>Paste your embed code here</b>
+                            <textarea class="embed"><?=$vv->media->embed?></textarea>
+                        </div>
+                    <?endif?>
                 </div>
                 <div class="span6">
                     <?if($vv->isAdmin()):?>

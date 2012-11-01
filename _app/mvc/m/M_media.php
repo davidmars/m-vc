@@ -50,6 +50,11 @@ class M_media extends M_{
      */
     public $thumb;
 
+    /**
+     * @var TextField Embed code that can be used to preview a video
+     */
+    public $embed;
+
 
     /**
      * Create a new M_media with default values, save it and return it.
@@ -107,10 +112,30 @@ class M_media extends M_{
     }
 
     /**
-     * @return bool true if the firs download is an image
+     * @return bool true if the first download is an image
      */
     public function isImage(){
         if(preg_match("#image#",$this->theFile->mime())){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    /**
+     * @return bool true if the first download is an video
+     */
+    public function isVideo(){
+        if(preg_match("#video#",$this->theFile->mime())){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    /**
+     * @return bool true if there is one or more download available
+     */
+    public function hasOneOrModeDownload(){
+        if($this->theFile->exists() || $this->theFileHd->exists()){
             return true;
         }else{
             return false;

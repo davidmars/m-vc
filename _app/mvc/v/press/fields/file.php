@@ -55,7 +55,7 @@ $field=$vv->field;
 
                 </a>
                     <span class="btn-input-file">
-                        <input type="file"/><i class="icon-upload"></i>
+                        <input type="file"/><i class="icon-upload icon-white"></i>
                     </span>
 
             </div>
