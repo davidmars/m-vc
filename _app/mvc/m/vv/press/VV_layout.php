@@ -76,10 +76,14 @@ class VV_layout extends ViewVariables {
      */
 
     public  function getPressPackDownload() {
-        //TODO::rai::remove the id in the following lines
-        $download = M_download::$manager->get(2);
-        /* @var $download M_download */
-        return  $download;
+        //TODO::david::Can't create a unique code from admin to use it
+        $download = M_download::$manager->select()->where("title", StaticDatas::$downloadPack)->one();
+
+        $vv = new VV_download();
+        $vv->init($download);
+
+        /* @var $vv VV_download */
+        return  $vv;
     }
 
     /**

@@ -22,4 +22,9 @@ class StaticDatas
      * @var string the embedHeaderSubMenu url from Havana Club
      */
     public static $embedHeaderSubMenu = 'http://havanaclub.shic.cc/embedSubMenu';
+
+    /**
+     * @var string the downloadPack name
+     */
+    public static $downloadPack = 'Press Pack';
 }

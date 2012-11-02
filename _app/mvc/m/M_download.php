@@ -5,6 +5,12 @@
 class M_download extends M_{
 
     public static $manager;
+
+    /**
+     * @var CodeField This string is unique for M_download it is the correct way to access the data  in controllers.
+     */
+    public $code;
+
     /**
      *
      * @var TextField The name of the download.
@@ -20,6 +26,11 @@ class M_download extends M_{
      * @var FileField The file that the final user will be able to download 
      */
     public $theFile;
+    /**
+     *
+     * @var FileField The file that the high definition final user will be able to download
+     */
+    public $theFileHd;
     /**
      *
      * @var M_post The post where it will be possible to find the download.

@@ -1,8 +1,6 @@
 <?php
-/* @var $vv VV_layout */
-$vv = $_vars;
-
-$mainDownload = $vv->getPressPackDownload();
+    /* @var $vv VV_layout */
+    $vv = $_vars;
 ?>
 
 <div class="marged">
@@ -14,17 +12,8 @@ $mainDownload = $vv->getPressPackDownload();
         </div>
     </a>
 
-    <? // DOWNLOAD COMPONENT ?>
-    <div class="downloadComponent">
-        <div class="item-title">
-            Download
-        </div>
-        <a href="<?=$mainDownload->theFile->download()?>" class="item-content">
-            <img src="<?= GiveMe::url($mainDownload->thumb)?>" alt="<?= $m->title ?>"  />
-            <i class="sprite-item-titleIcon"></i><span class="item-titleIcon">Download</span>
-            <span class="item-subtitle">Press pack</span>
-        </a>
-    </div>
+    <? // PRESS PACK COMPONENT ?>
+    <?=$this->render("press/sidebar/pressPack", $vv->getPressPackDownload())?>
 
     <? // CONTACT COMPONENT ?>
     <?=$this->render("press/sidebar/contacts", $vv)?>
