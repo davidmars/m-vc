@@ -76,9 +76,31 @@ class VV_layout extends ViewVariables {
      */
 
     public  function getPressPackDownload() {
+        //TODO::rai::remove the id in the following lines
         $download = M_download::$manager->get(2);
         /* @var $download M_download */
         return  $download;
+    }
+
+    /**
+     * @return string Return the url of the Header menu script
+     */
+    public function embedHeaderMenuUrl() {
+        return StaticDatas::$embedHeaderMenu;
+    }
+
+    /**
+     * @return string Return the url of the subHeader menu script
+     */
+    public function embedHeaderSubMenuUrl() {
+        return StaticDatas::$embedHeaderSubMenu;
+    }
+
+    /**
+     * @return string Return the url of the footer menu scrip
+     */
+    public function embedFooterUrl() {
+        return StaticDatas::$embedFooter;
     }
 }
 ?>
