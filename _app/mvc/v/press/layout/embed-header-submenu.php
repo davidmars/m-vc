@@ -6,7 +6,7 @@
 
 <div class="row top_submenu">
     <div class="span12">
-        <div class="padded">
+        <div class="marged">
             <div class="row">
                 <script src="<?=$vv->embedHeaderSubMenuUrl()?>"></script>
             </div>

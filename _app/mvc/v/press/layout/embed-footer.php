@@ -2,9 +2,9 @@
     <div class="container">
         <div class="row">
             <div class="span12">
-                <div class="noGutter">
+                <div class="marged">
                     <div class="row">
-                        <script src="<?=$vv->embedFooterUrl()?>"></script>
+                        <script src="<?=StaticDatas::$embedFooter?>"></script>
                     </div>
                 </div>
             </div>
