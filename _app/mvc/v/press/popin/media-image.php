@@ -13,14 +13,17 @@ $vv = $_vars;
         
     <div class="top">
         <img src="<?=GiveMe::imageSizedWithoutCrop($vv->media->theFile,"auto",550,"000000","jpg")?>">              
-        <br/>
         <?if($vv->isAdmin()):?>
                 <?=$this->render("press/popin/admin-uploads",$vv)?>
         <?else:?>
             <div class="download-buttons">
-                <span class="button"><i class="icon-download"></i>&nbsp;Download LD</span>
+                <span class="button">
+                    <a href="<?=$vv->media->theFile->download()?>"><i class="icon-download"></i>&nbsp;Download LD</a>
+                </span>
                 &nbsp;|&nbsp;
-                <span class="button"><i class="icon-download"></i>&nbsp;Download HD</span>
+                <span class="button">
+                    <a href="<?=$vv->media->theFileHd->download()?>"><i class="icon-download"></i>&nbsp;Download HD</a>
+                </span>
             </div>
         <?endif?>
     </div>
