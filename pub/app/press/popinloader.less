@@ -18,14 +18,29 @@
     top:50%;
 
     .popinloaded{
+      /*
       position:absolute;
       top:-300px;
-      left:-500px;
+      left:-250px;
+      */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -250px;
+        margin-left: -250px;
       &.photo{
         .top{
           text-align: center;
-          height:550px;
+          //height:550px;
           background-color: #000000;
+
+            .download-buttons {
+                width:550px;
+                background-color:@color4;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                min-width:90px;
+            }
         }
         .bottom{
           height:50px;
@@ -85,8 +100,6 @@
         left:-30px;
       }
     }
-
-
   }
 
 

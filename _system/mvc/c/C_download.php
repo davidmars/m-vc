@@ -16,8 +16,13 @@ class C_Download extends Controller {
          * @param bool $returnUrl
          * @return mixed
          */
-    	public static function download()
+    	public static function download($returnUrl=false)
 	{	               
+            if($returnUrl){
+                $c = new C_Download();
+                return $c->url();
+            }
+            
 	    //header to download
             $file = urldecode($_REQUEST["file"]);
             $name = FileTools::basename($file);

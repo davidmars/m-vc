@@ -9,28 +9,19 @@ $vv = $_vars;
         data-model-refresh-controller="<?=C_press::mediaPreview($vv->media->id,true);?>"
         <?//prevent for url browser address change?>
         data-model-refresh-controller-not-an-url="true"
-        >
+        >    
+        
     <div class="top">
-        <img height="600" src="<?=GiveMe::imageSizedWithoutCrop($vv->media->theFile,"auto",550,"000000","jpg")?>">
-    </div>
-
-    <div class="bottom">
-        <div class="container">
-            <div class="row">
-                <div class="span6">
-                    dwd1
-                </div>
-                <div class="span6">
-                    <?if($vv->isAdmin()):?>
-                        <?=$this->render("press/popin/admin-uploads",$vv)?>
-                    <?else:?>
-                        dwd1
-                        & ||
-                        dwd2
-                    <?endif?>
-                </div>
+        <img src="<?=GiveMe::imageSizedWithoutCrop($vv->media->theFile,"auto",550,"000000","jpg")?>">              
+        <br/>
+        <?if($vv->isAdmin()):?>
+                <?=$this->render("press/popin/admin-uploads",$vv)?>
+        <?else:?>
+            <div class="download-buttons">
+                <span class="button"><i class="icon-download"></i>&nbsp;Download LD</span>
+                &nbsp;|&nbsp;
+                <span class="button"><i class="icon-download"></i>&nbsp;Download HD</span>
             </div>
-        </div>
+        <?endif?>
     </div>
-
 </div>
