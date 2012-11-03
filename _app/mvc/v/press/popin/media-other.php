@@ -10,20 +10,19 @@ $vv = $_vars;
         <?//prevent for url browser address change?>
         data-model-refresh-controller-not-an-url="true"
         >
-
-    <div class="bottom">
-        <div class="container">
-            <div class="span4 offset2">
-                This is the default pop in download....it should display on or two buttons to download
-                <?if($vv->isAdmin()):?>
-                    <?=$this->render("press/popin/admin-uploads",$vv)?>
-                <?else:?>
-                    dwd1
-                    & ||
-                    dwd2
-                <?endif?>
+    <div class="top">
+        <?if($vv->isAdmin()):?>
+            <?=$this->render("press/popin/admin-uploads",$vv)?>
+        <?else:?>
+            <div class="download-buttons">
+                <div class="button">
+                    <a href="<?=$vv->media->theFile->download()?>"><i class="icon-download"></i>&nbsp;Download LD</a>
+                </div>
+                <br/>
+                <div class="button">
+                    <a href="<?=$vv->media->theFileHd->download()?>"><i class="icon-download"></i>&nbsp;Download HD</a>
+                </div>
             </div>
-        </div>
+        <?endif?>
     </div>
-
 </div>

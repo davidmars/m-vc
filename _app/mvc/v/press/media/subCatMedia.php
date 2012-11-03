@@ -63,7 +63,10 @@ $vv = $_vars;
                         Edit this category
                     </a>
                 <?else:?>
-                    <a class=view-all href="<?=C_press::subCatMedia($vv->subCategoryMedia->id,"Page","0","all",true)?>">View all</a>
+                    <a class=view-all href="<?=C_press::subCatMedia($vv->subCategoryMedia->id,"Page","0","all",true)?>"
+                       data-nav-is-ajax="true" data-nav-is-ajax-target="mainContent">
+                        View all
+                    </a>
                 <?endif?>
 
             </div>

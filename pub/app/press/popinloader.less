@@ -58,12 +58,54 @@
       &.video{
         .top{
           text-align: center;
-          height:450px;
+          //height:450px;
           background-color: #000000;
+
+            .download-buttons {
+                width:550px;
+                background-color:@color4;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                min-width:90px;
+
+                a {
+                    color:@color1;
+
+                    &:hover {
+                        color:#900; 
+                    }
+                }
+            }
         }
         .bottom{
           height:100px;
           background-color: #111111;
+        }
+      }
+
+      &.other {
+        margin-top: -50px;
+        margin-left: -50px;
+
+        .top{
+          text-align: center;
+          //height:450px;
+          background-color: #000000;
+
+            .download-buttons {
+                width:200px;
+                background-color:@color4;
+                padding: 5px;
+                min-width:90px;
+
+                a {
+                    color:@color1;
+
+                    &:hover {
+                        color:#900; 
+                    }
+                }
+            }
         }
       }
     }

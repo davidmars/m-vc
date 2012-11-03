@@ -12,8 +12,25 @@ $vv = $_vars;
         >
     <div class="top">
         <?=$vv->media->embed?>
+        <?if($vv->isAdmin()):?>
+            <div class="wysiwyg-embed" data-field="root[embed]" data-field-type="Text">
+                <b>Paste your embed code here</b>
+                <textarea class="embed"><?=$vv->media->embed?></textarea>
+            </div>
+        <?endif?>
+        <div class="download-buttons">
+                <span class="button">
+                    <a href="<?=$vv->media->theFile->download()?>"><i class="icon-download"></i>&nbsp;Download LD</a>
+                </span>
+                &nbsp;|&nbsp;
+                <span class="button">
+                    <a href="<?=$vv->media->theFileHd->download()?>"><i class="icon-download"></i>&nbsp;Download HD</a>
+                </span>
+        </div>
     </div>
 
+        
+        <?/*
     <div class="bottom">
         <div class="container">
             <div class="row">
@@ -38,5 +55,7 @@ $vv = $_vars;
             </div>
         </div>
     </div>
+         * 
+         */?>
 
 </div>
