@@ -5,18 +5,18 @@ $vv = $_vars;
 /* @var $field FileField */
 $field=$vv->field;
 ?>
-<div class=""
+<div class="file-popin"
      data-field-type="File"
      data-field="root[<?=$vv->name?>]"
      data-template="press/fields/file">
 
-    <div class="wysiwyg">
+    <div class="wysiwyg ">
 
 
         <div class="item-media-link">
 
 
-            <div class="progressContainer">
+            <div class="progressContainer">                                
                 <a class="button"
                    <?
                     if($field->exists()){
@@ -41,9 +41,9 @@ $field=$vv->field;
                             break;
                         default:
                             if(!$field->exists()){
-                                $label="Download empty";
+                                $label="Download LD empty";
                             }else{
-                                $label="Download";
+                                $label="Download LD";
                             }
                     }
 
@@ -53,9 +53,9 @@ $field=$vv->field;
                         <div class="bar" style="width: 0%;"></div>
                     </div>
 
-                </a>
+                </a>                    
                     <span class="btn-input-file">
-                        <input type="file"/><i class="icon-upload icon-white"></i>
+                        <input type="file"/><i class="icon-upload"></i>
                     </span>
 
             </div>

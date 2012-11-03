@@ -29,10 +29,10 @@ $vv = $_vars;
         <img src="<?=GiveMe::imageSizedWithoutCrop($vv->media->theFile,"auto",550,"000000","jpg")?>">              
         
         <?/* Download Button */?>
-        <?if($vv->isAdmin()):?>
+        <div class="download-buttons">
+            <?if($vv->isAdmin()):?>
                 <?=$this->render("press/popin/admin-uploads",$vv)?>
-        <?else:?>
-            <div class="download-buttons">
+            <?else:?>
                 <span class="button">
                     <a href="<?=$vv->media->theFile->download()?>"><i class="icon-download"></i>&nbsp;Download LD</a>
                 </span>
@@ -40,7 +40,7 @@ $vv = $_vars;
                 <span class="button">
                     <a href="<?=$vv->media->theFileHd->download()?>"><i class="icon-download"></i>&nbsp;Download HD</a>
                 </span>
-            </div>
-        <?endif?>
+            <?endif?>
+        </div>
     </div>
 </div>

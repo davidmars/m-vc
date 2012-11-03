@@ -10,6 +10,7 @@ $vv = $_vars;
         <?//prevent for url browser address change?>
         data-model-refresh-controller-not-an-url="true"
         >
+        
     <div class="top">
         <?if($vv->isAdmin()):?>
             <?=$this->render("press/popin/admin-uploads",$vv)?>

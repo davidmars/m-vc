@@ -19,43 +19,17 @@ $vv = $_vars;
             </div>
         <?endif?>
         <div class="download-buttons">
-                <span class="button">
-                    <a href="<?=$vv->media->theFile->download()?>"><i class="icon-download"></i>&nbsp;Download LD</a>
-                </span>
-                &nbsp;|&nbsp;
-                <span class="button">
-                    <a href="<?=$vv->media->theFileHd->download()?>"><i class="icon-download"></i>&nbsp;Download HD</a>
-                </span>
+                <?if($vv->isAdmin()):?>
+                            <?=$this->render("press/popin/admin-uploads",$vv)?>
+                <?else:?>
+                    <span class="button">
+                        <a href="<?=$vv->media->theFile->download()?>"><i class="icon-download"></i>&nbsp;Download LD</a>
+                    </span>
+                    &nbsp;|&nbsp;
+                    <span class="button">
+                        <a href="<?=$vv->media->theFileHd->download()?>"><i class="icon-download"></i>&nbsp;Download HD</a>
+                    </span>
+                <?endif?>
         </div>
-    </div>
-
-        
-        <?/*
-    <div class="bottom">
-        <div class="container">
-            <div class="row">
-                <div class="span6">
-
-                    <?if($vv->isAdmin()):?>
-                        <div class="wysiwyg-embed" data-field="root[embed]" data-field-type="Text">
-                            <b>Paste your embed code here</b>
-                            <textarea class="embed"><?=$vv->media->embed?></textarea>
-                        </div>
-                    <?endif?>
-                </div>
-                <div class="span6">
-                    <?if($vv->isAdmin()):?>
-                        <?=$this->render("press/popin/admin-uploads",$vv)?>
-                    <?else:?>
-                        dwd1
-                        & ||
-                        dwd2
-                    <?endif?>
-                </div>
-            </div>
-        </div>
-    </div>
-         * 
-         */?>
-
+    </div>        
 </div>
