@@ -12,7 +12,19 @@ $vv = $_vars;
         >    
         
     <div class="top">
+        <?/* Pop-in Close */?>
+        <?//TODO::rai::voir avec juliette pour le close?>
+        <div >
+            <span class="pull-right">
+                <a class="popincloser-inside" data-popinloder="close" href="#">
+                    <i class="icon-white icon-remove"></i>
+                </a>
+            </span>
+        </div>
+        <?/* Image Preview */?>
         <img src="<?=GiveMe::imageSizedWithoutCrop($vv->media->theFile,"auto",550,"000000","jpg")?>">              
+        
+        <?/* Download Button */?>
         <?if($vv->isAdmin()):?>
                 <?=$this->render("press/popin/admin-uploads",$vv)?>
         <?else:?>
