@@ -1,17 +1,26 @@
 <?
 /* @var $this View */
+/* @var $media VV_media */
+$vv_media = $_vars;            
 /* @var $vv VV_admin_field */
-$vv = $_vars;
+$vv = $vv_media->thumbAdminField();
 /* @var $field ImageField */
 $field=$vv->field;
 ?>
-<div class=" item-thumbnail"
+<div class="item-thumbnail"
      data-field-type="File"
      data-field="root[thumb]"
      data-template="press/fields/media-image">
 
-    <?//thumb ?>
-    <img src="<?=$field->sized(200, 200, "ff0000", "jpg")?>" alt="<?/*=$vv->post->title*/?>" />
+    <?//thumb ?>    
+    <div>
+        <?if($vv_media->media->isVideo()):?>
+            <div class="isVideoMedia">
+                &nbsp;
+            </div>
+        <?endif;?>
+        <img src="<?=$field->sized(200, 200, "ff0000", "jpg")?>" alt="<?/*=$vv->post->title*/?>" />
+    </div>
 
     <?if($vv->isAdmin()):?>
         <div class="wysiwyg">
