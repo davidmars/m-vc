@@ -156,7 +156,9 @@ var Model=function(jq){
     this.saveAll=function(){
         var childModels= me.jq.find("[data-model-type]");
         var sm;
+        if(me.type()!="nothing"){
         childModels.push(me.jq);
+        }
         var count=childModels.length;
         Utils.blink(me.jq,true,1000);
         for(var i=0;i<childModels.length;i++){
@@ -636,6 +638,7 @@ JQ.bo.on("click",Model.CTRL.SAVE_ALL,function(e){
     var elem = $(this)
     var m = Model.getParent( elem );
     m.saveAll();
+    console.log("save all / "+ m.type());
     m.events.addEventListener("onSaveAll",function(){
         m.refreshByController(elem);
     })

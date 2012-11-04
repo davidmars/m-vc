@@ -16,14 +16,14 @@ class VV_contact extends ViewVariables
         $this->contact=$contact;
         $this->contactList=$contactList;
     }
-    
+
     /**
      * This function is an easy way to get an admin field for the media->theFile field.
      * @return VV_admin_field
      */
     public function theFileAdminField(){
         $editableField=new VV_admin_field();
-        $editableField->init($this->contact->theFile,"theFile");
+        $editableField->init($this->contact,"theFile");
         $editableField->label="Download";
         return $editableField;
     }

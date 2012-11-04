@@ -1,28 +1,22 @@
 <?
-    /* @var $vv VV_download */
+    /* @var $vv VV_media */
     $vv = $_vars;
 ?>
 
 <div class="downloadComponent"
     <?//the current model type?>
-     data-model-type="M_download"
+     data-model-type="M_media"
     <?//the current model id?>
-     data-model-id="<?=$vv->id?>"
-    <?//the controller url to use to refresh after actions?>
-     data-model-refresh-controller="<?=C_press::sideBar(true)?>"
-    <?//a jquery selector that define where to inject the data-model-refresh-controller html result?>
-     data-model-refresh-target-selector="#sideBar"
-    <?//prevent for url browser address change?>
-     data-model-refresh-controller-not-an-url="true"
+     data-model-id="<?=$vv->media->id?>"
         >
     <div class="item-title">
         Download
     </div>
 
     <div class="row">
-        <a href="<?=$vv->download->theFile->download()?>" class="">
+        <a href="<?=$vv->media->theFile->download()?>" class="">
             <div class="span1 item-logo-thumbnail">            
-                <?=$this->render("press/fields/download-image",$vv->thumbAdminField())?>    
+                <?=$this->render("press/fields/download-image",$vv->thumbAdminField())?>
             </div>
             <div class="span3 item-download-text">
                 <div>
@@ -39,9 +33,9 @@
 
                 </div>
                 <?if($vv->isAdmin()):?>
-                    <?//TODO::rai::need to put a save ??>
-                    <?//TODO::david::need to put a save ??>
-                    <?=$this->render("press/fields/simple-file",$vv->theFileAdminField())?>&nbsp;<br/>
+                    <div class="the-upload">
+                    <?=$this->render("press/fields/simple-file",$vv->theFileAdminField())?>
+                    </div>
                 <?endif;?>
             </div>
         </a>

@@ -12,12 +12,7 @@ $contactList = $vv->getContactList();
      data-model-type="M_contacts"
     <?//the current model id?>
      data-model-id="<?=$contactList->model->id?>"
-    <?//the controller url to use to refresh after actions?>
-     data-model-refresh-controller="<?=C_press::sideBar(true)?>"
-    <?//a jquery selector that define where to inject the data-model-refresh-controller html result?>
-     data-model-refresh-target-selector="#sideBar"
-    <?//prevent for url browser address change?>
-     data-model-refresh-controller-not-an-url="true"
+
     >
 
     <div class="item-title">
@@ -38,12 +33,7 @@ $contactList = $vv->getContactList();
                     <i class="icon-plus-sign icon-white"></i>
                     Add a contact
                 </a>
-                <a class=" btn btn-small btn-success"
-                   href="#Model.saveAll()">
-                    <i class="icon-ok icon-white"></i>
-                    Save
-                </a>
-                    </span>
+            </span>
 
     </div>
     <?endif?>

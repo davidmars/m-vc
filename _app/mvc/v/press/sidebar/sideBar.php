@@ -1,6 +1,7 @@
 <?php
-    /* @var $vv VV_layout */
-    $vv = $_vars;
+/* @var $this View */
+/* @var $vv VV_layout */
+$vv = $_vars;
 ?>
 
 <div class="marged">
@@ -11,10 +12,6 @@
             <div class="item-title">Havana Cultura<i class="sprite-item-title"></i></div>
         </div>
     </a>
+    <?=$this->render("press/sidebar/content",$vv)?>
 
-    <? // PRESS PACK COMPONENT ?>
-    <?=$this->render("press/sidebar/pressPack", $vv->getPressPackDownload())?>
-
-    <? // CONTACT COMPONENT ?>
-    <?=$this->render("press/sidebar/contacts", $vv)?>
 </div>

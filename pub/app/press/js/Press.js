@@ -16,7 +16,6 @@ var Press = {
         inside.addClass("loading-box-inside");
         inside.addClass("marged");
 
-
         this.setLoading=function(){
 
             TweenMax.to(window, 1, {scrollTo:{y:0}, ease:Power2.easeOut});
@@ -43,8 +42,6 @@ var Press = {
 
         this.setNormal=function(){
             target.append(inside);
-            //
-
 
             TweenLite.to(
                 inside,

@@ -59,7 +59,7 @@ class C_api extends Controller{
             $m=$m->getContent();
         }
 
-        if($m){
+        if($m && $_REQUEST["root"]){
             //loop on fields
             foreach($_REQUEST["root"] as $var=>$value){
                 if(self::isRecordableField($var)){
@@ -79,11 +79,11 @@ class C_api extends Controller{
         }
 
         //the template we will send via json
-        $VVmodel=new VV_admin_model();
-        $VVmodel->init($m);
-        $template=new View($templatePath, $VVmodel);
+        //$VVmodel=new VV_admin_model();
+        //$VVmodel->init($m);
+        //$template=new View($templatePath, $VVmodel);
         //the json
-        $json->template=$template->render();
+        //$json->template=$template->render();
         die($json->json());
 
     }

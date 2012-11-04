@@ -168,15 +168,20 @@ $contact=$vv->contact;
     </div>
 
     <!-- The file of the Contact-->
-    <a class="item-contact-file">
+    <a class="item-contact-file" href="<?=$vv->contact->theFile->download()?>">
         <i class="icon-download"></i>
         Télécharger le contact
-        <?if($vv->isAdmin()):?>
-            <?//TODO::rai::finir l'upload pour contact?>
-            <?//TODO::david::finir l'upload pour contact?>   
-            <?//=$this->render("press/fields/simple-file",$vv->theFileAdminField())?>&nbsp;<br/>
-        <?endif;?>
+
     </a>
+
+    <?if($vv->isAdmin()):?>
+    <div class="pull-right mt1">
+        <div class="the-upload">
+            <?=$this->render("press/fields/simple-file",$vv->theFileAdminField())?>&nbsp;<br/>
+        </div>
+    </div>
+
+    <?endif;?>
 
     <div class="clearfix"></div>
 </div>

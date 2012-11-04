@@ -72,14 +72,13 @@ class VV_layout extends ViewVariables {
     }
 
     /**
-     * @return M_download Return the url for the download pack link
+     * @return VV_media Return the press pack VV_media object.
      */
 
     public  function getPressPackDownload() {
-        //TODO::david::Can't create a unique code from admin to use it
-        $download = M_download::$manager->select()->where("title", StaticDatas::$downloadPack)->one();
+        $download = M_media::$manager->select()->where("title", StaticDatas::$downloadPack)->one();
 
-        $vv = new VV_download();
+        $vv = new VV_media();
         $vv->init($download);
 
         /* @var $vv VV_download */
