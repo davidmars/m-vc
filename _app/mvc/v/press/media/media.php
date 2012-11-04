@@ -102,7 +102,7 @@ $vv = $_vars;
                         <div class="item-media-link">
                             <?if($vv->media->theFile->exists() || $vv->media->theFileHd->exists()):?>
                             <div class="button" data-popinloder="<?=C_press::mediaPreview($vv->media->id,true)?>" hqqqref="<?=$vv->media->theFile->download()?>">
-                                <i class="icon-download"></i> Download.
+                                <i class="icon-download"></i> Download
                             </div>
                             <?endif?>
                         </div>

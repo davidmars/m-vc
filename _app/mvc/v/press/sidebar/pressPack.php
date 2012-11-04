@@ -20,24 +20,31 @@
     </div>
 
     <div class="row">
-        <div class="span1 item-logo-thumbnail">
-                <?=$this->render("press/fields/download-image",$vv->thumbAdminField())?>
-        </div>
-        <div class="span3 item-download-text">
-            <div>
-                <table>
-                    <tr>
-                        <td><i class="sprite-item-titleIcon"></i></td>
-                        <td><span class="item-titleIcon">Download</span></td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><span class="item-subtitle">Press pack</span></td>
-                    </tr>
-                </table>
-
+        <a href="<?=$vv->download->theFile->download()?>" class="">
+            <div class="span1 item-logo-thumbnail">            
+                <?=$this->render("press/fields/download-image",$vv->thumbAdminField())?>    
             </div>
-        </div>
+            <div class="span3 item-download-text">
+                <div>
+                    <table>
+                        <tr>
+                            <td><i class="sprite-item-titleIcon"></i></td>
+                            <td><span class="item-titleIcon">Download</span></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td><span class="item-subtitle">Press pack</span></td>
+                        </tr>
+                    </table>
+
+                </div>
+                <?if($vv->isAdmin()):?>
+                    <?//TODO::rai::need to put a save ??>
+                    <?//TODO::david::need to put a save ??>
+                    <?=$this->render("press/fields/simple-file",$vv->theFileAdminField())?>&nbsp;<br/>
+                <?endif;?>
+            </div>
+        </a>
     </div>
 
 

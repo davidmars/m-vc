@@ -171,6 +171,11 @@ $contact=$vv->contact;
     <a class="item-contact-file">
         <i class="icon-download"></i>
         Télécharger le contact
+        <?if($vv->isAdmin()):?>
+            <?//TODO::rai::finir l'upload pour contact?>
+            <?//TODO::david::finir l'upload pour contact?>   
+            <?//=$this->render("press/fields/simple-file",$vv->theFileAdminField())?>&nbsp;<br/>
+        <?endif;?>
     </a>
 
     <div class="clearfix"></div>
