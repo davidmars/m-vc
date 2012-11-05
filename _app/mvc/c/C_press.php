@@ -83,6 +83,27 @@ Class C_press extends Controller{
         // return the controller
         return $c;
     }
+
+    /**
+     * Open the pop in for share by email the post
+     * @param bool $returnUrl
+     * @return C_press|string
+     */
+    public static function sendToFriend($returnUrl=false) {
+        if($returnUrl){
+            $c = new C_press();
+            return $c->url();
+        }
+
+        // create a variable for our controller
+        $c = new C_press();
+
+        $vv = new VV_layout();
+
+        $c->resultView = new View("press/popin/share-friend", $vv);
+
+        return $c;
+    }
     
     /**
      *

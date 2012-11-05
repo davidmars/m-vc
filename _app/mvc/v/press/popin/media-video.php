@@ -14,7 +14,7 @@ $vv = $_vars;
         <?=$vv->media->embed?>
         <?if($vv->isAdmin()):?>
             <div class="wysiwyg-embed" data-field="root[embed]" data-field-type="Text">
-                <b>Paste your embed code here</b>
+                <div class="popin-embed-text"><b>Paste your embed code here</b></div>
                 <textarea class="embed"><?=$vv->media->embed?></textarea>
             </div>
         <?endif?>

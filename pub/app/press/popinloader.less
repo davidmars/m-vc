@@ -37,12 +37,15 @@
             .download-buttons {
                 width:550px;
                 background-color:@color4;
-                padding-top: 5px;
-                padding-bottom: 5px;
+                padding-top: 10px;
+                padding-bottom: 10px;
                 min-width:90px;
 
                 a {
                     color:@color1;
+                    &.save-button-admin {
+                      color: white;
+                    }
 
                     &:hover {
                         color:#900; 
@@ -64,12 +67,16 @@
             .download-buttons {
                 width:550px;
                 background-color:@color4;
-                padding-top: 5px;
-                padding-bottom: 5px;
+                padding-top: 10px;
+                padding-bottom: 10px;
                 min-width:90px;
 
                 a {
                     color:@color1;
+
+                    &.save-button-admin {
+                      color: white;
+                    }
 
                     &:hover {
                         color:#900; 
@@ -103,11 +110,42 @@
                 a {
                     color:@color1;
 
+                    &.save-button-admin {
+                      color: white;
+                    }
                     &:hover {
                         color:#900; 
                     }
                 }
             }
+        }
+      }
+
+      &.shareEmail {
+        position:absolute;
+        top:50%;
+        left:50%;
+        width:480px;
+        height:320px;
+        background:#fff;
+        margin-top:-160px;
+        margin-left:-240px;
+
+        .item-email-title {
+          .bg-share-email;
+          .font-share-email;
+          padding: 16px;
+        }
+
+        .item-email-close {
+          .bg-close;
+          .pull-right;
+          display: block;
+          height: 20px;
+          line-height: 30px;
+          overflow: hidden;
+          text-indent: 30px;
+          width: 20px;
         }
       }
     }
@@ -191,7 +229,7 @@
 .save-button-admin {
     .pull-right;
     margin-right:30px;
-    padding-top:0px;
+    padding-top:2px;
 }
 
 .separator-admin {
@@ -208,6 +246,10 @@
 .file-popin-left{
     .pull-left;
     padding-right:30px;
+}
+
+.popin-embed-text {
+  padding-top: 10px;
 }
 
 [data-popinloder]{
