@@ -7,7 +7,7 @@ $field=$vv->field;
 ?>
 
 <div class="item-thumbnail"
-     data-uplad-model-type="M_photo"
+     data-upload-model-type="M_photo"
      data-field-type="File"
      data-field="root[photo]"
      data-template="press/fields/block-photo">

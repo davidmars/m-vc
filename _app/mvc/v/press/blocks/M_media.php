@@ -42,17 +42,48 @@ $media=$vv->block->getContent();
         <div class="padded">
             <div class="item-file">                                
                 <div class="icon-preview-mime" data-mime="<?=$media->theFile->mime()?>"></div>
-                <img src="<?= GiveMe::url("pub/app/press/img/icon_pdf.jpg") ?>" alt="" />                                
+                <?/*img src="<?= GiveMe::url("pub/app/press/img/icon_pdf.jpg") ?>" alt="" */?>
+                <img src="<?= GiveMe::imageSized($media->autoIcon(),56,56,"000000","jpg") ?>" alt="" />
+
+
                 <div class="item-file-content">
-                    <div class="item-file-name">
-                        <?=$media->title?>
+
+
+                    <?/*------------------title-------------*/?>
+
+                    <div class="" data-field="root[title]" data-field-type="Text">
+                        <div class="item-file-name">
+                            <span
+                                <?//editable ?>
+                                <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                                <?// no text formatting allowed here */?>
+                                    data-remove-format="true">
+                                <?=$media->title?>
+                            </span>
+                        </div>
                     </div>
+
+
+
+                    <?/*------------------dwd / upload-------------*/?>
+
+
+
                     <div class="item-file-download">
-                        <a href="<?=$media->theFile->download()?>">
-                            <i class="icon-download"></i>
-                            Télécharger
-                        </a>
-                    </div> 
+                        <?if($vv->isAdmin() ||
+                            $media->theFile->exists() ||
+                            $media->theFileHd->exists()):?>
+                            <div class="button" data-popinloder="<?=C_press::mediaPreview($media->id,true)?>">
+                                <i class="icon-download"></i> Download
+                            </div>
+                        <?endif?>
+                    </div>
+
+
+
+
+
+
                 </div>                                
                 <div class="clearfix"></div>                                
             </div>

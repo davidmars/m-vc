@@ -112,6 +112,55 @@ class M_media extends M_{
     }
 
     /**
+     * return an appropriate image url according the mime of the first download.
+     * @return string
+     */
+    public function autoIcon(){
+        if($this->isImage()){
+            return $this->theFile;
+        }
+        if($this->isFont()){
+            return "pub/app/press/img/icon_font.jpg";
+        }
+        if($this->isPdf()){
+            return "pub/app/press/img/icon_pdf.jpg";
+        }
+
+        //default
+        return "pub/app/press/img/icon_ppt.jpg";
+    }
+
+    /**
+     * @return bool true if the first download is a zip file
+     */
+    public function isZip(){
+        if(preg_match("#zip#",$this->theFile->mime())){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    /**
+     * @return bool true if the first download is a fnnt file
+     */
+    public function isFont(){
+        if(FileTools::extension($this->theFile)=="ttf" || FileTools::extension($this->theFile)=="otf"){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    /**
+     * @return bool true if the first download is a pdf file
+     */
+    public function isPdf(){
+        if(preg_match("#pdf#",$this->theFile->mime())){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    /**
      * @return bool true if the first download is an image
      */
     public function isImage(){
