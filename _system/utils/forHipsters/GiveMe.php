@@ -74,6 +74,7 @@ class GiveMe {
      * @return string Will call the function to add a twitter share button on your blog
      */
     public static function socialTwitter(){
-        return '<a class="twitter-share-button" href="http://twitter.com/share" data-url="" data-count="none" data-lang="en">Tweet</a>';
+        //return '<a class="twitter-share-button" href="http://twitter.com/share" data-url="" data-count="none" data-lang="en">Tweet</a>';
+        return '<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>';
     }
 }

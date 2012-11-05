@@ -14,7 +14,9 @@
     </div>
 
     <div class="row">
+        <?if(!$vv->isAdmin()):?>
         <a href="<?=$vv->media->theFile->download()?>" class="">
+        <?endif;?>
             <div class="span1 item-logo-thumbnail">            
                 <?=$this->render("press/fields/download-image",$vv->thumbAdminField())?>
             </div>
@@ -38,7 +40,9 @@
                     </div>
                 <?endif;?>
             </div>
+        <?if(!$vv->isAdmin()):?>
         </a>
+        <?endif;?>
     </div>
 
 

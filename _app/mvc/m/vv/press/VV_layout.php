@@ -81,7 +81,7 @@ class VV_layout extends ViewVariables {
         $vv = new VV_media();
         $vv->init($download);
 
-        /* @var $vv VV_download */
+        /* @var $vv VV_media */
         return  $vv;
     }
 
