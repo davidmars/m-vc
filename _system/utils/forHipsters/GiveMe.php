@@ -28,6 +28,22 @@ class GiveMe {
     public static function urlInfos($url){
 	return Site::urlInfos($url);
     }
+
+    /**
+     * @return string return the current url
+     */
+    public static function currentUrl() {
+        $pageURL = 'http';
+        if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+        $pageURL .= "://";
+        if ($_SERVER["SERVER_PORT"] != "80") {
+            $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+        } else {
+            $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+        }
+
+        return $pageURL;
+    }
     
     /**
      * Will resize an image. The output image will fill the rectangle desinged by $width and $height. 
@@ -66,15 +82,16 @@ class GiveMe {
     /**
      * @return string Will call the function to add a google plus button on your blog
      */
-    public static function socialGoogle(){
-        return '<div class="item-google"><g:plusone href="" size="medium" count="false"></g:plusone></div>';
+    public static function socialGoogle($url){
+        return '<div class="item-google"><g:plusone href="'.$url.'" size="medium" count="false"></g:plusone></div>';
+        //return '<div class="plusone"><g:plusone href="test" size="medium" count="false"></g:plusone></div>';
     }
 
     /**
      * @return string Will call the function to add a twitter share button on your blog
      */
-    public static function socialTwitter(){
+    public static function socialTwitter($url){
         //return '<a class="twitter-share-button" href="http://twitter.com/share" data-url="" data-count="none" data-lang="en">Tweet</a>';
-        return '<a href="https://twitter.com/share" class="twitter-share-button">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>';
+        return '<a href="http://twitter.com/share" data-url="'.$url.'" class="twitter-share-button" data-count="none" data-lang="fr">Tweet</a>';
     }
 }

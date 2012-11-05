@@ -62,8 +62,8 @@ $this->inside("press/layout/layout", $vv);
                                         <div class="item-share" id="<?= $id ?>">
 
                                             <a class="item-email" data-page=""></a>
-                                            <?=GiveMe::socialGoogle()?>
-                                            <?=GiveMe::socialTwitter()?>
+                                            <?=GiveMe::socialGoogle(GiveMe::currentUrl())?>
+                                            <?=GiveMe::socialTwitter(GiveMe::currentUrl())?>
                                             <?=GiveMe::socialFB()?>
                                         </div>
                                 </div>

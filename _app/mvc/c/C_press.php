@@ -257,8 +257,8 @@ Class C_press extends Controller{
         JS::addAfterBody("pub/libs/heartcode-canvasloader-min.js");
 
         //fancy box (pop in)
-        JS::addAfterBody("pub/libs/fancy-box/jquery.fancybox.pack.js");
-        CSS::addToHeader("pub/libs/fancy-box/jquery.fancybox.css");
+        //JS::addAfterBody("pub/libs/fancy-box/jquery.fancybox.pack.js");
+        //CSS::addToHeader("pub/libs/fancy-box/jquery.fancybox.css");
 
         // social share
         JS::addAfterBody("https://apis.google.com/js/plusone.js");
