@@ -18,7 +18,37 @@ $vv = $_vars;
                 envoyer à un ami
             </div>
             <div class="item-email-content">
-                I'm the content
+               <div class="item-email-form">
+                   <p class="warning">Il est interdit d’envoyer cet email à une personne mineure.</p>
+                   <form id="emailform" name="sentoafriend" method="post" class="emailform" action="<?="test"?>">
+                       <? //email ?>
+                       <label class="item-label" for="senderemail">
+                           Votre E-mail <span class="required">*</span>
+                       </label>
+                       <input type="text" name="senderemail" value="" class="input" id="senderEmail"/>
+                       <div class="clear"></div>
+
+                       <? // email de l'ami ?>
+                       <label class="item-label" for="friendEmail">
+                           E-mail de votre ami <span class="required">*</span>
+                       </label>
+                       <input type="text" name="friendemail" value="" class="input" id="friendEmail"/>
+                       <div class="clear"></div>
+
+                       <? // description ?>
+                       <label class="item-label" for="textareaMessage">
+                           Votre message
+                       </label>
+                       <textarea name="message" id="textareaMessage" class="textarea"></textarea>
+                       <div class="clear"></div>
+
+                   <div class="item-email-from-footer  font3">
+                       <input type="submit" name="submit" value="Envoyer" class="submit">
+                       <span class="required-msg"><span class="required">*</span> Champs obligatoires</span>
+                   </div>
+
+                   </form>
+               </div>
             </div>
         </div>
         <?/*
