@@ -105,5 +105,10 @@ class VV_layout extends ViewVariables {
     public function embedFooterUrl() {
         return StaticDatas::$embedFooter;
     }
+
+    /**
+     * @var bool use true for the login page, beacause we are not looged in yet but we nee som admin functionnalities.
+     */
+    public $isLogin=false;
 }
 ?>

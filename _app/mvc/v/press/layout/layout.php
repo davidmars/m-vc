@@ -63,7 +63,7 @@
 <?=$this->render("press/popin/popinloader")?>
 
 <?//-----------------admin WYSIWYG configuration--------------------*/?>
-<?if($vv->isAdmin()):?>
+<?if($vv->isAdmin() || $vv->isLogin):?>
     <script>
         Config.apiUrl="/admin/api"
         Config.rootUrl="<?=Site::url("",true)?>";

@@ -166,7 +166,39 @@ Class C_press extends Controller{
         $c->resultView = new View($template, $vv);
         return $c;
     }
+    /**
+     * Display the login page.
+     * @param bool $returnUrl
+     * @return C_admin_model
+     */
+    public static function login($returnUrl=false){
 
+        if($returnUrl){
+            $c = new C_press();
+            return $c->url();
+        }
+
+        $c=new C_press();
+        self::setCssAndJs(true);
+        $vv=new VV_layout();
+        $vv->isLogin=true;
+        $c->resultView=new View("press/login",$vv);
+        return $c;
+    }
+    /**
+     * Logout the user
+     * In all cases, die the action with a VV_apiReturn.
+     */
+    public static function logout(){
+
+        $log=M_user::logout();
+        return self::login();
+    }
+    /**
+     * Display the sidebar content. This is only used by admin to refresh the page.
+     * @param bool $returnUrl
+     * @return C_press|string
+     */
     public static function sideBar($returnUrl=false) {
         if($returnUrl){
             $c = new C_press();
@@ -180,10 +212,11 @@ Class C_press extends Controller{
         $c->resultView = new View("press/sidebar/sideBar", $vv);
         return $c;
     }
-    
+
     /**
-     *
-     * 
+     * Display a style guide page. a good way th understand the css
+     * @param bool $returnUrl
+     * @return C_press|string
      */
     public function styleGuide($returnUrl=false) {  
 	if($returnUrl){
@@ -201,9 +234,9 @@ Class C_press extends Controller{
     
     /**
      * Settings for admin, need to be added
-     * @param bool $final si true, incluera les fichiers de base
+     * @param bool $forceadmin if true will include the admin fils if the user is logged or not
      */
-    private static function setCssAndJs($final=true){
+    private static function setCssAndJs($forceadmin=true){
         //modernizer
         JS::addToHeader("pub/libs/modernizr-2.5.3-respond-1.1.0.min.js");
         
@@ -239,7 +272,7 @@ Class C_press extends Controller{
         JS::addAfterBody("pub/app/press/js/Share.js");
 
         //admin?
-        if(M_user::currentUser()->canWrite()){
+        if(M_user::currentUser()->canWrite() || $forceadmin){
             POV_CssAndJs::adminSettings(false);
         }
 

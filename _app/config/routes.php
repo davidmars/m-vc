@@ -15,6 +15,8 @@ UrlControler::$routes=array(
         //generic admin
         "admin"=>"admin/admin_model/listModels/M_post",
 
+        "login"=>"press/login",
+        "logout"=>"press/logout",
         "pressroom/category/post/(:num)/(:num)"=>"press/categoryPost/$1/$2",
         "pressroom/downloads/(:num)/(:num)"=>"press/categoryMedia/$1/$2",
         "pressroom/post/(:any)"=>"press/post/$1",
