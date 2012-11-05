@@ -23,7 +23,9 @@ class VV_media extends VV_layout {
      * @return VV_admin_field
      */
     public function theFileAdminField(){
+
         $editableField=new VV_admin_field();
+
         $editableField->init($this->media,"theFile");
         $editableField->label="Download";
         return $editableField;
@@ -45,6 +47,7 @@ class VV_media extends VV_layout {
      */
     public function thumbAdminField(){
         $editableField=new VV_admin_field();
+        $editableField->disableLocalAdmin=$this->disableLocalAdmin;
         $editableField->init($this->media,"thumb");
         return $editableField;
     }

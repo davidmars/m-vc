@@ -69,8 +69,10 @@ $vv = $_vars;
                          *  --- download in any cases.
                          */?>
 
-                            <div data-popinloder="<?=C_press::mediaPreview($vv->media->id,true)?>">                                
-                                <?=$this->render("press/fields/media-image",$vv)?>
+                            <div <?if(!$vv->isAdmin()):?>
+                                    data-popinloder="<?=C_press::mediaPreview($vv->media->id,true)?>"
+                                 <?endif?>>
+                                <?=$this->render("press/fields/media-image",$vv->thumbAdminField())?>
                             </div>
 
                     </div>

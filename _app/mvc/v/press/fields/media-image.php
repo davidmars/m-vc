@@ -1,11 +1,13 @@
 <?
 /* @var $this View */
-/* @var $media VV_media */
-$vv_media = $_vars;            
 /* @var $vv VV_admin_field */
-$vv = $vv_media->thumbAdminField();
+$vv = $_vars;
 /* @var $field ImageField */
 $field=$vv->field;
+
+/* @var $media VV_media */
+$media=$vv->field->model;
+
 ?>
 <div class="item-thumbnail"
      data-field-type="File"
@@ -14,11 +16,13 @@ $field=$vv->field;
 
     <?//thumb ?>    
     <div>
-        <?if($vv_media->media->isVideo()):?>
+
+        <?if($media->isVideo()):?>
             <div class="isVideoMedia">
                 &nbsp;
             </div>
         <?endif;?>
+
         <img src="<?=$field->sized(200, 200, "ff0000", "jpg")?>" alt="<?/*=$vv->post->title*/?>" />
     </div>
 
