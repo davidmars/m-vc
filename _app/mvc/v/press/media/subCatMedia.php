@@ -6,6 +6,7 @@ $vv = $_vars;
 ?>
 
 <div class="span8 subcatMedia subcatMediaPreview"
+        data-slider="true"
         data-model-id="<?=$vv->subCategoryMedia->id?>"
         data-model-type="M_subcategory_media"
         >
@@ -49,9 +50,12 @@ $vv = $_vars;
 
 
         <?/*------------the list--------------*/?>
+        <div class="slider">
+            <div class="move">
+                <?=$this->render("press/media/subCatMediaList",$vv)?>
 
-        <?=$this->render("press/media/subCatMediaList",$vv)?>
-
+            </div>
+        </div>
 
         <?/*-----------footer-------------*/?>
 
@@ -68,7 +72,10 @@ $vv = $_vars;
                         View all
                     </a>
                 <?endif?>
-
+                <div class="pagination">
+                    <a class="prev" href="#Press.Slider.prev()">Prev</a>
+                    <a class="next" href="#Press.Slider.next()">Next</a>
+                </div>
             </div>
         </div>
 

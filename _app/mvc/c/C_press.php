@@ -160,7 +160,7 @@ Class C_press extends Controller{
             $template = "press/subCatMediaPage";
         }
         else {
-            $template = "press/subCatMediaList";
+            $template = "press/media/subCatMediaList";
         }
 
         $c->resultView = new View($template, $vv);

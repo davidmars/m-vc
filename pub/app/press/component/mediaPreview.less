@@ -72,3 +72,29 @@
     background-image:url(@phpAppFolder+"/app/press/img/nowplaying.png");
     background-repeat: no-repeat;    
 }
+
+
+//-------------slider--------------------
+
+.subcatMediaPreview{
+
+  .slider{
+    //overflow:hidden;
+    //padding-left:15px;
+    .move{
+      width:50000px;
+      background-color: #ff0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  //no slider under a certain size
+  .subcatMediaPreview{
+    .slider{
+      .move{
+        width:100%;
+      }
+    }
+  }
+}

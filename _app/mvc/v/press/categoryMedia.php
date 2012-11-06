@@ -45,9 +45,7 @@
             <!-- list all subCats -->
             <div class="row">
                 <? foreach ($vv->subCatMedias as $subCat):?>
-
                     <?=$this->render("press/media/subCatMedia", $subCat)?>
-
                 <? endforeach;?>
             </div>
         </div>

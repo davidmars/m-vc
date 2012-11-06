@@ -10,4 +10,11 @@
             <?=$this->render("press/media/media",$m)?>
         <?endforeach;?>
     <?endif;?>
+
+    <?if($vv->completeList):?>
+    <div data-nav-ajax-autoload="<?=$vv->completeList?>"></div>
+    <?endif?>
+
 </div>
+
+

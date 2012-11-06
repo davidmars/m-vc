@@ -51,10 +51,6 @@ $vv = $_vars;
             <?endif?>
 
 
-
-
-
-
             <div class="row">
                 <div class="span2">
 

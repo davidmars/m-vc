@@ -77,6 +77,81 @@ Press.setActiveTab=function(tab){
 
 Press.init();
 
+//------------------slider-----------------------
+Press.Slider=function(jq){
+    var me=this;
+    var jq=$(jq);
+
+    var moved=jq.find(".move")
+    var pagination=jq.find(".pagination")
+    var prevBtn=jq.find(".prev")
+    var nextBtn=jq.find(".next")
+    /**
+     *
+     * @return {number} The unity for ech movement
+     */
+    this.moveByValue=function(){
+        var el=$(jq.find(".span2 .marged .marged")[1]);
+        //one element size * number of elements for each box -4 because the border :\
+        console.log("el.width()="+Utils.numberCss(el.css("width")))
+        return Utils.numberCss(el.css("width"))*4;
+    }
+    this.getPos=function(){
+       return Utils.numberCss(moved.css("margin-left"));
+    }
+    this.roundPos=function(){
+        var pos=Math.round(me.getPos()/me.moveByValue());
+        //console.log(me.getPos());
+        //console.log(me.moveByValue());
+        console.log("-----");
+        console.log(pos);
+    }
+    this.prev=function(){
+        TweenMax.to(moved,0.5,
+            {css:{
+                "margin-left":me.getPos()+me.moveByValue()
+                },
+                onComplete:function(){
+                    me.roundPos()
+                }
+            });
+    }
+    this.next=function(){
+        TweenMax.to(moved,0.5,
+            {
+                css:{
+                "margin-left":me.getPos()-me.moveByValue()
+                },
+                onComplete:function(){
+                    me.roundPos()
+                }
+            }
+        );
+    }
+
+}
+/**
+ *
+ * @param el
+ * @return {Press.Slider}
+ */
+Press.Slider.getParent=function(el){
+    var dom=$(el).closest("[data-slider='true']");
+    return new Press.Slider(dom);
+}
+
+Dom.body.on("click","[href='#Press.Slider.prev()']",function(e){
+    e.preventDefault();
+    var slider=Press.Slider.getParent($(this));
+    slider.prev();
+})
+Dom.body.on("click","[href='#Press.Slider.next()']",function(e){
+    e.preventDefault();
+    var slider=Press.Slider.getParent($(this));
+    slider.next();
+})
+
+
 
 var PopInLoader={
     main:$("#popinloader"),

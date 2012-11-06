@@ -34,6 +34,12 @@ class VV_subCatMedia extends VV_layout {
      */
     public $medias;
 
+
+    /**
+     * @var string The controller url to retrieve the complete list of media in pagination
+     */
+    public $completeList=null;
+
     /**
      * @param $currentSubCategory M_subcategory_media
      * @param $start
@@ -67,6 +73,14 @@ class VV_subCatMedia extends VV_layout {
         }
 
         $this->template = $template;
+
+        if($template!="Page"){
+            $nb=$currentSubCategory->medias->select()->count();
+            if($nb>4 && $start!=5){ //if there is more than 4 and if we are not yet in the targeted controller/view
+                $this->completeList=C_press::subCatMedia($currentSubCategory->id,"list",5,1000,true);
+            }
+        }
+
         $this->start = $start;
         $this->nbItem = $nbItem;
     }
