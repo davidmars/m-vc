@@ -125,9 +125,45 @@ class M_media extends M_{
         if($this->isPdf()){
             return "pub/app/press/img/icon_pdf.jpg";
         }
+        if($this->isZip()){
+            return "pub/app/press/img/icon_zip.jpg";
+        }
+        if($this->isVideo()){
+            return "pub/app/press/img/icon_video.jpg";
+        }
+        if($this->isSound()){
+            return "pub/app/press/img/icon_sound.jpg";
+        }
+
+        if($this->isPowerPoint()){
+            return "pub/app/press/img/icon_ppt.jpg";
+        }
 
         //default
-        return "pub/app/press/img/icon_ppt.jpg";
+        return "pub/app/press/img/icon_default.jpg";
+    }
+
+
+    /**
+     * @return bool true if the first download is a sound file
+     */
+    public function isPowerPoint(){
+        if(preg_match("#powerpoint#",$this->theFile->mime())){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * @return bool true if the first download is a sound file
+     */
+    public function isSound(){
+        if(preg_match("#audio#",$this->theFile->mime())){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

@@ -83,6 +83,27 @@ Class C_press extends Controller{
         // return the controller
         return $c;
     }
+
+    /**
+     * Open the pop in for share by email the post
+     * @param bool $returnUrl
+     * @return C_press|string
+     */
+    public static function sendToFriend($returnUrl=false) {
+        if($returnUrl){
+            $c = new C_press();
+            return $c->url();
+        }
+
+        // create a variable for our controller
+        $c = new C_press();
+
+        $vv = new VV_layout();
+
+        $c->resultView = new View("press/popin/share-friend", $vv);
+
+        return $c;
+    }
     
     /**
      *
@@ -257,8 +278,8 @@ Class C_press extends Controller{
         JS::addAfterBody("pub/libs/heartcode-canvasloader-min.js");
 
         //fancy box (pop in)
-        JS::addAfterBody("pub/libs/fancy-box/jquery.fancybox.pack.js");
-        CSS::addToHeader("pub/libs/fancy-box/jquery.fancybox.css");
+        //JS::addAfterBody("pub/libs/fancy-box/jquery.fancybox.pack.js");
+        //CSS::addToHeader("pub/libs/fancy-box/jquery.fancybox.css");
 
         // social share
         JS::addAfterBody("https://apis.google.com/js/plusone.js");

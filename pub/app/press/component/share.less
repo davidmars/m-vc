@@ -2,7 +2,7 @@
 .shareComponent{
     div {
         &.item-share {
-            .marginBigLeft-gutter;
+          margin-left: 0;
         }
     }    
     .item-email { // popinEmailButton
@@ -13,7 +13,7 @@
         width: 32px;
         height: 20px;
         overflow: hidden;
-        margin-right: 13px !important;  
+        margin-right: 11px !important;
     }
     .item-google { // plusone
         display: block;
@@ -25,6 +25,11 @@
         .pull-left;
         height: 20px;
         margin-right: 11px !important;
+    }
+
+    .twitter-share-button {
+      float:left;
+      margin-right: 11px;
     }
     
 }

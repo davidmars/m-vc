@@ -20,7 +20,7 @@ var Press = {
 
             TweenMax.to(window, 1, {scrollTo:{y:0}, ease:Power2.easeOut});
 
-            console.log(target);
+            //console.log(target);
             target.addClass("loading-box");
             //target.addClass("span8");
             target.append(inside);

@@ -37,12 +37,15 @@
             .download-buttons {
                 width:550px;
                 background-color:@color4;
-                padding-top: 5px;
-                padding-bottom: 5px;
+                padding-top: 10px;
+                padding-bottom: 10px;
                 min-width:90px;
 
                 a {
                     color:@color1;
+                    &.save-button-admin {
+                      color: white;
+                    }
 
                     &:hover {
                         color:#900; 
@@ -64,12 +67,16 @@
             .download-buttons {
                 width:550px;
                 background-color:@color4;
-                padding-top: 5px;
-                padding-bottom: 5px;
+                padding-top: 10px;
+                padding-bottom: 10px;
                 min-width:90px;
 
                 a {
                     color:@color1;
+
+                    &.save-button-admin {
+                      color: white;
+                    }
 
                     &:hover {
                         color:#900; 
@@ -103,11 +110,132 @@
                 a {
                     color:@color1;
 
+                    &.save-button-admin {
+                      color: white;
+                    }
                     &:hover {
                         color:#900; 
                     }
                 }
             }
+        }
+      }
+
+      //TODO::rai::clear this css file later optimisation with components and variables
+      &.shareEmail {
+        position:absolute;
+        top:50%;
+        left:50%;
+        width:480px;
+        height:320px;
+        background:#fff;
+        margin-top:-160px;
+        margin-left:-240px;
+
+        .item-email-title {
+          .bg-share-email;
+          .font-share-email;
+          padding: 16px;
+        }
+
+        .item-email-close {
+          .bg-close;
+          .pull-right;
+          display: block;
+          height: 20px;
+          line-height: 30px;
+          overflow: hidden;
+          text-indent: 30px;
+          width: 20px;
+        }
+
+        .item-email-form {
+          padding: 16px 0;
+
+          .warning {
+            color: #990000;
+            font-family: sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            line-height: 14px;
+            padding: 0 16px 16px;
+            text-align: right;
+          }
+
+          .item-label {
+            .required {
+              color: @color15;
+            }
+
+
+            color: #606759;
+            float: left;
+            font-size: 11px;
+            height: 12px;
+            line-height: 14px;
+            padding: 3px 10px 3px 0;
+            text-align: right;
+            width: 150px;
+          }
+
+          .input {
+            border: 1px solid #999999;
+            color: #606759;
+            float: left;
+            font-family: Arial,Helvetica,sans-serif;
+            font-size: 11px;
+            height: 12px;
+            line-height: 14px;
+            margin-bottom: 10px;
+            padding: 3px 4px;
+            width: 294px;
+          }
+
+          .textarea {
+
+            border: 1px solid #999999;
+            color: #606759;
+            float: left;
+            font-family: Arial,Helvetica,sans-serif;
+            font-size: 11px;
+            margin-bottom: 10px;
+            padding: 3px 4px;
+            width: 294px;
+            height: 60px;
+            line-height: 14px;
+            resize: none;
+            overflow: auto;
+          }
+
+          .submit {
+            .bg-share-email;
+            color: #FFFFFF;
+            float: right;
+            font-weight: bold;
+            padding: 5px 10px;
+            text-transform: uppercase;
+
+          }
+
+          .item-email-from-footer {
+            color: #606759;
+            font-size: 11px;
+            line-height: 14px;
+            margin: 0 16px 0 160px;
+            text-align: left;
+            width: 304px;
+
+            .warning {
+              color: #990000;
+              font-family: sans-serif;
+              font-size: 12px;
+              font-weight: bold;
+              line-height: 14px;
+              padding: 0 16px 16px;
+              text-align: right;
+            }
+
+          }
         }
       }
     }
@@ -191,7 +319,7 @@
 .save-button-admin {
     .pull-right;
     margin-right:30px;
-    padding-top:0px;
+    padding-top:2px;
 }
 
 .separator-admin {
@@ -208,6 +336,10 @@
 .file-popin-left{
     .pull-left;
     padding-right:30px;
+}
+
+.popin-embed-text {
+  padding-top: 10px;
 }
 
 [data-popinloder]{
