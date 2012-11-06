@@ -57,18 +57,20 @@ Press.Slider=function(jq){
         enableBtn(pagination.find("a"));
     }
     var disableBtn=function(jq){
-        jq.css("opacity",0.2);
+        jq.addClass("disabled");
+        //jq.css("opacity",0.2);
     }
     var enableBtn=function(jq){
-        jq.css("opacity",1);
+        jq.removeClass("disabled");
+        //jq.css("opacity",1);
     }
     var setActiveBtn=function(jq,active){
         if(active){
             jq.addClass("active");
-            jq.css("color","#000");
+            //jq.css("color","#000");
         }else{
             jq.removeClass("active");
-            jq.css("color","");
+            //jq.css("color","");
         }
         jq.css("opacity",1);
     }
@@ -92,7 +94,7 @@ Press.Slider=function(jq){
     var moveTo=function(pos){
         TweenMax.to(moved,0.5,
             {css:{
-                "margin-left":pos
+                marginLeft:pos
             },
                 onComplete:function(){
                     roundPos()

@@ -60,7 +60,7 @@ $vv = $_vars;
         <?/*-----------footer-------------*/?>
 
         <div class="footer-preview">
-            <div class="right">
+            <div class="pull-right">
                 <?if($vv->isAdmin()):?>
                     <a class="btn btn-success btn-small" href="<?=C_press::subCatMedia($vv->subCategoryMedia->id,"Page","0","all",true)?>">
                         <i class="icon-edit icon-white"></i>
@@ -72,17 +72,24 @@ $vv = $_vars;
                         View all
                     </a>
                 <?endif?>
-                <?if($vv->hasSlider()):?>
-                    <div class="pagination">
-                        <?//pages list?>
-                        <?for($i=0;$i<$vv->getSlides();$i++):?>
-                            <a href="#Press.Slider.toPage()" data-page="<?=$i?>"><?=$i+1?></a>
-                        <?endfor?>
-                        <a class="prev" href="#Press.Slider.prev()">Prev</a>
-                        <a class="next" href="#Press.Slider.next()">Next</a>
-                    </div>
-                <?endif?>
             </div>
+            <?if($vv->hasSlider()):?>
+            <div class="pull-left">
+                <div class="pagination pagination-small">
+                    <?//pages list?>
+                    <ul>
+                        <li><a class="prev" href="#Press.Slider.prev()"><i class="icon-left-arrow"></i></a></li>
+                        <?for($i=0;$i<$vv->getSlides();$i++):?>
+                            <li><a href="#Press.Slider.toPage()" data-page="<?=$i?>"><?=$i+1?></a></li>
+                        <?endfor?>
+                        <li><a class="next" href="#Press.Slider.next()"><i class="icon-right-arrow"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <?endif?>
         </div>
 
         <div class="clearfix"></div>
