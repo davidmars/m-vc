@@ -20,23 +20,24 @@ class VV_subCatMedia extends VV_layout {
     public $currentIndex;
 
     public $template;
-
+    /**
+     * @var int The start index for the media selection to display
+     */
     public $start;
-
+    /**
+     * @var int number of elements to display
+     */
     public $nbItem;
     /**
      * @var VV_categoryMedia the parent category
      */
     public $currentCategory;
-
     /**
      * @var VV_media[] all medias
      */
     public $medias;
-
-
     /**
-     * @var string The controller url to retrieve the complete list of media in pagination
+     * @var string The controller url to retrieve the complete list of media in pagination. This controller is used by ajax to get the end of the media list.
      */
     public $completeList=null;
 
@@ -83,5 +84,32 @@ class VV_subCatMedia extends VV_layout {
 
         $this->start = $start;
         $this->nbItem = $nbItem;
+    }
+
+    /**
+     * @return bool return true if there is too much media in the subcategory.
+     */
+    public function hasSlider(){
+        if($this->total()>$this->bySlide){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @return float The number of slides necessary to display the entire media list.
+     */
+    public function getSlides(){
+        return ceil($this->total()/$this->bySlide);
+    }
+    /**
+     * @var int The number of media to display for each slider.
+     */
+    public $bySlide=4;
+    /**
+     * @return int The number of media inside this category
+     */
+    public function total(){
+        return $this->subCategoryMedia->medias->select()->count();
     }
 }

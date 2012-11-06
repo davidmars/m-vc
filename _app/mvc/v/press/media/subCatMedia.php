@@ -72,10 +72,16 @@ $vv = $_vars;
                         View all
                     </a>
                 <?endif?>
-                <div class="pagination">
-                    <a class="prev" href="#Press.Slider.prev()">Prev</a>
-                    <a class="next" href="#Press.Slider.next()">Next</a>
-                </div>
+                <?if($vv->hasSlider()):?>
+                    <div class="pagination">
+                        <?//pages list?>
+                        <?for($i=0;$i<$vv->getSlides();$i++):?>
+                            <a href="#Press.Slider.toPage()" data-page="<?=$i?>"><?=$i+1?></a>
+                        <?endfor?>
+                        <a class="prev" href="#Press.Slider.prev()">Prev</a>
+                        <a class="next" href="#Press.Slider.next()">Next</a>
+                    </div>
+                <?endif?>
             </div>
         </div>
 

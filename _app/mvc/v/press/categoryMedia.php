@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="span8">
-        <div class="posts padded background-content"
+        <div class="posts padded background-content no-overflow"
             <?//the current model type?>
             data-model-type="M_category_media"
             <?//the current model id?>

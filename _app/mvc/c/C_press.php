@@ -277,10 +277,6 @@ Class C_press extends Controller{
 
         JS::addAfterBody("pub/libs/heartcode-canvasloader-min.js");
 
-        //fancy box (pop in)
-        //JS::addAfterBody("pub/libs/fancy-box/jquery.fancybox.pack.js");
-        //CSS::addToHeader("pub/libs/fancy-box/jquery.fancybox.css");
-
         // social share
         JS::addAfterBody("https://apis.google.com/js/plusone.js");
         JS::addAfterBody("http://platform.twitter.com/widgets.js");
@@ -296,8 +292,10 @@ Class C_press extends Controller{
         if(M_user::currentUser()->canWrite() || $forceadmin){
             POV_CssAndJs::adminSettings(false);
         }
-
         JS::addAfterBody("pub/app/press/js/Press.js");
+        JS::addAfterBody("pub/app/press/js/Press.Slider.js");
+        JS::addAfterBody("pub/app/press/js/boot.js");
+
 
 
 

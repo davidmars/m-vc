@@ -6,7 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 var Press = {
-
+    /**
+     * An object to performs loading transition between two pages. Loading are performed in two steps.
+     * @param target
+     * @constructor
+     */
     Loading:function(target) {
 
         target = $(target);
@@ -15,14 +19,12 @@ var Press = {
         var inside = $("<div/>");
         inside.addClass("loading-box-inside");
         inside.addClass("marged");
-
+        /**
+         * Show the loading, when the transition is done, it will run the "onStateLoading" event
+         */
         this.setLoading=function(){
-
             TweenMax.to(window, 1, {scrollTo:{y:0}, ease:Power2.easeOut});
-
-            //console.log(target);
             target.addClass("loading-box");
-            //target.addClass("span8");
             target.append(inside);
             TweenLite.fromTo(
                 inside,
@@ -39,7 +41,9 @@ var Press = {
         }
 
 
-
+        /**
+         * Ends the loading
+         */
         this.setNormal=function(){
             target.append(inside);
 
@@ -61,6 +65,9 @@ var Press = {
 }
 
 Press.init = function() {
+    $(window).on("resize",function(){
+        Press.onResize();
+    })
     Nav.init();
     Press.initAfterAjax();
 }
@@ -68,6 +75,10 @@ Press.init = function() {
 Press.initAfterAjax = function() {
     Nav.autoLoads();
     Share.init();
+    Press.Slider.init();
+}
+Press.onResize=function(){
+    Press.Slider.resize();
 }
 
 Press.setActiveTab=function(tab){
@@ -75,81 +86,10 @@ Press.setActiveTab=function(tab){
     $("[data-main-tab='"+tab+"']").addClass("active");
 }
 
-Press.init();
 
-//------------------slider-----------------------
-Press.Slider=function(jq){
-    var me=this;
-    var jq=$(jq);
 
-    var moved=jq.find(".move")
-    var pagination=jq.find(".pagination")
-    var prevBtn=jq.find(".prev")
-    var nextBtn=jq.find(".next")
-    /**
-     *
-     * @return {number} The unity for ech movement
-     */
-    this.moveByValue=function(){
-        var el=$(jq.find(".span2 .marged .marged")[1]);
-        //one element size * number of elements for each box -4 because the border :\
-        console.log("el.width()="+Utils.numberCss(el.css("width")))
-        return Utils.numberCss(el.css("width"))*4;
-    }
-    this.getPos=function(){
-       return Utils.numberCss(moved.css("margin-left"));
-    }
-    this.roundPos=function(){
-        var pos=Math.round(me.getPos()/me.moveByValue());
-        //console.log(me.getPos());
-        //console.log(me.moveByValue());
-        console.log("-----");
-        console.log(pos);
-    }
-    this.prev=function(){
-        TweenMax.to(moved,0.5,
-            {css:{
-                "margin-left":me.getPos()+me.moveByValue()
-                },
-                onComplete:function(){
-                    me.roundPos()
-                }
-            });
-    }
-    this.next=function(){
-        TweenMax.to(moved,0.5,
-            {
-                css:{
-                "margin-left":me.getPos()-me.moveByValue()
-                },
-                onComplete:function(){
-                    me.roundPos()
-                }
-            }
-        );
-    }
 
-}
-/**
- *
- * @param el
- * @return {Press.Slider}
- */
-Press.Slider.getParent=function(el){
-    var dom=$(el).closest("[data-slider='true']");
-    return new Press.Slider(dom);
-}
 
-Dom.body.on("click","[href='#Press.Slider.prev()']",function(e){
-    e.preventDefault();
-    var slider=Press.Slider.getParent($(this));
-    slider.prev();
-})
-Dom.body.on("click","[href='#Press.Slider.next()']",function(e){
-    e.preventDefault();
-    var slider=Press.Slider.getParent($(this));
-    slider.next();
-})
 
 
 
