@@ -66,7 +66,7 @@ $vv = $_vars;
                          */?>
 
                             <div <?if(!$vv->isAdmin()):?>
-                                    data-popinloder="<?=C_press::mediaPreview($vv->media->id,true)?>"
+                                    data-popinloder="<?=C_press::mediaPreview($vv->media->id, "preview", true)?>"
                                  <?endif?>>
                                 <?=$this->render("press/fields/media-image",$vv->thumbAdminField())?>
                             </div>
@@ -99,7 +99,7 @@ $vv = $_vars;
                         <?/*-----------------downloads btn-------------------*/?>
                         <div class="item-media-link">
                             <?if($vv->isAdmin() || $vv->media->theFile->exists() || $vv->media->theFileHd->exists()):?>
-                            <div class="button" data-popinloder="<?=C_press::mediaPreview($vv->media->id,true)?>" hqqqref="<?=$vv->media->theFile->download()?>">
+                            <div class="button" data-popinloder="<?=C_press::mediaPreview($vv->media->id, "download", true)?>" hqqqref="<?=$vv->media->theFile->download()?>">
                                 <i class="icon-download"></i> Download
                             </div>
                             <?endif?>
