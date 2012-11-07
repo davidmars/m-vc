@@ -17,6 +17,11 @@ class M_contact extends M_{
     public $role;
     /**
      *
+     * @var TextField The details of the contact
+     */
+    public $details;    
+    /**
+     *
      * @var TextField The society of the contact.
      */
     public $society;                
@@ -82,6 +87,7 @@ class M_contact extends M_{
         $newItem=new M_contact();
         $newItem->name="First name / Name";
         $newItem->role="Function / job name";
+        $newItem->details="Your own description";
         $newItem->society="Havana Club";
         $newItem->street="Street, number - Street name <br/> floor...";
         $newItem->zip="zip code";
@@ -112,6 +118,11 @@ class M_contact extends M_{
         $conf["default"]["fields"]["role"]=array(
             "visible"=>true,
             "label"=>"Function"
+        );
+        
+        $conf["default"]["fields"]["details"]=array(
+            "visible"=>true,
+            "label"=>"Details"
         );
         
         $conf["default"]["fields"]["society"]=array(

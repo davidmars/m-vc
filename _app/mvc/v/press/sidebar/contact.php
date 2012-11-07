@@ -51,41 +51,40 @@ $contact=$vv->contact;
                         </span>
         </div>
     </div>
+    
+    <!-- The details of the Contact-->
+    <div data-field="root[details]"
+         data-field-type="Text">
+        <div class="item-contact-address">
+                            <span
+                                <?//editable ?>
+                                <?=$vv->isAdmin()?"contenteditable='true' ":""?>
+                                <?// no text formatting allowed here */?>
+                                    data-remove-format="true">
+                                 <?= $contact->details ?>
+                            </span>
+        </div>
+    </div>
 
     <!-- The function of the Contact-->
-
+    <?/*
     <div data-field="root[role]"
          data-field-type="Text">
         <div class="item-contact-function">
                         <span
                             <?//editable ?>
                             <?=$vv->isAdmin()?"contenteditable='true' ":""?>
-                            <?// no text formatting allowed here */?>
                                 data-remove-format="true">
                                  <?= $contact->role ?>
                         </span>
         </div>
     </div>
     <br/>
-
-    <!-- The society of the Contact-->
-    <? if ($contact->society): ?>
-    <div data-field="root[society]"
-         data-field-type="Text">
-        <div class="item-contact-society">
-                            <span
-                                <?//editable ?>
-                                <?=$vv->isAdmin()?"contenteditable='true' ":""?>
-                                <?// no text formatting allowed here */?>
-                                    data-remove-format="true">
-                                 <?= $contact->society ?>
-                            </span>
-        </div>
-    </div>
-    <? endif; ?>
+    */?>           
 
     <!-- The address of the Contact-->
-    <? if ($contact->street): ?>
+            <?/*
+    <? if (!empty($contact->street) || $vv->isAdmin()): ?>
     <div class="item-contact-address">
         <!-- The street of the Contact-->
         <div data-field="root[street]"
@@ -93,11 +92,11 @@ $contact=$vv->contact;
                             <span
                                 <?//editable ?>
                                 <?=$vv->isAdmin()?"contenteditable='true' ":""?>
-                                <?// no text formatting allowed here */?>
                                     data-remove-format="true">
                                  <?= $contact->street ?>
                             </span>
         </div>
+
 
         <!-- The zip of the Contact-->
                         <span data-field="root[zip]"
@@ -105,7 +104,6 @@ $contact=$vv->contact;
                             <span
                                 <?//editable ?>
                                 <?=$vv->isAdmin()?"contenteditable='true' ":""?>
-                                <?// no text formatting allowed here */?>
                                     data-remove-format="true">
                                     <?= $contact->zip ?>
                             </span>
@@ -117,7 +115,6 @@ $contact=$vv->contact;
                             <span
                                 <?//editable ?>
                                 <?=$vv->isAdmin()?"contenteditable='true' ":""?>
-                                <?// no text formatting allowed here */?>
                                     data-remove-format="true">
                                     <?= $contact->city ?>
                             </span>
@@ -130,7 +127,6 @@ $contact=$vv->contact;
                             <span
                                 <?//editable ?>
                                 <?=$vv->isAdmin()?"contenteditable='true' ":""?>
-                                <?// no text formatting allowed here */?>
                                     data-remove-format="true">
                                     <?= $contact->country ?>
                             </span>
@@ -143,13 +139,15 @@ $contact=$vv->contact;
                             <span
                                 <?//editable ?>
                                 <?=$vv->isAdmin()?"contenteditable='true' ":""?>
-                                <?// no text formatting allowed here */?>
                                     data-remove-format="true">
                                  <?= $contact->number ?>
                             </span>
         </div>
+         * 
+         
     </div>
     <? endif; ?>
+             * */?>
 
     <!-- The email of the Contact-->
     <div data-field="root[email]"
