@@ -45,7 +45,6 @@ $refresh = C_press::post($post->post->getParentCategoryId(),true);
                 </div>
             </div>
         <?endif?>
-
         <?=$this->render("press/post/header-preview",$post)?>
 
     </div>

@@ -61,3 +61,17 @@
         </div>
     </div>
 </div>
+
+<div class="backComponent mt1" 
+    href="<?=C_press::categoryMedia($vv->parent->id, "", true)?>"
+    data-nav-is-ajax-target="mainContent"
+    data-nav-is-ajax="true">
+    <div class="row">
+        <div class="span8">
+            <div class="marged">
+                <!-- Insertion d'un composant de titre -->
+                <div class="item-title">GO  BACK TO <?=$vv->parent->title?></div>
+            </div>
+        </div>
+    </div>
+</div> 
