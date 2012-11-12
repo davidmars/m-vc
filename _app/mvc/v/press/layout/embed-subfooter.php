@@ -6,6 +6,8 @@
 
 <div class="hidden" id="terms" link="<?=C_press::showTerms(true)?>"></div>
 <div class="hidden" id="privacy" link="<?=C_press::showPrivacy(true)?>"></div>
+<div class="hidden" id="contact" link="<?=C_press::showContact(true)?>"></div>
+<div class="hidden" id="news_letter" link="<?=C_press::showNews(true)?>"></div>
 
 <footer id="press_subfooter" class="container-fluid">
     <div class="container">

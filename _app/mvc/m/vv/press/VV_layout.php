@@ -128,6 +128,20 @@ class VV_layout extends ViewVariables {
     }
 
     /**
+     * @return string Return the url of the embed contact script
+     */
+    public function embedContactUrl() {
+        return StaticDatas::$embedContact;
+    }
+
+    /**
+     * @return string Return the url of the embed contact script
+     */
+    public function embedNewsUrl() {
+        return StaticDatas::$embedNews;
+    }
+
+    /**
      * @var bool use true for the login page, beacause we are not looged in yet but we nee som admin functionnalities.
      */
     public $isLogin=false;

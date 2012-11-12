@@ -6,7 +6,7 @@ $vv = $_vars;
 <div class="popinloaded shareEmail middleabs"
      data-model-type=""
      data-model-id=""
-     data-model-refresh-controller="<?=C_press::showPrivacy(true);?>"
+     data-model-refresh-controller="<?=C_press::showNews(true);?>"
     <?//prevent for url browser address change?>
      data-model-refresh-controller-not-an-url="true"
         >
@@ -15,9 +15,9 @@ $vv = $_vars;
         <div>
             <div class="item-email-title" >
                 <a class="item-email-close" data-popinloder="close" href="#">&nbsp;</a>
-                PRIVACY
+                NEWSLETTER
             </div>
-            <iframe src="<?=$vv->embedPrivacyUrl()?>" width="480px" height="320px" scrolling="no" frameborder="0"></iframe>
+            <iframe src="<?=$vv->embedNewsUrl()?>" width="480px" height="320px" scrolling="no" frameborder="0"></iframe>
         </div>
     </div>
 </div>
