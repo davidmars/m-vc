@@ -1,0 +1,150 @@
+#press_footer {
+  .bg-image-active;
+  margin-top:200px;
+}
+
+#havana-main-footer {
+  div {
+    &.item-title {
+      border-right:1px solid rgba(0, 0, 0, 0.3);
+
+      &:last-child {
+        border-right:none;
+      }
+
+      &>div.noGutter {
+        .marginLeft-gutter;
+      }
+      padding-top:5px;
+      a {
+        .font-nav-tab-title;
+        color: @color3;
+      }
+
+      div {
+        &.item-subcat {
+          &>div.noGutter {
+            .marginLeft-gutter;
+          }
+          a {
+            .font-submenu;
+
+            &:hover {
+              color:@color3;
+            }
+          }
+
+          ul {
+            &.item-right {
+              .marginBigLeft-gutter;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* sub footer */
+
+#press_subfooter {
+  background:#000;
+}
+
+.legals{
+  background:#000;
+  padding:4px 0;
+}
+.legalsbottle{
+  position:absolute;
+  bottom:-7px;
+  right:300px;
+  z-index:1;
+}
+.legals span, .menu-langue {
+  margin-right:19px;
+  color: #D6C9C0;
+  text-transform: lowercase;
+  font-size: 11px;
+  line-height: 9px;
+}
+.langue-de .legals span {
+  text-transform:none;
+}
+.langue-fr .legals span .message_sanitaire {
+  text-transform:none;
+}
+.legals a{
+  color:#D6C9C0;
+  text-decoration: none;
+}
+.legals a:hover{
+  color:#fff;
+  text-decoration:none;
+}
+#localeSwitchButton{
+  background-position: center left;
+  background-repeat: no-repeat;
+  padding-left:24px;
+  position:relative;
+}
+.ie6 #localeSwitchButton{
+  background-position: center left;
+}
+#legal {
+  display:none;
+}
+#legal.visible {
+  display:block;
+  position:absolute;
+  width:100%;
+  height:100%;
+  left:0;
+  top:0;
+  z-index:300;
+  margin:0;
+  overflow:hidden;
+}
+
+.legals .list-container{
+  position:absolute;
+  bottom: 9px;
+  left:-30px;
+  z-index:170;
+}
+.legals .locales {
+  list-style-type:none;
+  padding:3px 5px;
+  background:#000;
+  width:200px;
+}
+.legals .locales span {
+  margin:0;
+
+}
+.legals .menu-langue {
+  position:relative;
+  float:left;
+  margin-top:6px;
+}
+.ie6 .legals .menu-langue {
+  margin-top:4px;
+}
+
+.legals .locale {
+  display:block;
+  background-position: center left;
+  background-repeat: no-repeat;
+  padding:4px 0 4px 24px;
+/*position:relative;*/
+}
+.ie6 .legals li {
+  line-height: 0;
+}
+
+.legals .locale a {
+  text-decoration:none;
+}
+.legals .locale a:hover {
+  text-decoration:underline;
+}

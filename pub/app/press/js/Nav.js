@@ -156,7 +156,8 @@ Nav.CTRL =  {
     AJAX_TARGET : "data-nav-is-ajax-target",
     AJAX_RECEIVER : "[data-nav-ajax-receiver]",
     AJAX_AUTOLOAD : "data-nav-ajax-autoload",
-    ITEM_NAV : "[data-is-item-nav]"
+    ITEM_NAV : "[data-is-item-nav]",
+    LANGUE_SWITCHER : "#localeSwitchButton"
 }
 
 Dom.body.on("click", Nav.CTRL.AJAX_LINK, function(ev) {
@@ -170,6 +171,7 @@ Dom.body.on("click", Nav.CTRL.AJAX_LINK, function(ev) {
     Nav.goToUrl(elem.attr("href"), target);
 })
 
+
 Dom.body.on("click", Nav.CTRL.ITEM_NAV, function(ev) {
     ev.preventDefault();
     $(".navBarComponent").find(".item-nav").each(function(){
@@ -179,3 +181,34 @@ Dom.body.on("click", Nav.CTRL.ITEM_NAV, function(ev) {
     $(this).closest("div.item-nav").addClass("active");
 })
 
+Dom.body.on("click", Nav.CTRL.LANGUE_SWITCHER, function(ev) {
+    ev.preventDefault();
+
+    var list = $(".list-container");
+
+    if (list.hasClass("hidden")) {
+        list.removeClass("hidden");
+
+        TweenLite.fromTo(
+            list,
+            0.5,
+            {css:{opacity:0}},
+            {css:{opacity:"1"},
+                ease:Linear.easeNone
+            }
+        );
+
+    } else {
+        TweenLite.fromTo(
+            list,
+            0.5,
+            {css:{opacity:1}},
+            {css:{opacity:"0"},
+                ease:Linear.easeNone,
+                onComplete:function(){
+                    list.addClass("hidden");
+                }
+            }
+        );
+    }
+})

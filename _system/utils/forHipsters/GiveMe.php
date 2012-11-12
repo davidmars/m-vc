@@ -75,8 +75,8 @@ class GiveMe {
     /**
      * @return string Will call the function to add a facebook like button on your blog
      */
-    public static function socialFB(){
-        return "<fb:like href='' send='true' layout='button_count' show_faces='false' width='200' font=''></fb:like>";
+    public static function socialFB($url, $title, $description, $image){
+        return "<fb:like href='" . $url . "' send='true' layout='button_count' show_faces='false' width='200' font=''></fb:like>";
     }
 
     /**

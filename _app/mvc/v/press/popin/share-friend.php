@@ -20,7 +20,7 @@ $vv = $_vars;
             <div class="item-email-content">
                <div class="item-email-form">
                    <p class="warning">Il est interdit d’envoyer cet email à une personne mineure.</p>
-                   <form id="emailform" name="sentoafriend" method="post" class="emailform" action="<?="test"?>">
+                   <form id="emailform" name="sentoafriend" method="post" class="emailform" action="<?=C_press::sendToFriend(true);?>">
                        <? //email ?>
                        <label class="item-label" for="senderemail">
                            Votre E-mail <span class="required">*</span>

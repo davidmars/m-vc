@@ -86,13 +86,6 @@ Press.setActiveTab=function(tab){
     $("[data-main-tab='"+tab+"']").addClass("active");
 }
 
-
-
-
-
-
-
-
 var PopInLoader={
     main:$("#popinloader"),
     content:$("#popincontent"),
@@ -122,6 +115,14 @@ Dom.body.on("click","[data-popinloder]",function(e){
     e.preventDefault();
     el=$(this);
     url=el.attr("data-popinloder");
+
+    // for other pop in come from club
+    if (url == "") {
+        popName = el.attr('data-is-popin');
+        popin = $("#" + popName);
+        url = popin.attr("link");
+    }
+
     if(url=="close"){
         PopInLoader.close();
     }else{

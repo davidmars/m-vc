@@ -107,6 +107,27 @@ class VV_layout extends ViewVariables {
     }
 
     /**
+     * @return string Return the url of the sub footer menu scrip
+     */
+    public function embedSubFooterUrl() {
+        return StaticDatas::$embedSubFooter;
+    }
+
+    /**
+     * @return string Return the url of the embed terms script
+     */
+    public function embedTermsUrl() {
+        return StaticDatas::$embedTerms;
+    }
+
+    /**
+     * @return string Return the url of the embed privacy script
+     */
+    public function embedPrivacyUrl() {
+        return StaticDatas::$embedPrivacy;
+    }
+
+    /**
      * @var bool use true for the login page, beacause we are not looged in yet but we nee som admin functionnalities.
      */
     public $isLogin=false;

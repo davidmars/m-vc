@@ -111,6 +111,48 @@ Class C_press extends Controller{
 
         return $c;
     }
+
+    /**
+     * Open the pop in for show the terms
+     * @param bool $returnUrl
+     * @return C_press|string
+     */
+    public static function showTerms($returnUrl=false) {
+        if($returnUrl){
+            $c = new C_press();
+            return $c->url();
+        }
+
+        // create a variable for our controller
+        $c = new C_press();
+
+        $vv = new VV_layout();
+
+        $c->resultView = new View("press/popin/terms", $vv);
+
+        return $c;
+    }
+
+    /**
+     * Open the pop in for show the terms
+     * @param bool $returnUrl
+     * @return C_press|string
+     */
+    public static function showPrivacy($returnUrl=false) {
+        if($returnUrl){
+            $c = new C_press();
+            return $c->url();
+        }
+
+        // create a variable for our controller
+        $c = new C_press();
+
+        $vv = new VV_layout();
+
+        $c->resultView = new View("press/popin/privacy", $vv);
+
+        return $c;
+    }
     
     /**
      *

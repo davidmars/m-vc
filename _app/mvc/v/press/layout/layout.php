@@ -58,6 +58,8 @@
 
     <?=$this->render("press/layout/embed-footer",$vv)?>
 
+    <?=$this->render("press/layout/embed-subfooter",$vv)?>
+
 <?endif;?>
 
 <?=$this->render("press/popin/popinloader")?>

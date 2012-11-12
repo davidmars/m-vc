@@ -18,6 +18,11 @@ $vv=new LayoutVariables($_vars);
 <meta name="author" content="<?=$vv->htmlHeader->author?>">
 <meta name="keywords" content="<?=$vv->htmlHeader->keywords?>">
 <meta name="viewport" content="width=device-width">
+
+<meta property="og:title" content="Havana Pressroom" />
+<meta property="og:description" content="Havana Pressroom description" />
+<meta property="og:image" content="thumbnail_image" />
+
 <link rel="shortcut icon" href="/havana_pressroom/pub/app/press/img/favicon.png">
 <link rel="apple-touch-icon-precomposed" href="/havana_pressroom/pub/app/press/img/favicon-ios.png">
 <?/*

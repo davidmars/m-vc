@@ -11,17 +11,32 @@ class StaticDatas
     /**
      * @var string the embedFooter url from Havana Club
      */
-    public static $embedFooter = 'http://havanaclub.shic.cc/embedFooter';
+    public static $embedFooter = 'http://havanaclub.shic.cc/en/int/embedFooter';
+
+    /**
+     * @var string the embedSubFooter url from Havana Club
+     */
+    public static $embedSubFooter = 'http://havanaclub.shic.cc/en/int/embedSubFooter';
 
     /**
      * @var string the embedHeaderMenu url from Havana Club
      */
-    public static $embedHeaderMenu = 'http://havanaclub.shic.cc/embedMenu';
+    public static $embedHeaderMenu = 'http://havanaclub.shic.cc/en/int/embedMenu';
 
     /**
      * @var string the embedHeaderSubMenu url from Havana Club
      */
-    public static $embedHeaderSubMenu = 'http://havanaclub.shic.cc/embedSubMenu';
+    public static $embedHeaderSubMenu = 'http://havanaclub.shic.cc/en/int/embedSubMenu';
+
+    /**
+     * @var string the embedTerms url from Havana Club
+     */
+    public static $embedTerms = 'http://havanaclub.shic.cc/en/int/embedTerms';
+
+    /**
+     * @var string the embedTerms url from Havana Club
+     */
+    public static $embedPrivacy = 'http://havanaclub.shic.cc/en/int/embedPrivacy';
 
     /**
      * @var string the downloadPack name
