@@ -12,7 +12,7 @@
         <div class="span8">
             <div class="marged">
                 <!-- Insertion d'un composant de titre -->
-                <div class="item-title">More Downloads</div>
+                <div class="item-title">More <?=$vv->categoryMedia->title?></div>
             </div>
         </div>
     </div>

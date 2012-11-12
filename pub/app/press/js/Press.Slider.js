@@ -57,20 +57,18 @@ Press.Slider=function(jq){
         enableBtn(pagination.find("a"));
     }
     var disableBtn=function(jq){
+        jq.closest('li').addClass("disabled");
         jq.addClass("disabled");
-        //jq.css("opacity",0.2);
     }
     var enableBtn=function(jq){
+        jq.closest('li').removeClass("disabled");
         jq.removeClass("disabled");
-        //jq.css("opacity",1);
     }
     var setActiveBtn=function(jq,active){
         if(active){
             jq.addClass("active");
-            //jq.css("color","#000");
         }else{
             jq.removeClass("active");
-            //jq.css("color","");
         }
         jq.css("opacity",1);
     }

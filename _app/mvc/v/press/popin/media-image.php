@@ -26,7 +26,7 @@ $vv = $_vars;
          */?>
         
         <?/* Image Preview */?>
-        <img src="<?=GiveMe::imageSizedWithoutCrop($vv->media->theFile,"auto",550,"000000","jpg")?>">              
+        <img src="<?=GiveMe::imageSizedWithoutCrop($vv->media->theFile,550,"auto","000000","jpg")?>">
         
         <?/* Download Button */?>
         <div class="download-buttons">

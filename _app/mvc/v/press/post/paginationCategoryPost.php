@@ -11,7 +11,7 @@ $vv = $_vars;
         <div class="span8">
             <div class="marged">
                 <!-- Insertion d'un composant de titre -->
-                <div class="item-title">More Recipes</div>
+                <div class="item-title">More <?=$vv->categoryPost->title?></div>
             </div>
         </div>
     </div>
