@@ -55,10 +55,11 @@ Class C_press extends Controller{
     /**
      * Return a preview page to display in the pop in.
      * @param $mediaId The media
+     * @param $type the pop in type we can have preview or download
      * @param bool $returnUrl
      * @return C_press
      */
-    public static function mediaPreview($mediaId,$returnUrl=false) {
+    public static function mediaPreview($mediaId, $type = "preview", $returnUrl=false) {
         if($returnUrl){
            $c = new C_press();
            return $c->url();
@@ -71,12 +72,18 @@ Class C_press extends Controller{
 
         $vv = new VV_media();
         $vv->init($media);
-
-        if($media->isImage()){
-            $c->resultView = new View("press/popin/media-image", $vv);
-        }else if($media->isVideo()){
-            $c->resultView = new View("press/popin/media-video", $vv);
-        }else{
+        
+        // check the type of the pop in 
+        if ($type == "preview") {
+            if($media->isImage()){
+                $c->resultView = new View("press/popin/media-image", $vv);
+            }else if($media->isVideo()){
+                $c->resultView = new View("press/popin/media-video", $vv);
+            }else{
+                $c->resultView = new View("press/popin/media-other", $vv);
+            }
+        }
+        else {
             $c->resultView = new View("press/popin/media-other", $vv);
         }
 

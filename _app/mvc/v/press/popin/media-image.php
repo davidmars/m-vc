@@ -6,29 +6,28 @@ $vv = $_vars;
     <div class="popinloaded photo middleabs"
         data-model-type="M_media"
         data-model-id="<?=$vv->media->id?>"
-        data-model-refresh-controller="<?=C_press::mediaPreview($vv->media->id,true);?>"
+        data-model-refresh-controller="<?=C_press::mediaPreview($vv->media->id, "preview", true);?>"
         <?//prevent for url browser address change?>
         data-model-refresh-controller-not-an-url="true"
         >    
         
+    <?/* Pop-in Close */?>
+    <div >
+        <span class="pull-left">
+            <a class="popincloser-inside" data-popinloder="close" href="#">
+                <i class="icon-white icon-remove"></i>
+            </a>
+        </span>
+    </div>
+        
     <div class="top">
-        <?/* Pop-in Close */?>
-        <?//TODO::rai::voir avec juliette pour le close?>
-        <?/*
-        <div >
-            <span class="pull-right">
-                <a class="popincloser-inside" data-popinloder="close" href="#">
-                    <i class="icon-white icon-remove"></i>
-                </a>
-            </span>
-        </div>
-         * 
-         */?>
+        
         
         <?/* Image Preview */?>
         <img src="<?=GiveMe::imageSizedWithoutCrop($vv->media->theFile,550,"auto","000000","jpg")?>">
         
         <?/* Download Button */?>
+        <?if($vv->isAdmin()):?>
         <div class="download-buttons">
             <?if($vv->isAdmin()):?>
                 <?=$this->render("press/popin/admin-uploads",$vv)?>
@@ -42,5 +41,6 @@ $vv = $_vars;
                 </span>
             <?endif?>
         </div>
+        <?endif?>
     </div>
 </div>

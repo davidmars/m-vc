@@ -61,8 +61,12 @@ class VV_post extends VV_layout {
     }
 
 
+    /**
+     * 
+     * @return M_category_post the category of the current post
+     */
     public function getCategory(){
-        return "toto";
+        return $this->post->getParent();
     }
 }
 

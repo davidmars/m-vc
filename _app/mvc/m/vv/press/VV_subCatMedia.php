@@ -40,6 +40,8 @@ class VV_subCatMedia extends VV_layout {
      * @var string The controller url to retrieve the complete list of media in pagination. This controller is used by ajax to get the end of the media list.
      */
     public $completeList=null;
+    
+    public $parent;
 
     /**
      * @param $currentSubCategory M_subcategory_media
@@ -52,6 +54,7 @@ class VV_subCatMedia extends VV_layout {
         $this->subCategoryMedia = $currentSubCategory;
         $this->currentIndex = $start;
 
+        $this->parent = $currentSubCategory->getParent();
         $parent=$currentSubCategory->getParent();
         VV_mainTab::$activeModel=$parent;
 

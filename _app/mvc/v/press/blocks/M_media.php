@@ -73,7 +73,7 @@ $media=$vv->block->getContent();
                         <?if($vv->isAdmin() ||
                             $media->theFile->exists() ||
                             $media->theFileHd->exists()):?>
-                            <div class="button" data-popinloder="<?=C_press::mediaPreview($media->id,true)?>">
+                            <div class="button" data-popinloder="<?=C_press::mediaPreview($media->id, "download",true)?>">
                                 <i class="icon-download"></i> Download
                             </div>
                         <?endif?>

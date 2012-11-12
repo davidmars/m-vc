@@ -10,7 +10,7 @@ var Share = {
 }
 
 Share.init = function() {
-    console.log("share init");
+    //console.log("share init");
 
 
     // FB

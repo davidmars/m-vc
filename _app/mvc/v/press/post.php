@@ -79,4 +79,18 @@ $this->inside("press/layout/layout", $vv);
     </div>
 </div>
 
+<div class="backComponent mt1"
+     href="<?=C_press::categoryPost($vv->getCategory()->id, "", true)?>"
+    data-nav-is-ajax-target="mainContent"
+    data-nav-is-ajax="true">
+    <div class="row">
+        <div class="span8">
+            <div class="marged">
+                <!-- Insertion d'un composant de titre -->
+                <div class="item-title">GO  BACK TO <?=$vv->getCategory()->title?></div>
+            </div>
+        </div>
+    </div>
+</div>    
+
 

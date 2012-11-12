@@ -6,10 +6,20 @@ $vv = $_vars;
     <div class="popinloaded video middleabs"
         data-model-type="M_media"
         data-model-id="<?=$vv->media->id?>"
-        data-model-refresh-controller="<?=C_press::mediaPreview($vv->media->id,true);?>"
+        data-model-refresh-controller="<?=C_press::mediaPreview($vv->media->id, "preview",true);?>"
         <?//prevent for url browser address change?>
         data-model-refresh-controller-not-an-url="true"
         >
+        
+    <?/* Pop-in Close */?>
+    <div >
+        <span class="pull-left">
+            <a class="popincloser-inside" data-popinloder="close" href="#">
+                <i class="icon-white icon-remove"></i>
+            </a>
+        </span>
+    </div>
+        
     <div class="top">
         <?=$vv->media->embed?>
         <?if($vv->isAdmin()):?>
@@ -18,6 +28,9 @@ $vv = $_vars;
                 <textarea class="embed"><?=$vv->media->embed?></textarea>
             </div>
         <?endif?>
+        
+        <?/* Download Button */?>
+        <?if($vv->isAdmin()):?>
         <div class="download-buttons">
                 <?if($vv->isAdmin()):?>
                             <?=$this->render("press/popin/admin-uploads",$vv)?>
@@ -31,5 +44,6 @@ $vv = $_vars;
                     </span>
                 <?endif?>
         </div>
+        <?endif?>
     </div>        
 </div>
