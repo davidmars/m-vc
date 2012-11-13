@@ -91,12 +91,39 @@ Class C_press extends Controller{
         return $c;
     }
 
+    public   function getContentMail($data, $idPost){
+        /* @var $post M_post */
+        $post = M_post::$manager->get($idPost);
+
+        $content = '<html><head><title>Contact</title></head><body>';
+
+        $content .= '<table cellspacing="0" cellpadding="0" border="0" width="100%" style="margin:0;" bgcolor="#900" background="' . Site::$host .  Site::url("pub") . '/app/press/img/territoire.jpg"><tr><td width="100%" height="16px"></td></tr><tr><td>';
+
+        $content .= '<table cellspacing="0" cellpadding="0" border="0" width="620px" style="margin:0 auto;" bgcolor="#ffffff"><tr><td height="16px"></td></tr><tr><td width="16px"></td><td width="588px" bgcolor="#ffffff" style="font-family:Arial, sans-serif; font-size:12px; line-height:13px; color:#000000;"><b>' . $data['senderemail'] . '</b> shared_link_with_you <a href="' . Site::$host . '"><font color="#990000"><u>' . Site::$host . '</u></font></a></td><td width="16px"></td></tr><tr><td height="16px"></td></tr><tr><td width="16px"></td><td width="588px" bgcolor="#ffffff" style="font-family:Arial, sans-serif; font-size:12px; line-height:13px; color:#000000;">' . $data["message"] . '</td><td width="16px"></td></tr><tr><td height="16px"></td></tr><tr><td width="16px"></td><td>';
+
+        $content .= '<table cellspacing="0" cellpadding="0" border="0" width="588px" style="margin:0 auto;" bgcolor="#ffffff"><tr><td width="100px" height="100px" bgcolor="#ffffff" style="font-family:Arial, sans-serif; font-size:12px; line-height:13px; color:#000000;" valign="top"><a href="' . Site::$host . $data["pageid"] . '"><img src="' . Site::$host . $post->thumb->sized(100, 100, "000000", "jpg") . '" alt="' . $post->title . '" width="100px" height="100px" border="0"/></a></td><td width="16px" height="100px"></td><td valign="top">';
+
+        $content .= '<table cellspacing="0" cellpadding="0" border="0" width="472px" style="margin:0 auto;" bgcolor="#ffffff"><tr><td width="472px" bgcolor="#ffffff" style="font-family:Arial, sans-serif; font-size:13px; line-height:13px; color:#990000;" valign="top"><b><a href="' . Site::$host . $data["pageid"] . '"><font color="#990000">' . $post->title . '</font></a></b></td></tr><tr><td width="472px" height="5px"></td></tr><tr><td width="472px" bgcolor="#ffffff" style="font-family:Arial, sans-serif; font-size:11px; line-height:13px; color:#aaaaaa;" valign="top"><a href="' . Site::$host . $data["pageid"] . '"><font color="#aaaaaa"><u>' . Site::$host . $data["pageid"] . '</u></font></a></td></tr><tr><td width="472px" height="5px"></td></tr><tr><td width="472px" bgcolor="#ffffff" style="font-family:Arial, sans-serif; font-size:12px; line-height:13px; color:#000000;" valign="top">' . $post->description . '</td></tr>';
+
+        $content  .= '</table></td></tr>';
+
+        $content  .= '</table></td><td width="16px"></td></tr><tr><td height="16px"></td></tr>';
+
+        $content  .= '</table></td></tr><tr><td width="100%" height="16px"></td></tr>';
+
+        $content  .= '</table></body></html>';
+
+        return $content;
+    }
+
+
     /**
      * Open the pop in for share by email the post
+     * @param IdField $idPost
      * @param bool $returnUrl
      * @return C_press|string
      */
-    public static function sendToFriend($returnUrl=false) {
+    public static function sendToFriend($idPost, $returnUrl=false) {
         if($returnUrl){
             $c = new C_press();
             return $c->url();
@@ -108,7 +135,13 @@ Class C_press extends Controller{
             $headers = "From: ".$_POST['senderemail']."\r\n";
             $headers .= 'Content-type: text/html; charset=UTF-8' ."\r\n";
 
-            if( mail( $_POST["friendemail"] , $title ,  $_POST["textareaMessage"] , $headers ) ){
+            $c = new C_press();
+
+            $content = $c->getContentMail($_POST, $idPost);
+
+            //echo $content;
+
+            if( mail( $_POST["friendemail"] , $title ,  $content , $headers ) ){
                 echo json_encode(array(
                     "sent" => "ok"
                 ));
@@ -118,7 +151,9 @@ Class C_press extends Controller{
 
         // create a variable for our controller
         $c = new C_press();
-        $vv = new VV_layout();
+
+        $vv = new VV_share();
+        $vv->init($idPost);
 
         $c->resultView = new View("press/popin/share-friend", $vv);
 

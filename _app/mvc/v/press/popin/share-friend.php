@@ -1,12 +1,12 @@
 <?php
-/* @var $this View */
-/* @var $vv VV_layout */
-$vv = $_vars;
+    /* @var $this View */
+    /* @var $vv VV_share */
+    $vv = $_vars;
 ?>
 <div class="popinloaded shareEmail middleabs"
      data-model-type=""
      data-model-id=""
-     data-model-refresh-controller="<?=C_press::sendToFriend(true);?>"
+     data-model-refresh-controller="<?=C_press::sendToFriend($vv->idPost, true);?>"
     <?//prevent for url browser address change?>
      data-model-refresh-controller-not-an-url="true"
         >
@@ -20,7 +20,7 @@ $vv = $_vars;
             <div class="item-email-content">
                <div class="item-email-form">
                    <p class="warning">I am of legal age and will send it to a legal age person</p>
-                   <form id="emailform" name="sentoafriend" method="post" class="emailform" action="<?=C_press::sendToFriend(true);?>">
+                   <form id="emailform" name="sentoafriend" method="post" class="emailform" action="<?=C_press::sendToFriend($vv->idPost, true);?>">
                        <? //email ?>
                        <label class="item-label" for="senderemail">
                            Your E-mail  <span class="required">*</span>
@@ -52,24 +52,10 @@ $vv = $_vars;
                        <div id="popin_response_error_mail_valid" class="popin_response_error required hidden" style="color:#DD0000;">Enter a valid postal address</div>
                    </div>
 
-                       <input id="sharedId" type="hidden" value="<?=GiveMe::currentUrl()?>" name="pageid"/>
+                       <input id="sharedId" type="hidden" value="<?=C_press::post($vv->idPost,true)?>" name="pageid"/>
                    </form>
                </div>
             </div>
         </div>
-
-        <?/*
-        <div class="popin-form-footer font3">
-            <input type="submit" name="submit" value="<?=$tr('BOUTON_ENVOYER') ?>" class="submit">
-            <span class="required-msg"><span class="required">*</span> <?=$tr('CHAMP_CHAMPSOBLIGATOIRES') ?></span>
-            <div id="popin_response_post" class="popin_response_post contact-msg" style="display:none;"><?=$tr('MAIL_sent') ?></div>
-            <div id="popin_response_error" class="popin_response_error required" style="display:none;"><?=$tr('COMMENT_post_error') ?></div>
-            <div id="popin_response_error_mail" class="popin_response_error_mail required" style="display:none;"><?=$tr('COMMENT_post_error_mail') ?></div>
-            <div id="popin_response_error_mail_valid" class="popin_response_error_mail_valid required" style="display:none;"><?=$tr('COMMENT_post_error_mail_valid') ?></div>
-            <div class="clear"></div>
-            <input id="sharedId" type="hidden" value="<?="id"?>" name="pageid"/>
-        </div>
-        */?>
-
     </div>
 </div>
