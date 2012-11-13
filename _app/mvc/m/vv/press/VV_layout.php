@@ -3,6 +3,35 @@
 class VV_layout extends ViewVariables {
     /**
      *
+     * @var string the title displayed in the address bar
+     */
+    public $htmlTitle;
+    /**
+     *
+     * @var string the keywords...back in 1995 SEO.
+     */
+    public $htmlKeywords;
+    /**
+     *
+     * @var string page description, should not be to long.
+     */
+    public $htmlDescription;
+
+    /**
+     *
+     * @var string page image Thumbnail, should not be to long.
+     */
+    public $htmlImage;
+
+    /**
+     *
+     * @var string hey WTF!
+     */
+    public $htmlAuthor="David Marsalone";
+
+
+    /**
+     *
      * @var string It's the current category ID
      */
     public $currentCategoryId;

@@ -42,6 +42,7 @@ $contactList = $vv->getContactList();
     <div class="item-content">
         <?foreach ($contactList->contacts as $contact): ?>
             <?=$this->render("press/sidebar/contact",$contact)?>
+            <div class="separator-contact-bloc">&nbsp;</div>
         <? endforeach;?>
 
         <div class="clearfix"></div>

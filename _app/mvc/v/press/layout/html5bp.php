@@ -1,6 +1,8 @@
 <?
 /* @var $this View */
-$vv=new LayoutVariables($_vars);
+//$vv=new LayoutVariables($_vars);
+/* @var $vv VV_layout */
+$vv = $_vars;
 ?>
 <!doctype html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -8,22 +10,20 @@ $vv=new LayoutVariables($_vars);
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-<title><?=$vv->htmlHeader->title?></title>
+<title><?=$vv->htmlTitle?></title>
 <meta charset="utf-8">
 <!--[if IE]>
 <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
 <meta http-equiv="imagetoolbar" content="no">
 <![endif]-->
-<meta name="description" content="<?=$vv->htmlHeader->description?>">
-<meta name="author" content="<?=$vv->htmlHeader->author?>">
-<meta name="keywords" content="<?=$vv->htmlHeader->keywords?>">
+<meta name="description" content="<?=$vv->htmlDescription?>">
+<meta name="author" content="<?=$vv->htmlAuthor?>">
+<meta name="keywords" content="<?=$vv->htmlKeywords?>">
 <meta name="viewport" content="width=device-width">
 
-<meta property="og:title" content="<?=$vv->htmlHeader->title?>Havana Pressroom" />
-    <?/*
-<meta property="og:description" content="<?=$vv->htmlHeader->description?>" />
-<meta property="og:image" content="" />
-*/?>
+<meta property="og:title" content="<?=$vv->htmlTitle?>" />
+<meta property="og:description" content="<?=$vv->htmlDescription?>" />
+<meta property="og:image" content="<?=$vv->htmlImage?>" />
 
 
 <link rel="shortcut icon" href="/havana_pressroom/pub/app/press/img/favicon.png">

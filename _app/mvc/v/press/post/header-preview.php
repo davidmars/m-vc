@@ -7,6 +7,12 @@ if($vv->isPreview){
 }else{
     $linkInside="";
 }
+
+
+$vv->htmlTitle = $vv->post->title;
+$vv->htmlDescription = $vv->post->description;
+$vv->htmlImage = Site::$host . $vv->post->thumb->sized(200, 200, "000000", "jpg") . ".jpg";
+
 ?>
 
 <div class="span8" <?=$linkInside?>>

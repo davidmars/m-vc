@@ -168,7 +168,7 @@ $contact=$vv->contact;
     <!-- The file of the Contact-->
     <a class="item-contact-file" href="<?=$vv->contact->theFile->download()?>">
         <i class="icon-download"></i>
-        Télécharger le contact
+        Download contact
 
     </a>
 

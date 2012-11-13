@@ -4,8 +4,6 @@
 $vv = $_vars;
 ?>
 
-
-
 <div class="paginationComponent mt1">
     <div class="row">
         <div class="span8">

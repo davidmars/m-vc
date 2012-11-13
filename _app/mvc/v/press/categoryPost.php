@@ -6,6 +6,8 @@
     $this->inside("press/layout/layout", $vv);
 ?>
 
+<div class="hidden" data-meta-title="true"><?=$vv->categoryPost->title?></div>
+
 <div class="row">
     <div class="span8">
         <div class="padded posts background-content"

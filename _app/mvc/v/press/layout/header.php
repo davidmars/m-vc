@@ -13,5 +13,9 @@ $vv = $_vars;
                 Havana Club Press Room
             </a>
         </h1>
+
+        <?if($vv->isAdmin()):?>
+        <a href="<?=Site::$host . "/havana_pressroom/logout"?>" class="btn pull-right btn-danger logout">Logout</a>
+        <?endif;?>
     </div>
 </div>
