@@ -23,6 +23,7 @@ if($vv->isPreview){
                  data-field-type="Text">
                 <div class="item-title">
                     <span
+                        data-meta-title="true"
                         <?//editable ?>
                         <?=$vv->isAdmin()?"contenteditable='true' ":""?>
                         <?// no text formatting allowed here */?>
@@ -38,6 +39,7 @@ if($vv->isPreview){
             <div data-field="root[description]" data-field-type="Text">
                 <div class="item-description">
                     <span
+                        data-meta-description="true"
                         <?//editable ?>
                         <?=$vv->isAdmin()?"contenteditable='true' ":""?>
                         <?// no text formatting allowed here */?>

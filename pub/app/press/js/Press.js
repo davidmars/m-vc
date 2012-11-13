@@ -76,6 +76,8 @@ Press.initAfterAjax = function() {
     Nav.autoLoads();
     Share.init();
     Press.Slider.init();
+    //Press.setMetaData();
+
 }
 Press.onResize=function(){
     Press.Slider.resize();
@@ -84,6 +86,27 @@ Press.onResize=function(){
 Press.setActiveTab=function(tab){
     $("[data-main-tab]").removeClass("active");
     $("[data-main-tab='"+tab+"']").addClass("active");
+}
+
+Press.setMetaData=function(){
+    //console.log("set the meta");
+    var metaTitle = Dom.body.find("[data-meta-title]");
+    var mTitle = $('meta[property="og:title"]');
+    //mTitle.attr("content", metaTitle.text());
+    //console.log(metaTitle.text());
+    //console.log(mTitle);
+
+    var metaDescription = Dom.body.find("[data-meta-description]");
+    var mDescription = $('meta[property="og:description"]');
+    //mDescription.attr("content", metaDescription.text());
+    //console.log(metaDescription);
+    //console.log(mDescription);
+
+    var metaImage = Dom.body.find("[data-meta-image]");
+    var mImage = $('meta[property="og:image"]');
+    //mImage.attr("content", "http://francois.de.shic.cc" + metaImage.attr("src"));
+    //console.log(metaImage.attr("src"));
+    //console.log(mImage);
 }
 
 var PopInLoader={
@@ -99,7 +122,7 @@ var PopInLoader={
                 function (ajaxReturn){
                     var newDom=$(ajaxReturn);
                     PopInLoader.content.append(newDom);
-
+                    Form.init();
                 }
         });
     },

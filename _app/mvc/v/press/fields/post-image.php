@@ -12,7 +12,7 @@ $field=$vv->field;
     <div class="padded">
 
         <?//thumb ?>
-        <img src="<?=$field->sized(200, 200, "000000", "jpg")?>" alt="<?/*=$vv->post->title*/?>" />
+        <img src="<?=$field->sized(200, 200, "000000", "jpg")?>" alt="<?/*=$vv->post->title*/?>" data-meta-image="true" />
 
         <?if($vv->isAdmin()):?>
             <div class="wysiwyg">

@@ -102,9 +102,22 @@ Class C_press extends Controller{
             return $c->url();
         }
 
+        if ($_POST) {
+            $title = "Havana PressRoom";
+
+            $headers = "From: ".$_POST['senderemail']."\r\n";
+            $headers .= 'Content-type: text/html; charset=UTF-8' ."\r\n";
+
+            if( mail( $_POST["friendemail"] , $title ,  $_POST["textareaMessage"] , $headers ) ){
+                echo json_encode(array(
+                    "sent" => "ok"
+                ));
+            }
+            die();
+        }
+
         // create a variable for our controller
         $c = new C_press();
-
         $vv = new VV_layout();
 
         $c->resultView = new View("press/popin/share-friend", $vv);
@@ -376,6 +389,7 @@ Class C_press extends Controller{
         // Press
         JS::addAfterBody("pub/app/press/js/Dom.js");
         JS::addAfterBody("pub/app/press/js/Nav.js");
+        JS::addAfterBody("pub/app/press/js/Form.js");
         JS::addAfterBody("pub/tools/EventDispatcher.js");
         JS::addAfterBody("pub/app/press/js/Share.js");
 

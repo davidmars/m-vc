@@ -64,7 +64,7 @@ $this->inside("press/layout/layout", $vv);
                                             <div class="item-email" data-popinloder="<?=C_press::sendToFriend(true)?>"></div>
                                             <?=GiveMe::socialGoogle(GiveMe::currentUrl())?>
                                             <?=GiveMe::socialTwitter(GiveMe::currentUrl())?>
-                                            <?=GiveMe::socialFB(GiveMe::currentUrl(), $vv->post->title, $vv->post->description, $vv->post->thumb->sizedWithoutCrop(100, "auto", "transparent", "jpg"))?>
+                                            <?=GiveMe::socialFB(GiveMe::currentUrl(), $vv->post->title, $vv->post->description, $vv->post->thumb->sized(200, 200, "000000", "jpg"))?>
                                         </div>
                                 </div>
                             </div>
