@@ -10,6 +10,10 @@ var Nav = {
     currentState : null,
     goToUrl : function(url, target) {
         // change url
+        if (!target) {
+            target = $("[data-nav-ajax-receiver='mainContent']");
+        }
+
         Nav.History.pushState({
             url:url,
             target:target
@@ -64,6 +68,7 @@ Nav.initHistory = function(){
 
     // Bind to State Change
     History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+        //alert("state change")
         if(Nav.disableLoadOnStateChange){
             console.log("url changed but no ajax loading where performed");
             return;
@@ -82,30 +87,65 @@ Nav.initHistory = function(){
 
         //console.log(target);
 
-        var loader = new Nav.Loader(Nav.currentState.url, target);
-        var loading = new Press.Loading(target);
-
-        loading.events.addEventListener("onStateLoading", function() {
-            loader.start();
-        });
-
-        loader.events.addEventListener("loaded", function() {
-            loading.setNormal();
-            Press.initAfterAjax();
-        })
-
-        loading.setLoading();
+        Nav.initLoader(target);
 
         /*History.log('statechange:', State.data, State.title, State.url);*/
     });
+
+
+    if( History.getHash() != "" ) {
+        var  target  = $("[data-nav-ajax-receiver='mainContent']")
+        if( Nav.currentState.data.url ) {
+            Nav.initLoader(target);
+        } else {
+            var hash = document.location.hash;
+
+            alert(hash)
+
+            if( document.location.hash.indexOf("%3F") > 0) {
+                hash = document.location.hash.substr(1, document.location.hash.indexOf("%3F")- 1);
+            } else {
+                hash = document.location.hash.substr(1);
+            }
+
+            if( hash.substr(0,2) == "./" ) {
+                hash = hash.substr(1);
+            }
+
+            if( hash.indexOf("?") > 0 ) {
+                hash = hash.substr(0, hash.indexOf("?"));
+            }
+
+            Nav.goToUrl(hash, target);
+        }
+
+    }
+}
+
+Nav.initLoader = function ( target ) {
+    var loader = new Nav.Loader(Nav.currentState.url, target);
+    var loading = new Press.Loading(target);
+
+    loading.events.addEventListener("onStateLoading", function() {
+        loader.start();
+    });
+
+    loader.events.addEventListener("loaded", function() {
+        loading.setNormal();
+        Press.initAfterAjax();
+    })
+
+    loading.setLoading();
+
+
 }
 
 Nav.Loader = function(url, target) {
     this.events = new EventDispatcher();
     var me = this;
-
     this.start=function(){
         //me.events.dispatchEvent("startLoading");
+
         $.ajax({
             type: "POST",
             url: url,

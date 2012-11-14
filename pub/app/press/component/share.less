@@ -2,7 +2,7 @@
 .shareComponent{
     div {
         &.item-share {
-          marg  in-left: 0;
+          margin-left: 0;
         }
     }    
     .item-email { // popinEmailButton
@@ -22,17 +22,23 @@
     }
     .item-twitter { // twitter-share-button
         display: block;
-        .pull-left;
+        //.pull-left;
         height: 20px;
-        margin-right: 11px !important;
+        margin-right: 10px !important;
+        margin-left: 10px !important;
     }
 
     .twitter-share-button {
-      float:left;
-      margin-right: 11px;
+      //float:left;
+      margin-right: 10px !important;
+      margin-left: 10px !important;
     }
-    
 }
+
+.fb_edge_widget_with_comment {
+  bottom: 3px;
+}
+
 
 .ie6 .shareComponent .item-google, .ie7 .shareComponent .item-google {
     display:none; /* not supported */

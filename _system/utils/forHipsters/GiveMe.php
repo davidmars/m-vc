@@ -83,8 +83,8 @@ class GiveMe {
      * @return string Will call the function to add a google plus button on your blog
      */
     public static function socialGoogle($url){
-        return '<div class="item-google"><g:plusone href="'.$url.'" size="medium" count="false"></g:plusone></div>';
-        //return '<div class="plusone"><g:plusone href="test" size="medium" count="false"></g:plusone></div>';
+        //return '<div class="item-google"><g:plusone href="'.$url.'" size="medium" count="false"></g:plusone></div>';
+        return '<div class="g-plusone" data-size="medium" data-count="false" data-href="'. $url . '"></div>';
     }
 
     /**
