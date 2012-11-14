@@ -9,8 +9,8 @@ if($vv->isPreview){
 }
 
 
-$vv->htmlTitle = $vv->post->title;
-$vv->htmlDescription = $vv->post->description;
+$vv->htmlTitle = strip_tags($vv->post->title);
+$vv->htmlDescription = strip_tags($vv->post->description);
 $vv->htmlImage = Site::$host . $vv->post->thumb->sized(200, 200, "000000", "jpg") . ".jpg";
 
 ?>
