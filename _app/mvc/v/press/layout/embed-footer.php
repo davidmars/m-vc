@@ -10,7 +10,7 @@
             <div class="span12">
                 <div class="marged">
                     <div class="row">
-                        <script src="<?=$vv->embedFooterUrl()?>"></script>
+                        <script type="text/javascript" src="<?=$vv->embedFooterUrl()?>"></script>
                     </div>
                 </div>
             </div>

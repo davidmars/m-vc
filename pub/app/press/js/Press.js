@@ -19,6 +19,7 @@ var Press = {
         var inside = $("<div/>");
         inside.addClass("loading-box-inside");
         inside.addClass("marged");
+
         /**
          * Show the loading, when the transition is done, it will run the "onStateLoading" event
          */
@@ -78,6 +79,8 @@ Press.initAfterAjax = function() {
     Press.Slider.init();
     Press.setMetaData();
 
+    /* It's resolved youtube modal problem for IE8 */
+    Press.setEmbedAttr();
 }
 Press.onResize=function(){
     Press.Slider.resize();
@@ -113,6 +116,21 @@ Press.setMetaData=function(){
     //console.log(metaImage.attr("src"));
     //console.log(mImage);
     */
+}
+
+Press.setEmbedAttr=function(){
+    $("iframe").each(function(index){
+        var src = $(this).attr("src");
+
+        if (src.search("youtube") >= 0){
+            if (src.search("wmode=transparent") >= 0){
+                //console.log(src);
+            } else {
+                src = src + "&wmode=transparent";
+                $(this).attr("src", src);
+            }
+        }
+    });
 }
 
 var PopInLoader={

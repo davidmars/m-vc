@@ -397,15 +397,13 @@ Class C_press extends Controller{
      * @param bool $forceadmin if true will include the admin fils if the user is logged or not
      */
     private static function setCssAndJs($forceadmin=true){
-        //modernizer
-        JS::addToHeader("pub/libs/modernizr-2.5.3-respond-1.1.0.min.js");
-        
         //jquery
         JS::addAfterBody("pub/libs/jquery-1.7.2.js");
         JS::addAfterBody("pub/libs/jquery.history.js");
 
+        //modernizer
+        JS::addToHeader("pub/libs/modernizr-2.5.3-respond-1.1.0.min.js");
 
-	
         JS::addAfterBody("pub/app/admin/utils/Utils.js");
 
         //bootstrap

@@ -8,7 +8,7 @@ $vv = $_vars;
     <? // PRESS ROOM COMPONENT ?>
     <a href="" class="pressRoomComponent">
         <div class="item-content">
-            <div class="item-subtitle">Go to the press room of</div>
+            <div class="item-subtitle">Go to press room</div>
             <div class="item-title">Havana Cultura<i class="sprite-item-title"></i></div>
         </div>
     </a>

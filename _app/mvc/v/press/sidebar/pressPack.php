@@ -25,11 +25,11 @@
                     <table>
                         <tr>
                             <td><i class="sprite-item-titleIcon"></i></td>
-                            <td><span class="item-titleIcon">Download</span></td>
+                            <td><span class="item-subtitle">Download</span></td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
-                            <td><span class="item-subtitle">Press pack</span></td>
+                            <td><span class="item-titleIcon">Press pack</span></td>
                         </tr>
                     </table>
 

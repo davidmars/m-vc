@@ -31,7 +31,7 @@
       &.photo{
         .top{        
           text-align: center;
-          //height:550px;
+          height:100px;
           background-color: transparent;
 
             .download-buttons {
@@ -61,7 +61,7 @@
       &.video{
         .top{
           text-align: center;
-          //height:450px;
+          height:100px;
           background-color: transparent;
 
             .download-buttons {
@@ -109,6 +109,11 @@
           padding-top: 15px;
           padding-left: 50px;
           background-color:@color4;
+
+          &.single {
+            height:50px;
+            padding-top: 25px;
+          }
 
             .download-buttons {
                 width:200px;
@@ -332,11 +337,18 @@
 
 .popincloser-inside{
     display: block;
-    /*
-    position: absolute;
-    top:5px;
-    right: 5px;
-    */
+    width: 100%;
+
+
+  left: 0px;
+  position: relative;
+  top: -5px;
+
+  /*
+  position: absolute;
+  top:5px;
+  right: 5px;
+  */
 }
 
 

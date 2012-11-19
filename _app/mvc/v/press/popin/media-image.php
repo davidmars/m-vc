@@ -9,16 +9,22 @@ $vv = $_vars;
         data-model-refresh-controller="<?=C_press::mediaPreview($vv->media->id, "preview", true);?>"
         <?//prevent for url browser address change?>
         data-model-refresh-controller-not-an-url="true"
-        >    
-        
+        >
+
     <?/* Pop-in Close */?>
-    <div >
-        <span class="pull-left">
-            <a class="popincloser-inside" data-popinloder="close" href="#">
-                <i class="icon-white icon-remove"></i>
-            </a>
-        </span>
+    <div class="popin-close">
+    <span class="pull-left">
+        <a class="popincloser-inside" data-popinloder="close" href="#">
+            <i class="icon-white icon-remove"></i>
+        </a>
+    </span>
     </div>
+
+    <?/*
+    <div class="pull-left popincloser-inside" data-popinloder="close">
+        <i class="icon-white icon-remove"></i>
+    </div>
+    */?>
         
     <div class="top">
         

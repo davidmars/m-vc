@@ -11,7 +11,7 @@
                 <div class="span12">
                     <div class="marged">
                         <div class="nav-collapse collapse">
-                            <script src="<?=$vv->embedHeaderMenuUrl()?>"></script>
+                            <script type="text/javascript" src="<?=$vv->embedHeaderMenuUrl()?>"></script>
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@
     <div class="span12">
         <div class="marged">
             <div class="row">
-                <script src="<?=$vv->embedHeaderSubMenuUrl()?>"></script>
+                <script type="text/javascript" src="<?=$vv->embedHeaderSubMenuUrl()?>"></script>
             </div>
         </div>
     </div>

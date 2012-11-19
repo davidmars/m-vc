@@ -19,8 +19,15 @@ $vv = $_vars;
             </a>
         </span>
     </div>
+
+    <?
+        $single = "";
+        if((!$vv->media->theFileHd->exists()) || (!$vv->media->theFile->exists())) {
+            $single = "single";
+        }
+    ?>
         
-    <div class="top <?=($vv->isAdmin())?"admin":""?>">
+    <div class="top <?=$single?> <?=($vv->isAdmin())?"admin":""?>">
         <?if($vv->isAdmin()):?>
             <?=$this->render("press/popin/admin-uploads",$vv)?>
         <?else:?>
@@ -29,9 +36,11 @@ $vv = $_vars;
                     <a href="<?=$vv->media->theFile->download()?>"><i class="icon-download"></i>&nbsp;Download LD</a>
                 </div>
                 <br/>
-                <div class="button">
-                    <a href="<?=$vv->media->theFileHd->download()?>"><i class="icon-download"></i>&nbsp;Download HD</a>
-                </div>
+                <? if ($vv->media->theFileHd->exists() || $vv->isAdmin()):?>
+                    <div class="button">
+                        <a href="<?=$vv->media->theFileHd->download()?>"><i class="icon-download"></i>&nbsp;Download HD</a>
+                    </div>
+                <?endif?>
             </div>
         <?endif?>
     </div>

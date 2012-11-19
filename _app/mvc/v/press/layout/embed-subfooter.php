@@ -15,7 +15,7 @@
             <div class="span12">
                 <div class="marged">
                     <div class="row">
-                        <script src="<?=$vv->embedSubFooterUrl()?>"></script>
+                        <script type="text/javascript" src="<?=$vv->embedSubFooterUrl()?>"></script>
                     </div>
                 </div>
             </div>
