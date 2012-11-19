@@ -153,7 +153,7 @@ $contact=$vv->contact;
     <div data-field="root[email]"
          data-field-type="Text">
         <div class="item-contact-email">
-            <a href="<?=!$vv->isAdmin()?"mailto:".$contact->email:"#"?>">
+            <a href="<?=!$vv->isAdmin()?"mailto:".trim($contact->email):"#"?>">
                             <span
                                 <?//editable ?>
                                 <?=$vv->isAdmin()?"contenteditable='true' ":""?>

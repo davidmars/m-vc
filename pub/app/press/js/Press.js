@@ -97,7 +97,7 @@ Press.setMetaData=function(){
 
     var title = $("title");
     var metaTitle = Dom.body.find("[data-meta-title]").first();
-    var metaText = metaTitle.text();    
+    var metaText = metaTitle.text();
     title.text(metaText);
 }
 

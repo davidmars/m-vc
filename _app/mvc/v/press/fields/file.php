@@ -57,7 +57,12 @@ $field=$vv->field;
                     <span class="btn-input-file">
                         <input type="file"/><i class="icon-upload"></i>
                     </span>
-
+                    <?if($field->exists()):?>
+                        <br/>
+                        <span class="btn-input-file">
+                        <a href="#Fields.File.delete"><i class="icon-remove-sign"></i></a>
+                        </span>
+                    <?endif;?>
             </div>
 
 

@@ -55,6 +55,7 @@ Fields.File=function(jq){
 
 Fields.File.CTRL={
     BTN_PICK_FILE:"a[href='#Fields.File.pick']",
+    BTN_DELETE_FILE:"a[href='#Fields.File.delete']",
     BTN_UPLOAD_FILE:"[data-field-type='File'] input[type='file']"
 
 }
@@ -64,7 +65,11 @@ Fields.File.CTRL={
 JQ.bo.on("click",Fields.File.CTRL.BTN_PICK_FILE,function(e){
     e.preventDefault();
     var fieldFile=new Fields.File(Fields.getParent($(this)));
-    
+})
+
+JQ.bo.on("click",Fields.File.CTRL.BTN_DELETE_FILE,function(e){
+    e.preventDefault();
+    console.log("heerrrrrre");
 })
 
 JQ.bo.on("change",Fields.File.CTRL.BTN_UPLOAD_FILE,function(e){
