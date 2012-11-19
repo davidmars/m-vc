@@ -119,17 +119,13 @@ Press.setMetaData=function(){
 }
 
 Press.setEmbedAttr=function(){
-    $("iframe").each(function(index){
-        var src = $(this).attr("src");
+    $('iframe').each(function() {
+        var url = $(this).attr("src");
+        var char = "?";
+        if(url.indexOf("?") != -1)
+            var char = "&";
 
-        if (src.search("youtube") >= 0){
-            if (src.search("wmode=transparent") >= 0){
-                //console.log(src);
-            } else {
-                src = src + "&wmode=transparent";
-                $(this).attr("src", src);
-            }
-        }
+        $(this).attr("src",url+char+"wmode=transparent");
     });
 }
 
