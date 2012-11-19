@@ -24,11 +24,11 @@
                 <div>
                     <table>
                         <tr>
-                            <td><i class="sprite-item-titleIcon"></i></td>
+                            <td>&nbsp;</td>
                             <td><span class="item-subtitle">Download</span></td>
                         </tr>
                         <tr>
-                            <td>&nbsp;</td>
+                            <td valign="bottom"><i class="sprite-item-titleIcon"></i></td>
                             <td><span class="item-titleIcon">Press pack</span></td>
                         </tr>
                     </table>
