@@ -25,6 +25,18 @@ Fields.File=function(jq){
         me.textField.val(""); 
         me.progress.addClass("active");
     }
+
+    this.delete=function(){
+        //TODO::RAI::Maybe the delete need to be improve
+        me.model.needToBeRecorded(true);
+        var request=new Api.Upload(me.modelType,me.fieldName,me.template,null,me.onComplete,me.onError);
+        request.onProgress=me.onProgress;
+        request.onComplete=me.onComplete;
+        request.onError=me.onError;
+        me.textField.attr("placeholder","deleted");
+        me.textField.val("");
+        me.progress.addClass("active");
+    }
     
     this.onProgress=function(loaded,total){
             
@@ -69,7 +81,13 @@ JQ.bo.on("click",Fields.File.CTRL.BTN_PICK_FILE,function(e){
 
 JQ.bo.on("click",Fields.File.CTRL.BTN_DELETE_FILE,function(e){
     e.preventDefault();
-    console.log("heerrrrrre");
+    var fieldFile=new Fields.File(Fields.getParent($(this)));
+    var r = confirm('Delete this current file ?');
+    if (r) {
+        fieldFile.textField.attr("value", "");
+        fieldFile.textField.val("");
+        fieldFile.delete();
+    }
 })
 
 JQ.bo.on("change",Fields.File.CTRL.BTN_UPLOAD_FILE,function(e){
